@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -68,8 +71,23 @@ fun MeetingCard(modifier: Modifier = Modifier) {
                 MyChipRow()
             }
         }
+        HorizontalDivider(Modifier.padding(top = MeetingTheme.dimensions.dimension16))
     }
 
+}
+
+@Composable
+fun MeetingCardColumn(count: Int) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        items(count) {
+            MeetingCard(
+                modifier = Modifier
+                    .height(88.dp)
+            )
+        }
+    }
 }
 
 @Preview
@@ -77,7 +95,7 @@ fun MeetingCard(modifier: Modifier = Modifier) {
 private fun MeetingCardPreview() {
     MeetingCard(
         modifier = Modifier
-            .height(76.dp)
+            .height(88.dp)
             .fillMaxWidth()
     )
 }

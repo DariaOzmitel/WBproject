@@ -16,6 +16,7 @@ data class MeetingColors(
     val neutralOffWhite: Color,
     val neutralActive: Color,
     val neutralWeak: Color,
+    val disableTab: Color,
 )
 
 val LightColors = MeetingColors(
@@ -29,5 +30,6 @@ val LightColors = MeetingColors(
     neutralOffWhite = Color(0xFFF7F7FC),
     neutralActive = Color(0xFF29183B),
     neutralWeak = Color(0xFFA4A4A4),
+    disableTab = Color(0xFF666666)
 )
 internal val LocalColors = staticCompositionLocalOf { LightColors }

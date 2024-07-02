@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +22,7 @@ import com.example.wbproject.ui.theme.arguments.MyTextArguments
 val listChipsExample = listOf(
     MyChipArguments(
         myTextArguments = MyTextArguments(
+            modifier = Modifier.height(16.dp),
             text = "Python",
             color = LightColors.brandColorDark,
             textStyle = MeetingTypographyValue.metadata3
@@ -28,6 +30,7 @@ val listChipsExample = listOf(
     ),
     MyChipArguments(
         myTextArguments = MyTextArguments(
+            modifier = Modifier.height(16.dp),
             text = "Junior",
             color = LightColors.brandColorDark,
             textStyle = MeetingTypographyValue.metadata3
@@ -35,6 +38,7 @@ val listChipsExample = listOf(
     ),
     MyChipArguments(
         myTextArguments = MyTextArguments(
+            modifier = Modifier.height(16.dp),
             text = "Moscow",
             color = LightColors.brandColorDark,
             textStyle = MeetingTypographyValue.metadata3
@@ -45,7 +49,7 @@ val listChipsExample = listOf(
 @Composable
 fun MyChipRow(modifier: Modifier = Modifier, listChips: List<MyChipArguments> = listChipsExample) {
     Row(
-        modifier = modifier.height(24.dp),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         listChips.forEach {
@@ -65,41 +69,19 @@ fun MyChip(
                 .background(color = containerColor)
                 .padding(
                     start = MeetingTheme.dimensions.dimension4,
-                    bottom = MeetingTheme.dimensions.dimension2,
+                    bottom = MeetingTheme.dimensions.dimension1,
                     end = MeetingTheme.dimensions.dimension4,
                     top = MeetingTheme.dimensions.dimension2
-                )
+                ),
+            contentAlignment = Alignment.Center
         ) {
             MyText(myTextArguments = myTextArguments)
         }
-
-//        AssistChip(
-//            modifier = modifier.defaultMinSize(1.dp,1.dp),
-//            onClick = onClick,
-//            label = { MyText(myTextArguments = myTextArguments) },
-//            colors = AssistChipDefaults.assistChipColors(
-//                containerColor = containerColor,
-//            ),
-//            shape = shape,
-//            border = border
-//        )
     }
 }
 
 @Preview
 @Composable
 private fun MyChipRowPreview() {
-
     MyChipRow()
-//    AssistChip(
-//        modifier = Modifier.defaultMinSize(1.dp,1.dp),
-//        onClick = {},
-//        label = { Text( text = "Junior") },
-//        colors = AssistChipDefaults.assistChipColors(
-//            containerColor = BrandColorBackGround,
-//        ),
-//        shape = CircleShape,
-//        border = null
-//    )
-
 }

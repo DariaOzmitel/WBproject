@@ -21,9 +21,13 @@ import com.example.wbproject.ui.theme.molecules.RowAvatarsPreview
 
 @Composable
 fun SecondLesson() {
-    Surface(modifier = Modifier.fillMaxSize().padding(
-        top = MeetingTheme.dimensions.dimension16
-    )) {
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(
+                top = MeetingTheme.dimensions.dimension16
+            )
+    ) {
         Column(
             modifier = Modifier
                 .padding(MeetingTheme.dimensions.dimension16)

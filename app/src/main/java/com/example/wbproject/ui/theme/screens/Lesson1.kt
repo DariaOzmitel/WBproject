@@ -31,10 +31,7 @@ fun FirstLesson() {
         Column(
             modifier = Modifier
                 .padding(MeetingTheme.dimensions.dimension16)
-                .padding(
-                    8.dp
-                )
-
+                .padding(8.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8)
         ) {
