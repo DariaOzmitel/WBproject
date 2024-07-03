@@ -1,14 +1,18 @@
 package com.example.wbproject.ui.theme.molecules
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +31,8 @@ import com.example.wbproject.ui.theme.elements.MyText
 @Composable
 fun CommunityCard(modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier, colors = CardDefaults.cardColors(
+        modifier = modifier.padding(top = MeetingTheme.dimensions.dimension4),
+        colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
     ) {
@@ -38,18 +43,18 @@ fun CommunityCard(modifier: Modifier = Modifier) {
             MyAvatar(
                 MyAvatarArgs(
                     painter = painterResource(id = R.drawable.avatar),
-                    modifier = Modifier.size(MeetingTheme.dimensions.dimension56)
+                    modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
                 )
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
-            Column(modifier = Modifier.height(MeetingTheme.dimensions.dimension70)) {
+            Column {
                 MyText(
                     myTextArguments = MyTextArguments(
                         text = "Designa",
                         textStyle = MeetingTypographyValue.bodyText1
                     )
                 )
-                Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension4))
+                Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension8))
                 MyText(
                     myTextArguments = MyTextArguments(
                         text = "10 000 человек",
@@ -59,7 +64,25 @@ fun CommunityCard(modifier: Modifier = Modifier) {
                 )
             }
         }
+        HorizontalDivider(
+            modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension12),
+            color = MeetingTheme.colors.neutralLine
+        )
+    }
+}
 
+@Composable
+fun CommunityCardColumn(count: Int) {
+    LazyColumn(
+        modifier = Modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        items(count) {
+            CommunityCard(
+                modifier = Modifier
+                    .height(68.dp)
+            )
+        }
     }
 }
 
@@ -69,6 +92,6 @@ private fun CommunityCardPreview() {
     CommunityCard(
         Modifier
             .fillMaxWidth()
-            .height(70.dp)
+            .height(68.dp)
     )
 }

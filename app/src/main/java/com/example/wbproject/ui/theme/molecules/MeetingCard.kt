@@ -32,7 +32,7 @@ import com.example.wbproject.ui.theme.elements.MyText
 
 
 @Composable
-fun MeetingCard(modifier: Modifier = Modifier) {
+fun MeetingCard(modifier: Modifier = Modifier, isEnded: Boolean = false) {
     Card(
         modifier = modifier,
         shape = RectangleShape, colors = CardDefaults.cardColors(
@@ -52,7 +52,10 @@ fun MeetingCard(modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column(
-                modifier = Modifier.height(68.dp),
+                modifier = Modifier
+                    .height(68.dp)
+                    .weight(1f),
+
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 MyText(
@@ -70,8 +73,21 @@ fun MeetingCard(modifier: Modifier = Modifier) {
                 )
                 MyChipRow()
             }
+            if (isEnded) {
+                MyText(
+                    myTextArguments = MyTextArguments(
+                        text = "Закончилась",
+                        textStyle = MeetingTheme.typography.metadata2,
+                        color = MeetingTheme.colors.neutralWeak
+                    )
+                )
+            }
+
         }
-        HorizontalDivider(Modifier.padding(top = MeetingTheme.dimensions.dimension16))
+        HorizontalDivider(
+            Modifier.padding(top = MeetingTheme.dimensions.dimension16),
+            color = MeetingTheme.colors.neutralLine
+        )
     }
 
 }

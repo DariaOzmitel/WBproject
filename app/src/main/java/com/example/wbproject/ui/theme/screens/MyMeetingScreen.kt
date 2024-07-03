@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
@@ -18,6 +16,7 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -47,7 +46,6 @@ fun MyMeetingScreen() {
                 end = MeetingTheme.dimensions.dimension16,
                 bottom = MeetingTheme.dimensions.dimension100,
             )
-            .verticalScroll(rememberScrollState())
     ) {
         MySearchTextField()
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
@@ -84,12 +82,12 @@ fun MyMeetingScreen() {
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
         HorizontalPager(
             state = pagerState, modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
                 0 -> MeetingCardColumn(10)
-                1 -> MeetingCardColumn(3)
+                1 -> MeetingCardColumn(2)
             }
         }
     }
