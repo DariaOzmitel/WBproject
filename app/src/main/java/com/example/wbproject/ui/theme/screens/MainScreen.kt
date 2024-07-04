@@ -23,10 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.wbproject.R
 import com.example.wbproject.navigation.AppNavGraph
 import com.example.wbproject.navigation.NavigationItem
+import com.example.wbproject.navigation.Screen
 import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyTextArguments
@@ -72,22 +74,26 @@ fun MainScreen() {
                 containerColor = Color.Transparent
             ) {
                 val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
-                val currentRout = navBackStackEntry?.destination?.route
                 val items = listOf(
                     NavigationItem.Meetings,
                     NavigationItem.Community,
                     NavigationItem.More,
                 )
                 items.forEach { item ->
-                    val isSelected = currentRout == item.screen.route
+                    val isSelected = navBackStackEntry?.destination?.hierarchy?.any {
+                        it.route == item.screen.route
+                    } ?: false
+
                     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
                         NavigationBarItem(
                             selected = isSelected,
                             onClick = {
-                                navigationState.navigateTo(item.screen.route)
-                                title = item.title
-                                addArrowLeft = false
-                                rightIconResId = item.rightIconResId
+                                if (!isSelected) {
+                                    navigationState.navigateTo(item.screen.route)
+                                    title = item.title
+                                    addArrowLeft = false
+                                    rightIconResId = item.rightIconResId
+                                }
                             },
                             icon = {
                                 if (!isSelected) {
@@ -111,9 +117,7 @@ fun MainScreen() {
                                             contentDescription = null
                                         )
                                     }
-
                                 }
-
                             },
                             colors = NavigationBarItemDefaults.colors(
                                 indicatorColor = Color.Transparent,
@@ -121,7 +125,6 @@ fun MainScreen() {
                         )
                     }
                 }
-
             }
         }
     ) { innerPadding ->
@@ -129,7 +132,16 @@ fun MainScreen() {
             navHostController = navigationState.navHostController,
             meetingScreenContent = { MeetingScreen() },
             communityScreenContent = { CommunityScreen() },
-            moreScreenContent = { MoreScreen(navigationState) },
+            moreMenuScreenContent = {
+                MoreScreen(
+                    onProfileItemClickListener = {
+                        navigationState.navigateTo(Screen.Profile.route)
+                    },
+                    onMyMeetingsItemClickListener = {
+                        navigationState.navigateTo(Screen.MyMeetings.route)
+                    }
+                )
+            },
             myMeetingScreenContent = {
                 MyMeetingScreen()
                 title = NavigationItem.MyMeetings.title

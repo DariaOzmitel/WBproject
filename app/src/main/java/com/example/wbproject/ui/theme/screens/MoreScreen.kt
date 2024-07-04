@@ -19,13 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.example.wbproject.navigation.NavigationItem
-import com.example.wbproject.navigation.NavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.MyText
 
 @Composable
-fun MoreScreen(navigationState: NavigationState) {
+fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickListener: () -> Unit) {
     LazyColumn(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension100)) {
         val navigationItems = listOf(
             NavigationItem.Profile,
@@ -37,7 +36,12 @@ fun MoreScreen(navigationState: NavigationState) {
                     .fillMaxWidth()
                     .height(MeetingTheme.dimensions.dimension56)
                     .padding(MeetingTheme.dimensions.dimension8)
-                    .clickable { navigationState.navigateTo(item.screen.route) },
+                    .clickable {
+                        if (item == NavigationItem.Profile)
+                            onProfileItemClickListener()
+                        if (item == NavigationItem.MyMeetings)
+                            onMyMeetingsItemClickListener()
+                    },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
