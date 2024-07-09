@@ -15,18 +15,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.wbproject.R
 import com.example.wbproject.navigation.AppNavGraph
+import com.example.wbproject.navigation.BottomNavigationItem
 import com.example.wbproject.navigation.NavigationItem
 import com.example.wbproject.navigation.Screen
 import com.example.wbproject.navigation.rememberNavigationState
@@ -52,32 +51,34 @@ private object NoRippleTheme : RippleTheme {
 @Composable
 fun MainScreen() {
     val navigationState = rememberNavigationState()
-    var title by rememberSaveable {
-        mutableStateOf("Встречи")
-    }
-    var addArrowLeft by rememberSaveable {
-        mutableStateOf(false)
-    }
-    var rightIconResId: Int? by rememberSaveable {
-        mutableStateOf(null)
-    }
+    val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
     Scaffold(modifier = Modifier.padding(
         start = MeetingTheme.dimensions.dimension16,
         end = MeetingTheme.dimensions.dimension16
     ),
         topBar = {
-            MyTopBar(title = title, addArrowLeft = addArrowLeft, rightIconResId = rightIconResId)
+            val currentRoute = navBackStackEntry?.destination?.route
+            val currentNavigationItem =
+                NavigationItem.items.firstOrNull { it.screen.route == currentRoute }
+            MyTopBar(
+                title = stringResource(id = currentNavigationItem?.titleResId ?: R.string.meetings),
+                canNavigateBack = currentNavigationItem?.addLeftArrow ?: false,
+                navigateUp = {
+                    navigationState.navHostController.navigateUp()
+                },
+                rightIconResId = null
+            )
         },
         bottomBar = {
 
             BottomAppBar(
                 containerColor = Color.Transparent
             ) {
-                val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
+
                 val items = listOf(
-                    NavigationItem.Meetings,
-                    NavigationItem.Community,
-                    NavigationItem.More,
+                    BottomNavigationItem.Meetings,
+                    BottomNavigationItem.Community,
+                    BottomNavigationItem.More,
                 )
                 items.forEach { item ->
                     val isSelected = navBackStackEntry?.destination?.hierarchy?.any {
@@ -90,9 +91,6 @@ fun MainScreen() {
                             onClick = {
                                 if (!isSelected) {
                                     navigationState.navigateTo(item.screen.route)
-                                    title = item.title
-                                    addArrowLeft = false
-                                    rightIconResId = item.rightIconResId
                                 }
                             },
                             icon = {
@@ -108,7 +106,7 @@ fun MainScreen() {
                                     ) {
                                         MyText(
                                             myTextArguments = MyTextArguments(
-                                                text = item.title,
+                                                text = stringResource(id = item.titleResId),
                                                 textStyle = MeetingTheme.typography.bodyText1
                                             )
                                         )
@@ -130,8 +128,17 @@ fun MainScreen() {
     ) { innerPadding ->
         AppNavGraph(
             navHostController = navigationState.navHostController,
-            meetingScreenContent = { MeetingScreen() },
-            communityScreenContent = { CommunityScreen() },
+            meetingListScreenContent = {
+                MeetingListScreen(
+                    onMeetingCardClickListener = { navigationState.navigateTo(Screen.MeetingDetail.route) }
+                )
+            },
+            communityListScreenContent = {
+                CommunityListScreen(
+                    onCommunityCardClickListener =
+                    { navigationState.navigateTo(Screen.CommunityDetail.route) }
+                )
+            },
             moreMenuScreenContent = {
                 MoreScreen(
                     onProfileItemClickListener = {
@@ -144,15 +151,15 @@ fun MainScreen() {
             },
             myMeetingScreenContent = {
                 MyMeetingScreen()
-                title = NavigationItem.MyMeetings.title
-                addArrowLeft = true
-                rightIconResId = NavigationItem.MyMeetings.rightIconResId
             },
             profileScreenContent = {
                 ProfileScreen()
-                title = NavigationItem.Profile.title
-                addArrowLeft = true
-                rightIconResId = NavigationItem.Profile.rightIconResId
+            },
+            communityDetailScreenContent = {
+                CommunityDetailScreen()
+            },
+            meetingDetailScreenContent = {
+                MeetingDetailScreen()
             }
         )
         Box(modifier = Modifier.padding(innerPadding))

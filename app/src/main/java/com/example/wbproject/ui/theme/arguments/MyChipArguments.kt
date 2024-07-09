@@ -6,6 +6,7 @@ import com.example.wbproject.ui.theme.LightColors
 
 data class MyChipArguments(
     val modifier: Modifier = Modifier,
-    val myTextArguments: MyTextArguments,
+    val text: String,
     val containerColor: Color = LightColors.brandColorBackGround,
+    val contentColor: Color = LightColors.brandColorDark,
 )

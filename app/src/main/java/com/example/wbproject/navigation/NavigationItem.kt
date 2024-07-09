@@ -5,49 +5,77 @@ import com.example.wbproject.R
 sealed class NavigationItem(
     val screen: Screen,
     val iconResId: Int,
-    val title: String,
+    val titleResId: Int,
     val rightIconResId: Int?,
+    val addLeftArrow: Boolean
 ) {
-    data object Meetings : NavigationItem(
-        screen = Screen.Meetings,
+
+    data object MeetingList : NavigationItem(
+        screen = Screen.MeetingsList,
         iconResId = R.drawable.coffe_togo,
-        title = MEETINGS,
-        rightIconResId = R.drawable.plus
+        titleResId = R.string.meetings,
+        rightIconResId = null,
+        addLeftArrow = false
     )
 
-    data object Community : NavigationItem(
-        screen = Screen.Community,
+    data object MeetingDetail : NavigationItem(
+        screen = Screen.MeetingDetail,
+        iconResId = R.drawable.coffe_togo,
+        titleResId = R.string.developer_meeting,
+        rightIconResId = null,
+        addLeftArrow = true
+    )
+
+    data object CommunityList : NavigationItem(
+        screen = Screen.CommunityList,
         iconResId = R.drawable.group_alt,
-        title = COMMUNITY,
-        rightIconResId = null
+        titleResId = R.string.communities,
+        rightIconResId = null,
+        addLeftArrow = false
     )
 
-    data object More : NavigationItem(
-        screen = Screen.More,
+    data object CommunityDetail : NavigationItem(
+        screen = Screen.CommunityDetail,
+        iconResId = R.drawable.coffe_togo,
+        titleResId = R.string.designa,
+        rightIconResId = null,
+        addLeftArrow = true
+    )
+
+    data object MoreMenu : NavigationItem(
+        screen = Screen.MoreMenu,
         iconResId = R.drawable.more_horizontal,
-        title = MORE,
-        rightIconResId = null
+        titleResId = R.string.more,
+        rightIconResId = null,
+        addLeftArrow = false
     )
 
     data object MyMeetings : NavigationItem(
         screen = Screen.MyMeetings,
         iconResId = R.drawable.coffe_togo,
-        title = MY_MEETINGS,
-        rightIconResId = null
+        titleResId = R.string.my_meetings,
+        rightIconResId = null,
+        addLeftArrow = true
     )
 
     data object Profile : NavigationItem(
         screen = Screen.Profile,
         iconResId = R.drawable.user,
-        title = PROFILE,
-        rightIconResId = R.drawable.edit
+        titleResId = R.string.profile,
+        rightIconResId = R.drawable.edit,
+        addLeftArrow = true
     )
 
-    private companion object {
-        const val MORE = "Еще"
-        const val MEETINGS = "Встречи"
-        const val MY_MEETINGS = "Мои встречи"
-        const val COMMUNITY = "Сообщества"
-        const val PROFILE = "Профиль"
+    companion object {
+        val items =
+            listOf(
+                Profile,
+                MyMeetings,
+                MeetingList,
+                MoreMenu,
+                CommunityList,
+                CommunityDetail,
+                MeetingDetail
+            )
     }
 }

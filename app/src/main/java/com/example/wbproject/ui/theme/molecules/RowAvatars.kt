@@ -55,9 +55,13 @@ fun OverlappingRow(
 }
 
 @Composable
-fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS) {
+fun RowAvatars(
+    modifier: Modifier = Modifier,
+    avatars: List<Int>?,
+    displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS
+) {
 
-    LazyRow(verticalAlignment = Alignment.CenterVertically) {
+    LazyRow(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         if (avatars != null) {
             item {
                 OverlappingRow(overlappingPercentage = 0.20f) {
@@ -67,7 +71,7 @@ fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVA
                             contentDescription = "image_$it",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(48.dp)
+                                .size(MeetingTheme.dimensions.dimension48)
                                 .clip(RoundedCornerShape(16.dp))
                                 .border(
                                     MeetingTheme.dimensions.dimension2,
@@ -79,7 +83,7 @@ fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVA
                 }
             }
             item {
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension16))
             }
             if (avatars.size > displayedAvatarsNum) {
                 item {
@@ -91,31 +95,15 @@ fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVA
                     )
                 }
             }
-
-
         }
     }
-
 }
 
-val images = listOf(
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-)
+val images = mutableListOf<Int>().apply {
+    repeat(16) {
+        add(R.drawable.avatar_example)
+    }
+}
 
 @Preview
 @Composable
