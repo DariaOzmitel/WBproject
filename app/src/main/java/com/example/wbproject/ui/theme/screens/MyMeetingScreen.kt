@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen() {
+fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
     val tabList = listOf(
         stringResource(id = R.string.planned),
         stringResource(id = R.string.already_passed),
@@ -88,8 +88,12 @@ fun MyMeetingScreen() {
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                0 -> MeetingCardColumn(10)
-                1 -> MeetingCardColumn(count = 2, isEnded = true)
+                0 -> MeetingCardColumn(10, onMeetingCardClickListener = onMeetingCardClickListener)
+                1 -> MeetingCardColumn(
+                    count = 2,
+                    isEnded = true,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
             }
         }
     }
