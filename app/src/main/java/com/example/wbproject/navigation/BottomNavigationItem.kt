@@ -24,5 +24,14 @@ sealed class BottomNavigationItem(
         iconResId = R.drawable.more_horizontal,
         titleResId = R.string.more,
     )
+
+    companion object {
+        val bottomNavigationItems =
+            listOf(
+                Meetings,
+                Community,
+                More
+            )
+    }
 }
 
