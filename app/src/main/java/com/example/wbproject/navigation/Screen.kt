@@ -3,6 +3,7 @@ package com.example.wbproject.navigation
 sealed class Screen(
     val route: String
 ) {
+    data object Splash : Screen(ROUTE_SPLASH)
     data object Meetings : Screen(ROUTE_MEETINGS)
     data object MeetingsList : Screen(ROUTE_MEETINGS_LIST)
     data object MeetingDetail : Screen(ROUTE_MEETING_DETAIL)
@@ -16,6 +17,7 @@ sealed class Screen(
 
     private companion object {
         const val ROUTE_MEETINGS = "meetings"
+        const val ROUTE_SPLASH = "splash"
         const val ROUTE_MEETING_DETAIL = "meeting detail"
         const val ROUTE_MEETINGS_LIST = "meetings list"
         const val ROUTE_MY_MEETINGS = "my meetings"
