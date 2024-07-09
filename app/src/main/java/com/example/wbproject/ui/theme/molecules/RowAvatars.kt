@@ -71,7 +71,7 @@ fun RowAvatars(
                             contentDescription = "image_$it",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(48.dp)
+                                .size(MeetingTheme.dimensions.dimension48)
                                 .clip(RoundedCornerShape(16.dp))
                                 .border(
                                     MeetingTheme.dimensions.dimension2,
@@ -83,7 +83,7 @@ fun RowAvatars(
                 }
             }
             item {
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension16))
             }
             if (avatars.size > displayedAvatarsNum) {
                 item {

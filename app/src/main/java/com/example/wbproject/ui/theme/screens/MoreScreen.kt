@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.example.wbproject.navigation.NavigationItem
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyTextArguments
@@ -53,7 +54,7 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
                 Box(modifier = Modifier.weight(1f)) {
                     MyText(
                         myTextArguments = MyTextArguments(
-                            text = item.title,
+                            text = stringResource(id = item.titleResId),
                             textStyle = MeetingTheme.typography.bodyText1
                         )
                     )

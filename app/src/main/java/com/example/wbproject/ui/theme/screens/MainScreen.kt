@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -60,7 +61,7 @@ fun MainScreen() {
             val currentNavigationItem =
                 NavigationItem.items.firstOrNull { it.screen.route == currentRoute }
             MyTopBar(
-                title = currentNavigationItem?.title ?: "",
+                title = stringResource(id = currentNavigationItem?.titleResId ?: R.string.meetings),
                 canNavigateBack = currentNavigationItem?.addLeftArrow ?: false,
                 navigateUp = {
                     navigationState.navHostController.navigateUp()
@@ -105,7 +106,7 @@ fun MainScreen() {
                                     ) {
                                         MyText(
                                             myTextArguments = MyTextArguments(
-                                                text = item.title,
+                                                text = stringResource(id = item.titleResId),
                                                 textStyle = MeetingTheme.typography.bodyText1
                                             )
                                         )
