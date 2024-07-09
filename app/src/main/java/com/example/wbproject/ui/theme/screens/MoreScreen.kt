@@ -25,7 +25,7 @@ import com.example.wbproject.ui.theme.elements.MyText
 
 @Composable
 fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickListener: () -> Unit) {
-    LazyColumn(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension100)) {
+    LazyColumn(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension128)) {
         val navigationItems = listOf(
             NavigationItem.Profile,
             NavigationItem.MyMeetings,

@@ -8,13 +8,14 @@ import androidx.navigation.compose.composable
 @Composable
 fun AppNavGraph(
     navHostController: NavHostController,
-    meetingScreenContent: @Composable () -> Unit,
-    communityScreenContent: @Composable () -> Unit,
+    meetingListScreenContent: @Composable () -> Unit,
+    meetingDetailScreenContent: @Composable () -> Unit,
+    communityListScreenContent: @Composable () -> Unit,
     moreMenuScreenContent: @Composable () -> Unit,
     myMeetingScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
-
-    ) {
+    communityDetailScreenContent: @Composable () -> Unit,
+) {
     NavHost(
         navController = navHostController,
         startDestination = Screen.Meetings.route
@@ -23,12 +24,14 @@ fun AppNavGraph(
             moreMenuScreenContent = moreMenuScreenContent,
             profileScreenContent = profileScreenContent
         )
-        composable(Screen.Meetings.route) {
-            meetingScreenContent()
-        }
-        composable(Screen.Community.route) {
-            communityScreenContent()
-        }
+        meetingScreenNavGraph(
+            meetingListScreenContent = meetingListScreenContent,
+            meetingDetailScreenContent = meetingDetailScreenContent
+        )
+        communityScreenNavGraph(
+            communityListScreenContent = communityListScreenContent,
+            communityDetailScreenContent = communityDetailScreenContent
+        )
         composable(Screen.MyMeetings.route) {
             myMeetingScreenContent()
         }

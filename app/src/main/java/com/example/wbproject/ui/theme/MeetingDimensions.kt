@@ -4,6 +4,9 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.times
+
+const val scale = 1.25
 
 @Immutable
 data class MeetingDimensions(
@@ -19,37 +22,45 @@ data class MeetingDimensions(
     val dimension32: Dp,
     val dimension40: Dp,
     val dimension48: Dp,
+    val dimension52: Dp,
     val dimension56: Dp,
+    val dimension68: Dp,
     val dimension70: Dp,
     val dimension72: Dp,
     val dimension80: Dp,
+    val dimension88: Dp,
     val dimension100: Dp,
     val dimension128: Dp,
     val dimension150: Dp,
+    val dimension176: Dp,
     val dimension200: Dp,
 )
 
 val MeetingDimensionsValue = MeetingDimensions(
-    dimension1 = 1.dp,
-    dimension2 = 2.dp,
-    dimension4 = 4.dp,
-    dimension8 = 8.dp,
-    dimension12 = 12.dp,
-    dimension16 = 16.dp,
-    dimension20 = 20.dp,
-    dimension22 = 22.dp,
-    dimension24 = 24.dp,
-    dimension32 = 32.dp,
-    dimension40 = 40.dp,
-    dimension48 = 48.dp,
-    dimension56 = 56.dp,
-    dimension70 = 70.dp,
-    dimension72 = 72.dp,
-    dimension80 = 80.dp,
-    dimension100 = 100.dp,
-    dimension128 = 128.dp,
-    dimension150 = 150.dp,
-    dimension200 = 200.dp,
+    dimension1 = scale * 1.dp,
+    dimension2 = scale * 2.dp,
+    dimension4 = scale * 4.dp,
+    dimension8 = scale * 8.dp,
+    dimension12 = scale * 12.dp,
+    dimension16 = scale * 16.dp,
+    dimension20 = scale * 20.dp,
+    dimension22 = scale * 22.dp,
+    dimension24 = scale * 24.dp,
+    dimension32 = scale * 32.dp,
+    dimension40 = scale * 40.dp,
+    dimension48 = scale * 48.dp,
+    dimension52 = scale * 52.dp,
+    dimension56 = scale * 56.dp,
+    dimension68 = scale * 68.dp,
+    dimension70 = scale * 70.dp,
+    dimension72 = scale * 72.dp,
+    dimension80 = scale * 80.dp,
+    dimension88 = scale * 88.dp,
+    dimension100 = scale * 100.dp,
+    dimension128 = scale * 128.dp,
+    dimension150 = scale * 150.dp,
+    dimension176 = scale * 176.dp,
+    dimension200 = scale * 200.dp,
 )
 
 

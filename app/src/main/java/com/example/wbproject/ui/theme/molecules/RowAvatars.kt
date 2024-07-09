@@ -55,9 +55,13 @@ fun OverlappingRow(
 }
 
 @Composable
-fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS) {
+fun RowAvatars(
+    modifier: Modifier = Modifier,
+    avatars: List<Int>?,
+    displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS
+) {
 
-    LazyRow(verticalAlignment = Alignment.CenterVertically) {
+    LazyRow(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         if (avatars != null) {
             item {
                 OverlappingRow(overlappingPercentage = 0.20f) {
@@ -91,31 +95,15 @@ fun RowAvatars(avatars: List<Int>?, displayedAvatarsNum: Int = MAX_DISPLAYED_AVA
                     )
                 }
             }
-
-
         }
     }
-
 }
 
-val images = listOf(
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-    R.drawable.avatar_example,
-)
+val images = mutableListOf<Int>().apply {
+    repeat(16) {
+        add(R.drawable.avatar_example)
+    }
+}
 
 @Preview
 @Composable

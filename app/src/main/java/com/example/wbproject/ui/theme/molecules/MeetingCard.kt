@@ -1,5 +1,6 @@
 package com.example.wbproject.ui.theme.molecules
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -32,9 +32,13 @@ import com.example.wbproject.ui.theme.elements.MyText
 
 
 @Composable
-fun MeetingCard(modifier: Modifier = Modifier, isEnded: Boolean = false) {
+fun MeetingCard(
+    modifier: Modifier = Modifier,
+    isEnded: Boolean = false,
+    onMeetingCardClickListener: () -> Unit = {}
+) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable { onMeetingCardClickListener() },
         shape = RectangleShape, colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -46,14 +50,14 @@ fun MeetingCard(modifier: Modifier = Modifier, isEnded: Boolean = false) {
             MyAvatar(
                 MyAvatarArgs(
                     painter = painterResource(id = R.drawable.avatar),
-                    modifier = Modifier.size(MeetingTheme.dimensions.dimension56)
+                    modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
                 )
 
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column(
                 modifier = Modifier
-                    .height(68.dp)
+                    .height(MeetingTheme.dimensions.dimension68)
                     .weight(1f),
 
                 verticalArrangement = Arrangement.SpaceBetween
@@ -93,14 +97,20 @@ fun MeetingCard(modifier: Modifier = Modifier, isEnded: Boolean = false) {
 }
 
 @Composable
-fun MeetingCardColumn(count: Int) {
+fun MeetingCardColumn(
+    count: Int,
+    isEnded: Boolean = false,
+    onMeetingCardClickListener: () -> Unit = {}
+) {
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(count) {
             MeetingCard(
                 modifier = Modifier
-                    .height(88.dp)
+                    .height(MeetingTheme.dimensions.dimension88),
+                isEnded = isEnded,
+                onMeetingCardClickListener
             )
         }
     }
@@ -111,7 +121,7 @@ fun MeetingCardColumn(count: Int) {
 private fun MeetingCardPreview() {
     MeetingCard(
         modifier = Modifier
-            .height(88.dp)
+            .height(MeetingTheme.dimensions.dimension88)
             .fillMaxWidth()
     )
 }

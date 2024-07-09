@@ -7,42 +7,25 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.wbproject.ui.theme.LightColors
+import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.MeetingTypographyValue
 import com.example.wbproject.ui.theme.arguments.MyChipArguments
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 
 val listChipsExample = listOf(
     MyChipArguments(
-        myTextArguments = MyTextArguments(
-            modifier = Modifier.height(16.dp),
-            text = "Python",
-            color = LightColors.brandColorDark,
-            textStyle = MeetingTypographyValue.metadata3
-        )
+        text = "Python"
     ),
     MyChipArguments(
-        myTextArguments = MyTextArguments(
-            modifier = Modifier.height(16.dp),
-            text = "Junior",
-            color = LightColors.brandColorDark,
-            textStyle = MeetingTypographyValue.metadata3
-        )
+        text = "Junior"
     ),
     MyChipArguments(
-        myTextArguments = MyTextArguments(
-            modifier = Modifier.height(16.dp),
-            text = "Moscow",
-            color = LightColors.brandColorDark,
-            textStyle = MeetingTypographyValue.metadata3
-        )
+        text = "Moscow"
     )
 )
 
@@ -50,7 +33,7 @@ val listChipsExample = listOf(
 fun MyChipRow(modifier: Modifier = Modifier, listChips: List<MyChipArguments> = listChipsExample) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8)
     ) {
         listChips.forEach {
             MyChip(myChipArguments = it)
@@ -65,17 +48,17 @@ fun MyChip(
     with(myChipArguments) {
         Box(
             modifier = modifier
+                .height(MeetingDimensionsValue.dimension16)
                 .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension32))
                 .background(color = containerColor)
                 .padding(
                     start = MeetingTheme.dimensions.dimension4,
-                    bottom = MeetingTheme.dimensions.dimension1,
+                    bottom = MeetingTheme.dimensions.dimension2,
                     end = MeetingTheme.dimensions.dimension4,
                     top = MeetingTheme.dimensions.dimension2
                 ),
-            contentAlignment = Alignment.Center
         ) {
-            MyText(myTextArguments = myTextArguments)
+            Text(text = text, style = MeetingTypographyValue.metadata3, color = contentColor)
         }
     }
 }
