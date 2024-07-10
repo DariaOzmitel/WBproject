@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -113,16 +114,29 @@ fun CustomPhoneNumber() {
     }
 
     DropdownMenu(
-        modifier = Modifier.width(MeetingTheme.dimensions.dimension56),
+        modifier = Modifier.width(MeetingTheme.dimensions.dimension68),
         expanded = expanded,
         onDismissRequest = { expanded = false }) {
-        DropdownMenuItems.entries.forEach {
+        DropdownMenuItems.entries.forEachIndexed { index, item ->
             DropdownMenuItem(text = {
-                Text(text = it.countryCode)
+                Text(text = item.countryCode, color = MeetingTheme.colors.neutralDisabled)
             }, onClick = {
-                selectedCountryCode = it
+                selectedCountryCode = item
                 expanded = false
-            })
+            },
+                leadingIcon = {
+                    Image(
+                        modifier = Modifier
+                            .size(MeetingTheme.dimensions.dimension16)
+                            .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                        painter = painterResource(id = item.imageResId),
+                        contentDescription = null
+                    )
+                }
+            )
+            val isDividerVisible = index != DropdownMenuItems.entries.size - 1
+            if (isDividerVisible)
+                Divider()
         }
     }
 }
