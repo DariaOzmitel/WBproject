@@ -19,17 +19,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
 import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.MyAvatar
 import com.example.wbproject.ui.theme.elements.MyChipRow
-import com.example.wbproject.ui.theme.elements.MyText
-
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata2
 
 @Composable
 fun MeetingCard(
@@ -62,38 +62,27 @@ fun MeetingCard(
 
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = "Developer meeting",
-                        textStyle = MeetingTypographyValue.bodyText1
-                    )
+                TextBody1(
+                    text = stringResource(id = R.string.developer_meeting)
                 )
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = "13.09.2024 - Москва",
-                        color = LightColors.neutralWeak,
-                        textStyle = MeetingTypographyValue.metadata1
-                    )
+                TextMetadata1(
+                    text = "13.09.2024 - Москва",
+                    color = LightColors.neutralWeak,
                 )
                 MyChipRow()
             }
             if (isEnded) {
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = "Закончилась",
-                        textStyle = MeetingTheme.typography.metadata2,
-                        color = MeetingTheme.colors.neutralWeak
-                    )
+                TextMetadata2(
+                    text = stringResource(id = R.string.ended),
+                    color = MeetingTheme.colors.neutralWeak
                 )
             }
-
         }
         HorizontalDivider(
             Modifier.padding(top = MeetingTheme.dimensions.dimension16),
             color = MeetingTheme.colors.neutralLine
         )
     }
-
 }
 
 @Composable

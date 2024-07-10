@@ -13,9 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
-import com.example.wbproject.ui.theme.elements.MyText
-
+import com.example.wbproject.ui.theme.elements.text.TextSubheading1
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,11 +26,8 @@ fun MyTopBar(
 ) {
     TopAppBar(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
         title = {
-            MyText(
-                myTextArguments = MyTextArguments(
-                    text = title,
-                    textStyle = MeetingTheme.typography.subheading1
-                )
+            TextSubheading1(
+                text = title,
             )
         },
         navigationIcon = {

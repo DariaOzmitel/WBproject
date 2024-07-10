@@ -6,7 +6,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 @Preview
 @Composable
@@ -35,7 +35,7 @@ fun MySearchTextField() {
         shape = RectangleShape,
         value = text,
         placeholder = {
-            Text(
+            TextBody1(
                 text = stringResource(id = R.string.search),
                 color = MeetingTheme.colors.neutralWeak
             )

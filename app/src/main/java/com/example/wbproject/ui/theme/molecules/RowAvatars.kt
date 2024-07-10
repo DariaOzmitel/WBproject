@@ -19,9 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 private const val MAX_DISPLAYED_AVATARS = 5
 
@@ -87,11 +85,8 @@ fun RowAvatars(
             }
             if (avatars.size > displayedAvatarsNum) {
                 item {
-                    MyText(
-                        myTextArguments = MyTextArguments(
-                            text = "+${avatars.size - displayedAvatarsNum}",
-                            textStyle = MeetingTypographyValue.bodyText1
-                        )
+                    TextBody1(
+                        text = "+${avatars.size - displayedAvatarsNum}",
                     )
                 }
             }

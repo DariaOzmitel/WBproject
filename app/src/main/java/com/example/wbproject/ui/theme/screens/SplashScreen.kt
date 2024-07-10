@@ -15,6 +15,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.wbproject.R
 
 private const val MAX_FRAME_NUM = 90
+private const val ANIMATION_SPEED = 2.0f
 
 @Composable
 fun SplashScreen(animationEndListener: () -> Unit) {
@@ -29,7 +30,7 @@ fun SplashScreen(animationEndListener: () -> Unit) {
         val logoAnimationState =
             animateLottieCompositionAsState(
                 composition = composition,
-                speed = 2.0f,
+                speed = ANIMATION_SPEED,
                 clipSpec = LottieClipSpec.Frame(max = MAX_FRAME_NUM)
             )
         LottieAnimation(

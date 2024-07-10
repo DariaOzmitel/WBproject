@@ -26,7 +26,8 @@ fun AppNavGraph(
         }
         moreScreenNavGraph(
             moreMenuScreenContent = moreMenuScreenContent,
-            profileScreenContent = profileScreenContent
+            profileScreenContent = profileScreenContent,
+            myMeetingScreenContent = myMeetingScreenContent
         )
         meetingScreenNavGraph(
             meetingListScreenContent = meetingListScreenContent,
@@ -36,8 +37,5 @@ fun AppNavGraph(
             communityListScreenContent = communityListScreenContent,
             communityDetailScreenContent = communityDetailScreenContent
         )
-        composable(Screen.MyMeetings.route) {
-            myMeetingScreenContent()
-        }
     }
 }

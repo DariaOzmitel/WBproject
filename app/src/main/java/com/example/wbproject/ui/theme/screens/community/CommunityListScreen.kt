@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.community
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
+
+private const val COMMUNITY_CARD_COUNT = 10
 
 @Composable
 fun CommunityListScreen(onCommunityCardClickListener: () -> Unit = {}) {
@@ -25,6 +27,9 @@ fun CommunityListScreen(onCommunityCardClickListener: () -> Unit = {}) {
     ) {
         MySearchTextField()
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
-        CommunityCardColumn(10, onCommunityCardClickListener = onCommunityCardClickListener)
+        CommunityCardColumn(
+            COMMUNITY_CARD_COUNT,
+            onCommunityCardClickListener = onCommunityCardClickListener
+        )
     }
 }

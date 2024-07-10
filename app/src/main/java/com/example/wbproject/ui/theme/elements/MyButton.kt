@@ -29,7 +29,7 @@ import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyButtonArguments
 import com.example.wbproject.ui.theme.arguments.MyOutlineButtonArguments
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
+import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 
 private object NoRippleTheme : RippleTheme {
     @Composable
@@ -64,7 +64,7 @@ fun MyButton(
                     disabledContentColor = secondaryColor
                 )
             ) {
-                MyText(text)
+                TextSubheading2(text = text)
             }
         }
 
@@ -100,16 +100,15 @@ fun MyOutlinedButton(
                     disabledContainerColor = secondaryColor
                 )
             ) {
-                if (!isIcon) {
-                    Text(text = text ?: "")
-                } else {
+                if (text != null) {
+                    TextSubheading2(text = text)
+                }
+                if (iconResId != null) {
                     Icon(
-                        painter = painterResource(id = iconResId ?: R.drawable.point),
+                        painter = painterResource(id = iconResId),
                         contentDescription = null
                     )
                 }
-
-
             }
         }
 
@@ -137,14 +136,14 @@ fun MyTextButton(
                     disabledContainerColor = secondaryColor
                 )
             ) {
-                MyText(text)
+                TextSubheading2(text = text)
             }
         }
     }
 }
 
 @Composable
-fun MyButtonsRow(
+private fun MyButtonsRow(
     args: MyButtonArguments
 ) {
     Row(
@@ -156,7 +155,8 @@ fun MyButtonsRow(
         MyOutlinedButton(
             args = MyOutlineButtonArguments(
                 primaryColor = args.primaryColor,
-                enabled = args.enabled
+                enabled = args.enabled,
+                text = args.text
             )
         )
         MyTextButton(args = args)
@@ -171,19 +171,18 @@ fun MyButtonsPreview() {
     Column(modifier = Modifier.fillMaxWidth()) {
         MyButtonsRow(
             MyButtonArguments(
-                text = MyTextArguments(
-                    text = stringResource(id = R.string.button),
-                    textStyle = MeetingTheme.typography.bodyText1
-                )
+                text = stringResource(id = R.string.button)
             )
         )
-        MyButtonsRow(MyButtonArguments(primaryColor = MeetingTheme.colors.brandColorDark))
         MyButtonsRow(
             MyButtonArguments(
-                text = MyTextArguments(
-                    text = stringResource(id = R.string.button),
-                    textStyle = MeetingTheme.typography.bodyText1
-                ), enabled = false
+                primaryColor = MeetingTheme.colors.brandColorDark,
+                text = stringResource(id = R.string.button),
+            )
+        )
+        MyButtonsRow(
+            MyButtonArguments(
+                text = stringResource(id = R.string.button), enabled = false
             )
         )
     }

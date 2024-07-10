@@ -17,6 +17,13 @@ import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.molecules.MyBottomAppBar
 import com.example.wbproject.ui.theme.molecules.MyTopBar
+import com.example.wbproject.ui.theme.screens.community.CommunityDetailScreen
+import com.example.wbproject.ui.theme.screens.community.CommunityListScreen
+import com.example.wbproject.ui.theme.screens.meetings.MeetingDetailScreen
+import com.example.wbproject.ui.theme.screens.meetings.MeetingListScreen
+import com.example.wbproject.ui.theme.screens.more.MoreScreen
+import com.example.wbproject.ui.theme.screens.more.MyMeetingScreen
+import com.example.wbproject.ui.theme.screens.more.ProfileScreen
 
 @Preview
 @Composable

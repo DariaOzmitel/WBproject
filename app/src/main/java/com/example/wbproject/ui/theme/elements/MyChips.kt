@@ -7,15 +7,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
 import com.example.wbproject.ui.theme.arguments.MyChipArguments
+import com.example.wbproject.ui.theme.elements.text.TextMetadata3
 
 val listChipsExample = listOf(
     MyChipArguments(
@@ -58,7 +57,7 @@ fun MyChip(
                     top = MeetingTheme.dimensions.dimension2
                 ),
         ) {
-            Text(text = text, style = MeetingTypographyValue.metadata3, color = contentColor)
+            TextMetadata3(text = text, color = contentColor)
         }
     }
 }

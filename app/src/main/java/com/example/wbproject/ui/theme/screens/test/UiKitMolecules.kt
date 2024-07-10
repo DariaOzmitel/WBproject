@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.test
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import com.example.wbproject.ui.theme.molecules.ProfileAvatar
 import com.example.wbproject.ui.theme.molecules.RowAvatarsPreview
 
 @Composable
-fun SecondLesson() {
+fun UiKitMolecules() {
     Surface(
         modifier = Modifier
             .fillMaxSize()

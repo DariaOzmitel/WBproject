@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.meetings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -23,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
 
@@ -30,10 +30,10 @@ import kotlinx.coroutines.launch
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
+fun MeetingListScreen(onMeetingCardClickListener: () -> Unit = {}) {
     val tabList = listOf(
-        stringResource(id = R.string.planned),
-        stringResource(id = R.string.already_passed),
+        stringResource(id = R.string.all_meetings),
+        stringResource(id = R.string.active),
     )
     val pagerState = rememberPagerState(pageCount = { tabList.size })
     val selectedTabIndex = pagerState.currentPage
@@ -73,9 +73,8 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
                         }
                     },
                     text = {
-                        Text(
+                        TextBody1(
                             text = title,
-                            style = MeetingTheme.typography.bodyText1
                         )
                     }
                 )
@@ -88,13 +87,20 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                0 -> MeetingCardColumn(10, onMeetingCardClickListener = onMeetingCardClickListener)
+                0 -> MeetingCardColumn(
+                    20,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
+
                 1 -> MeetingCardColumn(
-                    count = 2,
-                    isEnded = true,
+                    3,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
             }
         }
     }
+
 }
+
+
+

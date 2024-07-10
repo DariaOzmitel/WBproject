@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +24,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.text.TextHeading1
 
 const val PIN_LENGTH = 4
 
@@ -71,9 +71,8 @@ fun PinChar(inputText: String) {
                         )
                 )
                 if (index < inputTextLength) {
-                    Text(
+                    TextHeading1(
                         text = inputText[index].toString(),
-                        style = MeetingTheme.typography.heading1,
                         color = MeetingTheme.colors.neutralActive
                     )
                 }

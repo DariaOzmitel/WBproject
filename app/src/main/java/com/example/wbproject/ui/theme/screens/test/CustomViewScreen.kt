@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.test
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

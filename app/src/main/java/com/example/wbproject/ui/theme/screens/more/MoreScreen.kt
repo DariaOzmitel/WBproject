@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.more
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -21,8 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.navigation.NavigationItem
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 @Composable
 fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickListener: () -> Unit) {
@@ -52,11 +51,8 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
                 )
                 Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
                 Box(modifier = Modifier.weight(1f)) {
-                    MyText(
-                        myTextArguments = MyTextArguments(
-                            text = stringResource(id = item.titleResId),
-                            textStyle = MeetingTheme.typography.bodyText1
-                        )
+                    TextBody1(
+                        text = stringResource(id = item.titleResId),
                     )
                 }
 

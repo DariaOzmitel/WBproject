@@ -1,11 +1,10 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.community
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +17,8 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.MeetingCard
 
 private const val TEXT_MAX_LINE = 13
@@ -39,12 +40,11 @@ fun CommunityDetailScreen(onMeetingCardClickListener: () -> Unit) {
             )
     ) {
         item {
-            Text(
+            TextMetadata1(
                 modifier = Modifier.clickable {
                     fullText = !fullText
                 },
                 text = LoremIpsum(300).values.first(),
-                style = MeetingTheme.typography.metadata1,
                 color = MeetingTheme.colors.neutralWeak,
                 maxLines = if (!fullText) TEXT_MAX_LINE else Int.MAX_VALUE,
                 overflow = TextOverflow.Ellipsis,
@@ -52,13 +52,12 @@ fun CommunityDetailScreen(onMeetingCardClickListener: () -> Unit) {
             )
         }
         item {
-            Text(
+            TextBody1(
                 modifier = Modifier.padding(
                     top = MeetingTheme.dimensions.dimension40,
                     bottom = MeetingTheme.dimensions.dimension20
                 ),
                 text = stringResource(id = R.string.community_meetings),
-                style = MeetingTheme.typography.bodyText1,
                 color = MeetingTheme.colors.neutralWeak,
             )
         }

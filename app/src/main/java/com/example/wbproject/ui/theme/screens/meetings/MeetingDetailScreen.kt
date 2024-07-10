@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.meetings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,9 +28,10 @@ import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyButtonArguments
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.MyButton
 import com.example.wbproject.ui.theme.elements.MyChipRow
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
 
 private const val TEXT_MAX_LINE = 8
@@ -66,11 +66,10 @@ fun MeetingDetailScreen() {
                 )
         ) {
             item {
-                Text(
+                TextBody1(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
                     text = testText,
                     color = MeetingTheme.colors.neutralWeak,
-                    style = MeetingTheme.typography.bodyText1,
                 )
                 MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
                 AsyncImage(
@@ -86,14 +85,13 @@ fun MeetingDetailScreen() {
                 )
             }
             item {
-                Text(
+                TextMetadata1(
                     modifier = Modifier
                         .padding(bottom = MeetingTheme.dimensions.dimension32)
                         .clickable {
                             fullText = !fullText
                         },
                     text = LoremIpsum(300).values.first(),
-                    style = MeetingTheme.typography.metadata1,
                     color = MeetingTheme.colors.neutralWeak,
                     maxLines = if (!fullText) TEXT_MAX_LINE else Int.MAX_VALUE,
                     overflow = TextOverflow.Ellipsis,
@@ -110,11 +108,7 @@ fun MeetingDetailScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(MeetingTheme.dimensions.dimension52),
-                        text = MyTextArguments(
-                            text = stringResource(id = R.string.i_am_going_to_a_meeting),
-                            textStyle = MeetingTheme.typography.subheading2,
-                            color = MeetingTheme.colors.neutralOffWhite
-                        )
+                        text = stringResource(id = R.string.i_am_going_to_a_meeting),
                     )
                 )
             }

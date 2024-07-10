@@ -21,8 +21,7 @@ import com.example.wbproject.R
 import com.example.wbproject.navigation.BottomNavigationItem
 import com.example.wbproject.navigation.NavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 
 private object NoRippleTheme : RippleTheme {
@@ -66,11 +65,8 @@ fun MyBottomAppBar(navBackStackEntry: NavBackStackEntry?, navigationState: Navig
                                 verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                MyText(
-                                    myTextArguments = MyTextArguments(
-                                        text = stringResource(id = item.titleResId),
-                                        textStyle = MeetingTheme.typography.bodyText1
-                                    )
+                                TextBody1(
+                                    text = stringResource(id = item.titleResId)
                                 )
                                 Icon(
                                     painter = painterResource(id = R.drawable.point),

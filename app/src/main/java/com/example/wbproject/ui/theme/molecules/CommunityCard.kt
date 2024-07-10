@@ -23,11 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
 import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.MyAvatar
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 
 @Composable
 fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: () -> Unit = {}) {
@@ -51,19 +50,13 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column {
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = stringResource(id = R.string.designa),
-                        textStyle = MeetingTypographyValue.bodyText1
-                    )
+                TextBody1(
+                    text = stringResource(id = R.string.designa)
                 )
                 Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension8))
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = "10 000 человек",
-                        color = LightColors.neutralWeak,
-                        textStyle = MeetingTypographyValue.metadata1
-                    )
+                TextMetadata1(
+                    text = "10 000 человек",
+                    color = LightColors.neutralWeak
                 )
             }
         }

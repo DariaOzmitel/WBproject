@@ -8,6 +8,7 @@ import androidx.navigation.navigation
 fun NavGraphBuilder.moreScreenNavGraph(
     moreMenuScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
+    myMeetingScreenContent: @Composable () -> Unit,
 ) {
     navigation(
         startDestination = Screen.MoreMenu.route,
@@ -18,6 +19,9 @@ fun NavGraphBuilder.moreScreenNavGraph(
         }
         composable(Screen.Profile.route) {
             profileScreenContent()
+        }
+        composable(Screen.MyMeetings.route) {
+            myMeetingScreenContent()
         }
     }
 }

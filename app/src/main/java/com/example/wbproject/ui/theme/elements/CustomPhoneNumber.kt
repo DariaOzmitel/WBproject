@@ -18,7 +18,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +37,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.DropdownMenuItems
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 const val BLANK_NUMBER = "000 000-00-00"
 const val PHONE_LENGTH = 8
@@ -71,9 +71,8 @@ fun CustomPhoneNumber() {
                 painter = painterResource(id = selectedCountryCode.imageResId),
                 contentDescription = null
             )
-            Text(
+            TextBody1(
                 text = selectedCountryCode.countryCode,
-                style = MeetingTheme.typography.bodyText1,
                 color = MeetingTheme.colors.neutralDisabled
             )
         }
@@ -99,10 +98,9 @@ fun CustomPhoneNumber() {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 decorationBox = { decorationBox ->
                     if (inputText == "") {
-                        Text(
+                        TextBody1(
                             text = BLANK_NUMBER,
                             color = MeetingTheme.colors.neutralDisabled,
-                            style = MeetingTheme.typography.bodyText1
                         )
                     }
                     decorationBox()
@@ -119,7 +117,7 @@ fun CustomPhoneNumber() {
         onDismissRequest = { expanded = false }) {
         DropdownMenuItems.entries.forEachIndexed { index, item ->
             DropdownMenuItem(text = {
-                Text(text = item.countryCode, color = MeetingTheme.colors.neutralDisabled)
+                TextBody1(text = item.countryCode, color = MeetingTheme.colors.neutralDisabled)
             }, onClick = {
                 selectedCountryCode = item
                 expanded = false

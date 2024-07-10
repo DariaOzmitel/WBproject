@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.more
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,10 +18,10 @@ import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.IconInCircleArgs
 import com.example.wbproject.ui.theme.arguments.MyOutlineButtonArguments
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.IconInCircle
 import com.example.wbproject.ui.theme.elements.MyOutlinedButton
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextHeading1
+import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 
 @Preview
 @Composable
@@ -44,18 +44,12 @@ fun ProfileScreen() {
             )
         )
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
-        MyText(
-            myTextArguments = MyTextArguments(
-                text = "Иван Иванов",
-                textStyle = MeetingTheme.typography.heading2
-            )
+        TextHeading1(
+            text = "Иван Иванов",
         )
-        MyText(
-            myTextArguments = MyTextArguments(
-                text = "+7 999 999-99-99",
-                textStyle = MeetingTheme.typography.subheading2,
-                color = MeetingTheme.colors.neutralDisabled
-            )
+        TextSubheading2(
+            text = "+7 999 999-99-99",
+            color = MeetingTheme.colors.neutralDisabled
         )
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension40))
         Row(
@@ -67,7 +61,6 @@ fun ProfileScreen() {
                     modifier = Modifier
                         .width(MeetingTheme.dimensions.dimension72)
                         .height(MeetingTheme.dimensions.dimension40),
-                    isIcon = true,
                     iconResId = R.drawable.twitter
                 )
             )
@@ -76,7 +69,6 @@ fun ProfileScreen() {
                     modifier = Modifier
                         .width(MeetingTheme.dimensions.dimension72)
                         .height(MeetingTheme.dimensions.dimension40),
-                    isIcon = true,
                     iconResId = R.drawable.instagram
                 )
             )
@@ -85,7 +77,6 @@ fun ProfileScreen() {
                     modifier = Modifier
                         .width(MeetingTheme.dimensions.dimension72)
                         .height(MeetingTheme.dimensions.dimension40),
-                    isIcon = true,
                     iconResId = R.drawable.linked_in
                 )
             )
@@ -94,7 +85,6 @@ fun ProfileScreen() {
                     modifier = Modifier
                         .width(MeetingTheme.dimensions.dimension72)
                         .height(MeetingTheme.dimensions.dimension40),
-                    isIcon = true,
                     iconResId = R.drawable.facebook
                 )
             )
