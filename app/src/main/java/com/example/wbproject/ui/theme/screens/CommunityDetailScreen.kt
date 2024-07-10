@@ -14,7 +14,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
@@ -24,9 +23,8 @@ import com.example.wbproject.ui.theme.molecules.MeetingCard
 private const val TEXT_MAX_LINE = 13
 private const val MEETINGS_NUM = 6
 
-@Preview
 @Composable
-fun CommunityDetailScreen() {
+fun CommunityDetailScreen(onMeetingCardClickListener: () -> Unit) {
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
@@ -67,7 +65,8 @@ fun CommunityDetailScreen() {
         items(count = MEETINGS_NUM) {
             MeetingCard(
                 modifier = Modifier
-                    .height(MeetingTheme.dimensions.dimension88)
+                    .height(MeetingTheme.dimensions.dimension88),
+                onMeetingCardClickListener = onMeetingCardClickListener
             )
         }
     }

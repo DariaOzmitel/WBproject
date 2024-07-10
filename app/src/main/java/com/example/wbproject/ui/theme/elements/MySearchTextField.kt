@@ -44,7 +44,7 @@ fun MySearchTextField() {
         leadingIcon = {
             Icon(
                 Icons.Filled.Search,
-                contentDescription = "Search",
+                contentDescription = stringResource(id = R.string.search),
                 tint = MeetingTheme.colors.neutralWeak
             )
         },

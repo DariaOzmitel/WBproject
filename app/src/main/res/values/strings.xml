@@ -12,6 +12,7 @@
     <string name="my_meetings">Мои встречи</string>
     <string name="communities">Сообщества</string>
     <string name="profile">Профиль</string>
+    <string name="button">Button</string>
     <string name="all_meetings">ВСЕ ВСТРЕЧИ</string>
     <string name="i_am_going_to_a_meeting">Пойду на встречу!</string>
 </resources>

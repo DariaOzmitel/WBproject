@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
@@ -52,7 +53,7 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
             Column {
                 MyText(
                     myTextArguments = MyTextArguments(
-                        text = "Designa",
+                        text = stringResource(id = R.string.designa),
                         textStyle = MeetingTypographyValue.bodyText1
                     )
                 )

@@ -85,13 +85,23 @@ fun MainScreen() {
                 )
             },
             myMeetingScreenContent = {
-                MyMeetingScreen()
+                MyMeetingScreen(
+                    onMeetingCardClickListener = {
+                        navigationState.navigateTo(
+                            Screen.MeetingDetail.route
+                        )
+                    }
+                )
             },
             profileScreenContent = {
                 ProfileScreen()
             },
             communityDetailScreenContent = {
-                CommunityDetailScreen()
+                CommunityDetailScreen(onMeetingCardClickListener = {
+                    navigationState.navigateTo(
+                        Screen.MeetingDetail.route
+                    )
+                })
             },
             meetingDetailScreenContent = {
                 MeetingDetailScreen()
