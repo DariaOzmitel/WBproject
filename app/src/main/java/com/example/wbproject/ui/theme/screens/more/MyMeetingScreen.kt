@@ -19,23 +19,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.domain.TabsForMyMeetingList
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
+
+private const val TEST_PLANNED_MEETINGS_COUNT = 20
+private const val TEST_ALREADY_PASSED_MEETINGS_COUNT = 3
 
 @OptIn(
     ExperimentalFoundationApi::class
 )
 @Composable
 fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
-    val tabList = listOf(
-        stringResource(id = R.string.planned),
-        stringResource(id = R.string.already_passed),
-    )
-    val pagerState = rememberPagerState(pageCount = { tabList.size })
+
+    val pagerState = rememberPagerState(pageCount = { TabsForMyMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
 
@@ -62,7 +62,7 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
                 )
             }
         ) {
-            tabList.forEachIndexed { index, title ->
+            TabsForMyMeetingList.entries.forEachIndexed { index, tab ->
                 Tab(
                     selected = selectedTabIndex == index,
                     selectedContentColor = MeetingTheme.colors.brandColorDefault,
@@ -74,7 +74,7 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
                     },
                     text = {
                         TextBody1(
-                            text = title,
+                            text = stringResource(id = tab.titleResId),
                         )
                     }
                 )
@@ -87,9 +87,13 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                0 -> MeetingCardColumn(10, onMeetingCardClickListener = onMeetingCardClickListener)
-                1 -> MeetingCardColumn(
-                    count = 2,
+                TabsForMyMeetingList.PLANNED.pageNumber -> MeetingCardColumn(
+                    TEST_PLANNED_MEETINGS_COUNT,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
+
+                TabsForMyMeetingList.ALREADY_PASSED.pageNumber -> MeetingCardColumn(
+                    count = TEST_ALREADY_PASSED_MEETINGS_COUNT,
                     isEnded = true,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )

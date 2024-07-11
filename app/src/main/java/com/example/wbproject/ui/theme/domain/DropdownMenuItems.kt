@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.arguments
+package com.example.wbproject.ui.theme.domain
 
 import com.example.wbproject.R
 

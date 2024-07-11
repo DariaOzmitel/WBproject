@@ -27,7 +27,7 @@ import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyButtonArguments
+import com.example.wbproject.ui.theme.domain.MyButtonArguments
 import com.example.wbproject.ui.theme.elements.MyButton
 import com.example.wbproject.ui.theme.elements.MyChipRow
 import com.example.wbproject.ui.theme.elements.text.TextBody1
@@ -71,7 +71,11 @@ fun MeetingDetailScreen() {
                     text = testText,
                     color = MeetingTheme.colors.neutralWeak,
                 )
+            }
+            item {
                 MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+            }
+            item {
                 AsyncImage(
                     modifier = Modifier
                         .padding(bottom = MeetingTheme.dimensions.dimension32)
