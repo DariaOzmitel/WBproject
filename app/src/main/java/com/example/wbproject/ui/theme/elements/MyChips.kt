@@ -13,7 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyChipArguments
+import com.example.wbproject.ui.theme.domain.MyChipArguments
 import com.example.wbproject.ui.theme.elements.text.TextMetadata3
 
 val listChipsExample = listOf(

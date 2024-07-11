@@ -19,23 +19,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.domain.TabsForMeetingList
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
+
+private const val TEST_ALL_MEETINGS_COUNT = 20
+private const val TEST_ACTIVE_MEETINGS_COUNT = 3
 
 @OptIn(
     ExperimentalFoundationApi::class
 )
 @Composable
 fun MeetingListScreen(onMeetingCardClickListener: () -> Unit = {}) {
-    val tabList = listOf(
-        stringResource(id = R.string.all_meetings),
-        stringResource(id = R.string.active),
-    )
-    val pagerState = rememberPagerState(pageCount = { tabList.size })
+
+    val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
 
@@ -62,7 +62,7 @@ fun MeetingListScreen(onMeetingCardClickListener: () -> Unit = {}) {
                 )
             }
         ) {
-            tabList.forEachIndexed { index, title ->
+            TabsForMeetingList.entries.forEachIndexed { index, tab ->
                 Tab(
                     selected = selectedTabIndex == index,
                     selectedContentColor = MeetingTheme.colors.brandColorDefault,
@@ -74,7 +74,7 @@ fun MeetingListScreen(onMeetingCardClickListener: () -> Unit = {}) {
                     },
                     text = {
                         TextBody1(
-                            text = title,
+                            text = stringResource(id = tab.titleResId),
                         )
                     }
                 )
@@ -87,19 +87,18 @@ fun MeetingListScreen(onMeetingCardClickListener: () -> Unit = {}) {
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                0 -> MeetingCardColumn(
-                    20,
+                TabsForMeetingList.ALL_MEETINGS.pageNumber -> MeetingCardColumn(
+                    TEST_ALL_MEETINGS_COUNT,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
 
-                1 -> MeetingCardColumn(
-                    3,
+                TabsForMeetingList.ACTIVE.pageNumber -> MeetingCardColumn(
+                    TEST_ACTIVE_MEETINGS_COUNT,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
             }
         }
     }
-
 }
 
 

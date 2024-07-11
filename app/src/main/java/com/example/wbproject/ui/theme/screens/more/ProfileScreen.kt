@@ -16,8 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.IconInCircleArgs
-import com.example.wbproject.ui.theme.arguments.MyOutlineButtonArguments
+import com.example.wbproject.ui.theme.domain.IconInCircleArgs
+import com.example.wbproject.ui.theme.domain.MyOutlineButtonArguments
 import com.example.wbproject.ui.theme.elements.IconInCircle
 import com.example.wbproject.ui.theme.elements.MyOutlinedButton
 import com.example.wbproject.ui.theme.elements.text.TextHeading1

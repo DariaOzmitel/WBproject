@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.arguments
+package com.example.wbproject.ui.theme.domain
 
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp

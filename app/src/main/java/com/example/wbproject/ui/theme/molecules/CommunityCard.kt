@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
+import com.example.wbproject.ui.theme.domain.MyAvatarArgs
 import com.example.wbproject.ui.theme.elements.MyAvatar
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1

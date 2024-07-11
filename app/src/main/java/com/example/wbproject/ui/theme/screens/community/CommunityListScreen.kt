@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
 
 private const val COMMUNITY_CARD_COUNT = 10
 
+@Preview
 @Composable
 fun CommunityListScreen(onCommunityCardClickListener: () -> Unit = {}) {
     Column(

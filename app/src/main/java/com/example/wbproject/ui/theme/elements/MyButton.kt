@@ -14,7 +14,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -27,8 +26,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.MyButtonArguments
-import com.example.wbproject.ui.theme.arguments.MyOutlineButtonArguments
+import com.example.wbproject.ui.theme.domain.MyButtonArguments
+import com.example.wbproject.ui.theme.domain.MyOutlineButtonArguments
 import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 
 private object NoRippleTheme : RippleTheme {

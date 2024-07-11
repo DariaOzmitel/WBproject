@@ -36,7 +36,7 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.DropdownMenuItems
+import com.example.wbproject.ui.theme.domain.DropdownMenuItems
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 const val BLANK_NUMBER = "000 000-00-00"

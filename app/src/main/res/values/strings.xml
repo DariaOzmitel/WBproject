@@ -17,4 +17,12 @@
     <string name="button">Button</string>
     <string name="all_meetings">ВСЕ ВСТРЕЧИ</string>
     <string name="i_am_going_to_a_meeting">Пойду на встречу!</string>
+    <string name="theme">Тема</string>
+    <string name="notifications">Уведомления</string>
+    <string name="safety">Безопасность</string>
+    <string name="memory_and_resources">Память и ресурсы</string>
+    <string name="help">Помощь</string>
+    <string name="invite_friend">Пригласи друга</string>
+    <string name="test_profile_name">Иван Иванов</string>
+    <string name="test_profile_phone">+7 999 999-99-99</string>
 </resources>

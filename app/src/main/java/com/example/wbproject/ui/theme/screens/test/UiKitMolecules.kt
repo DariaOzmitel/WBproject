@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.IconInCircleArgs
+import com.example.wbproject.ui.theme.domain.IconInCircleArgs
 import com.example.wbproject.ui.theme.molecules.CommunityCard
 import com.example.wbproject.ui.theme.molecules.MeetingCard
 import com.example.wbproject.ui.theme.molecules.ProfileAvatar
