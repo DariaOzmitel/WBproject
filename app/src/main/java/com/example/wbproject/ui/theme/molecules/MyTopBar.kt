@@ -19,7 +19,7 @@ import com.example.wbproject.ui.theme.elements.text.TextSubheading1
 @Composable
 fun MyTopBar(
     canNavigateBack: Boolean,
-    rightIconResId: Int?,
+    rightIconResId: Int? = null,
     title: String,
     navigateUp: () -> Unit = {},
     onRightButtonClickListener: () -> Unit = {}

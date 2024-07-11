@@ -27,28 +27,30 @@ import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextHeading1
 
 const val PIN_LENGTH = 4
+const val TEST_RIGHT_PIN = "1234"
 
 @Composable
-fun CustomPin() {
-    var inputText by remember { mutableStateOf("") }
+fun CustomPin(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Unit = {}) {
+    var displayText by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    BasicTextField(value = inputText, onValueChange = {
+    BasicTextField(modifier = modifier, value = displayText, onValueChange = {
         if (it.length == PIN_LENGTH) {
             keyboardController?.hide()
         }
-        inputText = it
+        displayText = it
     },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         decorationBox = {
-            PinChar(inputText = inputText)
+            PinString(inputText = displayText, correctPinEnteredListener)
         }
     )
 }
 
 @Composable
-fun PinChar(inputText: String) {
+fun PinString(inputText: String, correctPinEnteredListener: () -> Unit = {}) {
     val inputTextLength = inputText.length
+    val correctPinEntered = inputText == TEST_RIGHT_PIN
     Row(
         modifier = Modifier.padding(MeetingTheme.dimensions.dimension8),
         horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension24)
@@ -76,8 +78,10 @@ fun PinChar(inputText: String) {
                         color = MeetingTheme.colors.neutralActive
                     )
                 }
+                if (correctPinEntered) {
+                    correctPinEnteredListener()
+                }
             }
-
         }
     }
 }

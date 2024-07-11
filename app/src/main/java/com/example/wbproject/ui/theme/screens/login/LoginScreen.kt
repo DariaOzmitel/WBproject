@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.login
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -7,17 +7,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.wbproject.R
-import com.example.wbproject.navigation.MainScreenTopBarItem
+import com.example.wbproject.navigation.LoginScreenTopBarItem
 import com.example.wbproject.navigation.NavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.molecules.MyBottomAppBar
 import com.example.wbproject.ui.theme.molecules.MyTopBar
 
-
 @Composable
-fun MainScreen(navigationState: NavigationState, content: @Composable () -> Unit) {
-
+fun LoginScreen(navigationState: NavigationState, content: @Composable () -> Unit) {
     val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -26,26 +22,21 @@ fun MainScreen(navigationState: NavigationState, content: @Composable () -> Unit
         end = MeetingTheme.dimensions.dimension8
     ),
         topBar = {
-            val currentMainScreenTopBarItem =
-                MainScreenTopBarItem.items.firstOrNull { it.screen.route == currentRoute }
+            val currentItem =
+                LoginScreenTopBarItem.items.firstOrNull { it.screen.route == currentRoute }
             MyTopBar(
-                title = stringResource(
-                    id = currentMainScreenTopBarItem?.titleResId ?: R.string.meetings
-                ),
-                canNavigateBack = currentMainScreenTopBarItem?.addLeftArrow ?: false,
+                title = if (currentItem?.titleResId != null) {
+                    stringResource(
+                        id = currentItem.titleResId
+                    )
+                } else "",
+                canNavigateBack = currentItem?.addLeftArrow ?: false,
                 navigateUp = {
                     navigationState.navHostController.navigateUp()
                 }
-            )
-        },
-        bottomBar = {
-            MyBottomAppBar(
-                navBackStackEntry = navBackStackEntry,
-                navigationState = navigationState
             )
         }
     ) {
         content()
     }
 }
-

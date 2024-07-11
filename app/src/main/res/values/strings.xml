@@ -25,4 +25,13 @@
     <string name="invite_friend">Пригласи друга</string>
     <string name="test_profile_name">Иван Иванов</string>
     <string name="test_profile_phone">+7 999 999-99-99</string>
+    <string name="enter_phone_number">Введите номер телефона</string>
+    <string name="resume">Продолжить</string>
+    <string name="enter_code">Введите код</string>
+    <string name="request_code_again">Запросить код повторно</string>
+    <string name="sent_a_code_to_the_number">Отправили код на номер</string>
+    <string name="we_will_send_a_confirmation_code_to_the_specified_number">Мы вышлем код подтверждения \n на указанный номер</string>
+    <string name="name_necessarily">Имя (обязательно)</string>
+    <string name="last_name_optional">Фамилия (опционально)</string>
+    <string name="save">Сохранить</string>
 </resources>

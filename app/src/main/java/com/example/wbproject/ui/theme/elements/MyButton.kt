@@ -130,7 +130,7 @@ fun MyTextButton(
                 enabled = enabled,
                 colors = ButtonDefaults.buttonColors(
                     contentColor = if (isPressed) pressedColor else primaryColor,
-                    containerColor = secondaryColor,
+                    containerColor = Color.Transparent,
                     disabledContentColor = primaryColor.copy(alpha = 0.5F),
                     disabledContainerColor = secondaryColor
                 )

@@ -4,6 +4,10 @@ sealed class Screen(
     val route: String
 ) {
     data object Splash : Screen(ROUTE_SPLASH)
+    data object EnterPhone : Screen(ROUTE_ENTER_PHONE)
+    data object EnterPin : Screen(ROUTE_ENTER_PIN)
+    data object AddProfile : Screen(ROUTE_ADD_PROFILE)
+    data object Main : Screen(ROUTE_MAIN)
     data object Meetings : Screen(ROUTE_MEETINGS)
     data object MeetingsList : Screen(ROUTE_MEETINGS_LIST)
     data object MeetingDetail : Screen(ROUTE_MEETING_DETAIL)
@@ -18,6 +22,10 @@ sealed class Screen(
     private companion object {
         const val ROUTE_MEETINGS = "meetings"
         const val ROUTE_SPLASH = "splash"
+        const val ROUTE_MAIN = "main"
+        const val ROUTE_ENTER_PHONE = "enter phone"
+        const val ROUTE_ENTER_PIN = "enter pin"
+        const val ROUTE_ADD_PROFILE = "add profile"
         const val ROUTE_MEETING_DETAIL = "meeting detail"
         const val ROUTE_MEETINGS_LIST = "meetings list"
         const val ROUTE_MY_MEETINGS = "my meetings"
