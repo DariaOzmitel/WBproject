@@ -7,6 +7,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import com.example.wbproject.R
 
 private val sfProDisplayFamily = FontFamily(
@@ -28,51 +29,53 @@ data class MeetingTypography(
     val metadata3: TextStyle,
 )
 
+private val myScale = 1.25
+
 val MeetingTypographyValue = MeetingTypography(
     heading1 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 32.sp
+        fontSize = myScale * 32.sp
     ),
     heading2 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
+        fontSize = myScale * 24.sp
     ),
     subheading1 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp
+        fontSize = myScale * 18.sp
     ),
     subheading2 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp
+        fontSize = myScale * 16.sp
     ),
     bodyText1 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontSize = myScale * 14.sp
     ),
     bodyText2 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
+        fontSize = myScale * 14.sp
     ),
     metadata1 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = myScale * 12.sp
     ),
     metadata2 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 10.sp
+        fontSize = myScale * 10.sp
     ),
     metadata3 = TextStyle(
         fontFamily = sfProDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 10.sp
+        fontSize = myScale * 10.sp
     )
 )
 

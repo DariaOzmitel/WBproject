@@ -15,9 +15,13 @@ import com.example.wbproject.ui.theme.elements.IconInCircle
 import com.example.wbproject.ui.theme.elements.MyAvatar
 
 @Composable
-fun ProfileAvatar(isEditStatus: Boolean = true, iconInCircleArgs: IconInCircleArgs) {
+fun ProfileAvatar(
+    modifier: Modifier = Modifier,
+    isEditStatus: Boolean = true,
+    iconInCircleArgs: IconInCircleArgs
+) {
     Box(
-        modifier = Modifier.size(MeetingTheme.dimensions.dimension100),
+        modifier = modifier.size(MeetingTheme.dimensions.dimension100),
         contentAlignment = Alignment.BottomEnd
     ) {
         IconInCircle(

@@ -2,65 +2,57 @@ package com.example.wbproject.navigation
 
 import com.example.wbproject.R
 
-sealed class NavigationItem(
+sealed class MainScreenTopBarItem(
     val screen: Screen,
-    val iconResId: Int,
     val titleResId: Int,
     val rightIconResId: Int?,
     val addLeftArrow: Boolean
 ) {
 
-    data object MeetingList : NavigationItem(
+    data object MeetingList : MainScreenTopBarItem(
         screen = Screen.MeetingsList,
-        iconResId = R.drawable.coffe_togo,
         titleResId = R.string.meetings,
         rightIconResId = null,
         addLeftArrow = false
     )
 
-    data object MeetingDetail : NavigationItem(
+    data object MeetingDetail : MainScreenTopBarItem(
         screen = Screen.MeetingDetail,
-        iconResId = R.drawable.coffe_togo,
         titleResId = R.string.developer_meeting,
         rightIconResId = null,
         addLeftArrow = true
     )
 
-    data object CommunityList : NavigationItem(
+    data object CommunityList : MainScreenTopBarItem(
         screen = Screen.CommunityList,
-        iconResId = R.drawable.group_alt,
         titleResId = R.string.communities,
         rightIconResId = null,
         addLeftArrow = false
     )
 
-    data object CommunityDetail : NavigationItem(
+    data object CommunityDetail : MainScreenTopBarItem(
         screen = Screen.CommunityDetail,
-        iconResId = R.drawable.coffe_togo,
         titleResId = R.string.designa,
         rightIconResId = null,
         addLeftArrow = true
     )
 
-    data object MoreMenu : NavigationItem(
+    data object MoreMenu : MainScreenTopBarItem(
         screen = Screen.MoreMenu,
-        iconResId = R.drawable.more_horizontal,
         titleResId = R.string.more,
         rightIconResId = null,
         addLeftArrow = false
     )
 
-    data object MyMeetings : NavigationItem(
+    data object MyMeetings : MainScreenTopBarItem(
         screen = Screen.MyMeetings,
-        iconResId = R.drawable.coffe_togo,
         titleResId = R.string.my_meetings,
         rightIconResId = null,
         addLeftArrow = true
     )
 
-    data object Profile : NavigationItem(
+    data object Profile : MainScreenTopBarItem(
         screen = Screen.Profile,
-        iconResId = R.drawable.user,
         titleResId = R.string.profile,
         rightIconResId = R.drawable.edit,
         addLeftArrow = true

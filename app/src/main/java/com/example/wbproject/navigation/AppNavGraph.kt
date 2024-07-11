@@ -15,6 +15,9 @@ fun AppNavGraph(
     myMeetingScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
     communityDetailScreenContent: @Composable () -> Unit,
+    enterPhoneScreenContent: @Composable () -> Unit,
+    enterPinScreenContent: @Composable () -> Unit,
+    addProfileScreenContent: @Composable () -> Unit,
     splashScreenContent: @Composable () -> Unit,
 ) {
     NavHost(
@@ -23,6 +26,15 @@ fun AppNavGraph(
     ) {
         composable(Screen.Splash.route) {
             splashScreenContent()
+        }
+        composable(Screen.EnterPhone.route) {
+            enterPhoneScreenContent()
+        }
+        composable(Screen.EnterPin.route) {
+            enterPinScreenContent()
+        }
+        composable(Screen.AddProfile.route) {
+            addProfileScreenContent()
         }
         moreScreenNavGraph(
             moreMenuScreenContent = moreMenuScreenContent,
