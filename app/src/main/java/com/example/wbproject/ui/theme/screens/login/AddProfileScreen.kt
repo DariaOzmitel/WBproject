@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -19,6 +23,8 @@ import com.example.wbproject.ui.theme.molecules.ProfileAvatar
 
 @Composable
 fun AddProfileScreen(onButtonClickListener: () -> Unit) {
+    var nameText by remember { mutableStateOf("") }
+    var lastNameText by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,15 +45,15 @@ fun AddProfileScreen(onButtonClickListener: () -> Unit) {
         )
         MyEditText(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
-            text = stringResource(
+            hint = stringResource(
                 id = R.string.name_necessarily
-            )
+            ), displayText = nameText, onValueChange = { nameText = it }
         )
         MyEditText(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension56),
-            text = stringResource(
+            hint = stringResource(
                 id = R.string.last_name_optional
-            )
+            ), displayText = lastNameText, onValueChange = { lastNameText = it }
         )
         MyButton(
             args = MyButtonArguments(
@@ -55,7 +61,8 @@ fun AddProfileScreen(onButtonClickListener: () -> Unit) {
                     .fillMaxWidth()
                     .height(MeetingTheme.dimensions.dimension52),
                 text = stringResource(id = R.string.save),
-                onClick = onButtonClickListener
+                onClick = onButtonClickListener,
+                enabled = nameText.isNotEmpty()
             )
         )
     }

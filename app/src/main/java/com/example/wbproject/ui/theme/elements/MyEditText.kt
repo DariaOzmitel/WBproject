@@ -23,8 +23,12 @@ import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 
 @Composable
-fun MyEditText(modifier: Modifier = Modifier, text: String = "") {
-    var displayText by remember { mutableStateOf("") }
+fun MyEditText(
+    modifier: Modifier = Modifier,
+    hint: String = "",
+    displayText: String,
+    onValueChange: (String) -> Unit
+) {
     Box(
         modifier = modifier
             .height(MeetingTheme.dimensions.dimension36)
@@ -36,19 +40,22 @@ fun MyEditText(modifier: Modifier = Modifier, text: String = "") {
     ) {
         BasicTextField(
             value = displayText,
-            onValueChange = { displayText = it },
+            onValueChange = { onValueChange(it) },
             textStyle = MeetingTheme.typography.bodyText1.copy(color = MeetingTheme.colors.neutralDisabled)
         ) { innerTextField ->
             if (displayText == "")
-                TextBody1(text = text, color = MeetingTheme.colors.neutralDisabled)
+                TextBody1(text = hint, color = MeetingTheme.colors.neutralDisabled)
             innerTextField()
         }
-
     }
 }
 
 @Preview
 @Composable
 fun MyEditTextPreview() {
-    MyEditText(text = stringResource(id = R.string.name_necessarily))
+    var displayText by remember { mutableStateOf("") }
+    MyEditText(
+        hint = stringResource(id = R.string.name_necessarily),
+        displayText = displayText,
+        onValueChange = { displayText = it })
 }

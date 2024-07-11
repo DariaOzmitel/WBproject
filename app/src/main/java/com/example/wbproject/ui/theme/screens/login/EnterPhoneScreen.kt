@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -18,8 +22,13 @@ import com.example.wbproject.ui.theme.elements.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody2
 import com.example.wbproject.ui.theme.elements.text.TextHeading2
 
+private const val PHONE_LENGTH = 10
+
 @Composable
 fun EnterPhoneScreen(onButtonClickListener: () -> Unit) {
+    var phone: String by rememberSaveable {
+        mutableStateOf("")
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,15 +51,20 @@ fun EnterPhoneScreen(onButtonClickListener: () -> Unit) {
             textAlign = TextAlign.Center,
             lineHeight = 20.sp
         )
-        CustomPhoneNumber(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68))
+        CustomPhoneNumber(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
+            displayText = phone,
+            onValueChangeClickListener = { phone = it })
         MyButton(
             args = MyButtonArguments(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(MeetingTheme.dimensions.dimension52),
                 text = stringResource(id = R.string.resume),
-                onClick = onButtonClickListener
+                onClick = onButtonClickListener,
+                enabled = phone.length == PHONE_LENGTH
             )
         )
     }
 }
+

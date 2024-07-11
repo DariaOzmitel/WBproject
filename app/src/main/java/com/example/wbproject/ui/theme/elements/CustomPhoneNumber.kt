@@ -22,36 +22,34 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.domain.DropdownMenuItems
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
-const val BLANK_NUMBER = "000 000-00-00"
-const val PHONE_LENGTH = 8
+private const val BLANK_NUMBER = "000 000-00-00"
+private const val PHONE_LENGTH = 10
 
-@Preview
 @Composable
-fun CustomPhoneNumber(modifier: Modifier = Modifier) {
+fun CustomPhoneNumber(
+    modifier: Modifier = Modifier,
+    displayText: String,
+    onValueChangeClickListener: (String) -> Unit
+) {
     var expanded by rememberSaveable {
         mutableStateOf(false)
     }
     var selectedCountryCode by rememberSaveable { mutableStateOf(DropdownMenuItems.RUSSIA) }
-    var displayText by remember { mutableStateOf("") }
-    val keyboardController = LocalSoftwareKeyboardController.current
 
     Row(modifier = modifier) {
         Column {
@@ -123,10 +121,7 @@ fun CustomPhoneNumber(modifier: Modifier = Modifier) {
             BasicTextField(
                 value = displayText,
                 onValueChange = {
-                    if (displayText.length > PHONE_LENGTH) {
-                        keyboardController?.hide()
-                    }
-                    displayText = it
+                    onValueChangeClickListener(it.take(PHONE_LENGTH))
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 decorationBox = { decorationBox ->
