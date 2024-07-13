@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import com.example.wbproject.ui.theme.elements.CustomPhoneNumber
 import com.example.wbproject.ui.theme.elements.CustomPin
 
+const val TEST_RIGHT_PIN = "1234"
+
 @Preview
 @Composable
 fun CustomViewScreen() {
@@ -22,7 +24,7 @@ fun CustomViewScreen() {
         mutableStateOf("")
     }
     Column(modifier = Modifier.padding(top = 100.dp, start = 50.dp)) {
-        CustomPin()
+        CustomPin(correctPin = TEST_RIGHT_PIN, correctPinEnteredListener = {})
         Spacer(modifier = Modifier.height(80.dp))
         CustomPhoneNumber(
             displayText = phone,

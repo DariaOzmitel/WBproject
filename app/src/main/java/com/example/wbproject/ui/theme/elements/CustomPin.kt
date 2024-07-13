@@ -22,15 +22,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextHeading1
 
 const val PIN_LENGTH = 4
-const val TEST_RIGHT_PIN = "1234"
 
 @Composable
-fun CustomPin(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Unit = {}) {
+fun CustomPin(
+    modifier: Modifier = Modifier,
+    correctPin: String,
+    correctPinEnteredListener: () -> Unit = {}
+) {
     var displayText by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -42,15 +44,15 @@ fun CustomPin(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Un
     },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         decorationBox = {
-            PinString(inputText = displayText, correctPinEnteredListener)
+            PinString(inputText = displayText, correctPin = correctPin, correctPinEnteredListener)
         }
     )
 }
 
 @Composable
-fun PinString(inputText: String, correctPinEnteredListener: () -> Unit = {}) {
+fun PinString(inputText: String, correctPin: String, correctPinEnteredListener: () -> Unit = {}) {
     val inputTextLength = inputText.length
-    val correctPinEntered = inputText == TEST_RIGHT_PIN
+    val correctPinEntered = inputText == correctPin
     Row(
         modifier = Modifier.padding(MeetingTheme.dimensions.dimension8),
         horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension24)
@@ -84,10 +86,4 @@ fun PinString(inputText: String, correctPinEnteredListener: () -> Unit = {}) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun PinCharPreview() {
-    CustomPin()
 }

@@ -16,6 +16,8 @@ import com.example.wbproject.ui.theme.elements.buttons.MyTextButton
 import com.example.wbproject.ui.theme.elements.text.TextBody2
 import com.example.wbproject.ui.theme.elements.text.TextHeading2
 
+const val TEST_RIGHT_PIN = "1234"
+
 @Preview
 @Composable
 fun EnterPinScreen(correctPinEnteredListener: () -> Unit = {}) {
@@ -47,6 +49,7 @@ fun EnterPinScreen(correctPinEnteredListener: () -> Unit = {}) {
         )
         CustomPin(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
+            correctPin = TEST_RIGHT_PIN,
             correctPinEnteredListener = correctPinEnteredListener
         )
         MyTextButton(

@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -16,6 +17,7 @@ fun TextBody1(
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
     lineHeight: TextUnit = TextUnit.Unspecified,
+    textAlign: TextAlign? = null
 ) {
     Text(
         modifier = modifier,
@@ -25,5 +27,6 @@ fun TextBody1(
         overflow = overflow,
         maxLines = maxLines,
         lineHeight = lineHeight,
+        textAlign = textAlign
     )
 }

@@ -40,7 +40,8 @@ fun EnterPhoneScreen(onButtonClickListener: () -> Unit) {
     ) {
         TextHeading2(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension6),
-            text = stringResource(id = R.string.enter_phone_number)
+            text = stringResource(id = R.string.enter_phone_number),
+            textAlign = TextAlign.Center,
         )
         TextBody2(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
