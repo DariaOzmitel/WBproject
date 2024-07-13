@@ -16,9 +16,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,9 +33,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.DropdownMenuItems
 import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.items.DropdownMenuItems
 
 private const val BLANK_NUMBER = "000 000-00-00"
 private const val PHONE_LENGTH = 10
@@ -56,7 +57,7 @@ fun CustomPhoneNumber(
             Row(
                 modifier = Modifier
                     .height(MeetingTheme.dimensions.dimension36)
-                    .width(MeetingTheme.dimensions.dimension56)
+                    .width(MeetingTheme.dimensions.dimension58)
                     .clickable { expanded = true }
                     .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
                     .background(MeetingTheme.colors.neutralOffWhite)
@@ -77,7 +78,9 @@ fun CustomPhoneNumber(
                 )
             }
             DropdownMenu(
-                modifier = Modifier.width(MeetingTheme.dimensions.dimension72),
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension76)
+                    .background(MeetingTheme.colors.neutralOffWhite),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }) {
                 DropdownMenuItems.entries.forEachIndexed { index, item ->
@@ -102,7 +105,7 @@ fun CustomPhoneNumber(
                     )
                     val isDividerVisible = index != DropdownMenuItems.entries.size - 1
                     if (isDividerVisible)
-                        Divider()
+                        HorizontalDivider()
                 }
             }
         }
@@ -182,4 +185,16 @@ class PhoneNumberTransformation : VisualTransformation {
         }
         return TransformedText(AnnotatedString(out), offsetMapping)
     }
+}
+
+@Preview
+@Composable
+fun CustomPhoneNumberPreview() {
+    var phone: String by rememberSaveable {
+        mutableStateOf("")
+    }
+    CustomPhoneNumber(
+        modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
+        displayText = phone,
+        onValueChangeClickListener = { phone = it })
 }

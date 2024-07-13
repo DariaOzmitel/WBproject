@@ -27,9 +27,8 @@ import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.MyButtonArguments
-import com.example.wbproject.ui.theme.elements.MyButton
 import com.example.wbproject.ui.theme.elements.MyChipRow
+import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
@@ -108,12 +107,10 @@ fun MeetingDetailScreen() {
                     avatars = testImageList
                 )
                 MyButton(
-                    args = MyButtonArguments(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(MeetingTheme.dimensions.dimension52),
-                        text = stringResource(id = R.string.i_am_going_to_a_meeting),
-                    )
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(MeetingTheme.dimensions.dimension52),
+                    text = stringResource(id = R.string.i_am_going_to_a_meeting),
                 )
             }
         }

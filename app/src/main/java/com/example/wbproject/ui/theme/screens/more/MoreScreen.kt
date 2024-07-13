@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,11 +22,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.IconInCircleArgs
-import com.example.wbproject.ui.theme.domain.MoreMenuItem
 import com.example.wbproject.ui.theme.elements.IconInCircle
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
+import com.example.wbproject.ui.theme.items.MoreMenuItem
 
 
 @Composable
@@ -41,10 +40,8 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
             verticalAlignment = Alignment.CenterVertically,
         ) {
             IconInCircle(
-                iconInCircleArgs = IconInCircleArgs(
-                    size = MeetingTheme.dimensions.dimension50,
-                    painter = painterResource(id = R.drawable.user)
-                )
+                size = MeetingTheme.dimensions.dimension50,
+                painter = painterResource(id = R.drawable.user)
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension12))
             Box(modifier = Modifier.weight(1f)) {
@@ -82,7 +79,7 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
         MenuItem(
             moreMenuItem = MoreMenuItem.MemoryAndResources
         )
-        Divider()
+        HorizontalDivider()
         MenuItem(
             moreMenuItem = MoreMenuItem.Help
         )

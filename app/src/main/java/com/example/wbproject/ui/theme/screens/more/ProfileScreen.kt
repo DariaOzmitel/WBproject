@@ -13,13 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.IconInCircleArgs
-import com.example.wbproject.ui.theme.domain.MyOutlineButtonArguments
 import com.example.wbproject.ui.theme.elements.IconInCircle
-import com.example.wbproject.ui.theme.elements.MyOutlinedButton
+import com.example.wbproject.ui.theme.elements.buttons.MyOutlinedButton
 import com.example.wbproject.ui.theme.elements.text.TextHeading1
 import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 
@@ -37,18 +36,16 @@ fun ProfileScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         IconInCircle(
-            iconInCircleArgs = IconInCircleArgs(
-                size = MeetingTheme.dimensions.dimension200, painter = painterResource(
-                    id = R.drawable.user
-                )
+            size = MeetingTheme.dimensions.dimension200, painter = painterResource(
+                id = R.drawable.user
             )
         )
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
         TextHeading1(
-            text = "Иван Иванов",
+            text = stringResource(id = R.string.test_profile_name),
         )
         TextSubheading2(
-            text = "+7 999 999-99-99",
+            text = stringResource(id = R.string.test_profile_phone),
             color = MeetingTheme.colors.neutralDisabled
         )
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension40))
@@ -57,36 +54,28 @@ fun ProfileScreen() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             MyOutlinedButton(
-                args = MyOutlineButtonArguments(
-                    modifier = Modifier
-                        .width(MeetingTheme.dimensions.dimension72)
-                        .height(MeetingTheme.dimensions.dimension40),
-                    iconResId = R.drawable.twitter
-                )
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension72)
+                    .height(MeetingTheme.dimensions.dimension40),
+                iconResId = R.drawable.twitter
             )
             MyOutlinedButton(
-                args = MyOutlineButtonArguments(
-                    modifier = Modifier
-                        .width(MeetingTheme.dimensions.dimension72)
-                        .height(MeetingTheme.dimensions.dimension40),
-                    iconResId = R.drawable.instagram
-                )
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension72)
+                    .height(MeetingTheme.dimensions.dimension40),
+                iconResId = R.drawable.instagram
             )
             MyOutlinedButton(
-                args = MyOutlineButtonArguments(
-                    modifier = Modifier
-                        .width(MeetingTheme.dimensions.dimension72)
-                        .height(MeetingTheme.dimensions.dimension40),
-                    iconResId = R.drawable.linked_in
-                )
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension72)
+                    .height(MeetingTheme.dimensions.dimension40),
+                iconResId = R.drawable.linked_in
             )
             MyOutlinedButton(
-                args = MyOutlineButtonArguments(
-                    modifier = Modifier
-                        .width(MeetingTheme.dimensions.dimension72)
-                        .height(MeetingTheme.dimensions.dimension40),
-                    iconResId = R.drawable.facebook
-                )
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension72)
+                    .height(MeetingTheme.dimensions.dimension40),
+                iconResId = R.drawable.facebook
             )
         }
     }

@@ -3,8 +3,6 @@ package com.example.wbproject.ui.theme.molecules
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material.ripple.RippleAlpha
-import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -21,21 +19,8 @@ import com.example.wbproject.R
 import com.example.wbproject.navigation.BottomNavigationItem
 import com.example.wbproject.navigation.NavigationState
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
-
-
-private object NoRippleTheme : RippleTheme {
-    @Composable
-    override fun defaultColor() = Color.Unspecified
-
-    @Composable
-    override fun rippleAlpha(): RippleAlpha = RippleAlpha(
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f
-    )
-}
 
 @Composable
 fun MyBottomAppBar(navBackStackEntry: NavBackStackEntry?, navigationState: NavigationState) {

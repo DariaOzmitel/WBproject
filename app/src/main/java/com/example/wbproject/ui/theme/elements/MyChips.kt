@@ -10,55 +10,58 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.MyChipArguments
 import com.example.wbproject.ui.theme.elements.text.TextMetadata3
 
 val listChipsExample = listOf(
-    MyChipArguments(
-        text = "Python"
-    ),
-    MyChipArguments(
-        text = "Junior"
-    ),
-    MyChipArguments(
-        text = "Moscow"
-    )
+    "Python",
+    "Junior",
+    "Moscow"
 )
 
 @Composable
-fun MyChipRow(modifier: Modifier = Modifier, listChips: List<MyChipArguments> = listChipsExample) {
+fun MyChipRow(
+    modifier: Modifier = Modifier,
+    containerColor: Color = LightColors.brandColorBackGround,
+    contentColor: Color = LightColors.brandColorDark,
+    listChips: List<String> = listChipsExample
+) {
     Row(
-        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8)
     ) {
         listChips.forEach {
-            MyChip(myChipArguments = it)
+            MyChip(
+                modifier = modifier,
+                text = it,
+                containerColor = containerColor,
+                contentColor = contentColor
+            )
         }
     }
 }
 
 @Composable
 fun MyChip(
-    myChipArguments: MyChipArguments
+    modifier: Modifier = Modifier,
+    text: String,
+    containerColor: Color = LightColors.brandColorBackGround,
+    contentColor: Color = LightColors.brandColorDark,
 ) {
-    with(myChipArguments) {
-        Box(
-            modifier = modifier
-                .height(MeetingDimensionsValue.dimension16)
-                .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension32))
-                .background(color = containerColor)
-                .padding(
-                    start = MeetingTheme.dimensions.dimension4,
-                    bottom = MeetingTheme.dimensions.dimension2,
-                    end = MeetingTheme.dimensions.dimension4,
-                    top = MeetingTheme.dimensions.dimension2
-                ),
-        ) {
-            TextMetadata3(text = text, color = contentColor)
-        }
+    Box(
+        modifier = modifier
+            .height(MeetingDimensionsValue.dimension16)
+            .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension32))
+            .background(color = containerColor)
+            .padding(
+                vertical = MeetingTheme.dimensions.dimension2,
+                horizontal = MeetingTheme.dimensions.dimension4
+            ),
+    ) {
+        TextMetadata3(text = text, color = contentColor)
     }
 }
 

@@ -24,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.MyAvatarArgs
 import com.example.wbproject.ui.theme.elements.MyAvatar
 import com.example.wbproject.ui.theme.elements.MyChipRow
 import com.example.wbproject.ui.theme.elements.text.TextBody1
@@ -48,10 +47,8 @@ fun MeetingCard(
                 .fillMaxWidth()
         ) {
             MyAvatar(
-                MyAvatarArgs(
-                    painter = painterResource(id = R.drawable.avatar),
-                    modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
-                )
+                painter = painterResource(id = R.drawable.avatar),
+                modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
 
             )
             Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))

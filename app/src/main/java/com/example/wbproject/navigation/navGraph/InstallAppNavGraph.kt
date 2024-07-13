@@ -1,6 +1,8 @@
-package com.example.wbproject.navigation
+package com.example.wbproject.navigation.navGraph
 
 import androidx.compose.runtime.Composable
+import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.theme.screens.MainScreen
 import com.example.wbproject.ui.theme.screens.SplashScreen
 import com.example.wbproject.ui.theme.screens.community.CommunityDetailScreen

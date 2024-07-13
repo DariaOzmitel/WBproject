@@ -20,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.TabsForMeetingList
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
 

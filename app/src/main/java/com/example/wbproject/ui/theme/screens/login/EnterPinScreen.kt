@@ -11,9 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.MyButtonArguments
 import com.example.wbproject.ui.theme.elements.CustomPin
-import com.example.wbproject.ui.theme.elements.MyTextButton
+import com.example.wbproject.ui.theme.elements.buttons.MyTextButton
 import com.example.wbproject.ui.theme.elements.text.TextBody2
 import com.example.wbproject.ui.theme.elements.text.TextHeading2
 
@@ -51,12 +50,10 @@ fun EnterPinScreen(correctPinEnteredListener: () -> Unit = {}) {
             correctPinEnteredListener = correctPinEnteredListener
         )
         MyTextButton(
-            args = MyButtonArguments(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(MeetingTheme.dimensions.dimension52),
-                text = stringResource(id = R.string.request_code_again)
-            )
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(MeetingTheme.dimensions.dimension52),
+            text = stringResource(id = R.string.request_code_again)
         )
     }
 }

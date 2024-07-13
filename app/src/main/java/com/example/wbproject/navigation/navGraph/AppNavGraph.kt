@@ -1,9 +1,10 @@
-package com.example.wbproject.navigation
+package com.example.wbproject.navigation.navGraph
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.wbproject.navigation.Screen
 
 @Composable
 fun AppNavGraph(

@@ -16,9 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.MyButtonArguments
 import com.example.wbproject.ui.theme.elements.CustomPhoneNumber
-import com.example.wbproject.ui.theme.elements.MyButton
+import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody2
 import com.example.wbproject.ui.theme.elements.text.TextHeading2
 
@@ -56,14 +55,12 @@ fun EnterPhoneScreen(onButtonClickListener: () -> Unit) {
             displayText = phone,
             onValueChangeClickListener = { phone = it })
         MyButton(
-            args = MyButtonArguments(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(MeetingTheme.dimensions.dimension52),
-                text = stringResource(id = R.string.resume),
-                onClick = onButtonClickListener,
-                enabled = phone.length == PHONE_LENGTH
-            )
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(MeetingTheme.dimensions.dimension52),
+            text = stringResource(id = R.string.resume),
+            onClick = onButtonClickListener,
+            enabled = phone.length == PHONE_LENGTH
         )
     }
 }

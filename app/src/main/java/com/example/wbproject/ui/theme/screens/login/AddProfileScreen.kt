@@ -15,10 +15,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.domain.IconInCircleArgs
-import com.example.wbproject.ui.theme.domain.MyButtonArguments
-import com.example.wbproject.ui.theme.elements.MyButton
 import com.example.wbproject.ui.theme.elements.MyEditText
+import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.molecules.ProfileAvatar
 
 @Composable
@@ -37,10 +35,8 @@ fun AddProfileScreen(onButtonClickListener: () -> Unit) {
     ) {
         ProfileAvatar(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension32),
-            iconInCircleArgs = IconInCircleArgs(
-                size = MeetingTheme.dimensions.dimension100, painter = painterResource(
-                    id = R.drawable.user
-                )
+            size = MeetingTheme.dimensions.dimension100, painter = painterResource(
+                id = R.drawable.user
             )
         )
         MyEditText(
@@ -56,14 +52,12 @@ fun AddProfileScreen(onButtonClickListener: () -> Unit) {
             ), displayText = lastNameText, onValueChange = { lastNameText = it }
         )
         MyButton(
-            args = MyButtonArguments(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(MeetingTheme.dimensions.dimension52),
-                text = stringResource(id = R.string.save),
-                onClick = onButtonClickListener,
-                enabled = nameText.isNotEmpty()
-            )
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(MeetingTheme.dimensions.dimension52),
+            text = stringResource(id = R.string.save),
+            onClick = onButtonClickListener,
+            enabled = nameText.isNotEmpty()
         )
     }
 }
