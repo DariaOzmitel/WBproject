@@ -12,7 +12,7 @@ import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
 
 @Composable
-fun CommunityScreen() {
+fun CommunityListScreen(onCommunityCardClickListener: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,6 +25,6 @@ fun CommunityScreen() {
     ) {
         MySearchTextField()
         Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
-        CommunityCardColumn(10)
+        CommunityCardColumn(10, onCommunityCardClickListener = onCommunityCardClickListener)
     }
 }

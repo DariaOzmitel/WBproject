@@ -19,6 +19,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
@@ -28,10 +30,10 @@ import kotlinx.coroutines.launch
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen() {
+fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
     val tabList = listOf(
-        "ЗАПЛАНИРОВАНО",
-        "УЖЕ ПРОШЛИ"
+        stringResource(id = R.string.planned),
+        stringResource(id = R.string.already_passed),
     )
     val pagerState = rememberPagerState(pageCount = { tabList.size })
     val selectedTabIndex = pagerState.currentPage
@@ -86,8 +88,12 @@ fun MyMeetingScreen() {
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                0 -> MeetingCardColumn(10)
-                1 -> MeetingCardColumn(2)
+                0 -> MeetingCardColumn(10, onMeetingCardClickListener = onMeetingCardClickListener)
+                1 -> MeetingCardColumn(
+                    count = 2,
+                    isEnded = true,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
             }
         }
     }

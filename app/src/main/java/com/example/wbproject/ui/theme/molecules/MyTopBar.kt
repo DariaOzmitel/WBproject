@@ -19,7 +19,13 @@ import com.example.wbproject.ui.theme.elements.MyText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopBar(addArrowLeft: Boolean, rightIconResId: Int?, title: String) {
+fun MyTopBar(
+    canNavigateBack: Boolean,
+    rightIconResId: Int?,
+    title: String,
+    navigateUp: () -> Unit = {},
+    onRightButtonClickListener: () -> Unit = {}
+) {
     TopAppBar(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
         title = {
             MyText(
@@ -30,8 +36,8 @@ fun MyTopBar(addArrowLeft: Boolean, rightIconResId: Int?, title: String) {
             )
         },
         navigationIcon = {
-            if (addArrowLeft) {
-                IconButton(onClick = {}) {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                         contentDescription = null
@@ -41,7 +47,7 @@ fun MyTopBar(addArrowLeft: Boolean, rightIconResId: Int?, title: String) {
         },
         actions = {
             if (rightIconResId != null) {
-                IconButton(onClick = {}) {
+                IconButton(onClick = onRightButtonClickListener) {
                     Icon(
                         painter = painterResource(id = rightIconResId),
                         contentDescription = null
@@ -55,5 +61,5 @@ fun MyTopBar(addArrowLeft: Boolean, rightIconResId: Int?, title: String) {
 @Preview
 @Composable
 private fun MyTopBarPreview() {
-    MyTopBar(addArrowLeft = true, rightIconResId = R.drawable.group_alt, title = "MO")
+    MyTopBar(canNavigateBack = true, rightIconResId = R.drawable.group_alt, title = "Test")
 }

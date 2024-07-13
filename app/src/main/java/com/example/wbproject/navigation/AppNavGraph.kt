@@ -8,28 +8,34 @@ import androidx.navigation.compose.composable
 @Composable
 fun AppNavGraph(
     navHostController: NavHostController,
-    meetingScreenContent: @Composable () -> Unit,
-    communityScreenContent: @Composable () -> Unit,
-    moreScreenContent: @Composable () -> Unit,
+    meetingListScreenContent: @Composable () -> Unit,
+    meetingDetailScreenContent: @Composable () -> Unit,
+    communityListScreenContent: @Composable () -> Unit,
+    moreMenuScreenContent: @Composable () -> Unit,
     myMeetingScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
+    communityDetailScreenContent: @Composable () -> Unit,
+    splashScreenContent: @Composable () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.Meetings.route
+        startDestination = Screen.Splash.route
     ) {
-        composable(Screen.Meetings.route) {
-            meetingScreenContent()
+        composable(Screen.Splash.route) {
+            splashScreenContent()
         }
-        composable(Screen.Community.route) {
-            communityScreenContent()
-        }
-        composable(Screen.More.route) {
-            moreScreenContent()
-        }
-        composable(Screen.Profile.route) {
-            profileScreenContent()
-        }
+        moreScreenNavGraph(
+            moreMenuScreenContent = moreMenuScreenContent,
+            profileScreenContent = profileScreenContent
+        )
+        meetingScreenNavGraph(
+            meetingListScreenContent = meetingListScreenContent,
+            meetingDetailScreenContent = meetingDetailScreenContent
+        )
+        communityScreenNavGraph(
+            communityListScreenContent = communityListScreenContent,
+            communityDetailScreenContent = communityDetailScreenContent
+        )
         composable(Screen.MyMeetings.route) {
             myMeetingScreenContent()
         }

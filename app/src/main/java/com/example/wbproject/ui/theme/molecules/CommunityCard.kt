@@ -1,5 +1,6 @@
 package com.example.wbproject.ui.theme.molecules
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,8 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -29,9 +30,11 @@ import com.example.wbproject.ui.theme.elements.MyAvatar
 import com.example.wbproject.ui.theme.elements.MyText
 
 @Composable
-fun CommunityCard(modifier: Modifier = Modifier) {
+fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: () -> Unit = {}) {
     Card(
-        modifier = modifier.padding(top = MeetingTheme.dimensions.dimension4),
+        modifier = modifier
+            .padding(top = MeetingTheme.dimensions.dimension4)
+            .clickable { onCommunityCardClickListener() },
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -50,7 +53,7 @@ fun CommunityCard(modifier: Modifier = Modifier) {
             Column {
                 MyText(
                     myTextArguments = MyTextArguments(
-                        text = "Designa",
+                        text = stringResource(id = R.string.designa),
                         textStyle = MeetingTypographyValue.bodyText1
                     )
                 )
@@ -72,15 +75,16 @@ fun CommunityCard(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CommunityCardColumn(count: Int) {
+fun CommunityCardColumn(count: Int, onCommunityCardClickListener: () -> Unit = {}) {
     LazyColumn(
         modifier = Modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(count) {
             CommunityCard(
                 modifier = Modifier
-                    .height(68.dp)
+                    .height(MeetingTheme.dimensions.dimension68),
+                onCommunityCardClickListener = onCommunityCardClickListener
             )
         }
     }
@@ -92,6 +96,6 @@ private fun CommunityCardPreview() {
     CommunityCard(
         Modifier
             .fillMaxWidth()
-            .height(68.dp)
+            .height(MeetingTheme.dimensions.dimension68)
     )
 }

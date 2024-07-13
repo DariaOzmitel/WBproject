@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">WBproject</string>
+    <string name="community_meetings">Встречи сообщества</string>
+    <string name="planned">ЗАПЛАНИРОВАНО</string>
+    <string name="already_passed">УЖЕ ПРОШЛИ</string>
+    <string name="active">АКТИВНЫЕ</string>
+    <string name="more">Еще</string>
+    <string name="meetings">Встречи</string>
+    <string name="developer_meeting">Developer meeting</string>
+    <string name="designa">Designa</string>
+    <string name="search">Поиск</string>
+    <string name="my_meetings">Мои встречи</string>
+    <string name="communities">Сообщества</string>
+    <string name="profile">Профиль</string>
+    <string name="button">Button</string>
+    <string name="all_meetings">ВСЕ ВСТРЕЧИ</string>
+    <string name="i_am_going_to_a_meeting">Пойду на встречу!</string>
 </resources>

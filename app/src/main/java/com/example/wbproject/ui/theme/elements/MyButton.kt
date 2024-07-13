@@ -23,11 +23,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.arguments.MyButtonArguments
 import com.example.wbproject.ui.theme.arguments.MyOutlineButtonArguments
+import com.example.wbproject.ui.theme.arguments.MyTextArguments
 
 private object NoRippleTheme : RippleTheme {
     @Composable
@@ -62,7 +64,7 @@ fun MyButton(
                     disabledContentColor = secondaryColor
                 )
             ) {
-                Text(text = text)
+                MyText(text)
             }
         }
 
@@ -135,7 +137,7 @@ fun MyTextButton(
                     disabledContainerColor = secondaryColor
                 )
             ) {
-                Text(text = text)
+                MyText(text)
             }
         }
     }
@@ -167,8 +169,22 @@ fun MyButtonsRow(
 fun MyButtonsPreview() {
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        MyButtonsRow(MyButtonArguments())
+        MyButtonsRow(
+            MyButtonArguments(
+                text = MyTextArguments(
+                    text = stringResource(id = R.string.button),
+                    textStyle = MeetingTheme.typography.bodyText1
+                )
+            )
+        )
         MyButtonsRow(MyButtonArguments(primaryColor = MeetingTheme.colors.brandColorDark))
-        MyButtonsRow(MyButtonArguments(enabled = false))
+        MyButtonsRow(
+            MyButtonArguments(
+                text = MyTextArguments(
+                    text = stringResource(id = R.string.button),
+                    textStyle = MeetingTheme.typography.bodyText1
+                ), enabled = false
+            )
+        )
     }
 }
