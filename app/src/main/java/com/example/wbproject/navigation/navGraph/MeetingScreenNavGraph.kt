@@ -12,7 +12,7 @@ fun NavGraphBuilder.meetingScreenNavGraph(
 ) {
     navigation(
         startDestination = Screen.MeetingsList.route,
-        route = Screen.Meetings.route
+        route = Screen.MeetingsRoot.route
     ) {
         composable(Screen.MeetingsList.route) {
             meetingListScreenContent()

@@ -8,19 +8,19 @@ sealed class BottomNavigationItem(
     val titleResId: Int,
 ) {
     data object Meetings : BottomNavigationItem(
-        screen = Screen.Meetings,
+        screen = Screen.MeetingsRoot,
         iconResId = R.drawable.coffe_togo,
         titleResId = R.string.meetings,
     )
 
     data object Community : BottomNavigationItem(
-        screen = Screen.Community,
+        screen = Screen.CommunityRoot,
         iconResId = R.drawable.group_alt,
         titleResId = R.string.communities,
     )
 
     data object More : BottomNavigationItem(
-        screen = Screen.More,
+        screen = Screen.MoreRoot,
         iconResId = R.drawable.more_horizontal,
         titleResId = R.string.more,
     )

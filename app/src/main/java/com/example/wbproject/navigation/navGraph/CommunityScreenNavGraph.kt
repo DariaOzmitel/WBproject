@@ -12,7 +12,7 @@ fun NavGraphBuilder.communityScreenNavGraph(
 ) {
     navigation(
         startDestination = Screen.CommunityList.route,
-        route = Screen.Community.route
+        route = Screen.CommunityRoot.route
     ) {
         composable(Screen.CommunityList.route) {
             communityListScreenContent()

@@ -13,7 +13,7 @@ fun NavGraphBuilder.moreScreenNavGraph(
 ) {
     navigation(
         startDestination = Screen.MoreMenu.route,
-        route = Screen.More.route
+        route = Screen.MoreRoot.route
     ) {
         composable(Screen.MoreMenu.route) {
             moreMenuScreenContent()
