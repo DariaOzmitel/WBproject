@@ -71,7 +71,9 @@ fun PinString(inputText: String, correctPin: String, correctPinEnteredListener: 
                         .background(
                             color = if (index >= inputTextLength) {
                                 MeetingTheme.colors.neutralLine
-                            } else Color.Transparent
+                            } else {
+                                Color.Transparent
+                            }
                         )
                 )
                 if (index < inputTextLength) {

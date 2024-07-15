@@ -43,8 +43,9 @@ fun MyEditText(
             onValueChange = { onValueChange(it) },
             textStyle = MeetingTheme.typography.bodyText1.copy(color = MeetingTheme.colors.neutralDisabled)
         ) { innerTextField ->
-            if (displayText == "")
+            if (displayText.isBlank()) {
                 TextBody1(text = hint, color = MeetingTheme.colors.neutralDisabled)
+            }
             innerTextField()
         }
     }

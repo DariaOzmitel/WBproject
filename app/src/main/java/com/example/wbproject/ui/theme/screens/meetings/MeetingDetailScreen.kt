@@ -96,7 +96,10 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
                         },
                     text = LoremIpsum(300).values.first(),
                     color = MeetingTheme.colors.neutralWeak,
-                    maxLines = if (!fullText) TEXT_MAX_LINE else Int.MAX_VALUE,
+                    maxLines = when (fullText) {
+                        true -> Int.MAX_VALUE
+                        false -> TEXT_MAX_LINE
+                    },
                     overflow = TextOverflow.Ellipsis,
                     lineHeight = 20.sp
                 )

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -53,7 +52,7 @@ fun CustomPhoneNumber(
     var selectedCountryCode by rememberSaveable { mutableStateOf(DropdownMenuItems.RUSSIA) }
 
     Row(modifier = modifier) {
-        Column {
+        Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
             Row(
                 modifier = Modifier
                     .height(MeetingTheme.dimensions.dimension36)
@@ -104,12 +103,12 @@ fun CustomPhoneNumber(
                         }
                     )
                     val isDividerVisible = index != DropdownMenuItems.entries.size - 1
-                    if (isDividerVisible)
+                    if (isDividerVisible) {
                         HorizontalDivider()
+                    }
                 }
             }
         }
-        Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension6))
         Box(
             modifier = Modifier
                 .height(MeetingTheme.dimensions.dimension36)
@@ -118,8 +117,7 @@ fun CustomPhoneNumber(
                 .background(MeetingTheme.colors.neutralOffWhite)
                 .padding(MeetingTheme.dimensions.dimension8),
             contentAlignment = Alignment.CenterStart
-        )
-        {
+        ) {
             BasicTextField(
                 value = displayText,
                 onValueChange = {
@@ -127,7 +125,7 @@ fun CustomPhoneNumber(
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 decorationBox = { decorationBox ->
-                    if (displayText == "") {
+                    if (displayText.isBlank()) {
                         TextBody1(
                             text = BLANK_NUMBER,
                             color = MeetingTheme.colors.neutralDisabled,
