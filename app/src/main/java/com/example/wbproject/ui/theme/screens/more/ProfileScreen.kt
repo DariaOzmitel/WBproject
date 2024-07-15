@@ -3,7 +3,6 @@ package com.example.wbproject.ui.theme.screens.more
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,12 +23,12 @@ import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 
 @Preview
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(
-                top = MeetingTheme.dimensions.dimension150,
+                top = MeetingTheme.dimensions.dimension136,
                 start = MeetingTheme.dimensions.dimension8,
                 end = MeetingTheme.dimensions.dimension8
             ),
@@ -40,15 +39,15 @@ fun ProfileScreen() {
                 id = R.drawable.user
             )
         )
-        Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
         TextHeading1(
+            modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
             text = stringResource(id = R.string.test_profile_name),
         )
         TextSubheading2(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
             text = stringResource(id = R.string.test_profile_phone),
             color = MeetingTheme.colors.neutralDisabled
         )
-        Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension40))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly

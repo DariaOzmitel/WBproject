@@ -37,8 +37,11 @@ data class MeetingDimensions(
     val dimension80: Dp,
     val dimension88: Dp,
     val dimension100: Dp,
+    val dimension106: Dp,
     val dimension128: Dp,
+    val dimension136: Dp,
     val dimension150: Dp,
+    val dimension168: Dp,
     val dimension176: Dp,
     val dimension200: Dp,
 )
@@ -71,8 +74,11 @@ val MeetingDimensionsValue = MeetingDimensions(
     dimension80 = scale * 80.dp,
     dimension88 = scale * 88.dp,
     dimension100 = scale * 100.dp,
+    dimension106 = scale * 106.dp,
     dimension128 = scale * 128.dp,
+    dimension136 = scale * 136.dp,
     dimension150 = scale * 150.dp,
+    dimension168 = scale * 168.dp,
     dimension176 = scale * 176.dp,
     dimension200 = scale * 200.dp,
 )

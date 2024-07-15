@@ -2,10 +2,8 @@ package com.example.wbproject.ui.theme.screens.more
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -33,25 +31,26 @@ private const val TEST_ALREADY_PASSED_MEETINGS_COUNT = 3
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
+fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
 
     val pagerState = rememberPagerState(pageCount = { TabsForMyMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(
-                top = MeetingTheme.dimensions.dimension128,
+                top = MeetingTheme.dimensions.dimension106,
                 start = MeetingTheme.dimensions.dimension16,
                 end = MeetingTheme.dimensions.dimension16,
                 bottom = MeetingTheme.dimensions.dimension100,
             )
     ) {
-        MySearchTextField()
-        Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
-        TabRow(modifier = Modifier.fillMaxWidth(),
+        MySearchTextField(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+        TabRow(modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = MeetingTheme.dimensions.dimension16),
             selectedTabIndex = selectedTabIndex,
             containerColor = Color.Transparent,
             divider = {},
@@ -80,7 +79,6 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension16))
         HorizontalPager(
             state = pagerState, modifier = Modifier
                 .fillMaxWidth(),
@@ -88,7 +86,7 @@ fun MyMeetingScreen(onMeetingCardClickListener: () -> Unit) {
         ) { page ->
             when (page) {
                 TabsForMyMeetingList.PLANNED.pageNumber -> MeetingCardColumn(
-                    TEST_PLANNED_MEETINGS_COUNT,
+                    count = TEST_PLANNED_MEETINGS_COUNT,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
 

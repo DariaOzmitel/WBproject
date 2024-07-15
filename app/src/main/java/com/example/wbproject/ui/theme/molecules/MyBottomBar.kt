@@ -10,6 +10,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,8 +24,13 @@ import com.example.wbproject.ui.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 @Composable
-fun MyBottomAppBar(navBackStackEntry: NavBackStackEntry?, navigationState: NavigationState) {
+fun MyBottomAppBar(
+    modifier: Modifier = Modifier,
+    navBackStackEntry: NavBackStackEntry?,
+    navigationState: NavigationState
+) {
     BottomAppBar(
+        modifier = modifier,
         containerColor = Color.Transparent
     ) {
         BottomNavigationItem.bottomNavigationItems.forEach { item ->
@@ -40,13 +46,13 @@ fun MyBottomAppBar(navBackStackEntry: NavBackStackEntry?, navigationState: Navig
                         }
                     },
                     icon = {
-                        if (!isSelected) {
-                            Icon(
+                        when (isSelected) {
+                            false -> Icon(
                                 painter = painterResource(id = item.iconResId),
                                 contentDescription = null
                             )
-                        } else {
-                            Column(
+
+                            true -> Column(
                                 verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {

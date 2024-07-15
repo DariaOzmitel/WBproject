@@ -24,15 +24,15 @@ import com.example.wbproject.ui.theme.elements.text.TextHeading2
 private const val PHONE_LENGTH = 10
 
 @Composable
-fun EnterPhoneScreen(onButtonClickListener: () -> Unit) {
+fun EnterPhoneScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
     var phone: String by rememberSaveable {
         mutableStateOf("")
     }
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(
-                top = MeetingTheme.dimensions.dimension200,
+                top = MeetingTheme.dimensions.dimension168,
                 start = MeetingTheme.dimensions.dimension8,
                 end = MeetingTheme.dimensions.dimension8
             ),

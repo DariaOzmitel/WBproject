@@ -18,9 +18,9 @@ private const val MAX_FRAME_NUM = 90
 private const val ANIMATION_SPEED = 2.0f
 
 @Composable
-fun SplashScreen(animationEndListener: () -> Unit) {
+fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: () -> Unit) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(
                 Color.White

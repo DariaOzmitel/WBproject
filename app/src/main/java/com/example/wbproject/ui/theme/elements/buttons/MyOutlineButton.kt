@@ -41,15 +41,18 @@ fun MyOutlinedButton(
             interactionSource = interactionSource,
             border = BorderStroke(
                 width = MeetingTheme.dimensions.dimension2,
-                color = if (enabled && !isPressed) primaryColor
-                else if (isPressed) pressedColor
-                else primaryColor.copy(
-                    alpha = 0.5F
-                )
+                color = when {
+                    enabled && !isPressed -> primaryColor
+                    isPressed -> pressedColor
+                    else -> primaryColor.copy(alpha = 0.5F)
+                }
             ),
             colors = ButtonDefaults.buttonColors(
                 containerColor = secondaryColor,
-                contentColor = if (isPressed) pressedColor else primaryColor,
+                contentColor = when (isPressed) {
+                    true -> pressedColor
+                    false -> primaryColor
+                },
                 disabledContentColor = primaryColor.copy(alpha = 0.5F),
                 disabledContainerColor = secondaryColor
             )

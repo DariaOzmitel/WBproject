@@ -109,7 +109,6 @@ fun CustomPhoneNumber(
                 }
             }
         }
-
         Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension6))
         Box(
             modifier = Modifier
@@ -141,8 +140,6 @@ fun CustomPhoneNumber(
             )
         }
     }
-
-
 }
 
 class PhoneNumberTransformation : VisualTransformation {

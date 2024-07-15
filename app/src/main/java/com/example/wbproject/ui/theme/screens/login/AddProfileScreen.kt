@@ -20,14 +20,14 @@ import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.molecules.ProfileAvatar
 
 @Composable
-fun AddProfileScreen(onButtonClickListener: () -> Unit) {
+fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
     var nameText by remember { mutableStateOf("") }
     var lastNameText by remember { mutableStateOf("") }
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(
-                top = MeetingTheme.dimensions.dimension200,
+                top = MeetingTheme.dimensions.dimension136,
                 start = MeetingTheme.dimensions.dimension8,
                 end = MeetingTheme.dimensions.dimension8
             ),

@@ -4,12 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.HorizontalDivider
@@ -29,8 +27,12 @@ import com.example.wbproject.ui.theme.items.MoreMenuItem
 
 
 @Composable
-fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickListener: () -> Unit) {
-    Column(modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension100)) {
+fun MoreScreen(
+    modifier: Modifier = Modifier,
+    onProfileItemClickListener: () -> Unit,
+    onMyMeetingsItemClickListener: () -> Unit
+) {
+    Column(modifier = modifier.padding(top = MeetingTheme.dimensions.dimension106)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -43,8 +45,11 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
                 size = MeetingTheme.dimensions.dimension50,
                 painter = painterResource(id = R.drawable.user)
             )
-            Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension12))
-            Box(modifier = Modifier.weight(1f)) {
+            Box(
+                modifier = Modifier
+                    .padding(start = MeetingTheme.dimensions.dimension12)
+                    .weight(1f)
+            ) {
                 Column {
                     TextBody1(
                         text = stringResource(id = R.string.test_profile_name),
@@ -63,10 +68,10 @@ fun MoreScreen(onProfileItemClickListener: () -> Unit, onMyMeetingsItemClickList
             )
         }
         MenuItem(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension4),
             moreMenuItem = MoreMenuItem.MyMeetings,
             onItemClickListener = onMyMeetingsItemClickListener
         )
-        Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension4))
         MenuItem(
             moreMenuItem = MoreMenuItem.Theme
         )
@@ -104,11 +109,12 @@ private fun MenuItem(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            modifier = Modifier.size(MeetingTheme.dimensions.dimension24),
+            modifier = Modifier
+                .padding(end = MeetingTheme.dimensions.dimension8)
+                .size(MeetingTheme.dimensions.dimension24),
             painter = painterResource(id = moreMenuItem.iconResId),
             contentDescription = null
         )
-        Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
         Box(modifier = Modifier.weight(1f)) {
             TextBody1(
                 text = stringResource(id = moreMenuItem.titleResId),

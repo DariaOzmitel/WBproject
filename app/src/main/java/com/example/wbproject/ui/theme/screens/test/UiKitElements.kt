@@ -13,10 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyAvatarColumnPreview
-import com.example.wbproject.ui.theme.elements.MyButtonsPreview
 import com.example.wbproject.ui.theme.elements.MyChipRow
 import com.example.wbproject.ui.theme.elements.MySearchTextField
-import com.example.wbproject.ui.theme.elements.TextColumnForUiKit
+import com.example.wbproject.ui.theme.elements.forUiKit.MyButtonsPreview
+import com.example.wbproject.ui.theme.elements.forUiKit.TextColumnForUiKit
 
 @Preview
 @Composable

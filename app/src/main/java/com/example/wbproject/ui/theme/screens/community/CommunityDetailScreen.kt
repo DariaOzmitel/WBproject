@@ -25,15 +25,15 @@ private const val TEXT_MAX_LINE = 13
 private const val MEETINGS_NUM = 6
 
 @Composable
-fun CommunityDetailScreen(onMeetingCardClickListener: () -> Unit) {
+fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(
-                top = MeetingTheme.dimensions.dimension128,
+                top = MeetingTheme.dimensions.dimension106,
                 start = MeetingTheme.dimensions.dimension16,
                 end = MeetingTheme.dimensions.dimension16,
                 bottom = MeetingTheme.dimensions.dimension100,
@@ -46,7 +46,10 @@ fun CommunityDetailScreen(onMeetingCardClickListener: () -> Unit) {
                 },
                 text = LoremIpsum(300).values.first(),
                 color = MeetingTheme.colors.neutralWeak,
-                maxLines = if (!fullText) TEXT_MAX_LINE else Int.MAX_VALUE,
+                maxLines = when (fullText) {
+                    true -> Int.MAX_VALUE
+                    false -> TEXT_MAX_LINE
+                },
                 overflow = TextOverflow.Ellipsis,
                 lineHeight = 20.sp
             )

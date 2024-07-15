@@ -16,14 +16,17 @@ import com.example.wbproject.ui.theme.molecules.MyTopBar
 
 
 @Composable
-fun MainScreen(navigationState: NavigationState, content: @Composable () -> Unit) {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    navigationState: NavigationState,
+    content: @Composable () -> Unit
+) {
 
     val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    Scaffold(modifier = Modifier.padding(
-        start = MeetingTheme.dimensions.dimension8,
-        end = MeetingTheme.dimensions.dimension8
+    Scaffold(modifier = modifier.padding(
+        horizontal = MeetingTheme.dimensions.dimension8
     ),
         topBar = {
             val currentMainScreenTopBarItem =

@@ -20,12 +20,12 @@ const val TEST_RIGHT_PIN = "1234"
 
 @Preview
 @Composable
-fun EnterPinScreen(correctPinEnteredListener: () -> Unit = {}) {
+fun EnterPinScreen(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Unit = {}) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(
-                top = MeetingTheme.dimensions.dimension200,
+                top = MeetingTheme.dimensions.dimension168,
                 start = MeetingTheme.dimensions.dimension8,
                 end = MeetingTheme.dimensions.dimension8
             ),

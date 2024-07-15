@@ -4,12 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -45,25 +43,24 @@ fun MeetingCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .weight(1f)
         ) {
             MyAvatar(
                 painter = painterResource(id = R.drawable.avatar),
-                modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
-
+                modifier = Modifier
+                    .padding(end = MeetingTheme.dimensions.dimension8)
+                    .size(MeetingTheme.dimensions.dimension48)
             )
-            Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column(
                 modifier = Modifier
-                    .height(MeetingTheme.dimensions.dimension68)
-                    .weight(1f),
-
+                    .height(MeetingTheme.dimensions.dimension68),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 TextBody1(
                     text = stringResource(id = R.string.developer_meeting)
                 )
                 TextMetadata1(
-                    text = "13.09.2024 - Москва",
+                    text = stringResource(id = R.string.test_date_and_city),
                     color = LightColors.neutralWeak,
                 )
                 MyChipRow()
@@ -76,7 +73,6 @@ fun MeetingCard(
             }
         }
         HorizontalDivider(
-            Modifier.padding(top = MeetingTheme.dimensions.dimension16),
             color = MeetingTheme.colors.neutralLine
         )
     }
@@ -84,11 +80,13 @@ fun MeetingCard(
 
 @Composable
 fun MeetingCardColumn(
+    modifier: Modifier = Modifier,
     count: Int,
     isEnded: Boolean = false,
     onMeetingCardClickListener: () -> Unit = {}
 ) {
     LazyColumn(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(count) {

@@ -25,11 +25,11 @@ import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 @Preview
 @Composable
-fun MySearchTextField() {
+fun MySearchTextField(modifier: Modifier = Modifier) {
     var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(50.dp),
         shape = RectangleShape,

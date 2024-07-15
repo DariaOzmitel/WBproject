@@ -39,7 +39,7 @@ private const val TEST_MAP =
 
 @Preview
 @Composable
-fun MeetingDetailScreen() {
+fun MeetingDetailScreen(modifier: Modifier = Modifier) {
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
@@ -55,10 +55,10 @@ fun MeetingDetailScreen() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(
-                    top = MeetingTheme.dimensions.dimension128,
+                    top = MeetingTheme.dimensions.dimension106,
                     start = MeetingTheme.dimensions.dimension16,
                     end = MeetingTheme.dimensions.dimension16,
                     bottom = MeetingTheme.dimensions.dimension100,

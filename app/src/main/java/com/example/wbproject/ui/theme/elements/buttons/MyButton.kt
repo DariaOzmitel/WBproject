@@ -34,7 +34,10 @@ fun MyButton(
             interactionSource = interactionSource,
             enabled = enabled,
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (isPressed) pressedColor else primaryColor,
+                containerColor = when (isPressed) {
+                    true -> pressedColor
+                    false -> primaryColor
+                },
                 contentColor = secondaryColor,
                 disabledContainerColor = primaryColor.copy(alpha = 0.5F),
                 disabledContentColor = secondaryColor

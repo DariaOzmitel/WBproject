@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.elements
+package com.example.wbproject.ui.theme.elements.forUiKit
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

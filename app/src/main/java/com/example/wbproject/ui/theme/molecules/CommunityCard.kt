@@ -4,12 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -43,16 +41,17 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
         ) {
             MyAvatar(
                 painter = painterResource(id = R.drawable.avatar),
-                modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
+                modifier = Modifier
+                    .padding(end = MeetingTheme.dimensions.dimension8)
+                    .size(MeetingTheme.dimensions.dimension48)
             )
-            Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column {
                 TextBody1(
+                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension8),
                     text = stringResource(id = R.string.designa)
                 )
-                Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension8))
                 TextMetadata1(
-                    text = "10 000 человек",
+                    text = stringResource(id = R.string.test_participants_number),
                     color = LightColors.neutralWeak
                 )
             }
@@ -65,9 +64,13 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
 }
 
 @Composable
-fun CommunityCardColumn(count: Int, onCommunityCardClickListener: () -> Unit = {}) {
+fun CommunityCardColumn(
+    modifier: Modifier = Modifier,
+    count: Int,
+    onCommunityCardClickListener: () -> Unit = {}
+) {
     LazyColumn(
-        modifier = Modifier,
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(count) {
