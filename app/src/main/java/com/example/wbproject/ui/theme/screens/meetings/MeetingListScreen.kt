@@ -61,14 +61,14 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
                 )
             }
         ) {
-            TabsForMeetingList.entries.forEachIndexed { index, tab ->
+            TabsForMeetingList.entries.forEach { tab ->
                 Tab(
-                    selected = selectedTabIndex == index,
+                    selected = selectedTabIndex == tab.ordinal,
                     selectedContentColor = MeetingTheme.colors.brandColorDefault,
                     unselectedContentColor = MeetingTheme.colors.disableTab,
                     onClick = {
                         coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
+                            pagerState.animateScrollToPage(tab.ordinal)
                         }
                     },
                     text = {
@@ -85,12 +85,12 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                TabsForMeetingList.ALL_MEETINGS.pageNumber -> MeetingCardColumn(
+                TabsForMeetingList.ALL_MEETINGS.ordinal -> MeetingCardColumn(
                     count = TEST_ALL_MEETINGS_COUNT,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
 
-                TabsForMeetingList.ACTIVE.pageNumber -> MeetingCardColumn(
+                TabsForMeetingList.ACTIVE.ordinal -> MeetingCardColumn(
                     count = TEST_ACTIVE_MEETINGS_COUNT,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )

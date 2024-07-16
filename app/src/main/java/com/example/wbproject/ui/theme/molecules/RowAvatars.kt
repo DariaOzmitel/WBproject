@@ -60,7 +60,7 @@ fun RowAvatars(
 ) {
 
     LazyRow(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        if (avatars != null) {
+        if (!avatars.isNullOrEmpty()) {
             item {
                 OverlappingRow(
                     modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension16),

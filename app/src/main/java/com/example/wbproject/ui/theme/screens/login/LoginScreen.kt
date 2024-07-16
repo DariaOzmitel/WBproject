@@ -28,11 +28,9 @@ fun LoginScreen(
             val currentItem =
                 LoginScreenTopBarItem.items.firstOrNull { it.screen.route == currentRoute }
             MyTopBar(
-                title = if (currentItem?.titleResId != null) {
-                    stringResource(
-                        id = currentItem.titleResId
-                    )
-                } else "",
+                title = currentItem?.titleResId?.let {
+                    stringResource(id = it)
+                },
                 canNavigateBack = currentItem?.addLeftArrow ?: false,
                 navigateUp = {
                     navigationState.navHostController.navigateUp()

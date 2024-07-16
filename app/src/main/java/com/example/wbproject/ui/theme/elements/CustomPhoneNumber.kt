@@ -55,9 +55,9 @@ fun CustomPhoneNumber(
         Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
             Row(
                 modifier = Modifier
+                    .clickable { expanded = true }
                     .height(MeetingTheme.dimensions.dimension36)
                     .width(MeetingTheme.dimensions.dimension58)
-                    .clickable { expanded = true }
                     .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
                     .background(MeetingTheme.colors.neutralOffWhite)
                     .padding(MeetingTheme.dimensions.dimension8),

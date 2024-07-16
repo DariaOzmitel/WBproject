@@ -20,15 +20,15 @@ fun MyTopBar(
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean,
     rightIconResId: Int? = null,
-    title: String,
+    title: String?,
     navigateUp: () -> Unit = {},
     onRightButtonClickListener: () -> Unit = {}
 ) {
     TopAppBar(modifier = modifier,
         title = {
-            TextSubheading1(
-                text = title,
-            )
+            title?.let {
+                TextSubheading1(text = it)
+            }
         },
         navigationIcon = {
             if (canNavigateBack) {
@@ -41,10 +41,10 @@ fun MyTopBar(
             }
         },
         actions = {
-            if (rightIconResId != null) {
+            rightIconResId?.let {
                 IconButton(onClick = onRightButtonClickListener) {
                     Icon(
-                        painter = painterResource(id = rightIconResId),
+                        painter = painterResource(id = it),
                         contentDescription = null
                     )
                 }

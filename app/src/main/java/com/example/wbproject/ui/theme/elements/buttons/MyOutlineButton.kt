@@ -57,12 +57,12 @@ fun MyOutlinedButton(
                 disabledContainerColor = secondaryColor
             )
         ) {
-            if (text != null) {
-                TextSubheading2(text = text)
+            text?.let {
+                TextSubheading2(text = it)
             }
-            if (iconResId != null) {
+            iconResId?.let {
                 Icon(
-                    painter = painterResource(id = iconResId),
+                    painter = painterResource(id = it),
                     contentDescription = null
                 )
             }
