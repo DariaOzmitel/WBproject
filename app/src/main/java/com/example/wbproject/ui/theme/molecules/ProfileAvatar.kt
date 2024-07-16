@@ -5,32 +5,35 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.IconInCircleArgs
-import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
 import com.example.wbproject.ui.theme.elements.IconInCircle
 import com.example.wbproject.ui.theme.elements.MyAvatar
 
 @Composable
-fun ProfileAvatar(isEditStatus: Boolean = true, iconInCircleArgs: IconInCircleArgs) {
+fun ProfileAvatar(
+    modifier: Modifier = Modifier,
+    isEditStatus: Boolean = true,
+    size: Dp,
+    painter: Painter,
+    contentDescription: String = ""
+) {
     Box(
-        modifier = Modifier.size(100.dp),
+        modifier = modifier.size(MeetingTheme.dimensions.dimension100),
         contentAlignment = Alignment.BottomEnd
     ) {
         IconInCircle(
-            iconInCircleArgs
+            painter = painter,
+            size = size
         )
-
         if (isEditStatus) {
             MyAvatar(
-                MyAvatarArgs(
-                    painter = painterResource(id = R.drawable.add),
-                    modifier = Modifier.size(MeetingTheme.dimensions.dimension22)
-                )
+                painter = painterResource(id = R.drawable.add),
+                modifier = Modifier.size(MeetingTheme.dimensions.dimension22)
             )
         }
     }
@@ -40,9 +43,7 @@ fun ProfileAvatar(isEditStatus: Boolean = true, iconInCircleArgs: IconInCircleAr
 @Composable
 private fun ProfileAvatarPreview() {
     ProfileAvatar(
-        iconInCircleArgs = IconInCircleArgs(
-            painter = painterResource(id = R.drawable.user),
-            size = MeetingTheme.dimensions.dimension100
-        )
+        painter = painterResource(id = R.drawable.user),
+        size = MeetingTheme.dimensions.dimension100
     )
 }

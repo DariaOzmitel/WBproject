@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,32 +22,37 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.text.TextHeading1
 
 const val PIN_LENGTH = 4
 
 @Composable
-fun CustomPin() {
-    var inputText by remember { mutableStateOf("") }
+fun CustomPin(
+    modifier: Modifier = Modifier,
+    correctPin: String,
+    correctPinEnteredListener: () -> Unit = {}
+) {
+    var displayText by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    BasicTextField(value = inputText, onValueChange = {
+    BasicTextField(modifier = modifier, value = displayText, onValueChange = {
         if (it.length == PIN_LENGTH) {
             keyboardController?.hide()
         }
-        inputText = it
+        displayText = it
     },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         decorationBox = {
-            PinChar(inputText = inputText)
+            PinString(inputText = displayText, correctPin = correctPin, correctPinEnteredListener)
         }
     )
 }
 
 @Composable
-fun PinChar(inputText: String) {
+fun PinString(inputText: String, correctPin: String, correctPinEnteredListener: () -> Unit = {}) {
     val inputTextLength = inputText.length
+    val correctPinEntered = inputText == correctPin
     Row(
         modifier = Modifier.padding(MeetingTheme.dimensions.dimension8),
         horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension24)
@@ -67,24 +71,21 @@ fun PinChar(inputText: String) {
                         .background(
                             color = if (index >= inputTextLength) {
                                 MeetingTheme.colors.neutralLine
-                            } else Color.Transparent
+                            } else {
+                                Color.Transparent
+                            }
                         )
                 )
                 if (index < inputTextLength) {
-                    Text(
+                    TextHeading1(
                         text = inputText[index].toString(),
-                        style = MeetingTheme.typography.heading1,
                         color = MeetingTheme.colors.neutralActive
                     )
                 }
+                if (correctPinEntered) {
+                    correctPinEnteredListener()
+                }
             }
-
         }
     }
-}
-
-@Preview
-@Composable
-private fun PinCharPreview() {
-    CustomPin()
 }

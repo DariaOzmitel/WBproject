@@ -14,14 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.IconInCircleArgs
-import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
 
 @Composable
 private fun MyAvatarColumn(modifier: Modifier = Modifier) {
@@ -31,47 +31,44 @@ private fun MyAvatarColumn(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         IconInCircle(
-            IconInCircleArgs(
-                painter = painterResource(id = R.drawable.user),
-                contentDescription = "", size = MeetingTheme.dimensions.dimension80
-            )
+            painter = painterResource(id = R.drawable.user),
+            contentDescription = "", size = MeetingTheme.dimensions.dimension80
         )
         MyAvatar(
-            MyAvatarArgs(
-                painter = painterResource(R.drawable.avatar_example), modifier = Modifier
-                    .size(MeetingTheme.dimensions.dimension48)
-            )
+            painter = painterResource(R.drawable.avatar_example), modifier = Modifier
+                .size(MeetingTheme.dimensions.dimension48)
         )
     }
 }
 
 @Composable
 fun MyAvatar(
-    myAvatarArgs: MyAvatarArgs
+    modifier: Modifier = Modifier,
+    painter: Painter,
+    contentDescription: String = ""
 ) {
-    with(myAvatarArgs) {
-        Image(
-            painter = painter,
-            contentDescription = contentDescription,
-            modifier = modifier.clip(RoundedCornerShape(16.dp))
-        )
-    }
+    Image(
+        painter = painter,
+        contentDescription = contentDescription,
+        modifier = modifier.clip(RoundedCornerShape(16.dp))
+    )
 }
 
 @Composable
-fun IconInCircle(iconInCircleArgs: IconInCircleArgs) {
-    with(iconInCircleArgs) {
-        Icon(
-            painter = painter,
-            contentDescription = contentDescription,
-            modifier = Modifier
-                .size(size)
-                .clip(CircleShape)
-                .background(LightColors.brandColorBackGround)
-                .padding(size * 0.25f),
-        )
-    }
-
+fun IconInCircle(
+    size: Dp,
+    painter: Painter,
+    contentDescription: String = ""
+) {
+    Icon(
+        painter = painter,
+        contentDescription = contentDescription,
+        modifier = Modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(LightColors.brandColorBackGround)
+            .padding(size * 0.25f),
+    )
 }
 
 @Preview

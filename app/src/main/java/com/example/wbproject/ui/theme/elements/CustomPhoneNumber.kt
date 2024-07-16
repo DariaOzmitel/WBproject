@@ -5,8 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,20 +15,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Text
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,47 +34,81 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.arguments.DropdownMenuItems
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.items.DropdownMenuItems
 
-const val BLANK_NUMBER = "000 000-00-00"
-const val PHONE_LENGTH = 8
+private const val BLANK_NUMBER = "000 000-00-00"
+private const val PHONE_LENGTH = 10
 
-@Preview
 @Composable
-fun CustomPhoneNumber() {
+fun CustomPhoneNumber(
+    modifier: Modifier = Modifier,
+    displayText: String,
+    onValueChangeClickListener: (String) -> Unit
+) {
     var expanded by rememberSaveable {
         mutableStateOf(false)
     }
     var selectedCountryCode by rememberSaveable { mutableStateOf(DropdownMenuItems.RUSSIA) }
-    var inputText by remember { mutableStateOf("") }
-    val keyboardController = LocalSoftwareKeyboardController.current
 
-    Row {
-        Row(
-            modifier = Modifier
-                .height(MeetingTheme.dimensions.dimension36)
-                .width(MeetingTheme.dimensions.dimension56)
-                .clickable { expanded = true }
-                .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
-                .background(MeetingTheme.colors.neutralOffWhite)
-                .padding(MeetingTheme.dimensions.dimension8),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
+    Row(modifier = modifier) {
+        Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
+            Row(
                 modifier = Modifier
-                    .size(MeetingTheme.dimensions.dimension16)
-                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
-                painter = painterResource(id = selectedCountryCode.imageResId),
-                contentDescription = null
-            )
-            Text(
-                text = selectedCountryCode.countryCode,
-                style = MeetingTheme.typography.bodyText1,
-                color = MeetingTheme.colors.neutralDisabled
-            )
+                    .clickable { expanded = true }
+                    .height(MeetingTheme.dimensions.dimension36)
+                    .width(MeetingTheme.dimensions.dimension58)
+                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
+                    .background(MeetingTheme.colors.neutralOffWhite)
+                    .padding(MeetingTheme.dimensions.dimension8),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(MeetingTheme.dimensions.dimension16)
+                        .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                    painter = painterResource(id = selectedCountryCode.imageResId),
+                    contentDescription = null
+                )
+                TextBody1(
+                    text = selectedCountryCode.countryCode,
+                    color = MeetingTheme.colors.neutralDisabled
+                )
+            }
+            DropdownMenu(
+                modifier = Modifier
+                    .width(MeetingTheme.dimensions.dimension76)
+                    .background(MeetingTheme.colors.neutralOffWhite),
+                expanded = expanded,
+                onDismissRequest = { expanded = false }) {
+                DropdownMenuItems.entries.forEachIndexed { index, item ->
+                    DropdownMenuItem(text = {
+                        TextBody1(
+                            text = item.countryCode,
+                            color = MeetingTheme.colors.neutralDisabled
+                        )
+                    }, onClick = {
+                        selectedCountryCode = item
+                        expanded = false
+                    },
+                        leadingIcon = {
+                            Image(
+                                modifier = Modifier
+                                    .size(MeetingTheme.dimensions.dimension16)
+                                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                                painter = painterResource(id = item.imageResId),
+                                contentDescription = null
+                            )
+                        }
+                    )
+                    val isDividerVisible = index != DropdownMenuItems.entries.size - 1
+                    if (isDividerVisible) {
+                        HorizontalDivider()
+                    }
+                }
+            }
         }
-        Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension6))
         Box(
             modifier = Modifier
                 .height(MeetingTheme.dimensions.dimension36)
@@ -86,23 +117,18 @@ fun CustomPhoneNumber() {
                 .background(MeetingTheme.colors.neutralOffWhite)
                 .padding(MeetingTheme.dimensions.dimension8),
             contentAlignment = Alignment.CenterStart
-        )
-        {
+        ) {
             BasicTextField(
-                value = inputText,
+                value = displayText,
                 onValueChange = {
-                    if (inputText.length > PHONE_LENGTH) {
-                        keyboardController?.hide()
-                    }
-                    inputText = it
+                    onValueChangeClickListener(it.take(PHONE_LENGTH))
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 decorationBox = { decorationBox ->
-                    if (inputText == "") {
-                        Text(
+                    if (displayText.isBlank()) {
+                        TextBody1(
                             text = BLANK_NUMBER,
                             color = MeetingTheme.colors.neutralDisabled,
-                            style = MeetingTheme.typography.bodyText1
                         )
                     }
                     decorationBox()
@@ -110,33 +136,6 @@ fun CustomPhoneNumber() {
                 textStyle = MeetingTheme.typography.bodyText1.copy(color = MeetingTheme.colors.neutralDisabled),
                 visualTransformation = PhoneNumberTransformation()
             )
-        }
-    }
-
-    DropdownMenu(
-        modifier = Modifier.width(MeetingTheme.dimensions.dimension68),
-        expanded = expanded,
-        onDismissRequest = { expanded = false }) {
-        DropdownMenuItems.entries.forEachIndexed { index, item ->
-            DropdownMenuItem(text = {
-                Text(text = item.countryCode, color = MeetingTheme.colors.neutralDisabled)
-            }, onClick = {
-                selectedCountryCode = item
-                expanded = false
-            },
-                leadingIcon = {
-                    Image(
-                        modifier = Modifier
-                            .size(MeetingTheme.dimensions.dimension16)
-                            .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
-                        painter = painterResource(id = item.imageResId),
-                        contentDescription = null
-                    )
-                }
-            )
-            val isDividerVisible = index != DropdownMenuItems.entries.size - 1
-            if (isDividerVisible)
-                Divider()
         }
     }
 }
@@ -181,4 +180,16 @@ class PhoneNumberTransformation : VisualTransformation {
         }
         return TransformedText(AnnotatedString(out), offsetMapping)
     }
+}
+
+@Preview
+@Composable
+fun CustomPhoneNumberPreview() {
+    var phone: String by rememberSaveable {
+        mutableStateOf("")
+    }
+    CustomPhoneNumber(
+        modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
+        displayText = phone,
+        onValueChangeClickListener = { phone = it })
 }

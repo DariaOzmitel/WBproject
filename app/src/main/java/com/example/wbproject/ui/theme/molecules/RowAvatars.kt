@@ -2,9 +2,8 @@ package com.example.wbproject.ui.theme.molecules
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -19,11 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 private const val MAX_DISPLAYED_AVATARS = 5
+private const val TEST_AVATAR_COUNT = 16
 
 @Composable
 fun OverlappingRow(
@@ -62,9 +60,12 @@ fun RowAvatars(
 ) {
 
     LazyRow(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        if (avatars != null) {
+        if (!avatars.isNullOrEmpty()) {
             item {
-                OverlappingRow(overlappingPercentage = 0.20f) {
+                OverlappingRow(
+                    modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension16),
+                    overlappingPercentage = 0.20f
+                ) {
                     avatars.take(displayedAvatarsNum).forEach {
                         Image(
                             painter = painterResource(id = it),
@@ -82,16 +83,10 @@ fun RowAvatars(
                     }
                 }
             }
-            item {
-                Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension16))
-            }
             if (avatars.size > displayedAvatarsNum) {
                 item {
-                    MyText(
-                        myTextArguments = MyTextArguments(
-                            text = "+${avatars.size - displayedAvatarsNum}",
-                            textStyle = MeetingTypographyValue.bodyText1
-                        )
+                    TextBody1(
+                        text = "+${avatars.size - displayedAvatarsNum}",
                     )
                 }
             }
@@ -100,7 +95,7 @@ fun RowAvatars(
 }
 
 val images = mutableListOf<Int>().apply {
-    repeat(16) {
+    repeat(TEST_AVATAR_COUNT) {
         add(R.drawable.avatar_example)
     }
 }

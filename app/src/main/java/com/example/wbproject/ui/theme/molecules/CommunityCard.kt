@@ -4,12 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -23,11 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.MeetingTypographyValue
-import com.example.wbproject.ui.theme.arguments.MyAvatarArgs
-import com.example.wbproject.ui.theme.arguments.MyTextArguments
 import com.example.wbproject.ui.theme.elements.MyAvatar
-import com.example.wbproject.ui.theme.elements.MyText
+import com.example.wbproject.ui.theme.elements.text.TextBody1
+import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 
 @Composable
 fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: () -> Unit = {}) {
@@ -44,26 +40,19 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
                 .fillMaxWidth()
         ) {
             MyAvatar(
-                MyAvatarArgs(
-                    painter = painterResource(id = R.drawable.avatar),
-                    modifier = Modifier.size(MeetingTheme.dimensions.dimension48)
-                )
+                painter = painterResource(id = R.drawable.avatar),
+                modifier = Modifier
+                    .padding(end = MeetingTheme.dimensions.dimension8)
+                    .size(MeetingTheme.dimensions.dimension48)
             )
-            Spacer(modifier = Modifier.width(MeetingTheme.dimensions.dimension8))
             Column {
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = stringResource(id = R.string.designa),
-                        textStyle = MeetingTypographyValue.bodyText1
-                    )
+                TextBody1(
+                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension8),
+                    text = stringResource(id = R.string.designa)
                 )
-                Spacer(modifier = Modifier.height(MeetingTheme.dimensions.dimension8))
-                MyText(
-                    myTextArguments = MyTextArguments(
-                        text = "10 000 человек",
-                        color = LightColors.neutralWeak,
-                        textStyle = MeetingTypographyValue.metadata1
-                    )
+                TextMetadata1(
+                    text = stringResource(id = R.string.test_participants_number),
+                    color = LightColors.neutralWeak
                 )
             }
         }
@@ -75,9 +64,13 @@ fun CommunityCard(modifier: Modifier = Modifier, onCommunityCardClickListener: (
 }
 
 @Composable
-fun CommunityCardColumn(count: Int, onCommunityCardClickListener: () -> Unit = {}) {
+fun CommunityCardColumn(
+    modifier: Modifier = Modifier,
+    count: Int,
+    onCommunityCardClickListener: () -> Unit = {}
+) {
     LazyColumn(
-        modifier = Modifier,
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(count) {
