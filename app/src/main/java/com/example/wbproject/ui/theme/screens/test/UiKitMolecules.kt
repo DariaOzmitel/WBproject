@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
+import com.example.wbproject.data.mockData.mockCommunity
+import com.example.wbproject.data.mockData.mockMeeting
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.molecules.CommunityCard
 import com.example.wbproject.ui.theme.molecules.MeetingCard
@@ -36,9 +38,9 @@ fun UiKitMolecules() {
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16)
         ) {
-            MeetingCard()
+            MeetingCard(meeting = mockMeeting)
             RowAvatarsPreview()
-            CommunityCard()
+            CommunityCard(community = mockCommunity)
             ProfileAvatar(
                 isEditStatus = false,
                 painter = painterResource(id = R.drawable.user),

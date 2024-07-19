@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.meetings
+package com.example.wbproject.ui.theme.screens.meetings.meeting_detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -19,7 +20,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -32,6 +32,7 @@ import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
+import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 8
 private const val TEST_MAP =
@@ -40,6 +41,8 @@ private const val TEST_MAP =
 @Preview
 @Composable
 fun MeetingDetailScreen(modifier: Modifier = Modifier) {
+    val viewModel: MeetingDetailViewModel = koinViewModel()
+    val meetingDetailState by viewModel.getMeetingDetailFlow().collectAsState()
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
@@ -51,7 +54,6 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
     var fullMap by rememberSaveable {
         mutableStateOf(false)
     }
-    val testText = "13.09.2024 - Москва,ул.Громова,4"
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -67,12 +69,18 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
             item {
                 TextBody1(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
-                    text = testText,
+                    text = String.format(
+                        stringResource(id = R.string.date_city_template),
+                        meetingDetailState.meeting.date,
+                        meetingDetailState.meeting.city
+                    ),
                     color = MeetingTheme.colors.neutralWeak,
                 )
             }
             item {
-                MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+                meetingDetailState.meeting.chipsList?.let {
+                    MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+                }
             }
             item {
                 AsyncImage(
@@ -83,7 +91,7 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
                         .clip(RoundedCornerShape(16.dp))
                         .clickable { fullMap = true },
                     contentScale = ContentScale.None,
-                    model = TEST_MAP,
+                    model = meetingDetailState.mapUrl,
                     contentDescription = null,
                 )
             }
@@ -94,7 +102,7 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
                         .clickable {
                             fullText = !fullText
                         },
-                    text = LoremIpsum(300).values.first(),
+                    text = meetingDetailState.meeting.description ?: "",
                     color = MeetingTheme.colors.neutralWeak,
                     maxLines = when (fullText) {
                         true -> Int.MAX_VALUE
@@ -107,8 +115,10 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
             item {
                 RowAvatars(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = testImageList
+                    avatars = meetingDetailState.meeting.usersList?.map { it.avatarUrl }
                 )
+            }
+            item {
                 MyButton(
                     modifier = Modifier
                         .fillMaxWidth()

@@ -1,11 +1,13 @@
-package com.example.wbproject.ui.theme.screens.community
+package com.example.wbproject.ui.theme.screens.community.community_detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -13,19 +15,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.MeetingCard
+import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 13
-private const val MEETINGS_NUM = 6
 
 @Composable
 fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
+    val viewModel: CommunityDetailViewModel = koinViewModel()
+    val communityDetailState by viewModel.getCommunityDetailFlow().collectAsState()
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
@@ -41,10 +45,12 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
     ) {
         item {
             TextMetadata1(
-                modifier = Modifier.clickable {
-                    fullText = !fullText
-                },
-                text = LoremIpsum(300).values.first(),
+                modifier = Modifier
+                    .clickable {
+                        fullText = !fullText
+                    }
+                    .padding(bottom = MeetingTheme.dimensions.dimension30),
+                text = communityDetailState.community.description ?: "",
                 color = MeetingTheme.colors.neutralWeak,
                 maxLines = when (fullText) {
                     true -> Int.MAX_VALUE
@@ -57,20 +63,27 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
         item {
             TextBody1(
                 modifier = Modifier.padding(
-                    top = MeetingTheme.dimensions.dimension40,
                     bottom = MeetingTheme.dimensions.dimension20
                 ),
                 text = stringResource(id = R.string.community_meetings),
                 color = MeetingTheme.colors.neutralWeak,
             )
         }
-        items(count = MEETINGS_NUM) {
+        items(communityDetailState.meetingList) { meeting ->
             MeetingCard(
                 modifier = Modifier
+                    .padding(bottom = MeetingTheme.dimensions.dimension16)
                     .height(MeetingTheme.dimensions.dimension88),
+                meeting = meeting,
                 onMeetingCardClickListener = onMeetingCardClickListener
             )
         }
     }
+}
 
+@Preview
+@Composable
+fun CommunityDetailScreenPreview() {
+    CommunityDetailScreen {
+    }
 }

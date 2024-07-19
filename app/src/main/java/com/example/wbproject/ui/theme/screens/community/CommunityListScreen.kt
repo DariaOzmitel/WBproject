@@ -4,13 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
-
-private const val COMMUNITY_CARD_COUNT = 10
+import org.koin.androidx.compose.koinViewModel
 
 @Preview
 @Composable
@@ -18,6 +19,8 @@ fun CommunityListScreen(
     modifier: Modifier = Modifier,
     onCommunityCardClickListener: () -> Unit = {}
 ) {
+    val viewModel: CommunityListViewModel = koinViewModel()
+    val communityListState by viewModel.getCommunityListFlow().collectAsState()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -28,9 +31,12 @@ fun CommunityListScreen(
                 bottom = MeetingTheme.dimensions.dimension100,
             )
     ) {
-        MySearchTextField(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+        MySearchTextField(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16),
+            searchText = communityListState.searchText,
+            onValueChange = { viewModel.updateSearchText(it) })
         CommunityCardColumn(
-            count = COMMUNITY_CARD_COUNT,
+            communityList = communityListState.communityList,
             onCommunityCardClickListener = onCommunityCardClickListener
         )
     }

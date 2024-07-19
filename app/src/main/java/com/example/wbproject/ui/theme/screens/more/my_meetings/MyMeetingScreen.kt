@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.more
+package com.example.wbproject.ui.theme.screens.more.my_meetings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -12,27 +12,28 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
-import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.items.TabsForMyMeetingList
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
-
-private const val TEST_PLANNED_MEETINGS_COUNT = 20
-private const val TEST_ALREADY_PASSED_MEETINGS_COUNT = 3
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(
     ExperimentalFoundationApi::class
 )
 @Composable
 fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
-
+    val viewModel: MyMeetingViewModel = koinViewModel()
+    val myMeetingState by viewModel.getMyMeetingFlow().collectAsState()
     val pagerState = rememberPagerState(pageCount = { TabsForMyMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
@@ -47,7 +48,6 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 bottom = MeetingTheme.dimensions.dimension100,
             )
     ) {
-        MySearchTextField(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
         TabRow(modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = MeetingTheme.dimensions.dimension16),
@@ -85,17 +85,30 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
             verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
-                TabsForMyMeetingList.PLANNED.ordinal -> MeetingCardColumn(
-                    count = TEST_PLANNED_MEETINGS_COUNT,
-                    onMeetingCardClickListener = onMeetingCardClickListener
-                )
+                TabsForMyMeetingList.PLANNED.ordinal ->
+                    myMeetingState.meetingListPlanned?.let {
+                        MeetingCardColumn(
+                            meetingList = it,
+                            onMeetingCardClickListener = onMeetingCardClickListener
+                        )
+                    }
 
-                TabsForMyMeetingList.ALREADY_PASSED.ordinal -> MeetingCardColumn(
-                    count = TEST_ALREADY_PASSED_MEETINGS_COUNT,
-                    isEnded = true,
-                    onMeetingCardClickListener = onMeetingCardClickListener
-                )
+                TabsForMyMeetingList.ALREADY_PASSED.ordinal ->
+                    myMeetingState.meetingListAlreadyPassed?.let {
+                        MeetingCardColumn(
+                            meetingList = it,
+                            isEnded = true,
+                            onMeetingCardClickListener = onMeetingCardClickListener
+                        )
+                    }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun MyMeetingScreenPreview() {
+    MyMeetingScreen {
     }
 }

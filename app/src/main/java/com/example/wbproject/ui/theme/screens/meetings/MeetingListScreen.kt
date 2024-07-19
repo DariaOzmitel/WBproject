@@ -12,6 +12,8 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,9 +25,7 @@ import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
 import kotlinx.coroutines.launch
-
-private const val TEST_ALL_MEETINGS_COUNT = 20
-private const val TEST_ACTIVE_MEETINGS_COUNT = 3
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(
     ExperimentalFoundationApi::class
@@ -35,6 +35,8 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
 
     val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
+    val viewModel: MeetingListViewModel = koinViewModel()
+    val meetingState by viewModel.getMeetingListFlow().collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -47,7 +49,10 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
                 bottom = MeetingTheme.dimensions.dimension100,
             )
     ) {
-        MySearchTextField(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+        MySearchTextField(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16),
+            searchText = meetingState.searchText,
+            onValueChange = { viewModel.updateSearchText(it) })
         TabRow(modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = MeetingTheme.dimensions.dimension16),
@@ -86,12 +91,12 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
         ) { page ->
             when (page) {
                 TabsForMeetingList.ALL_MEETINGS.ordinal -> MeetingCardColumn(
-                    count = TEST_ALL_MEETINGS_COUNT,
+                    meetingList = meetingState.meetingList,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
 
                 TabsForMeetingList.ACTIVE.ordinal -> MeetingCardColumn(
-                    count = TEST_ACTIVE_MEETINGS_COUNT,
+                    meetingList = meetingState.meetingList,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
             }
