@@ -12,10 +12,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,17 +26,18 @@ const val PIN_LENGTH = 4
 @Composable
 fun CustomPin(
     modifier: Modifier = Modifier,
+    displayText: String,
     correctPin: String,
+    onValueChangeListener: (String) -> Unit,
     correctPinEnteredListener: () -> Unit = {}
 ) {
-    var displayText by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     BasicTextField(modifier = modifier, value = displayText, onValueChange = {
         if (it.length == PIN_LENGTH) {
             keyboardController?.hide()
         }
-        displayText = it
+        onValueChangeListener(it)
     },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         decorationBox = {

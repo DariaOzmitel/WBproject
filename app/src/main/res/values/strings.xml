@@ -24,9 +24,12 @@
     <string name="help">Помощь</string>
     <string name="invite_friend">Пригласи друга</string>
     <string name="test_profile_name">Иван Иванов</string>
-    <string name="test_profile_phone">+7 999 999-99-99</string>
+    <string name="test_profile_phone">+7 999 999–99-99</string>
     <string name="test_date_and_city">13.09.2024 - Москва</string>
     <string name="test_participants_number">10 000 человек</string>
+    <string name="name_surname_template">%s %s</string>
+    <string name="date_city_template">%s - %s</string>
+    <string name="participants_number_template">%s человек</string>
     <string name="enter_phone_number">Введите номер телефона</string>
     <string name="resume">Продолжить</string>
     <string name="enter_code">Введите код</string>

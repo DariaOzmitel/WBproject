@@ -1,6 +1,5 @@
 package com.example.wbproject.ui.theme.molecules
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -13,10 +12,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.wbproject.R
+import coil.compose.AsyncImage
+import com.example.wbproject.data.mockData.mockUserList
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
@@ -55,7 +54,7 @@ fun OverlappingRow(
 @Composable
 fun RowAvatars(
     modifier: Modifier = Modifier,
-    avatars: List<Int>?,
+    avatars: List<String>?,
     displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS
 ) {
 
@@ -66,10 +65,25 @@ fun RowAvatars(
                     modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension16),
                     overlappingPercentage = 0.20f
                 ) {
+//                    avatars.take(displayedAvatarsNum).forEach {
+//                        Image(
+//                            painter = painterResource(id = it),
+//                            contentDescription = "image_$it",
+//                            contentScale = ContentScale.Crop,
+//                            modifier = Modifier
+//                                .size(MeetingTheme.dimensions.dimension48)
+//                                .clip(RoundedCornerShape(16.dp))
+//                                .border(
+//                                    MeetingTheme.dimensions.dimension2,
+//                                    Color(0xFFFFA0A0),
+//                                    shape = RoundedCornerShape(16.dp)
+//                                )
+//                        )
+//                    }
                     avatars.take(displayedAvatarsNum).forEach {
-                        Image(
-                            painter = painterResource(id = it),
-                            contentDescription = "image_$it",
+                        AsyncImage(
+                            model = it,
+                            contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(MeetingTheme.dimensions.dimension48)
@@ -94,14 +108,8 @@ fun RowAvatars(
     }
 }
 
-val images = mutableListOf<Int>().apply {
-    repeat(TEST_AVATAR_COUNT) {
-        add(R.drawable.avatar_example)
-    }
-}
-
 @Preview
 @Composable
 fun RowAvatarsPreview() {
-    RowAvatars(avatars = images)
+    RowAvatars(avatars = mockUserList.map { it.avatarUrl })
 }
