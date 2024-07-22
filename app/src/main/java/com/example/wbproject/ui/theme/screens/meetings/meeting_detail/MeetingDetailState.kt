@@ -1,8 +1,12 @@
 package com.example.wbproject.ui.theme.screens.meetings.meeting_detail
 
-import com.example.wbproject.model.Meeting
+import com.example.domain.model.Meeting
 
-data class MeetingDetailState(
-    val meeting: Meeting,
-    val mapUrl: String
-)
+sealed class MeetingDetailState {
+    data class MeetingDetail(
+        val meeting: Meeting,
+        val mapUrl: String
+    ) : MeetingDetailState()
+
+    object Loading : MeetingDetailState()
+}

@@ -28,6 +28,7 @@ import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyChipRow
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
@@ -35,8 +36,6 @@ import com.example.wbproject.ui.theme.molecules.RowAvatars
 import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 8
-private const val TEST_MAP =
-    "https://s3-alpha-sig.figma.com/img/a7d0/b7a1/73dfa50190eed292a52792c6d52bb4be?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lbp~3M0cO0QqU4lp~FXgS4hYwsMVN97j2OZ3HVxb8dEnfLglnfSrPAkaAzJfYEpb69jK3ownyv8GlElutrbD8Ae3vdiQjXpFbOoK-3sgXTVMdTNHCDC7yyRnqwxiCN-9OLFYuwlzvRem139gTzBSrgQ4h0~2T1Gf-XE7I29MM6n3SpJ-xLwwpHaOnDMFG35KkPwHIMVl~RQOSb3CNPrf2CLrbrcuTeLGJdoItKkuEobXERZjHBVTh4PvhxdXMmHiRKykksWEEYGc1UmbH7x~oY1EVQx2UTob2aMF4ro~eu57F8-JthhN3Cd8t9o9Tyi92ZIayuZyICVx9Q7bMzgMoQ__"
 
 @Preview
 @Composable
@@ -46,103 +45,102 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
-    val testImageList = mutableListOf<Int>().apply {
-        repeat(16) {
-            add(R.drawable.avatar_example)
-        }
-    }
     var fullMap by rememberSaveable {
         mutableStateOf(false)
     }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(
-                    top = MeetingTheme.dimensions.dimension106,
-                    start = MeetingTheme.dimensions.dimension16,
-                    end = MeetingTheme.dimensions.dimension16,
-                    bottom = MeetingTheme.dimensions.dimension100,
-                )
-        ) {
-            item {
-                TextBody1(
-                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
-                    text = String.format(
-                        stringResource(id = R.string.date_city_template),
-                        meetingDetailState.meeting.date,
-                        meetingDetailState.meeting.city
-                    ),
-                    color = MeetingTheme.colors.neutralWeak,
-                )
-            }
-            item {
-                meetingDetailState.meeting.chipsList?.let {
-                    MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+    when (val state = meetingDetailState) {
+        is MeetingDetailState.Loading -> ProgressIndicator()
+        is MeetingDetailState.MeetingDetail ->
+            Box(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(
+                            top = MeetingTheme.dimensions.dimension106,
+                            start = MeetingTheme.dimensions.dimension16,
+                            end = MeetingTheme.dimensions.dimension16,
+                            bottom = MeetingTheme.dimensions.dimension100,
+                        )
+                ) {
+                    item {
+                        TextBody1(
+                            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
+                            text = String.format(
+                                stringResource(id = R.string.date_city_template),
+                                state.meeting.date,
+                                state.meeting.city
+                            ),
+                            color = MeetingTheme.colors.neutralWeak,
+                        )
+                    }
+                    item {
+                        state.meeting.chipsList?.let {
+                            MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+                        }
+                    }
+                    item {
+                        AsyncImage(
+                            modifier = Modifier
+                                .padding(bottom = MeetingTheme.dimensions.dimension32)
+                                .fillMaxWidth()
+                                .height(MeetingTheme.dimensions.dimension176)
+                                .clip(RoundedCornerShape(16.dp))
+                                .clickable { fullMap = true },
+                            contentScale = ContentScale.None,
+                            model = state.mapUrl,
+                            contentDescription = null,
+                        )
+                    }
+                    item {
+                        TextMetadata1(
+                            modifier = Modifier
+                                .padding(bottom = MeetingTheme.dimensions.dimension32)
+                                .clickable {
+                                    fullText = !fullText
+                                },
+                            text = state.meeting.description.orEmpty(),
+                            color = MeetingTheme.colors.neutralWeak,
+                            maxLines = when (fullText) {
+                                true -> Int.MAX_VALUE
+                                false -> TEXT_MAX_LINE
+                            },
+                            overflow = TextOverflow.Ellipsis,
+                            lineHeight = 20.sp
+                        )
+                    }
+                    item {
+                        RowAvatars(
+                            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
+                            avatars = state.meeting.usersList?.map { it.avatarUrl }
+                        )
+                    }
+                    item {
+                        MyButton(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(MeetingTheme.dimensions.dimension52),
+                            text = stringResource(id = R.string.i_am_going_to_a_meeting),
+                        )
+                    }
+                }
+                if (fullMap) {
+                    Dialog(
+                        properties = DialogProperties(
+                            usePlatformDefaultWidth = false,
+                            dismissOnClickOutside = true
+                        ),
+                        onDismissRequest = { fullMap = false }
+                    ) {
+                        AsyncImage(
+                            model = state.mapUrl,
+                            contentDescription = null,
+                            contentScale = ContentScale.FillWidth,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        )
+                    }
                 }
             }
-            item {
-                AsyncImage(
-                    modifier = Modifier
-                        .padding(bottom = MeetingTheme.dimensions.dimension32)
-                        .fillMaxWidth()
-                        .height(MeetingTheme.dimensions.dimension176)
-                        .clip(RoundedCornerShape(16.dp))
-                        .clickable { fullMap = true },
-                    contentScale = ContentScale.None,
-                    model = meetingDetailState.mapUrl,
-                    contentDescription = null,
-                )
-            }
-            item {
-                TextMetadata1(
-                    modifier = Modifier
-                        .padding(bottom = MeetingTheme.dimensions.dimension32)
-                        .clickable {
-                            fullText = !fullText
-                        },
-                    text = meetingDetailState.meeting.description ?: "",
-                    color = MeetingTheme.colors.neutralWeak,
-                    maxLines = when (fullText) {
-                        true -> Int.MAX_VALUE
-                        false -> TEXT_MAX_LINE
-                    },
-                    overflow = TextOverflow.Ellipsis,
-                    lineHeight = 20.sp
-                )
-            }
-            item {
-                RowAvatars(
-                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = meetingDetailState.meeting.usersList?.map { it.avatarUrl }
-                )
-            }
-            item {
-                MyButton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(MeetingTheme.dimensions.dimension52),
-                    text = stringResource(id = R.string.i_am_going_to_a_meeting),
-                )
-            }
-        }
-        if (fullMap) {
-            Dialog(
-                properties = DialogProperties(
-                    usePlatformDefaultWidth = false,
-                    dismissOnClickOutside = true
-                ),
-                onDismissRequest = { fullMap = false }
-            ) {
-                AsyncImage(
-                    model = TEST_MAP,
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-        }
     }
+
 }

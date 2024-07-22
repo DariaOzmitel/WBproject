@@ -1,8 +1,13 @@
 package com.example.wbproject.ui.theme.screens.community
 
-import com.example.wbproject.model.Community
+import com.example.domain.model.Community
 
-data class CommunityListState(
-    val communityList: List<Community>,
-    val searchText: String = ""
-)
+sealed class CommunityListState {
+    data class CommunityList(
+        val communityList: List<Community>,
+    ) : CommunityListState()
+
+    object Loading : CommunityListState()
+}
+
+

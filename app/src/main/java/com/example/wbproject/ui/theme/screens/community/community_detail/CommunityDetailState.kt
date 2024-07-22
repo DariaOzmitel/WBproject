@@ -1,9 +1,15 @@
 package com.example.wbproject.ui.theme.screens.community.community_detail
 
-import com.example.wbproject.model.Community
-import com.example.wbproject.model.Meeting
+import com.example.domain.model.Community
+import com.example.domain.model.Meeting
 
-data class CommunityDetailState(
-    val community: Community,
-    val meetingList: List<Meeting>
-)
+sealed class CommunityDetailState {
+    data class CommunityDetail(
+        val community: Community,
+        val meetingList: List<Meeting>
+    ) : CommunityDetailState()
+
+    object Loading : CommunityDetailState()
+}
+
+

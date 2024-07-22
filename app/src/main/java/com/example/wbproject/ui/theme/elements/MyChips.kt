@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.wbproject.data.mockData.mockListChips
+import com.example.data.mockData.mockListChips
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme

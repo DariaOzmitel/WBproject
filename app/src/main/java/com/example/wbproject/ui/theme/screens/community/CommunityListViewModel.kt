@@ -1,20 +1,28 @@
 package com.example.wbproject.ui.theme.screens.community
 
 import androidx.lifecycle.ViewModel
-import com.example.wbproject.data.mockData.mockCommunityList
+import androidx.lifecycle.viewModelScope
+import com.example.domain.usecase.GetCommunityListUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class CommunityListViewModel : ViewModel() {
+class CommunityListViewModel(
+    private val getCommunityListUseCase: GetCommunityListUseCase
+) : ViewModel() {
     private val communityListStateMutable =
-        MutableStateFlow(CommunityListState(communityList = mockCommunityList))
+        MutableStateFlow<CommunityListState>(CommunityListState.Loading)
     private val communityListState: StateFlow<CommunityListState> = communityListStateMutable
 
-    fun getCommunityListFlow(): StateFlow<CommunityListState> = communityListState
-    fun updateSearchText(newSearchText: String) {
-        communityListStateMutable.update {
-            it.copy(searchText = newSearchText)
+    fun getCommunityListStateFlow(): StateFlow<CommunityListState> = communityListState
+
+    init {
+        viewModelScope.launch {
+            val communityList = getCommunityListUseCase.invoke()
+            delay(500)
+            communityListStateMutable.update { CommunityListState.CommunityList(communityList = communityList) }
         }
     }
 }

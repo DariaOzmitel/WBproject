@@ -15,12 +15,11 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.wbproject.data.mockData.mockUserList
+import com.example.data.mockData.mockUserList
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 private const val MAX_DISPLAYED_AVATARS = 5
-private const val TEST_AVATAR_COUNT = 16
 
 @Composable
 fun OverlappingRow(
@@ -65,21 +64,6 @@ fun RowAvatars(
                     modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension16),
                     overlappingPercentage = 0.20f
                 ) {
-//                    avatars.take(displayedAvatarsNum).forEach {
-//                        Image(
-//                            painter = painterResource(id = it),
-//                            contentDescription = "image_$it",
-//                            contentScale = ContentScale.Crop,
-//                            modifier = Modifier
-//                                .size(MeetingTheme.dimensions.dimension48)
-//                                .clip(RoundedCornerShape(16.dp))
-//                                .border(
-//                                    MeetingTheme.dimensions.dimension2,
-//                                    Color(0xFFFFA0A0),
-//                                    shape = RoundedCornerShape(16.dp)
-//                                )
-//                        )
-//                    }
                     avatars.take(displayedAvatarsNum).forEach {
                         AsyncImage(
                             model = it,

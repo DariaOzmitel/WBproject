@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.MeetingCard
@@ -33,51 +34,55 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(
-                top = MeetingTheme.dimensions.dimension106,
-                start = MeetingTheme.dimensions.dimension16,
-                end = MeetingTheme.dimensions.dimension16,
-                bottom = MeetingTheme.dimensions.dimension100,
-            )
-    ) {
-        item {
-            TextMetadata1(
-                modifier = Modifier
-                    .clickable {
-                        fullText = !fullText
-                    }
-                    .padding(bottom = MeetingTheme.dimensions.dimension30),
-                text = communityDetailState.community.description ?: "",
-                color = MeetingTheme.colors.neutralWeak,
-                maxLines = when (fullText) {
-                    true -> Int.MAX_VALUE
-                    false -> TEXT_MAX_LINE
-                },
-                overflow = TextOverflow.Ellipsis,
-                lineHeight = 20.sp
-            )
-        }
-        item {
-            TextBody1(
-                modifier = Modifier.padding(
-                    bottom = MeetingTheme.dimensions.dimension20
-                ),
-                text = stringResource(id = R.string.community_meetings),
-                color = MeetingTheme.colors.neutralWeak,
-            )
-        }
-        items(communityDetailState.meetingList) { meeting ->
-            MeetingCard(
-                modifier = Modifier
-                    .padding(bottom = MeetingTheme.dimensions.dimension16)
-                    .height(MeetingTheme.dimensions.dimension88),
-                meeting = meeting,
-                onMeetingCardClickListener = onMeetingCardClickListener
-            )
-        }
+    when (val state = communityDetailState) {
+        is CommunityDetailState.Loading -> ProgressIndicator()
+        is CommunityDetailState.CommunityDetail ->
+            LazyColumn(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = MeetingTheme.dimensions.dimension106,
+                        start = MeetingTheme.dimensions.dimension16,
+                        end = MeetingTheme.dimensions.dimension16,
+                        bottom = MeetingTheme.dimensions.dimension100,
+                    )
+            ) {
+                item {
+                    TextMetadata1(
+                        modifier = Modifier
+                            .clickable {
+                                fullText = !fullText
+                            }
+                            .padding(bottom = MeetingTheme.dimensions.dimension30),
+                        text = state.community.description ?: "",
+                        color = MeetingTheme.colors.neutralWeak,
+                        maxLines = when (fullText) {
+                            true -> Int.MAX_VALUE
+                            false -> TEXT_MAX_LINE
+                        },
+                        overflow = TextOverflow.Ellipsis,
+                        lineHeight = 20.sp
+                    )
+                }
+                item {
+                    TextBody1(
+                        modifier = Modifier.padding(
+                            bottom = MeetingTheme.dimensions.dimension20
+                        ),
+                        text = stringResource(id = R.string.community_meetings),
+                        color = MeetingTheme.colors.neutralWeak,
+                    )
+                }
+                items(state.meetingList) { meeting ->
+                    MeetingCard(
+                        modifier = Modifier
+                            .padding(bottom = MeetingTheme.dimensions.dimension16)
+                            .height(MeetingTheme.dimensions.dimension88),
+                        meeting = meeting,
+                        onMeetingCardClickListener = onMeetingCardClickListener
+                    )
+                }
+            }
     }
 }
 

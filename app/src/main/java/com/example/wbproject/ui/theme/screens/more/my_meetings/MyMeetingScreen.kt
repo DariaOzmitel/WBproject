@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.items.TabsForMyMeetingList
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
@@ -84,22 +85,26 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 .fillMaxWidth(),
             verticalAlignment = Alignment.Top
         ) { page ->
-            when (page) {
-                TabsForMyMeetingList.PLANNED.ordinal ->
-                    myMeetingState.meetingListPlanned?.let {
-                        MeetingCardColumn(
-                            meetingList = it,
-                            onMeetingCardClickListener = onMeetingCardClickListener
-                        )
-                    }
+            when (val state = myMeetingState) {
+                is MyMeetingState.Loading -> ProgressIndicator()
+                is MyMeetingState.MyMeetingLists ->
+                    when (page) {
+                        TabsForMyMeetingList.PLANNED.ordinal ->
+                            state.meetingListPlanned?.let {
+                                MeetingCardColumn(
+                                    meetingList = it,
+                                    onMeetingCardClickListener = onMeetingCardClickListener
+                                )
+                            }
 
-                TabsForMyMeetingList.ALREADY_PASSED.ordinal ->
-                    myMeetingState.meetingListAlreadyPassed?.let {
-                        MeetingCardColumn(
-                            meetingList = it,
-                            isEnded = true,
-                            onMeetingCardClickListener = onMeetingCardClickListener
-                        )
+                        TabsForMyMeetingList.ALREADY_PASSED.ordinal ->
+                            state.meetingListAlreadyPassed?.let {
+                                MeetingCardColumn(
+                                    meetingList = it,
+                                    isEnded = true,
+                                    onMeetingCardClickListener = onMeetingCardClickListener
+                                )
+                            }
                     }
             }
         }

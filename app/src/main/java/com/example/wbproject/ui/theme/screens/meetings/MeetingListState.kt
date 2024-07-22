@@ -1,8 +1,8 @@
 package com.example.wbproject.ui.theme.screens.meetings
 
-import com.example.wbproject.model.Meeting
+import com.example.domain.model.Meeting
 
-data class MeetingListState(
-    val meetingList: List<Meeting>,
-    val searchText: String = ""
-)
+sealed class MeetingListState {
+    data class MeetingList(val list: List<Meeting>) : MeetingListState()
+    object Loading : MeetingListState()
+}

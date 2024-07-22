@@ -1,4 +1,4 @@
-package com.example.wbproject.model
+package com.example.domain.model
 
 data class Community(
     val id: Int,
