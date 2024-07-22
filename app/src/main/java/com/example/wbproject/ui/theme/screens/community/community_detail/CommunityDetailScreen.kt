@@ -54,7 +54,7 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
                                 fullText = !fullText
                             }
                             .padding(bottom = MeetingTheme.dimensions.dimension30),
-                        text = state.community.description ?: "",
+                        text = state.community.description.orEmpty(),
                         color = MeetingTheme.colors.neutralWeak,
                         maxLines = when (fullText) {
                             true -> Int.MAX_VALUE

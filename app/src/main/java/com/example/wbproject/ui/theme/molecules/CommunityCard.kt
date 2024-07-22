@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockCommunity
+import com.example.domain.model.Community
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -33,7 +34,7 @@ import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 @Composable
 fun CommunityCard(
     modifier: Modifier = Modifier,
-    community: com.example.domain.model.Community,
+    community: Community,
     onCommunityCardClickListener: () -> Unit = {}
 ) {
     Card(
@@ -81,7 +82,7 @@ fun CommunityCard(
 @Composable
 fun CommunityCardColumn(
     modifier: Modifier = Modifier,
-    communityList: List<com.example.domain.model.Community>,
+    communityList: List<Community>,
     onCommunityCardClickListener: () -> Unit = {}
 ) {
     LazyColumn(

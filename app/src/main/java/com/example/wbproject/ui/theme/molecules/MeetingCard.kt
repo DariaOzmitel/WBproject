@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockListMeetings
+import com.example.domain.model.Meeting
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -39,7 +40,7 @@ const val DEFAULT_IMAGE_URL =
 @Composable
 fun MeetingCard(
     modifier: Modifier = Modifier,
-    meeting: com.example.domain.model.Meeting,
+    meeting: Meeting,
     isEnded: Boolean = false,
     onMeetingCardClickListener: () -> Unit = {}
 ) {
@@ -98,7 +99,7 @@ fun MeetingCard(
 @Composable
 fun MeetingCardColumn(
     modifier: Modifier = Modifier,
-    meetingList: List<com.example.domain.model.Meeting>,
+    meetingList: List<Meeting>,
     isEnded: Boolean = false,
     onMeetingCardClickListener: () -> Unit = {}
 ) {
