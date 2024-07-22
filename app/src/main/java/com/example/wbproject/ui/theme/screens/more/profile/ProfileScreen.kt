@@ -24,6 +24,7 @@ import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.IconInCircle
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.buttons.MyOutlinedButton
 import com.example.wbproject.ui.theme.elements.text.TextHeading1
 import com.example.wbproject.ui.theme.elements.text.TextSubheading2
@@ -33,78 +34,82 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier) {
     val viewModel: ProfileViewModel = koinViewModel()
-    val user by viewModel.getUserFlow().collectAsState()
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(
-                top = MeetingTheme.dimensions.dimension136,
-                start = MeetingTheme.dimensions.dimension8,
-                end = MeetingTheme.dimensions.dimension8
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        when (user.avatarUrl.isNullOrEmpty()) {
-            true ->
-                IconInCircle(
-                    size = MeetingTheme.dimensions.dimension200, painter = painterResource(
-                        id = R.drawable.user
+    val profileState by viewModel.getProfileStateFlow().collectAsState()
+
+    when (val state = profileState) {
+        is ProfileState.Loading -> ProgressIndicator()
+        is ProfileState.Profile ->
+            Column(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = MeetingTheme.dimensions.dimension136,
+                        start = MeetingTheme.dimensions.dimension8,
+                        end = MeetingTheme.dimensions.dimension8
+                    ),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                when (state.user.avatarUrl.isEmpty()) {
+                    true ->
+                        IconInCircle(
+                            size = MeetingTheme.dimensions.dimension200, painter = painterResource(
+                                id = R.drawable.user
+                            )
+                        )
+
+                    false ->
+                        AsyncImage(
+                            modifier = Modifier
+                                .size(MeetingTheme.dimensions.dimension200)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop,
+                            model = state.user.avatarUrl,
+                            contentDescription = null,
+                        )
+                }
+
+                TextHeading1(
+                    modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
+                    text = String.format(
+                        stringResource(id = R.string.name_surname_template),
+                        state.user.name,
+                        state.user.lastName
+                    ),
+                )
+                TextSubheading2(
+                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
+                    text = state.user.phone,
+                    color = MeetingTheme.colors.neutralDisabled
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    MyOutlinedButton(
+                        modifier = Modifier
+                            .width(MeetingTheme.dimensions.dimension72)
+                            .height(MeetingTheme.dimensions.dimension40),
+                        iconResId = R.drawable.twitter
                     )
-                )
-
-            false ->
-                AsyncImage(
-                    modifier = Modifier
-                        .size(MeetingTheme.dimensions.dimension200)
-                        .clip(CircleShape),
-                    contentScale = ContentScale.Crop,
-                    model = user.avatarUrl,
-                    contentDescription = null,
-                )
-        }
-
-        TextHeading1(
-            modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
-            text = String.format(
-                stringResource(id = R.string.name_surname_template),
-                user.name,
-                user.lastName
-            ),
-        )
-        TextSubheading2(
-            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
-            text = user.phone,
-            color = MeetingTheme.colors.neutralDisabled
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            MyOutlinedButton(
-                modifier = Modifier
-                    .width(MeetingTheme.dimensions.dimension72)
-                    .height(MeetingTheme.dimensions.dimension40),
-                iconResId = R.drawable.twitter
-            )
-            MyOutlinedButton(
-                modifier = Modifier
-                    .width(MeetingTheme.dimensions.dimension72)
-                    .height(MeetingTheme.dimensions.dimension40),
-                iconResId = R.drawable.instagram
-            )
-            MyOutlinedButton(
-                modifier = Modifier
-                    .width(MeetingTheme.dimensions.dimension72)
-                    .height(MeetingTheme.dimensions.dimension40),
-                iconResId = R.drawable.linked_in
-            )
-            MyOutlinedButton(
-                modifier = Modifier
-                    .width(MeetingTheme.dimensions.dimension72)
-                    .height(MeetingTheme.dimensions.dimension40),
-                iconResId = R.drawable.facebook
-            )
-        }
+                    MyOutlinedButton(
+                        modifier = Modifier
+                            .width(MeetingTheme.dimensions.dimension72)
+                            .height(MeetingTheme.dimensions.dimension40),
+                        iconResId = R.drawable.instagram
+                    )
+                    MyOutlinedButton(
+                        modifier = Modifier
+                            .width(MeetingTheme.dimensions.dimension72)
+                            .height(MeetingTheme.dimensions.dimension40),
+                        iconResId = R.drawable.linked_in
+                    )
+                    MyOutlinedButton(
+                        modifier = Modifier
+                            .width(MeetingTheme.dimensions.dimension72)
+                            .height(MeetingTheme.dimensions.dimension40),
+                        iconResId = R.drawable.facebook
+                    )
+                }
+            }
     }
-
 }

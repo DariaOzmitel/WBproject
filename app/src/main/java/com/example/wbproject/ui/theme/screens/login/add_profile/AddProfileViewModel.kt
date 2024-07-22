@@ -1,7 +1,7 @@
 package com.example.wbproject.ui.theme.screens.login.add_profile
 
 import androidx.lifecycle.ViewModel
-import com.example.wbproject.model.User
+import com.example.domain.model.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

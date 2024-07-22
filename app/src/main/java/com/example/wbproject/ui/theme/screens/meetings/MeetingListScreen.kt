@@ -14,13 +14,17 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.molecules.MeetingCardColumn
@@ -33,6 +37,9 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit = {}) {
 
+    var searchText by remember {
+        mutableStateOf("")
+    }
     val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val viewModel: MeetingListViewModel = koinViewModel()
@@ -51,8 +58,8 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
     ) {
         MySearchTextField(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16),
-            searchText = meetingState.searchText,
-            onValueChange = { viewModel.updateSearchText(it) })
+            searchText = searchText,
+            onValueChange = { searchText = it })
         TabRow(modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = MeetingTheme.dimensions.dimension16),
@@ -89,16 +96,20 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
                 .fillMaxWidth(),
             verticalAlignment = Alignment.Top
         ) { page ->
-            when (page) {
-                TabsForMeetingList.ALL_MEETINGS.ordinal -> MeetingCardColumn(
-                    meetingList = meetingState.meetingList,
-                    onMeetingCardClickListener = onMeetingCardClickListener
-                )
+            when (val state = meetingState) {
+                is MeetingListState.Loading -> ProgressIndicator()
+                is MeetingListState.MeetingList ->
+                    when (page) {
+                        TabsForMeetingList.ALL_MEETINGS.ordinal -> MeetingCardColumn(
+                            meetingList = state.list,
+                            onMeetingCardClickListener = onMeetingCardClickListener
+                        )
 
-                TabsForMeetingList.ACTIVE.ordinal -> MeetingCardColumn(
-                    meetingList = meetingState.meetingList,
-                    onMeetingCardClickListener = onMeetingCardClickListener
-                )
+                        TabsForMeetingList.ACTIVE.ordinal -> MeetingCardColumn(
+                            meetingList = state.list,
+                            onMeetingCardClickListener = onMeetingCardClickListener
+                        )
+                    }
             }
         }
     }

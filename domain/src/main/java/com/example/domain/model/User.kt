@@ -1,4 +1,4 @@
-package com.example.wbproject.model
+package com.example.domain.model
 
 data class User(
     val id: Int = UNDEFINED_ID,

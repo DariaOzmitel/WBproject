@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
 import org.koin.androidx.compose.koinViewModel
 
@@ -19,8 +23,11 @@ fun CommunityListScreen(
     modifier: Modifier = Modifier,
     onCommunityCardClickListener: () -> Unit = {}
 ) {
+    var searchText by remember {
+        mutableStateOf("")
+    }
     val viewModel: CommunityListViewModel = koinViewModel()
-    val communityListState by viewModel.getCommunityListFlow().collectAsState()
+    val communityListState by viewModel.getCommunityListStateFlow().collectAsState()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -33,11 +40,17 @@ fun CommunityListScreen(
     ) {
         MySearchTextField(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16),
-            searchText = communityListState.searchText,
-            onValueChange = { viewModel.updateSearchText(it) })
-        CommunityCardColumn(
-            communityList = communityListState.communityList,
-            onCommunityCardClickListener = onCommunityCardClickListener
-        )
+            searchText = searchText,
+            onValueChange = { searchText = it })
+        when (val state = communityListState) {
+            is CommunityListState.Loading -> ProgressIndicator()
+            is CommunityListState.CommunityList ->
+                CommunityCardColumn(
+                    communityList = state.communityList,
+                    onCommunityCardClickListener = onCommunityCardClickListener
+                )
+        }
     }
 }
+
+

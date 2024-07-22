@@ -27,6 +27,7 @@ import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.IconInCircle
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.items.MoreMenuItem
@@ -39,7 +40,7 @@ fun MoreScreen(
     onMyMeetingsItemClickListener: () -> Unit
 ) {
     val viewModel: MoreViewModel = koinViewModel()
-    val user by viewModel.getUserFlow().collectAsState()
+    val moreState by viewModel.getMoreStateFlow().collectAsState()
     Column(modifier = modifier.padding(top = MeetingTheme.dimensions.dimension106)) {
         Row(
             modifier = Modifier
@@ -49,49 +50,56 @@ fun MoreScreen(
                 .clickable { onProfileItemClickListener() },
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            when (user.avatarUrl.isNullOrEmpty()) {
-                true ->
-                    IconInCircle(
-                        size = MeetingTheme.dimensions.dimension50,
-                        painter = painterResource(id = R.drawable.user)
-                    )
+            when (val state = moreState) {
+                is MoreState.Loading -> ProgressIndicator(modifier = Modifier.size(MeetingTheme.dimensions.dimension40))
+                is MoreState.MoreUser -> {
+                    when (state.user.avatarUrl.isEmpty()) {
+                        true ->
+                            IconInCircle(
+                                size = MeetingTheme.dimensions.dimension50,
+                                painter = painterResource(id = R.drawable.user)
+                            )
 
-                false ->
-                    AsyncImage(
+                        false ->
+                            AsyncImage(
+                                modifier = Modifier
+                                    .size(MeetingTheme.dimensions.dimension50)
+                                    .clip(CircleShape),
+                                contentScale = ContentScale.Crop,
+                                model = state.user.avatarUrl,
+                                contentDescription = null,
+                            )
+                    }
+
+                    Box(
                         modifier = Modifier
-                            .size(MeetingTheme.dimensions.dimension50)
-                            .clip(CircleShape),
-                        contentScale = ContentScale.Crop,
-                        model = user.avatarUrl,
-                        contentDescription = null,
-                    )
-            }
+                            .padding(start = MeetingTheme.dimensions.dimension12)
+                            .weight(1f)
+                    ) {
+                        Column {
+                            TextBody1(
+                                text = String.format(
+                                    stringResource(id = R.string.name_surname_template),
+                                    state.user.name,
+                                    state.user.lastName
+                                ),
+                            )
+                            TextMetadata1(
+                                modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension4),
+                                text = state.user.phone,
+                                color = MeetingTheme.colors.neutralDisabled
+                            )
+                        }
 
-            Box(
-                modifier = Modifier
-                    .padding(start = MeetingTheme.dimensions.dimension12)
-                    .weight(1f)
-            ) {
-                Column {
-                    TextBody1(
-                        text = String.format(
-                            stringResource(id = R.string.name_surname_template),
-                            user.name,
-                            user.lastName
-                        ),
-                    )
-                    TextMetadata1(
-                        modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension4),
-                        text = user.phone,
-                        color = MeetingTheme.colors.neutralDisabled
+                    }
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                        contentDescription = null
                     )
                 }
 
             }
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null
-            )
+
         }
         MenuItem(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension4),

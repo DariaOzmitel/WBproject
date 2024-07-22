@@ -24,9 +24,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.data.mockData.mockListMeetings
+import com.example.domain.model.Meeting
 import com.example.wbproject.R
-import com.example.wbproject.data.mockData.mockListMeetings
-import com.example.wbproject.model.Meeting
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyChipRow
