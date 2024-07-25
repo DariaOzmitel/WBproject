@@ -1,6 +1,5 @@
 package com.example.wbproject.ui.theme.molecules
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -13,15 +12,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.wbproject.R
+import coil.compose.AsyncImage
+import com.example.data.mockData.mockUserList
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
 private const val MAX_DISPLAYED_AVATARS = 5
-private const val TEST_AVATAR_COUNT = 16
 
 @Composable
 fun OverlappingRow(
@@ -55,7 +53,7 @@ fun OverlappingRow(
 @Composable
 fun RowAvatars(
     modifier: Modifier = Modifier,
-    avatars: List<Int>?,
+    avatars: List<String>?,
     displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS
 ) {
 
@@ -67,9 +65,9 @@ fun RowAvatars(
                     overlappingPercentage = 0.20f
                 ) {
                     avatars.take(displayedAvatarsNum).forEach {
-                        Image(
-                            painter = painterResource(id = it),
-                            contentDescription = "image_$it",
+                        AsyncImage(
+                            model = it,
+                            contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(MeetingTheme.dimensions.dimension48)
@@ -94,14 +92,8 @@ fun RowAvatars(
     }
 }
 
-val images = mutableListOf<Int>().apply {
-    repeat(TEST_AVATAR_COUNT) {
-        add(R.drawable.avatar_example)
-    }
-}
-
 @Preview
 @Composable
 fun RowAvatarsPreview() {
-    RowAvatars(avatars = images)
+    RowAvatars(avatars = mockUserList.map { it.avatarUrl })
 }

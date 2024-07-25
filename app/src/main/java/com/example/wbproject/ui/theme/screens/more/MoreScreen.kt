@@ -8,23 +8,32 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+import com.example.data.mockData.mockUser
+import com.example.domain.model.User
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.IconInCircle
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.items.MoreMenuItem
-
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MoreScreen(
@@ -32,40 +41,12 @@ fun MoreScreen(
     onProfileItemClickListener: () -> Unit,
     onMyMeetingsItemClickListener: () -> Unit
 ) {
+    val viewModel: MoreViewModel = koinViewModel()
+    val moreState by viewModel.getMoreStateFlow().collectAsState()
     Column(modifier = modifier.padding(top = MeetingTheme.dimensions.dimension106)) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(MeetingTheme.dimensions.dimension66)
-                .padding(MeetingTheme.dimensions.dimension8)
-                .clickable { onProfileItemClickListener() },
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            IconInCircle(
-                size = MeetingTheme.dimensions.dimension50,
-                painter = painterResource(id = R.drawable.user)
-            )
-            Box(
-                modifier = Modifier
-                    .padding(start = MeetingTheme.dimensions.dimension12)
-                    .weight(1f)
-            ) {
-                Column {
-                    TextBody1(
-                        text = stringResource(id = R.string.test_profile_name),
-                    )
-                    TextMetadata1(
-                        modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension4),
-                        text = stringResource(id = R.string.test_profile_phone),
-                        color = MeetingTheme.colors.neutralDisabled
-                    )
-                }
-
-            }
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null
-            )
+        when (val state = moreState) {
+            is MoreState.Loading -> ProgressIndicator(modifier = Modifier.size(MeetingTheme.dimensions.dimension40))
+            is MoreState.MoreUser -> UserContent(user = state.user, onProfileItemClickListener)
         }
         MenuItem(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension4),
@@ -95,13 +76,65 @@ fun MoreScreen(
 }
 
 @Composable
+private fun UserContent(user: User, onProfileItemClickListener: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(MeetingTheme.dimensions.dimension66)
+            .padding(MeetingTheme.dimensions.dimension8)
+            .clickable { onProfileItemClickListener() },
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        when (user.avatarUrl.isEmpty()) {
+            true ->
+                IconInCircle(
+                    size = MeetingTheme.dimensions.dimension50,
+                    painter = painterResource(id = R.drawable.user)
+                )
+
+            false ->
+                AsyncImage(
+                    modifier = Modifier
+                        .size(MeetingTheme.dimensions.dimension50)
+                        .clip(CircleShape),
+                    contentScale = ContentScale.Crop,
+                    model = user.avatarUrl,
+                    contentDescription = null,
+                )
+        }
+        Column(
+            modifier = Modifier
+                .padding(start = MeetingTheme.dimensions.dimension12)
+                .weight(1f)
+        ) {
+            TextBody1(
+                text = String.format(
+                    stringResource(id = R.string.name_surname_template),
+                    user.name,
+                    user.lastName
+                ),
+            )
+            TextMetadata1(
+                modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension4),
+                text = user.phone,
+                color = MeetingTheme.colors.neutralDisabled
+            )
+        }
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            contentDescription = null
+        )
+    }
+}
+
+@Composable
 private fun MenuItem(
     modifier: Modifier = Modifier,
     moreMenuItem: MoreMenuItem,
     onItemClickListener: () -> Unit = {}
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(MeetingTheme.dimensions.dimension48)
             .padding(MeetingTheme.dimensions.dimension8)
@@ -130,7 +163,5 @@ private fun MenuItem(
 @Preview
 @Composable
 private fun MoreScreenPreview() {
-    MoreScreen(onProfileItemClickListener = {}) {
-
-    }
+    UserContent(user = mockUser) {}
 }

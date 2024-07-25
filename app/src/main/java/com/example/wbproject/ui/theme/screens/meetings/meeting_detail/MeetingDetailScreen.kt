@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.meetings
+package com.example.wbproject.ui.theme.screens.meetings.meeting_detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -17,42 +18,61 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
+import com.example.data.mockData.mockMapUrl
+import com.example.data.mockData.mockMeeting
+import com.example.domain.model.Meeting
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyChipRow
+import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
-import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
+import com.example.wbproject.ui.theme.molecules.TextForDescription
+import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 8
-private const val TEST_MAP =
-    "https://s3-alpha-sig.figma.com/img/a7d0/b7a1/73dfa50190eed292a52792c6d52bb4be?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lbp~3M0cO0QqU4lp~FXgS4hYwsMVN97j2OZ3HVxb8dEnfLglnfSrPAkaAzJfYEpb69jK3ownyv8GlElutrbD8Ae3vdiQjXpFbOoK-3sgXTVMdTNHCDC7yyRnqwxiCN-9OLFYuwlzvRem139gTzBSrgQ4h0~2T1Gf-XE7I29MM6n3SpJ-xLwwpHaOnDMFG35KkPwHIMVl~RQOSb3CNPrf2CLrbrcuTeLGJdoItKkuEobXERZjHBVTh4PvhxdXMmHiRKykksWEEYGc1UmbH7x~oY1EVQx2UTob2aMF4ro~eu57F8-JthhN3Cd8t9o9Tyi92ZIayuZyICVx9Q7bMzgMoQ__"
 
-@Preview
 @Composable
 fun MeetingDetailScreen(modifier: Modifier = Modifier) {
+    val viewModel: MeetingDetailViewModel = koinViewModel()
+    val meetingDetailState by viewModel.getMeetingDetailFlow().collectAsState()
     var fullText by rememberSaveable {
         mutableStateOf(false)
-    }
-    val testImageList = mutableListOf<Int>().apply {
-        repeat(16) {
-            add(R.drawable.avatar_example)
-        }
     }
     var fullMap by rememberSaveable {
         mutableStateOf(false)
     }
-    val testText = "13.09.2024 - Москва,ул.Громова,4"
+    when (val state = meetingDetailState) {
+        is MeetingDetailState.Loading -> ProgressIndicator()
+        is MeetingDetailState.MeetingDetail -> MeetingDetailContent(
+            meeting = state.meeting,
+            mapUrl = state.mapUrl,
+            fullMap = fullMap,
+            fullText = fullText,
+            onDismissRequestClickListener = { fullMap = false },
+            onTextClickListener = { fullText = !fullText }) {
+            fullMap = true
+        }
+    }
+}
 
+@Composable
+private fun MeetingDetailContent(
+    modifier: Modifier = Modifier,
+    meeting: Meeting,
+    mapUrl: String,
+    fullMap: Boolean,
+    fullText: Boolean,
+    onDismissRequestClickListener: () -> Unit,
+    onTextClickListener: () -> Unit,
+    onMapClickListener: () -> Unit,
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = modifier
@@ -67,12 +87,18 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
             item {
                 TextBody1(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
-                    text = testText,
+                    text = String.format(
+                        stringResource(id = R.string.date_city_template),
+                        meeting.date,
+                        meeting.city
+                    ),
                     color = MeetingTheme.colors.neutralWeak,
                 )
             }
             item {
-                MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+                meeting.chipsList?.let {
+                    MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
+                }
             }
             item {
                 AsyncImage(
@@ -81,34 +107,28 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                         .height(MeetingTheme.dimensions.dimension176)
                         .clip(RoundedCornerShape(16.dp))
-                        .clickable { fullMap = true },
+                        .clickable { onMapClickListener() },
                     contentScale = ContentScale.None,
-                    model = TEST_MAP,
+                    model = mapUrl,
                     contentDescription = null,
                 )
             }
             item {
-                TextMetadata1(
-                    modifier = Modifier
-                        .padding(bottom = MeetingTheme.dimensions.dimension32)
-                        .clickable {
-                            fullText = !fullText
-                        },
-                    text = LoremIpsum(300).values.first(),
-                    color = MeetingTheme.colors.neutralWeak,
-                    maxLines = when (fullText) {
-                        true -> Int.MAX_VALUE
-                        false -> TEXT_MAX_LINE
-                    },
-                    overflow = TextOverflow.Ellipsis,
-                    lineHeight = 20.sp
-                )
+                TextForDescription(
+                    fullText = fullText,
+                    description = meeting.description,
+                    textMaxLine = TEXT_MAX_LINE
+                ) {
+                    onTextClickListener()
+                }
             }
             item {
                 RowAvatars(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = testImageList
+                    avatars = meeting.usersList?.map { it.avatarUrl }
                 )
+            }
+            item {
                 MyButton(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -118,21 +138,41 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
             }
         }
         if (fullMap) {
-            Dialog(
-                properties = DialogProperties(
-                    usePlatformDefaultWidth = false,
-                    dismissOnClickOutside = true
-                ),
-                onDismissRequest = { fullMap = false }
-            ) {
-                AsyncImage(
-                    model = TEST_MAP,
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
+            IsFullMapContent(mapUrl = mapUrl) {
+                onDismissRequestClickListener()
             }
         }
+    }
+}
+
+@Composable
+private fun IsFullMapContent(mapUrl: String, onDismissRequestClickListener: () -> Unit) {
+    Dialog(
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
+            dismissOnClickOutside = true
+        ),
+        onDismissRequest = { onDismissRequestClickListener() }
+    ) {
+        AsyncImage(
+            model = mapUrl,
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun MeetingDetailScreenPreview() {
+    MeetingDetailContent(
+        meeting = mockMeeting,
+        mapUrl = mockMapUrl,
+        fullMap = false,
+        fullText = false,
+        onDismissRequestClickListener = {},
+        onTextClickListener = {}) {
     }
 }

@@ -12,23 +12,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.data.mockData.mockListChips
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingDimensionsValue
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextMetadata3
 
-val listChipsExample = listOf(
-    "Python",
-    "Junior",
-    "Moscow"
-)
 
 @Composable
 fun MyChipRow(
     modifier: Modifier = Modifier,
     containerColor: Color = LightColors.brandColorBackGround,
     contentColor: Color = LightColors.brandColorDark,
-    listChips: List<String> = listChipsExample
+    listChips: List<String> = mockListChips
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension8)

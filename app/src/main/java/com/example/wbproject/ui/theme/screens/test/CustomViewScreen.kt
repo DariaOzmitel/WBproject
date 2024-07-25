@@ -22,10 +22,15 @@ fun CustomViewScreen() {
     var phone: String by rememberSaveable {
         mutableStateOf("")
     }
+    var pin: String by rememberSaveable {
+        mutableStateOf("")
+    }
     Column(modifier = Modifier.padding(top = 100.dp, start = 50.dp)) {
         CustomPin(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension80),
             correctPin = TEST_RIGHT_PIN,
+            displayText = pin,
+            onValueChangeListener = { pin = it },
             correctPinEnteredListener = {})
         CustomPhoneNumber(
             displayText = phone,

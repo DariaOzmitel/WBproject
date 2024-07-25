@@ -1,0 +1,132 @@
+package com.example.data.mockData
+
+import com.example.domain.model.Community
+import com.example.domain.model.Meeting
+import com.example.domain.model.User
+
+const val mockDescription =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor efficitur, posuere diam quis, hendrerit urna. Proin venenatis ipsum tellus, sit amet consequat leo fringilla nec. Nulla sem odio, posuere ut elit at, efficitur malesuada purus. Integer neque justo, finibus quis mi vitae, imperdiet lacinia nisl. Nam nunc turpis, ultricies vitae rhoncus fringilla, congue id nisl. Donec eros est, auctor vitae urna a, vestibulum porta lacus. Aenean consequat, mauris vel congue pellentesque, diam leo fermentum enim, at congue tellus orci eu ligula. Fusce ipsum elit, egestas vitae purus sit amet, tristique suscipit nisi. Mauris volutpat nisl sit amet pharetra dapibus.\n" +
+            "\n" +
+            "Mauris libero felis, lacinia a maximus nec, sollicitudin id urna. Nunc convallis lorem lorem, ut lobortis dui venenatis quis. Vestibulum ex magna, elementum ut nibh egestas, tempor mattis lectus. Suspendisse vel erat sapien. Fusce nisi odio, consectetur eu consequat at, laoreet sit amet diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus pellentesque libero lorem, ac ultricies mauris imperdiet a.\n" +
+            "\n" +
+            "Donec commodo nulla vel mattis tincidunt. Fusce et mollis leo, in ultricies arcu. Donec id posuere orci, et venenatis quam. Suspendisse imperdiet dignissim ligula in aliquet. Curabitur leo erat, interdum in nibh sit amet, tempus tristique lectus. Vestibulum consequat tortor metus, at pulvinar dolor luctus vitae. Aliquam nulla quam, ornare eu nunc sit amet, maximus convallis dui. Sed eu imperdiet enim. Integer ut nulla ut tellus mollis rhoncus a vel urna. Sed pellentesque finibus sem a aliquam. Duis eu sapien nisi.\n" +
+            "\n" +
+            "Maecenas ante tortor, feugiat eu suscipit vitae, semper aliquet metus. Ut vestibulum tempus sem, at sodales lorem condimentum ac. Vestibulum varius ornare massa, ac maximus velit aliquet quis. Praesent pretium leo lectus, dictum blandit enim luctus at. Sed fermentum massa sem. Nunc volutpat lorem id posuere congue. Nulla facilisi. Nam ac mattis."
+
+val mockUser = User(
+    id = 1,
+    avatarUrl = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
+    name = "Иван",
+    lastName = "Иванов",
+    phone = "+7 999 999-99-99"
+)
+
+val mockListChips = listOf(
+    "Python",
+    "Junior",
+    "Moscow"
+)
+
+val mockCommunity = Community(
+    id = 1,
+    name = "Designa 1",
+    imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
+    description = mockDescription,
+    participantsNumber = 1000,
+)
+
+val mockCommunityList = mutableListOf<Community>().apply {
+    repeat(10) { index ->
+        add(
+            Community(
+                id = index,
+                name = "Designa $index",
+                imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
+                description = mockDescription,
+                participantsNumber = index * 1000
+            )
+        )
+    }
+}
+
+val mockUserList = mutableListOf<User>().apply {
+    repeat(16) { index ->
+        add(
+            User(
+                id = index,
+                avatarUrl = "https://pchela.news/storage/app/uploads/public/884/938/9a3/thumb__770_490_0_0_crop.jpg",
+                name = "User $index",
+                phone = "+7 999 999-99-99"
+            )
+        )
+    }
+}
+
+val mockMeeting = Meeting(
+    id = 1,
+    name = "Developer Meeting 1",
+    description = mockDescription,
+    imageUrl = "https://icdn.lenta.ru/images/2021/12/28/20/20211228202958360/square_1280_662749ae3f8f3d2f16c96ca21fbd3eba.jpg",
+    date = "11.08.24",
+    city = "Moscow",
+    communityId = mockCommunity.id,
+    chipsList = mockListChips,
+    usersList = mockUserList,
+)
+
+val mockMapUrl =
+    "https://s3-alpha-sig.figma.com/img/a7d0/b7a1/73dfa50190eed292a52792c6d52bb4be?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lbp~3M0cO0QqU4lp~FXgS4hYwsMVN97j2OZ3HVxb8dEnfLglnfSrPAkaAzJfYEpb69jK3ownyv8GlElutrbD8Ae3vdiQjXpFbOoK-3sgXTVMdTNHCDC7yyRnqwxiCN-9OLFYuwlzvRem139gTzBSrgQ4h0~2T1Gf-XE7I29MM6n3SpJ-xLwwpHaOnDMFG35KkPwHIMVl~RQOSb3CNPrf2CLrbrcuTeLGJdoItKkuEobXERZjHBVTh4PvhxdXMmHiRKykksWEEYGc1UmbH7x~oY1EVQx2UTob2aMF4ro~eu57F8-JthhN3Cd8t9o9Tyi92ZIayuZyICVx9Q7bMzgMoQ__"
+
+val mockListMeetings = listOf(
+    mockMeeting,
+    Meeting(
+        id = 2,
+        name = "Developer Meeting 2",
+        imageUrl = "https://i.pinimg.com/236x/d0/30/74/d030747fc2368c46f4544a17aa3e4545.jpg",
+        date = "11.09.24",
+        city = "Penza",
+        chipsList = mockListChips,
+        communityId = mockCommunity.id
+    ),
+    Meeting(
+        id = 3,
+        name = "Developer Meeting 3",
+        imageUrl = "https://idel-tat.ru/images/uploads/ckeditor/png/616fef0835992_%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(2413).png",
+        date = "11.10.24",
+        city = "Penza",
+        chipsList = mockListChips,
+        communityId = 2
+    ),
+    Meeting(
+        id = 4,
+        name = "Developer Meeting 4",
+        imageUrl = "https://go.zvuk.com/thumb/1200x0/filters:quality(75):no_upscale()/imgs/2023/12/13/12/6270663/04ecc42b70ebd4d721214a9138c872e0513e990e.jpg",
+        date = "25.08.24",
+        city = "London",
+        chipsList = mockListChips,
+        communityId = 3
+    ),
+    Meeting(
+        id = 5,
+        name = "Developer Meeting 5",
+        imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
+        date = "30.08.24",
+        city = "Moscow",
+        chipsList = mockListChips,
+        communityId = 4
+    ),
+    Meeting(
+        id = 6,
+        name = "Developer Meeting 6",
+        imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
+        date = "19.08.24",
+        city = "Moscow",
+        chipsList = mockListChips,
+        communityId = mockCommunity.id
+    )
+)
+
+val mockListMeetingAlreadyPassed = listOf(
+    mockMeeting,
+    mockMeeting,
+)

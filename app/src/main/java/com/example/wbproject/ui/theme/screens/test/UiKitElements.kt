@@ -8,6 +8,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +25,9 @@ import com.example.wbproject.ui.theme.elements.forUiKit.TextColumnForUiKit
 @Preview
 @Composable
 fun UiKitElements() {
+    var searchText by remember {
+        mutableStateOf("")
+    }
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +46,7 @@ fun UiKitElements() {
             MyButtonsPreview()
             TextColumnForUiKit(modifier = Modifier.padding(MeetingTheme.dimensions.dimension8))
             MyAvatarColumnPreview()
-            MySearchTextField()
+            MySearchTextField(searchText = searchText, onValueChange = { searchText = it })
             MyChipRow(modifier = Modifier.padding(start = MeetingTheme.dimensions.dimension8))
         }
     }

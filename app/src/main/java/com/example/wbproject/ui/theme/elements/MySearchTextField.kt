@@ -8,39 +8,36 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 
-@Preview
 @Composable
-fun MySearchTextField(modifier: Modifier = Modifier) {
-    var text by rememberSaveable { mutableStateOf("") }
+fun MySearchTextField(
+    modifier: Modifier = Modifier,
+    searchText: String,
+    onValueChange: (String) -> Unit
+) {
 
     OutlinedTextField(
         modifier = modifier
             .fillMaxWidth()
             .height(50.dp),
         shape = RectangleShape,
-        value = text,
+        value = searchText,
         placeholder = {
             TextBody1(
                 text = stringResource(id = R.string.search),
                 color = MeetingTheme.colors.neutralWeak
             )
         },
-        onValueChange = { text = it },
+        onValueChange = onValueChange,
         leadingIcon = {
             Icon(
                 Icons.Filled.Search,

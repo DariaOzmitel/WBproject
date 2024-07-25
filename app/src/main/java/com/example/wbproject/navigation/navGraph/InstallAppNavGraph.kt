@@ -5,17 +5,17 @@ import com.example.wbproject.navigation.Screen
 import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.theme.screens.MainScreen
 import com.example.wbproject.ui.theme.screens.SplashScreen
-import com.example.wbproject.ui.theme.screens.community.CommunityDetailScreen
 import com.example.wbproject.ui.theme.screens.community.CommunityListScreen
-import com.example.wbproject.ui.theme.screens.login.AddProfileScreen
-import com.example.wbproject.ui.theme.screens.login.EnterPhoneScreen
-import com.example.wbproject.ui.theme.screens.login.EnterPinScreen
+import com.example.wbproject.ui.theme.screens.community.community_detail.CommunityDetailScreen
 import com.example.wbproject.ui.theme.screens.login.LoginScreen
-import com.example.wbproject.ui.theme.screens.meetings.MeetingDetailScreen
+import com.example.wbproject.ui.theme.screens.login.add_profile.AddProfileScreen
+import com.example.wbproject.ui.theme.screens.login.enter_phone.EnterPhoneScreen
+import com.example.wbproject.ui.theme.screens.login.enter_pin.EnterPinScreen
 import com.example.wbproject.ui.theme.screens.meetings.MeetingListScreen
+import com.example.wbproject.ui.theme.screens.meetings.meeting_detail.MeetingDetailScreen
 import com.example.wbproject.ui.theme.screens.more.MoreScreen
-import com.example.wbproject.ui.theme.screens.more.MyMeetingScreen
-import com.example.wbproject.ui.theme.screens.more.ProfileScreen
+import com.example.wbproject.ui.theme.screens.more.my_meetings.MyMeetingScreen
+import com.example.wbproject.ui.theme.screens.more.profile.ProfileScreen
 
 @Composable
 fun InstallAppNavGraph() {
@@ -85,7 +85,6 @@ fun InstallAppNavGraph() {
                     navigationState.navigateTo(Screen.EnterPin.route)
                 })
             }
-
         },
         enterPinScreenContent = {
             LoginScreen(navigationState = navigationState) {
