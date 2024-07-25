@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class CommunityListViewModel(
+internal class CommunityListViewModel(
     private val getCommunityListUseCase: GetCommunityListUseCase
 ) : ViewModel() {
     private val communityListStateMutable =

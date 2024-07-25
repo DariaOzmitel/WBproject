@@ -7,6 +7,7 @@ data class Meeting(
     val imageUrl: String?,
     val date: String,
     val city: String,
+    val communityId: Int,
     val chipsList: List<String>?,
     val usersList: List<User>? = null
 ) {

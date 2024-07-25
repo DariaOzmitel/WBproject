@@ -18,10 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
@@ -31,13 +28,12 @@ import com.example.wbproject.ui.theme.elements.MyChipRow
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
-import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
+import com.example.wbproject.ui.theme.molecules.TextForDescription
 import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 8
 
-@Preview
 @Composable
 fun MeetingDetailScreen(modifier: Modifier = Modifier) {
     val viewModel: MeetingDetailViewModel = koinViewModel()
@@ -92,21 +88,13 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
                         )
                     }
                     item {
-                        TextMetadata1(
-                            modifier = Modifier
-                                .padding(bottom = MeetingTheme.dimensions.dimension32)
-                                .clickable {
-                                    fullText = !fullText
-                                },
-                            text = state.meeting.description.orEmpty(),
-                            color = MeetingTheme.colors.neutralWeak,
-                            maxLines = when (fullText) {
-                                true -> Int.MAX_VALUE
-                                false -> TEXT_MAX_LINE
-                            },
-                            overflow = TextOverflow.Ellipsis,
-                            lineHeight = 20.sp
-                        )
+                        TextForDescription(
+                            fullText = fullText,
+                            description = state.meeting.description,
+                            textMaxLine = TEXT_MAX_LINE
+                        ) {
+                            fullText = !fullText
+                        }
                     }
                     item {
                         RowAvatars(

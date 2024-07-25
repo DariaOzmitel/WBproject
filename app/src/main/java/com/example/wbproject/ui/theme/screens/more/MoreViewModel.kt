@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MoreViewModel(getUserUseCase: GetUserUseCase) : ViewModel() {
+internal class MoreViewModel(getUserUseCase: GetUserUseCase) : ViewModel() {
     private val moreStateMutable: MutableStateFlow<MoreState> = MutableStateFlow(MoreState.Loading)
     private val moreState: StateFlow<MoreState> = moreStateMutable
 

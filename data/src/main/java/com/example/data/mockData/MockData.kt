@@ -1,5 +1,9 @@
 package com.example.data.mockData
 
+import com.example.domain.model.Community
+import com.example.domain.model.Meeting
+import com.example.domain.model.User
+
 const val mockDescription =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor efficitur, posuere diam quis, hendrerit urna. Proin venenatis ipsum tellus, sit amet consequat leo fringilla nec. Nulla sem odio, posuere ut elit at, efficitur malesuada purus. Integer neque justo, finibus quis mi vitae, imperdiet lacinia nisl. Nam nunc turpis, ultricies vitae rhoncus fringilla, congue id nisl. Donec eros est, auctor vitae urna a, vestibulum porta lacus. Aenean consequat, mauris vel congue pellentesque, diam leo fermentum enim, at congue tellus orci eu ligula. Fusce ipsum elit, egestas vitae purus sit amet, tristique suscipit nisi. Mauris volutpat nisl sit amet pharetra dapibus.\n" +
             "\n" +
@@ -9,7 +13,7 @@ const val mockDescription =
             "\n" +
             "Maecenas ante tortor, feugiat eu suscipit vitae, semper aliquet metus. Ut vestibulum tempus sem, at sodales lorem condimentum ac. Vestibulum varius ornare massa, ac maximus velit aliquet quis. Praesent pretium leo lectus, dictum blandit enim luctus at. Sed fermentum massa sem. Nunc volutpat lorem id posuere congue. Nulla facilisi. Nam ac mattis."
 
-val mockUser = com.example.domain.model.User(
+val mockUser = User(
     id = 1,
     avatarUrl = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
     name = "Иван",
@@ -23,18 +27,18 @@ val mockListChips = listOf(
     "Moscow"
 )
 
-val mockCommunity = com.example.domain.model.Community(
+val mockCommunity = Community(
     id = 1,
     name = "Designa 1",
     imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
     description = mockDescription,
-    participantsNumber = 1000
+    participantsNumber = 1000,
 )
 
-val mockCommunityList = mutableListOf<com.example.domain.model.Community>().apply {
+val mockCommunityList = mutableListOf<Community>().apply {
     repeat(10) { index ->
         add(
-            com.example.domain.model.Community(
+            Community(
                 id = index,
                 name = "Designa $index",
                 imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
@@ -45,10 +49,10 @@ val mockCommunityList = mutableListOf<com.example.domain.model.Community>().appl
     }
 }
 
-val mockUserList = mutableListOf<com.example.domain.model.User>().apply {
+val mockUserList = mutableListOf<User>().apply {
     repeat(16) { index ->
         add(
-            com.example.domain.model.User(
+            User(
                 id = index,
                 avatarUrl = "https://pchela.news/storage/app/uploads/public/884/938/9a3/thumb__770_490_0_0_crop.jpg",
                 name = "User $index",
@@ -58,13 +62,14 @@ val mockUserList = mutableListOf<com.example.domain.model.User>().apply {
     }
 }
 
-val mockMeeting = com.example.domain.model.Meeting(
+val mockMeeting = Meeting(
     id = 1,
     name = "Developer Meeting 1",
     description = mockDescription,
     imageUrl = "https://icdn.lenta.ru/images/2021/12/28/20/20211228202958360/square_1280_662749ae3f8f3d2f16c96ca21fbd3eba.jpg",
     date = "11.08.24",
     city = "Moscow",
+    communityId = mockCommunity.id,
     chipsList = mockListChips,
     usersList = mockUserList,
 )
@@ -74,45 +79,50 @@ val mockMapUrl =
 
 val mockListMeetings = listOf(
     mockMeeting,
-    com.example.domain.model.Meeting(
+    Meeting(
         id = 2,
         name = "Developer Meeting 2",
         imageUrl = "https://i.pinimg.com/236x/d0/30/74/d030747fc2368c46f4544a17aa3e4545.jpg",
         date = "11.09.24",
         city = "Penza",
-        chipsList = mockListChips
+        chipsList = mockListChips,
+        communityId = mockCommunity.id
     ),
-    com.example.domain.model.Meeting(
+    Meeting(
         id = 3,
         name = "Developer Meeting 3",
         imageUrl = "https://idel-tat.ru/images/uploads/ckeditor/png/616fef0835992_%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(2413).png",
         date = "11.10.24",
         city = "Penza",
-        chipsList = mockListChips
+        chipsList = mockListChips,
+        communityId = 2
     ),
-    com.example.domain.model.Meeting(
+    Meeting(
         id = 4,
         name = "Developer Meeting 4",
         imageUrl = "https://go.zvuk.com/thumb/1200x0/filters:quality(75):no_upscale()/imgs/2023/12/13/12/6270663/04ecc42b70ebd4d721214a9138c872e0513e990e.jpg",
         date = "25.08.24",
         city = "London",
-        chipsList = mockListChips
+        chipsList = mockListChips,
+        communityId = 3
     ),
-    com.example.domain.model.Meeting(
+    Meeting(
         id = 5,
         name = "Developer Meeting 5",
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
         date = "30.08.24",
         city = "Moscow",
-        chipsList = mockListChips
+        chipsList = mockListChips,
+        communityId = 4
     ),
-    com.example.domain.model.Meeting(
+    Meeting(
         id = 6,
         name = "Developer Meeting 6",
         imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
         date = "19.08.24",
         city = "Moscow",
-        chipsList = mockListChips
+        chipsList = mockListChips,
+        communityId = mockCommunity.id
     )
 )
 

@@ -3,6 +3,7 @@ package com.example.wbproject.ui.theme.elements.buttons
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -22,6 +23,8 @@ import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 @Composable
 fun MyOutlinedButton(
     modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     primaryColor: Color = LightColors.brandColorDefault,
     pressedColor: Color = LightColors.brandColorDark,
     secondaryColor: Color = Color.White,
@@ -55,15 +58,17 @@ fun MyOutlinedButton(
                 },
                 disabledContentColor = primaryColor.copy(alpha = 0.5F),
                 disabledContainerColor = secondaryColor
-            )
+            ),
+            contentPadding = contentPadding
         ) {
             text?.let {
-                TextSubheading2(text = it)
+                TextSubheading2(modifier = contentModifier, text = it)
             }
             iconResId?.let {
                 Icon(
                     painter = painterResource(id = it),
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = contentModifier,
                 )
             }
         }

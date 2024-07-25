@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class AddProfileViewModel : ViewModel() {
+internal class AddProfileViewModel : ViewModel() {
     private val userMutable = MutableStateFlow(User(name = "", phone = ""))
     private val user: StateFlow<User> = userMutable
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class CommunityDetailViewModel(
+internal class CommunityDetailViewModel(
     getCommunityUseCase: GetCommunityUseCase,
     getMeetingListUseCase: GetMeetingListUseCase
 ) : ViewModel() {
@@ -25,7 +25,8 @@ class CommunityDetailViewModel(
     init {
         viewModelScope.launch {
             val community = getCommunityUseCase.invoke()
-            val meetingList = getMeetingListUseCase.invoke()
+            val meetingList =
+                getMeetingListUseCase.invoke().filter { it.communityId == community.id }
             delay(500)
             communityDetailStateMutable.update {
                 CommunityDetailState.CommunityDetail(

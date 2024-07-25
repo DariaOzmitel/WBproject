@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MeetingListViewModel(getMeetingListUseCase: GetMeetingListUseCase) : ViewModel() {
+internal class MeetingListViewModel(getMeetingListUseCase: GetMeetingListUseCase) : ViewModel() {
     private val meetingListStateMutable: MutableStateFlow<MeetingListState> =
         MutableStateFlow(MeetingListState.Loading)
     private val meetingListState: StateFlow<MeetingListState> = meetingListStateMutable

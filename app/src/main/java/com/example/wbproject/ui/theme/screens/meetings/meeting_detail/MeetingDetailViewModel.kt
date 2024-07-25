@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MeetingDetailViewModel(
+internal class MeetingDetailViewModel(
     getMeetingUseCase: GetMeetingUseCase
 ) : ViewModel() {
     private val meetingDetailStateMutable: MutableStateFlow<MeetingDetailState> =

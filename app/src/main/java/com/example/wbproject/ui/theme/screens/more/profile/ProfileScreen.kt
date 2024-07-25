@@ -2,13 +2,12 @@ package com.example.wbproject.ui.theme.screens.more.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,6 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
+import com.example.data.mockData.mockUser
+import com.example.domain.model.User
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.IconInCircle
@@ -30,7 +31,6 @@ import com.example.wbproject.ui.theme.elements.text.TextHeading1
 import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 import org.koin.androidx.compose.koinViewModel
 
-@Preview
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier) {
     val viewModel: ProfileViewModel = koinViewModel()
@@ -38,78 +38,81 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
 
     when (val state = profileState) {
         is ProfileState.Loading -> ProgressIndicator()
-        is ProfileState.Profile ->
-            Column(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = MeetingTheme.dimensions.dimension136,
-                        start = MeetingTheme.dimensions.dimension8,
-                        end = MeetingTheme.dimensions.dimension8
-                    ),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                when (state.user.avatarUrl.isEmpty()) {
-                    true ->
-                        IconInCircle(
-                            size = MeetingTheme.dimensions.dimension200, painter = painterResource(
-                                id = R.drawable.user
-                            )
-                        )
-
-                    false ->
-                        AsyncImage(
-                            modifier = Modifier
-                                .size(MeetingTheme.dimensions.dimension200)
-                                .clip(CircleShape),
-                            contentScale = ContentScale.Crop,
-                            model = state.user.avatarUrl,
-                            contentDescription = null,
-                        )
-                }
-
-                TextHeading1(
-                    modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
-                    text = String.format(
-                        stringResource(id = R.string.name_surname_template),
-                        state.user.name,
-                        state.user.lastName
-                    ),
-                )
-                TextSubheading2(
-                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
-                    text = state.user.phone,
-                    color = MeetingTheme.colors.neutralDisabled
-                )
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    MyOutlinedButton(
-                        modifier = Modifier
-                            .width(MeetingTheme.dimensions.dimension72)
-                            .height(MeetingTheme.dimensions.dimension40),
-                        iconResId = R.drawable.twitter
-                    )
-                    MyOutlinedButton(
-                        modifier = Modifier
-                            .width(MeetingTheme.dimensions.dimension72)
-                            .height(MeetingTheme.dimensions.dimension40),
-                        iconResId = R.drawable.instagram
-                    )
-                    MyOutlinedButton(
-                        modifier = Modifier
-                            .width(MeetingTheme.dimensions.dimension72)
-                            .height(MeetingTheme.dimensions.dimension40),
-                        iconResId = R.drawable.linked_in
-                    )
-                    MyOutlinedButton(
-                        modifier = Modifier
-                            .width(MeetingTheme.dimensions.dimension72)
-                            .height(MeetingTheme.dimensions.dimension40),
-                        iconResId = R.drawable.facebook
-                    )
-                }
-            }
+        is ProfileState.Profile -> ProfileContent(modifier = modifier, user = state.user)
     }
+}
+
+@Composable
+private fun ProfileContent(modifier: Modifier = Modifier, user: User) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(
+                top = MeetingTheme.dimensions.dimension136,
+                start = MeetingTheme.dimensions.dimension8,
+                end = MeetingTheme.dimensions.dimension8
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        when (user.avatarUrl.isEmpty()) {
+            true ->
+                IconInCircle(
+                    size = MeetingTheme.dimensions.dimension200, painter = painterResource(
+                        id = R.drawable.user
+                    )
+                )
+
+            false ->
+                AsyncImage(
+                    modifier = Modifier
+                        .size(MeetingTheme.dimensions.dimension200)
+                        .clip(CircleShape),
+                    contentScale = ContentScale.Crop,
+                    model = user.avatarUrl,
+                    contentDescription = null,
+                )
+        }
+
+        TextHeading1(
+            modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
+            text = String.format(
+                stringResource(id = R.string.name_surname_template),
+                user.name,
+                user.lastName
+            ),
+        )
+        TextSubheading2(
+            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
+            text = user.phone,
+            color = MeetingTheme.colors.neutralDisabled
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            ButtonSocialNetwork(iconResId = R.drawable.twitter)
+            ButtonSocialNetwork(iconResId = R.drawable.instagram)
+            ButtonSocialNetwork(iconResId = R.drawable.linked_in)
+            ButtonSocialNetwork(iconResId = R.drawable.facebook)
+        }
+    }
+}
+
+@Composable
+private fun ButtonSocialNetwork(iconResId: Int) {
+    MyOutlinedButton(
+        contentPadding =
+        PaddingValues(
+            horizontal = MeetingTheme.dimensions.dimension26,
+            vertical = MeetingTheme.dimensions.dimension10
+        ),
+        contentModifier = Modifier.size(MeetingTheme.dimensions.dimension20),
+        iconResId = iconResId
+    )
+}
+
+@Preview
+@Composable
+private fun ProfileContentPreview() {
+    ProfileContent(user = mockUser)
 }

@@ -5,5 +5,5 @@ data class Community(
     val name: String,
     val imageUrl: String?,
     val description: String?,
-    val participantsNumber: Int
+    val participantsNumber: Int,
 )

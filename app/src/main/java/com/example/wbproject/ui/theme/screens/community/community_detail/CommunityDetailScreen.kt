@@ -1,6 +1,5 @@
 package com.example.wbproject.ui.theme.screens.community.community_detail
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,15 +13,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
-import com.example.wbproject.ui.theme.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.molecules.MeetingCard
+import com.example.wbproject.ui.theme.molecules.TextForDescription
 import org.koin.androidx.compose.koinViewModel
 
 private const val TEXT_MAX_LINE = 13
@@ -48,21 +45,13 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
                     )
             ) {
                 item {
-                    TextMetadata1(
-                        modifier = Modifier
-                            .clickable {
-                                fullText = !fullText
-                            }
-                            .padding(bottom = MeetingTheme.dimensions.dimension30),
-                        text = state.community.description.orEmpty(),
-                        color = MeetingTheme.colors.neutralWeak,
-                        maxLines = when (fullText) {
-                            true -> Int.MAX_VALUE
-                            false -> TEXT_MAX_LINE
-                        },
-                        overflow = TextOverflow.Ellipsis,
-                        lineHeight = 20.sp
-                    )
+                    TextForDescription(
+                        fullText = fullText,
+                        description = state.community.description,
+                        textMaxLine = TEXT_MAX_LINE
+                    ) {
+                        fullText = !fullText
+                    }
                 }
                 item {
                     TextBody1(
