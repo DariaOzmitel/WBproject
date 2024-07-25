@@ -14,6 +14,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.data.mockData.mockCommunity
+import com.example.data.mockData.mockListMeetings
+import com.example.domain.model.Community
+import com.example.domain.model.Meeting
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
@@ -33,51 +37,73 @@ fun CommunityDetailScreen(modifier: Modifier = Modifier, onMeetingCardClickListe
     }
     when (val state = communityDetailState) {
         is CommunityDetailState.Loading -> ProgressIndicator()
-        is CommunityDetailState.CommunityDetail ->
-            LazyColumn(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = MeetingTheme.dimensions.dimension106,
-                        start = MeetingTheme.dimensions.dimension16,
-                        end = MeetingTheme.dimensions.dimension16,
-                        bottom = MeetingTheme.dimensions.dimension100,
-                    )
+        is CommunityDetailState.CommunityDetail -> CommunityDetailContent(
+            modifier = modifier,
+            fullText = fullText,
+            community = state.community,
+            meetingList = state.meetingList,
+            onTextClickListener = { fullText = !fullText }) {
+            onMeetingCardClickListener()
+        }
+    }
+}
+
+@Composable
+private fun CommunityDetailContent(
+    modifier: Modifier = Modifier,
+    fullText: Boolean,
+    community: Community,
+    meetingList: List<Meeting>,
+    onTextClickListener: () -> Unit,
+    onMeetingCardClickListener: () -> Unit
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(
+                top = MeetingTheme.dimensions.dimension106,
+                start = MeetingTheme.dimensions.dimension16,
+                end = MeetingTheme.dimensions.dimension16,
+                bottom = MeetingTheme.dimensions.dimension100,
+            )
+    ) {
+        item {
+            TextForDescription(
+                fullText = fullText,
+                description = community.description,
+                textMaxLine = TEXT_MAX_LINE
             ) {
-                item {
-                    TextForDescription(
-                        fullText = fullText,
-                        description = state.community.description,
-                        textMaxLine = TEXT_MAX_LINE
-                    ) {
-                        fullText = !fullText
-                    }
-                }
-                item {
-                    TextBody1(
-                        modifier = Modifier.padding(
-                            bottom = MeetingTheme.dimensions.dimension20
-                        ),
-                        text = stringResource(id = R.string.community_meetings),
-                        color = MeetingTheme.colors.neutralWeak,
-                    )
-                }
-                items(state.meetingList) { meeting ->
-                    MeetingCard(
-                        modifier = Modifier
-                            .padding(bottom = MeetingTheme.dimensions.dimension16)
-                            .height(MeetingTheme.dimensions.dimension88),
-                        meeting = meeting,
-                        onMeetingCardClickListener = onMeetingCardClickListener
-                    )
-                }
+                onTextClickListener()
             }
+        }
+        item {
+            TextBody1(
+                modifier = Modifier.padding(
+                    bottom = MeetingTheme.dimensions.dimension20
+                ),
+                text = stringResource(id = R.string.community_meetings),
+                color = MeetingTheme.colors.neutralWeak,
+            )
+        }
+        items(meetingList) { meeting ->
+            MeetingCard(
+                modifier = Modifier
+                    .padding(bottom = MeetingTheme.dimensions.dimension16)
+                    .height(MeetingTheme.dimensions.dimension88),
+                meeting = meeting,
+                onMeetingCardClickListener = onMeetingCardClickListener
+            )
+        }
     }
 }
 
 @Preview
 @Composable
 fun CommunityDetailScreenPreview() {
-    CommunityDetailScreen {
+    CommunityDetailContent(
+        fullText = false,
+        community = mockCommunity,
+        meetingList = mockListMeetings,
+        onTextClickListener = { }) {
     }
 }
