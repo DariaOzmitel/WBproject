@@ -6,7 +6,7 @@ import com.example.domain.model.Meeting
 class GetMeetingUseCase(
     private val repository: MeetingRepository
 ) {
-    operator fun invoke(): Meeting {
-        return repository.getMeeting()
+    operator fun invoke(meetingId: Int): Meeting {
+        return repository.getMeeting(meetingId)
     }
 }

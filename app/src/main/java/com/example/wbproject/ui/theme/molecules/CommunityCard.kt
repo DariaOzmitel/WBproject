@@ -83,7 +83,7 @@ fun CommunityCard(
 fun CommunityCardColumn(
     modifier: Modifier = Modifier,
     communityList: List<Community>,
-    onCommunityCardClickListener: () -> Unit = {}
+    onCommunityCardClickListener: (Int) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier,
@@ -94,7 +94,7 @@ fun CommunityCardColumn(
                 modifier = Modifier
                     .height(MeetingTheme.dimensions.dimension68),
                 community = community,
-                onCommunityCardClickListener = onCommunityCardClickListener
+                onCommunityCardClickListener = { onCommunityCardClickListener(community.id) }
             )
         }
     }

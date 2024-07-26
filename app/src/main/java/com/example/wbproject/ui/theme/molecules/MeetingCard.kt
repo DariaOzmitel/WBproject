@@ -42,10 +42,10 @@ fun MeetingCard(
     modifier: Modifier = Modifier,
     meeting: Meeting,
     isEnded: Boolean = false,
-    onMeetingCardClickListener: () -> Unit = {}
+    onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
     Card(
-        modifier = modifier.clickable { onMeetingCardClickListener() },
+        modifier = modifier.clickable { onMeetingCardClickListener(meeting.id) },
         shape = RectangleShape, colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -101,7 +101,7 @@ fun MeetingCardColumn(
     modifier: Modifier = Modifier,
     meetingList: List<Meeting>,
     isEnded: Boolean = false,
-    onMeetingCardClickListener: () -> Unit = {}
+    onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier,
@@ -113,7 +113,7 @@ fun MeetingCardColumn(
                     .height(MeetingTheme.dimensions.dimension88),
                 meeting = meeting,
                 isEnded = isEnded,
-                onMeetingCardClickListener
+                onMeetingCardClickListener = onMeetingCardClickListener
             )
         }
     }

@@ -35,7 +35,10 @@ import org.koin.androidx.compose.koinViewModel
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit = {}) {
+fun MeetingListScreen(
+    modifier: Modifier = Modifier,
+    onMeetingCardClickListener: (Int) -> Unit = {}
+) {
 
     var searchText by remember {
         mutableStateOf("")

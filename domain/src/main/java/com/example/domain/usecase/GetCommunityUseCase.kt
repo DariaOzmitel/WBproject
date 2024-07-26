@@ -6,7 +6,7 @@ import com.example.domain.model.Community
 class GetCommunityUseCase(
     private val repository: MeetingRepository
 ) {
-    operator fun invoke(): Community {
-        return repository.getCommunity()
+    operator fun invoke(communityId: Int): Community {
+        return repository.getCommunity(communityId)
     }
 }

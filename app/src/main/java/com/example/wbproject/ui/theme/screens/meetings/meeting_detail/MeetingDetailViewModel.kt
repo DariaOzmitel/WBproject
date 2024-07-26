@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class MeetingDetailViewModel(
+    meetingId: Int,
     getMeetingUseCase: GetMeetingUseCase
 ) : ViewModel() {
     private val meetingDetailStateMutable: MutableStateFlow<MeetingDetailState> =
@@ -21,7 +22,7 @@ internal class MeetingDetailViewModel(
 
     init {
         viewModelScope.launch {
-            val meeting = getMeetingUseCase.invoke()
+            val meeting = getMeetingUseCase.invoke(meetingId)
             val mapUrl = mockMapUrl
             delay(500)
             meetingDetailStateMutable.update {

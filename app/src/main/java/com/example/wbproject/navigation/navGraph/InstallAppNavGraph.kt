@@ -25,7 +25,7 @@ fun InstallAppNavGraph() {
         meetingListScreenContent = {
             MainScreen(navigationState = navigationState) {
                 MeetingListScreen(
-                    onMeetingCardClickListener = { navigationState.navigateTo(Screen.MeetingDetail.route) }
+                    onMeetingCardClickListener = { navigationState.navigateToMeetingDetail(it) }
                 )
             }
         },
@@ -33,7 +33,9 @@ fun InstallAppNavGraph() {
             MainScreen(navigationState = navigationState) {
                 CommunityListScreen(
                     onCommunityCardClickListener =
-                    { navigationState.navigateTo(Screen.CommunityDetail.route) }
+                    {
+                        navigationState.navigateToCommunityDetail(it)
+                    }
                 )
             }
         },
@@ -65,18 +67,20 @@ fun InstallAppNavGraph() {
                 ProfileScreen()
             }
         },
-        communityDetailScreenContent = {
+        communityDetailScreenContent = { communityId ->
             MainScreen(navigationState = navigationState) {
-                CommunityDetailScreen(onMeetingCardClickListener = {
-                    navigationState.navigateTo(
-                        Screen.MeetingDetail.route
-                    )
-                })
+                CommunityDetailScreen(
+                    communityId = communityId,
+                    onMeetingCardClickListener = {
+                        navigationState.navigateTo(
+                            Screen.MeetingDetail.route
+                        )
+                    })
             }
         },
-        meetingDetailScreenContent = {
+        meetingDetailScreenContent = { meetingId ->
             MainScreen(navigationState = navigationState) {
-                MeetingDetailScreen()
+                MeetingDetailScreen(meetingId = meetingId)
             }
         },
         enterPhoneScreenContent = {
@@ -101,7 +105,8 @@ fun InstallAppNavGraph() {
         },
         splashScreenContent = {
             SplashScreen(
-                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
+//                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
+                animationEndListener = { navigationState.navigateTo(Screen.MeetingsList.route) }
             )
         })
 }

@@ -1,9 +1,7 @@
 package com.example.data.repository
 
-import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockCommunityList
 import com.example.data.mockData.mockListMeetings
-import com.example.data.mockData.mockMeeting
 import com.example.data.mockData.mockUser
 import com.example.domain.MeetingRepository
 import com.example.domain.model.Community
@@ -15,16 +13,16 @@ internal class MeetingRepositoryImpl() : MeetingRepository {
         return mockCommunityList
     }
 
-    override fun getCommunity(): Community {
-        return mockCommunity
+    override fun getCommunity(communityId: Int): Community {
+        return mockCommunityList.first { it.id == communityId }
     }
 
     override fun getMeetingList(): List<Meeting> {
         return mockListMeetings
     }
 
-    override fun getMeeting(): Meeting {
-        return mockMeeting
+    override fun getMeeting(meetingId: Int): Meeting {
+        return mockListMeetings.first { it.id == meetingId }
     }
 
     override fun getUser(): User {

@@ -6,8 +6,8 @@ import com.example.domain.model.User
 
 interface MeetingRepository {
     fun getCommunityList(): List<Community>
-    fun getCommunity(): Community
+    fun getCommunity(communityId: Int): Community
     fun getMeetingList(): List<Meeting>
-    fun getMeeting(): Meeting
+    fun getMeeting(meetingId: Int): Meeting
     fun getUser(): User
 }
