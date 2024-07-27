@@ -3,13 +3,13 @@ package com.example.wbproject.ui.theme.screens.more.my_meetings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.GetMeetingListUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal class MyMeetingViewModel(getMeetingListUseCase: GetMeetingListUseCase) : ViewModel() {
+internal class MyMeetingViewModel(private val getMeetingListUseCase: GetMeetingListUseCase) :
+    ViewModel() {
     private val myMeetingStateMutable: MutableStateFlow<MyMeetingState> = MutableStateFlow(
         MyMeetingState.Loading
     )
@@ -19,13 +19,17 @@ internal class MyMeetingViewModel(getMeetingListUseCase: GetMeetingListUseCase) 
 
     init {
         viewModelScope.launch {
-            val meetingList = getMeetingListUseCase.invoke()
-            delay(500)
-            myMeetingStateMutable.update {
-                MyMeetingState.MyMeetingLists(
-                    meetingListPlanned = meetingList,
-                    meetingListAlreadyPassed = meetingList
-                )
+            getMeetingList()
+        }
+    }
+// TODO()НАДО СДЕЛАТЬ РАЗНЫЕ ЮЗКЕЙСЫ ДЛЯ СПИСКОВ
+
+    private fun getMeetingList() {
+        viewModelScope.launch {
+            getMeetingListUseCase().collect { meetingList ->
+                myMeetingStateMutable.update {
+                    MyMeetingState.MyMeetingLists(meetingList, meetingList)
+                }
             }
         }
     }

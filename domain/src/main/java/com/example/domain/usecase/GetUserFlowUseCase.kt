@@ -2,11 +2,12 @@ package com.example.domain.usecase
 
 import com.example.domain.MeetingRepository
 import com.example.domain.model.User
+import kotlinx.coroutines.flow.Flow
 
-class GetUserUseCase(
+class GetUserFlowUseCase(
     private val repository: MeetingRepository
 ) {
-    operator fun invoke(): User {
-        return repository.getUser()
+    operator fun invoke(): Flow<User> {
+        return repository.getUserFlow()
     }
 }

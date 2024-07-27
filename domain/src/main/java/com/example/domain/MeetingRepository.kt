@@ -3,11 +3,12 @@ package com.example.domain
 import com.example.domain.model.Community
 import com.example.domain.model.Meeting
 import com.example.domain.model.User
+import kotlinx.coroutines.flow.Flow
 
 interface MeetingRepository {
-    fun getCommunityList(): List<Community>
+    fun getCommunityList(): Flow<List<Community>>
     fun getCommunity(communityId: Int): Community
-    fun getMeetingList(): List<Meeting>
+    fun getMeetingList(): Flow<List<Meeting>>
     fun getMeeting(meetingId: Int): Meeting
-    fun getUser(): User
+    fun getUserFlow(): Flow<User>
 }

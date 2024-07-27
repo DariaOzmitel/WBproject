@@ -46,7 +46,7 @@ fun MeetingListScreen(
     val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val viewModel: MeetingListViewModel = koinViewModel()
-    val meetingState by viewModel.getMeetingListFlow().collectAsState()
+    val meetingState by viewModel.getMeetingListStateFlow().collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
     Column(

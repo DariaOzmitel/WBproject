@@ -4,7 +4,7 @@ import com.example.domain.usecase.GetCommunityListUseCase
 import com.example.domain.usecase.GetCommunityUseCase
 import com.example.domain.usecase.GetMeetingListUseCase
 import com.example.domain.usecase.GetMeetingUseCase
-import com.example.domain.usecase.GetUserUseCase
+import com.example.domain.usecase.GetUserFlowUseCase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
@@ -13,5 +13,5 @@ val domainModule = module {
     factoryOf(::GetCommunityListUseCase)
     factoryOf(::GetCommunityUseCase)
     factoryOf(::GetMeetingUseCase)
-    factoryOf(::GetUserUseCase)
+    factoryOf(::GetUserFlowUseCase)
 }

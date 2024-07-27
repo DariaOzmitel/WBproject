@@ -3,7 +3,6 @@ package com.example.wbproject.ui.theme.screens.community
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.GetCommunityListUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -20,9 +19,17 @@ internal class CommunityListViewModel(
 
     init {
         viewModelScope.launch {
-            val communityList = getCommunityListUseCase.invoke()
-            delay(500)
-            communityListStateMutable.update { CommunityListState.CommunityList(communityList = communityList) }
+            getCommunityList()
+        }
+    }
+
+    private fun getCommunityList() {
+        viewModelScope.launch {
+            getCommunityListUseCase().collect { communityList ->
+                communityListStateMutable.update {
+                    CommunityListState.CommunityList(communityList)
+                }
+            }
         }
     }
 }
