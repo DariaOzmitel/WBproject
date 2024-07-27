@@ -90,7 +90,7 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 is MyMeetingState.MyMeetingLists ->
                     when (page) {
                         TabsForMyMeetingList.PLANNED.ordinal ->
-                            state.meetingListPlanned?.let {
+                            state.meetingList?.let {
                                 MeetingCardColumn(
                                     meetingList = it,
                                     onMeetingCardClickListener = onMeetingCardClickListener

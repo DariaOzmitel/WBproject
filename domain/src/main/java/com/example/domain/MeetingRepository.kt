@@ -9,6 +9,7 @@ interface MeetingRepository {
     fun getCommunityListFlow(): Flow<List<Community>>
     fun getCommunityFlow(communityId: Int): Flow<Community>
     fun getMeetingListFlow(): Flow<List<Meeting>>
+    fun getFinishedMeetingListFlow(): Flow<List<Meeting>>
     fun getMeetingFlow(meetingId: Int): Flow<Meeting>
     fun getUserFlow(): Flow<User>
 }

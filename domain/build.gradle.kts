@@ -33,10 +33,12 @@ android {
 }
 
 dependencies {
-    implementation("io.insert-koin:koin-core:3.5.6")
+    implementation(libs.koin.core)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.core.ktx)
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
