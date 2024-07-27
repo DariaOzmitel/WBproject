@@ -16,7 +16,6 @@ internal class ProfileViewModel(private val getUserFlowUseCase: GetUserFlowUseCa
 
     init {
         viewModelScope.launch {
-            delay(500)
             getUserFlow()
         }
     }

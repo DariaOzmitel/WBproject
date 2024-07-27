@@ -48,9 +48,9 @@ fun CommunityDetailScreen(
                 fullText = fullText,
                 community = state.community,
                 meetingList = state.meetingList,
-                onTextClickListener = { fullText = !fullText }) {
-                onMeetingCardClickListener(it)
-            }
+                onTextClickListener = { fullText = !fullText },
+                onMeetingCardClickListener = onMeetingCardClickListener
+            )
     }
 }
 

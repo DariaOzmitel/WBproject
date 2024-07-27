@@ -2,6 +2,7 @@ package com.example.wbproject.ui.theme.screens.community.community_detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.Community
 import com.example.domain.usecase.GetCommunityUseCase
 import com.example.domain.usecase.GetMeetingListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,21 +25,28 @@ internal class CommunityDetailViewModel(
 
     init {
         viewModelScope.launch {
-            getMeetingList()
+            getCommunityById()
         }
     }
 
-    private fun getMeetingList() {
+    private fun getCommunityById() {
         viewModelScope.launch {
-            val community = getCommunityUseCase.invoke(communityId)
-            getMeetingListUseCase().collect { meetingList ->
-                communityDetailStateMutable.update {
-                    CommunityDetailState.CommunityDetail(
-                        community = community,
-                        meetingList = meetingList.filter { it.communityId == community.id })
-                }
+            getCommunityUseCase(communityId).collect{ community->
+                getMeetingListByCommunity(community)
             }
         }
     }
 
+    private fun getMeetingListByCommunity(community: Community) {
+        viewModelScope.launch {
+            getMeetingListUseCase().collect { meetingList ->
+                communityDetailStateMutable.update {
+                    CommunityDetailState.CommunityDetail(
+                        community = community,
+                        meetingList = meetingList.filter { meeting -> meeting.communityId == community.id })
+                }
+
+            }
+        }
+    }
 }

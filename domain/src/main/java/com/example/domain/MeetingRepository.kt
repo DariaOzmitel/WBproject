@@ -6,9 +6,9 @@ import com.example.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface MeetingRepository {
-    fun getCommunityList(): Flow<List<Community>>
-    fun getCommunity(communityId: Int): Community
-    fun getMeetingList(): Flow<List<Meeting>>
-    fun getMeeting(meetingId: Int): Meeting
+    fun getCommunityListFlow(): Flow<List<Community>>
+    fun getCommunityFlow(communityId: Int): Flow<Community>
+    fun getMeetingListFlow(): Flow<List<Meeting>>
+    fun getMeetingFlow(meetingId: Int): Flow<Meeting>
     fun getUserFlow(): Flow<User>
 }

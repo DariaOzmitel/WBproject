@@ -55,9 +55,7 @@ fun InstallAppNavGraph() {
             MainScreen(navigationState = navigationState) {
                 MyMeetingScreen(
                     onMeetingCardClickListener = {
-                        navigationState.navigateTo(
-                            Screen.MeetingDetail.route
-                        )
+                        navigationState.navigateToMeetingDetail(it)
                     }
                 )
             }
@@ -72,9 +70,7 @@ fun InstallAppNavGraph() {
                 CommunityDetailScreen(
                     communityId = communityId,
                     onMeetingCardClickListener = {
-                        navigationState.navigateTo(
-                            Screen.MeetingDetail.route
-                        )
+                        navigationState.navigateToMeetingDetail(it)
                     })
             }
         },

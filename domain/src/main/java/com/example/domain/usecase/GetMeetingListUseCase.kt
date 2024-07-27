@@ -8,6 +8,6 @@ class GetMeetingListUseCase(
     private val repository: MeetingRepository
 ) {
     operator fun invoke(): Flow<List<Meeting>> {
-        return repository.getMeetingList()
+        return repository.getMeetingListFlow()
     }
 }

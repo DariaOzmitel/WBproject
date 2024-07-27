@@ -11,25 +11,28 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 internal class MeetingRepositoryImpl() : MeetingRepository {
-    override fun getCommunityList(): Flow<List<Community>> {
+    override fun getCommunityListFlow(): Flow<List<Community>> {
         return flow {
             emit(mockCommunityList)
         }
     }
 
-    override fun getCommunity(communityId: Int): Community {
-        return mockCommunityList.first { it.id == communityId }
+    override fun getCommunityFlow(communityId: Int): Flow<Community> {
+        return flow {
+            emit(mockCommunityList.first { it.id == communityId })
+        }
     }
 
-    override fun getMeetingList(): Flow<List<Meeting>> {
+    override fun getMeetingListFlow(): Flow<List<Meeting>> {
         return flow {
             emit(mockListMeetings)
         }
-
     }
 
-    override fun getMeeting(meetingId: Int): Meeting {
-        return mockListMeetings.first { it.id == meetingId }
+    override fun getMeetingFlow(meetingId: Int): Flow<Meeting> {
+        return flow {
+            emit(mockListMeetings.first { it.id == meetingId })
+        }
     }
 
     override fun getUserFlow(): Flow<User> {
