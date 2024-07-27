@@ -14,6 +14,14 @@ class NavigationState(
             restoreState = true
         }
     }
+
+    fun navigateToCommunityDetail(communityId: Int) {
+        navHostController.navigate(route = Screen.CommunityDetail.getRouteWithArgs(communityId))
+    }
+
+    fun navigateToMeetingDetail(meetingId: Int) {
+        navHostController.navigate(route = Screen.MeetingDetail.getRouteWithArgs(meetingId))
+    }
 }
 
 @Composable

@@ -35,7 +35,10 @@ import org.koin.androidx.compose.koinViewModel
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit = {}) {
+fun MeetingListScreen(
+    modifier: Modifier = Modifier,
+    onMeetingCardClickListener: (Int) -> Unit = {}
+) {
 
     var searchText by remember {
         mutableStateOf("")
@@ -43,7 +46,7 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
     val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val viewModel: MeetingListViewModel = koinViewModel()
-    val meetingState by viewModel.getMeetingListFlow().collectAsState()
+    val meetingState by viewModel.getMeetingListStateFlow().collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
     Column(

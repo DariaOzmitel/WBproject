@@ -21,7 +21,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun CommunityListScreen(
     modifier: Modifier = Modifier,
-    onCommunityCardClickListener: () -> Unit = {}
+    onCommunityCardClickListener: (Int) -> Unit = {}
 ) {
     var searchText by remember {
         mutableStateOf("")

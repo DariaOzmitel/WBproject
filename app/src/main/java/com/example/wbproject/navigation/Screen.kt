@@ -9,29 +9,48 @@ sealed class Screen(
     object AddProfile : Screen(ROUTE_ADD_PROFILE)
     object MeetingsRoot : Screen(ROUTE_MEETINGS_ROOT)
     object MeetingsList : Screen(ROUTE_MEETINGS_LIST)
-    object MeetingDetail : Screen(ROUTE_MEETING_DETAIL)
+    object MeetingDetail : Screen(ROUTE_MEETING_DETAIL) {
+
+        private const val ROUTE_FOR_ARGS = "meeting_detail"
+
+        fun getRouteWithArgs(meetingId: Int): String {
+            return "$ROUTE_FOR_ARGS/$meetingId"
+        }
+    }
+
     object CommunityList : Screen(ROUTE_COMMUNITY_LIST)
     object CommunityRoot : Screen(ROUTE_COMMUNITY_ROOT)
-    object CommunityDetail : Screen(ROUTE_COMMUNITY_DETAIL)
+    object CommunityDetail : Screen(ROUTE_COMMUNITY_DETAIL) {
+
+        private const val ROUTE_FOR_ARGS = "community_detail"
+
+        fun getRouteWithArgs(communityId: Int): String {
+            return "$ROUTE_FOR_ARGS/$communityId"
+        }
+    }
+
     object MoreRoot : Screen(ROUTE_MORE_ROOT)
     object MoreMenu : Screen(ROUTE_MORE_MENU)
     object Profile : Screen(ROUTE_PROFILE)
     object MyMeetings : Screen(ROUTE_MY_MEETINGS)
 
-    private companion object {
-        const val ROUTE_MEETINGS_ROOT = "meetings root"
-        const val ROUTE_SPLASH = "splash"
-        const val ROUTE_ENTER_PHONE = "enter phone"
-        const val ROUTE_ENTER_PIN = "enter pin"
-        const val ROUTE_ADD_PROFILE = "add profile"
-        const val ROUTE_MEETING_DETAIL = "meeting detail"
-        const val ROUTE_MEETINGS_LIST = "meetings list"
-        const val ROUTE_MY_MEETINGS = "my meetings"
-        const val ROUTE_COMMUNITY_LIST = "community list"
-        const val ROUTE_COMMUNITY_ROOT = "community root"
-        const val ROUTE_COMMUNITY_DETAIL = "community detail"
-        const val ROUTE_MORE_ROOT = "more root"
-        const val ROUTE_MORE_MENU = "more menu"
-        const val ROUTE_PROFILE = "profile"
+    companion object {
+        const val KEY_COMMUNITY_ID = "community_id"
+        const val KEY_MEETING_ID = "meeting_id"
+
+        private const val ROUTE_MEETINGS_ROOT = "meetings_root"
+        private const val ROUTE_SPLASH = "splash"
+        private const val ROUTE_ENTER_PHONE = "enter_phone"
+        private const val ROUTE_ENTER_PIN = "enter_pin"
+        private const val ROUTE_ADD_PROFILE = "add_profile"
+        private const val ROUTE_MEETING_DETAIL = "meeting_detail/{$KEY_MEETING_ID}"
+        private const val ROUTE_MEETINGS_LIST = "meetings_list"
+        private const val ROUTE_MY_MEETINGS = "my_meetings"
+        private const val ROUTE_COMMUNITY_LIST = "community_list"
+        private const val ROUTE_COMMUNITY_ROOT = "community_root"
+        private const val ROUTE_COMMUNITY_DETAIL = "community_detail/{$KEY_COMMUNITY_ID}"
+        private const val ROUTE_MORE_ROOT = "more_root"
+        private const val ROUTE_MORE_MENU = "more_menu"
+        private const val ROUTE_PROFILE = "profile"
     }
 }

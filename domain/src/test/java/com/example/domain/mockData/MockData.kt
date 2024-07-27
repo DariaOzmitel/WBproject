@@ -1,4 +1,4 @@
-package com.example.data.mockData
+package com.example.domain.mockData
 
 import com.example.domain.model.Community
 import com.example.domain.model.Meeting

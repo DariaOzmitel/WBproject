@@ -2,25 +2,33 @@ package com.example.wbproject.ui.theme.screens.meetings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.GetMeetingListUseCase
-import kotlinx.coroutines.delay
+import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal class MeetingListViewModel(getMeetingListUseCase: GetMeetingListUseCase) : ViewModel() {
+internal class MeetingListViewModel(private val getMeetingListUseCase: IGetMeetingListUseCase) :
+    ViewModel() {
     private val meetingListStateMutable: MutableStateFlow<MeetingListState> =
         MutableStateFlow(MeetingListState.Loading)
     private val meetingListState: StateFlow<MeetingListState> = meetingListStateMutable
 
-    fun getMeetingListFlow(): StateFlow<MeetingListState> = meetingListState
+    fun getMeetingListStateFlow(): StateFlow<MeetingListState> = meetingListState
 
     init {
         viewModelScope.launch {
-            val communityList = getMeetingListUseCase.invoke()
-            delay(500)
-            meetingListStateMutable.update { MeetingListState.MeetingList(list = communityList) }
+            getMeetingList()
+        }
+    }
+
+    private fun getMeetingList() {
+        viewModelScope.launch {
+            getMeetingListUseCase().collect { meetingList ->
+                meetingListStateMutable.update {
+                    MeetingListState.MeetingList(meetingList)
+                }
+            }
         }
     }
 }

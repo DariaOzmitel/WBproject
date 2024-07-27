@@ -5,7 +5,7 @@ import com.example.domain.model.Community
 import com.example.domain.usecase.interfaces.IGetCommunityUseCase
 import kotlinx.coroutines.flow.Flow
 
-internal class GetCommunityUseCase(
+internal class GetCommunityUseCaseStub(
     private val repository: MeetingRepository
 ) : IGetCommunityUseCase {
     override operator fun invoke(communityId: Int): Flow<Community> {

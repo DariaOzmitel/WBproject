@@ -1,17 +1,17 @@
-package com.example.data.repository
+package com.example.domain.repository
 
-import com.example.data.mockData.mockCommunityList
-import com.example.data.mockData.mockListMeetingAlreadyPassed
-import com.example.data.mockData.mockListMeetings
-import com.example.data.mockData.mockUser
 import com.example.domain.MeetingRepository
+import com.example.domain.mockData.mockCommunityList
+import com.example.domain.mockData.mockListMeetingAlreadyPassed
+import com.example.domain.mockData.mockListMeetings
+import com.example.domain.mockData.mockUser
 import com.example.domain.model.Community
 import com.example.domain.model.Meeting
 import com.example.domain.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-internal class MeetingRepositoryImpl : MeetingRepository {
+internal class MeetingRepositoryStub : MeetingRepository {
     override fun getCommunityListFlow(): Flow<List<Community>> {
         return flowOf(mockCommunityList)
     }

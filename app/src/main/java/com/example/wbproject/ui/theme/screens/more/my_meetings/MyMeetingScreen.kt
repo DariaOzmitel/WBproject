@@ -32,7 +32,7 @@ import org.koin.androidx.compose.koinViewModel
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
+fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (Int) -> Unit) {
     val viewModel: MyMeetingViewModel = koinViewModel()
     val myMeetingState by viewModel.getMyMeetingFlow().collectAsState()
     val pagerState = rememberPagerState(pageCount = { TabsForMyMeetingList.entries.size })
@@ -90,7 +90,7 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 is MyMeetingState.MyMeetingLists ->
                     when (page) {
                         TabsForMyMeetingList.PLANNED.ordinal ->
-                            state.meetingListPlanned?.let {
+                            state.meetingList?.let {
                                 MeetingCardColumn(
                                     meetingList = it,
                                     onMeetingCardClickListener = onMeetingCardClickListener

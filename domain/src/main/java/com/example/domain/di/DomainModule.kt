@@ -2,16 +2,25 @@ package com.example.domain.di
 
 import com.example.domain.usecase.GetCommunityListUseCase
 import com.example.domain.usecase.GetCommunityUseCase
+import com.example.domain.usecase.GetFinishedMeetingListUseCase
 import com.example.domain.usecase.GetMeetingListUseCase
 import com.example.domain.usecase.GetMeetingUseCase
-import com.example.domain.usecase.GetUserUseCase
+import com.example.domain.usecase.GetUserFlowUseCase
+import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
+import com.example.domain.usecase.interfaces.IGetCommunityUseCase
+import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetMeetingUseCase
+import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
 import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val domainModule = module {
-    factoryOf(::GetMeetingListUseCase)
-    factoryOf(::GetCommunityListUseCase)
-    factoryOf(::GetCommunityUseCase)
-    factoryOf(::GetMeetingUseCase)
-    factoryOf(::GetUserUseCase)
+    factoryOf(::GetMeetingListUseCase) bind IGetMeetingListUseCase::class
+    factoryOf(::GetFinishedMeetingListUseCase) bind IGetFinishedMeetingListUseCase::class
+    factoryOf(::GetCommunityListUseCase) bind IGetCommunityListUseCase::class
+    factoryOf(::GetCommunityUseCase) bind IGetCommunityUseCase::class
+    factoryOf(::GetMeetingUseCase) bind IGetMeetingUseCase::class
+    factoryOf(::GetUserFlowUseCase) bind IGetUserFlowUseCase::class
 }

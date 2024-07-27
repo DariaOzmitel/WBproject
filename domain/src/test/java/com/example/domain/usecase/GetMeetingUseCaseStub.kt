@@ -5,7 +5,7 @@ import com.example.domain.model.Meeting
 import com.example.domain.usecase.interfaces.IGetMeetingUseCase
 import kotlinx.coroutines.flow.Flow
 
-internal class GetMeetingUseCase(
+internal class GetMeetingUseCaseStub(
     private val repository: MeetingRepository
 ) : IGetMeetingUseCase {
     override operator fun invoke(meetingId: Int): Flow<Meeting> {
