@@ -2,13 +2,13 @@ package com.example.wbproject.ui.theme.screens.more.my_meetings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.GetMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal class MyMeetingViewModel(private val getMeetingListUseCase: GetMeetingListUseCase) :
+internal class MyMeetingViewModel(private val getMeetingListUseCase: IGetMeetingListUseCase) :
     ViewModel() {
     private val myMeetingStateMutable: MutableStateFlow<MyMeetingState> = MutableStateFlow(
         MyMeetingState.Loading

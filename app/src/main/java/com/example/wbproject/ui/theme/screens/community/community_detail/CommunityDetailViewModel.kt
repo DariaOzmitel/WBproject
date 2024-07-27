@@ -3,8 +3,8 @@ package com.example.wbproject.ui.theme.screens.community.community_detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Community
-import com.example.domain.usecase.GetCommunityUseCase
-import com.example.domain.usecase.GetMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetCommunityUseCase
+import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 
 internal class CommunityDetailViewModel(
     private val communityId: Int,
-    private val getCommunityUseCase: GetCommunityUseCase,
-    private val getMeetingListUseCase: GetMeetingListUseCase
+    private val getCommunityUseCase: IGetCommunityUseCase,
+    private val getMeetingListUseCase: IGetMeetingListUseCase
 ) : ViewModel() {
     private val communityDetailStateMutable: MutableStateFlow<CommunityDetailState> =
         MutableStateFlow(
@@ -31,7 +31,7 @@ internal class CommunityDetailViewModel(
 
     private fun getCommunityById() {
         viewModelScope.launch {
-            getCommunityUseCase(communityId).collect{ community->
+            getCommunityUseCase(communityId).collect { community ->
                 getMeetingListByCommunity(community)
             }
         }
