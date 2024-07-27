@@ -101,8 +101,7 @@ fun InstallAppNavGraph() {
         },
         splashScreenContent = {
             SplashScreen(
-//                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
-                animationEndListener = { navigationState.navigateTo(Screen.MeetingsList.route) }
+                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
             )
         })
 }
