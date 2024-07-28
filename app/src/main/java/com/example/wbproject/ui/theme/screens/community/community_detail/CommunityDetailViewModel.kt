@@ -21,13 +21,13 @@ internal class CommunityDetailViewModel(
         )
     private val communityDetailState: StateFlow<CommunityDetailState> = communityDetailStateMutable
 
-    fun getCommunityDetailFlow(): StateFlow<CommunityDetailState> = communityDetailState
-
     init {
         viewModelScope.launch {
             getCommunityById()
         }
     }
+
+    fun getCommunityDetailFlow(): StateFlow<CommunityDetailState> = communityDetailState
 
     private fun getCommunityById() {
         viewModelScope.launch {

@@ -19,13 +19,13 @@ internal class MyMeetingViewModel(
     )
     private val myMeetingState: StateFlow<MyMeetingState> = myMeetingStateMutable
 
-    fun getMyMeetingFlow(): StateFlow<MyMeetingState> = myMeetingState
-
     init {
         viewModelScope.launch {
             getMeetingList()
         }
     }
+
+    fun getMyMeetingFlow(): StateFlow<MyMeetingState> = myMeetingState
 
     private fun getMeetingList() {
         viewModelScope.launch {

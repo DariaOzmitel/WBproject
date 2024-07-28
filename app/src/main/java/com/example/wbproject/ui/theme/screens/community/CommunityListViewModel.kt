@@ -15,13 +15,13 @@ internal class CommunityListViewModel(
         MutableStateFlow<CommunityListState>(CommunityListState.Loading)
     private val communityListState: StateFlow<CommunityListState> = communityListStateMutable
 
-    fun getCommunityListStateFlow(): StateFlow<CommunityListState> = communityListState
-
     init {
         viewModelScope.launch {
             getCommunityList()
         }
     }
+
+    fun getCommunityListStateFlow(): StateFlow<CommunityListState> = communityListState
 
     private fun getCommunityList() {
         viewModelScope.launch {

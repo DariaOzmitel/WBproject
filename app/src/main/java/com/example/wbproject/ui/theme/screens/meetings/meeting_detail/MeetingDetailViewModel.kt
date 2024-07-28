@@ -17,13 +17,13 @@ internal class MeetingDetailViewModel(
         MutableStateFlow(MeetingDetailState.Loading)
     private val meetingDetailState: StateFlow<MeetingDetailState> = meetingDetailStateMutable
 
-    fun getMeetingDetailFlow(): StateFlow<MeetingDetailState> = meetingDetailState
-
     init {
         viewModelScope.launch {
             getMeeting()
         }
     }
+
+    fun getMeetingDetailFlow(): StateFlow<MeetingDetailState> = meetingDetailState
 
     private fun getMeeting() {
         viewModelScope.launch {

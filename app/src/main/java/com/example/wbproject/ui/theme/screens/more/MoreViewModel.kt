@@ -12,13 +12,13 @@ internal class MoreViewModel(private val getUserFlowUseCase: IGetUserFlowUseCase
     private val moreStateMutable: MutableStateFlow<MoreState> = MutableStateFlow(MoreState.Loading)
     private val moreState: StateFlow<MoreState> = moreStateMutable
 
-    fun getMoreStateFlow(): StateFlow<MoreState> = moreState
-
     init {
         viewModelScope.launch {
             getUser()
         }
     }
+
+    fun getMoreStateFlow(): StateFlow<MoreState> = moreState
 
     private fun getUser() {
         viewModelScope.launch {

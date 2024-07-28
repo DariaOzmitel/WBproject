@@ -14,13 +14,13 @@ internal class MeetingListViewModel(private val getMeetingListUseCase: IGetMeeti
         MutableStateFlow(MeetingListState.Loading)
     private val meetingListState: StateFlow<MeetingListState> = meetingListStateMutable
 
-    fun getMeetingListStateFlow(): StateFlow<MeetingListState> = meetingListState
-
     init {
         viewModelScope.launch {
             getMeetingList()
         }
     }
+
+    fun getMeetingListStateFlow(): StateFlow<MeetingListState> = meetingListState
 
     private fun getMeetingList() {
         viewModelScope.launch {
