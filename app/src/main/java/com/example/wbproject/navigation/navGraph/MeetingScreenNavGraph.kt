@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.wbproject.navigation.Screen
+import com.example.wbproject.orZero
 
 fun NavGraphBuilder.meetingScreenNavGraph(
     meetingListScreenContent: @Composable () -> Unit,
@@ -26,7 +27,7 @@ fun NavGraphBuilder.meetingScreenNavGraph(
                 }
             )
         ) {
-            val meetingId = it.arguments?.getInt(Screen.KEY_MEETING_ID) ?: 0
+            val meetingId = it.arguments?.getInt(Screen.KEY_MEETING_ID).orZero()
             meetingDetailScreenContent(meetingId)
         }
     }
