@@ -2,15 +2,14 @@ package com.example.wbproject.ui.theme.screens.login.add_profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyEditText
@@ -21,7 +20,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
     val viewModel: AddProfileViewModel = koinViewModel()
-    val user by viewModel.getUserFlow().collectAsState()
+    val user by viewModel.getUserFlow().collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -48,12 +47,13 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension56),
             hint = stringResource(
                 id = R.string.last_name_optional
-            ), displayText = user.lastName ?: "", onValueChange = { viewModel.updateLastName(it) }
+            ),
+            displayText = user.lastName.orEmpty(),
+            onValueChange = { viewModel.updateLastName(it) }
         )
         MyButton(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(MeetingTheme.dimensions.dimension52),
+                .fillMaxWidth(),
             text = stringResource(id = R.string.save),
             onClick = onButtonClickListener,
             enabled = user.name.isNotEmpty()

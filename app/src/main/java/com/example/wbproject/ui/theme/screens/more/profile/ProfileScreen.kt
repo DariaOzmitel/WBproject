@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockUser
 import com.example.domain.model.User
@@ -34,7 +34,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier) {
     val viewModel: ProfileViewModel = koinViewModel()
-    val profileState by viewModel.getProfileStateFlow().collectAsState()
+    val profileState by viewModel.getProfileStateFlow().collectAsStateWithLifecycle()
 
     when (val state = profileState) {
         is ProfileState.Loading -> ProgressIndicator()

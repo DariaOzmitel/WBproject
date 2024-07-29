@@ -14,7 +14,6 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockUser
 import com.example.domain.model.User
@@ -42,7 +42,7 @@ fun MoreScreen(
     onMyMeetingsItemClickListener: () -> Unit
 ) {
     val viewModel: MoreViewModel = koinViewModel()
-    val moreState by viewModel.getMoreStateFlow().collectAsState()
+    val moreState by viewModel.getMoreStateFlow().collectAsStateWithLifecycle()
     Column(modifier = modifier.padding(top = MeetingTheme.dimensions.dimension106)) {
         when (val state = moreState) {
             is MoreState.Loading -> ProgressIndicator(modifier = Modifier.size(MeetingTheme.dimensions.dimension40))

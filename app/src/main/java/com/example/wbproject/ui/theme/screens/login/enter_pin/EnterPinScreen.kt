@@ -2,15 +2,13 @@ package com.example.wbproject.ui.theme.screens.login.enter_pin
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.CustomPin
@@ -21,11 +19,10 @@ import org.koin.androidx.compose.koinViewModel
 
 const val TEST_RIGHT_PIN = "1234"
 
-@Preview
 @Composable
 fun EnterPinScreen(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Unit = {}) {
     val viewModel: EnterPinViewModel = koinViewModel()
-    val pin by viewModel.getPinFlow().collectAsState()
+    val pin by viewModel.getPinFlow().collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -61,8 +58,7 @@ fun EnterPinScreen(modifier: Modifier = Modifier, correctPinEnteredListener: () 
         )
         MyTextButton(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(MeetingTheme.dimensions.dimension52),
+                .fillMaxWidth(),
             text = stringResource(id = R.string.request_code_again)
         )
     }

@@ -1,5 +1,6 @@
 package com.example.wbproject.ui.theme.molecules
 
+import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,7 +20,7 @@ import com.example.wbproject.ui.theme.elements.text.TextSubheading1
 fun MyTopBar(
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean,
-    rightIconResId: Int? = null,
+    @DrawableRes rightIconResId: Int? = null,
     title: String?,
     navigateUp: () -> Unit = {},
     onRightButtonClickListener: () -> Unit = {}

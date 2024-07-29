@@ -4,20 +4,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.molecules.CommunityCardColumn
 import org.koin.androidx.compose.koinViewModel
 
-@Preview
 @Composable
 fun CommunityListScreen(
     modifier: Modifier = Modifier,
@@ -27,7 +25,7 @@ fun CommunityListScreen(
         mutableStateOf("")
     }
     val viewModel: CommunityListViewModel = koinViewModel()
-    val communityListState by viewModel.getCommunityListStateFlow().collectAsState()
+    val communityListState by viewModel.getCommunityListStateFlow().collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .fillMaxSize()

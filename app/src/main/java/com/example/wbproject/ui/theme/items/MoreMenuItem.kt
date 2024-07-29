@@ -1,10 +1,11 @@
 package com.example.wbproject.ui.theme.items
 
+import androidx.annotation.DrawableRes
 import com.example.wbproject.R
 
 sealed class MoreMenuItem(
     val titleResId: Int,
-    val iconResId: Int,
+    @DrawableRes val iconResId: Int,
 ) {
     data object MyMeetings : MoreMenuItem(
         titleResId = R.string.my_meetings,
