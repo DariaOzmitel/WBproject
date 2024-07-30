@@ -10,7 +10,6 @@ import com.example.wbproject.ui.theme.screens.meetings.meeting_detail.MeetingDet
 import com.example.wbproject.ui.theme.screens.more.MoreViewModel
 import com.example.wbproject.ui.theme.screens.more.my_meetings.MyMeetingViewModel
 import com.example.wbproject.ui.theme.screens.more.profile.ProfileViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -19,13 +18,9 @@ val appModule = module {
     viewModelOf(::EnterPinViewModel)
     viewModelOf(::AddProfileViewModel)
     viewModelOf(::MeetingListViewModel)
-    viewModel { parameters ->
-        MeetingDetailViewModel(meetingId = parameters.get(), get())
-    }
+    viewModelOf(::MeetingDetailViewModel)
     viewModelOf(::CommunityListViewModel)
-    viewModel { parameters ->
-        CommunityDetailViewModel(communityId = parameters.get(), get(), get())
-    }
+    viewModelOf(::CommunityDetailViewModel)
     viewModelOf(::ProfileViewModel)
     viewModelOf(::MoreViewModel)
     viewModelOf(::MyMeetingViewModel)

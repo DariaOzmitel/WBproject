@@ -92,7 +92,7 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 is MyMeetingState.Loading -> ProgressIndicator()
                 is MyMeetingState.MyMeetingLists ->
                     HorizontalPagerContent(
-                        page = page,
+                        page = TabsForMyMeetingList.entries[page],
                         meetingList = state.meetingList,
                         meetingListAlreadyPassed = state.meetingListAlreadyPassed,
                         onMeetingCardClickListener = onMeetingCardClickListener
@@ -104,13 +104,13 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
 
 @Composable
 private fun HorizontalPagerContent(
-    page: Int,
+    page: TabsForMyMeetingList,
     meetingList: List<Meeting>?,
     meetingListAlreadyPassed: List<Meeting>?,
     onMeetingCardClickListener: (Int) -> Unit
 ) {
     when (page) {
-        TabsForMyMeetingList.PLANNED.ordinal ->
+        TabsForMyMeetingList.PLANNED ->
             meetingList?.let {
                 MeetingCardColumn(
                     meetingList = it,
@@ -118,7 +118,7 @@ private fun HorizontalPagerContent(
                 )
             }
 
-        TabsForMyMeetingList.ALREADY_PASSED.ordinal ->
+        TabsForMyMeetingList.ALREADY_PASSED ->
             meetingListAlreadyPassed?.let {
                 MeetingCardColumn(
                     meetingList = it,
@@ -133,7 +133,7 @@ private fun HorizontalPagerContent(
 @Composable
 fun MyMeetingScreenPreview() {
     HorizontalPagerContent(
-        page = TabsForMyMeetingList.PLANNED.ordinal,
+        page = TabsForMyMeetingList.ALREADY_PASSED,
         meetingList = mockListMeetings,
         meetingListAlreadyPassed = mockListMeetingAlreadyPassed
     ) {
