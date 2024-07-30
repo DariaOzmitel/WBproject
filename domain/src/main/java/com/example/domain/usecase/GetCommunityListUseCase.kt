@@ -2,11 +2,13 @@ package com.example.domain.usecase
 
 import com.example.domain.MeetingRepository
 import com.example.domain.model.Community
+import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
+import kotlinx.coroutines.flow.Flow
 
-class GetCommunityListUseCase(
+internal class GetCommunityListUseCase(
     private val repository: MeetingRepository
-) {
-    operator fun invoke(): List<Community> {
-        return repository.getCommunityList()
+) : IGetCommunityListUseCase {
+    override operator fun invoke(): Flow<List<Community>> {
+        return repository.getCommunityListFlow()
     }
 }

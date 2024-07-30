@@ -4,7 +4,7 @@ import com.example.domain.model.Meeting
 
 sealed class MyMeetingState {
     data class MyMeetingLists(
-        val meetingListPlanned: List<Meeting>?,
+        val meetingList: List<Meeting>?,
         val meetingListAlreadyPassed: List<Meeting>?,
     ) : MyMeetingState()
 

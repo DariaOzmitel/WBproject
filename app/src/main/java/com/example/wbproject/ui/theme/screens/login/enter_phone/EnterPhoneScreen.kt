@@ -2,16 +2,15 @@ package com.example.wbproject.ui.theme.screens.login.enter_phone
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.CustomPhoneNumber
@@ -25,7 +24,7 @@ private const val PHONE_LENGTH = 10
 @Composable
 fun EnterPhoneScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
     val viewModel: EnterPhoneViewModel = koinViewModel()
-    val phone by viewModel.getPhoneFlow().collectAsState()
+    val phone by viewModel.getPhoneFlow().collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -55,8 +54,7 @@ fun EnterPhoneScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
             onValueChangeClickListener = { viewModel.updatePhone(it) })
         MyButton(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(MeetingTheme.dimensions.dimension52),
+                .fillMaxWidth(),
             text = stringResource(id = R.string.resume),
             onClick = onButtonClickListener,
             enabled = phone.length == PHONE_LENGTH

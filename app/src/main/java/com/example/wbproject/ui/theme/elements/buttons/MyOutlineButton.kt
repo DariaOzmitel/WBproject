@@ -1,5 +1,6 @@
 package com.example.wbproject.ui.theme.elements.buttons
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -30,7 +31,7 @@ fun MyOutlinedButton(
     secondaryColor: Color = Color.White,
     onClick: () -> Unit = {},
     enabled: Boolean = true,
-    iconResId: Int? = null,
+    @DrawableRes iconResId: Int? = null,
     text: String? = null
 ) {
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {

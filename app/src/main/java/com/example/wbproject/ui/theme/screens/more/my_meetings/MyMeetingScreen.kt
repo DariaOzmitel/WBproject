@@ -12,7 +12,6 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -20,6 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.data.mockData.mockListMeetingAlreadyPassed
+import com.example.data.mockData.mockListMeetings
+import com.example.domain.model.Meeting
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.text.TextBody1
@@ -32,9 +35,9 @@ import org.koin.androidx.compose.koinViewModel
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit) {
+fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (Int) -> Unit) {
     val viewModel: MyMeetingViewModel = koinViewModel()
-    val myMeetingState by viewModel.getMyMeetingFlow().collectAsState()
+    val myMeetingState by viewModel.getMyMeetingFlow().collectAsStateWithLifecycle()
     val pagerState = rememberPagerState(pageCount = { TabsForMyMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
@@ -88,32 +91,51 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
             when (val state = myMeetingState) {
                 is MyMeetingState.Loading -> ProgressIndicator()
                 is MyMeetingState.MyMeetingLists ->
-                    when (page) {
-                        TabsForMyMeetingList.PLANNED.ordinal ->
-                            state.meetingListPlanned?.let {
-                                MeetingCardColumn(
-                                    meetingList = it,
-                                    onMeetingCardClickListener = onMeetingCardClickListener
-                                )
-                            }
-
-                        TabsForMyMeetingList.ALREADY_PASSED.ordinal ->
-                            state.meetingListAlreadyPassed?.let {
-                                MeetingCardColumn(
-                                    meetingList = it,
-                                    isEnded = true,
-                                    onMeetingCardClickListener = onMeetingCardClickListener
-                                )
-                            }
-                    }
+                    HorizontalPagerContent(
+                        page = TabsForMyMeetingList.entries[page],
+                        meetingList = state.meetingList,
+                        meetingListAlreadyPassed = state.meetingListAlreadyPassed,
+                        onMeetingCardClickListener = onMeetingCardClickListener
+                    )
             }
         }
+    }
+}
+
+@Composable
+private fun HorizontalPagerContent(
+    page: TabsForMyMeetingList,
+    meetingList: List<Meeting>?,
+    meetingListAlreadyPassed: List<Meeting>?,
+    onMeetingCardClickListener: (Int) -> Unit
+) {
+    when (page) {
+        TabsForMyMeetingList.PLANNED ->
+            meetingList?.let {
+                MeetingCardColumn(
+                    meetingList = it,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
+            }
+
+        TabsForMyMeetingList.ALREADY_PASSED ->
+            meetingListAlreadyPassed?.let {
+                MeetingCardColumn(
+                    meetingList = it,
+                    isEnded = true,
+                    onMeetingCardClickListener = onMeetingCardClickListener
+                )
+            }
     }
 }
 
 @Preview
 @Composable
 fun MyMeetingScreenPreview() {
-    MyMeetingScreen {
+    HorizontalPagerContent(
+        page = TabsForMyMeetingList.ALREADY_PASSED,
+        meetingList = mockListMeetings,
+        meetingListAlreadyPassed = mockListMeetingAlreadyPassed
+    ) {
     }
 }

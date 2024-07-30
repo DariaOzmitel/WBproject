@@ -12,7 +12,6 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MySearchTextField
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
@@ -35,7 +35,10 @@ import org.koin.androidx.compose.koinViewModel
     ExperimentalFoundationApi::class
 )
 @Composable
-fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: () -> Unit = {}) {
+fun MeetingListScreen(
+    modifier: Modifier = Modifier,
+    onMeetingCardClickListener: (Int) -> Unit = {}
+) {
 
     var searchText by remember {
         mutableStateOf("")
@@ -43,7 +46,7 @@ fun MeetingListScreen(modifier: Modifier = Modifier, onMeetingCardClickListener:
     val pagerState = rememberPagerState(pageCount = { TabsForMeetingList.entries.size })
     val selectedTabIndex = pagerState.currentPage
     val viewModel: MeetingListViewModel = koinViewModel()
-    val meetingState by viewModel.getMeetingListFlow().collectAsState()
+    val meetingState by viewModel.getMeetingListStateFlow().collectAsStateWithLifecycle()
     val coroutineScope = rememberCoroutineScope()
 
     Column(

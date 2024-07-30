@@ -102,7 +102,7 @@ fun CustomPhoneNumber(
                             )
                         }
                     )
-                    val isDividerVisible = index != DropdownMenuItems.entries.size - 1
+                    val isDividerVisible = index != DropdownMenuItems.entries.lastIndex
                     if (isDividerVisible) {
                         HorizontalDivider()
                     }

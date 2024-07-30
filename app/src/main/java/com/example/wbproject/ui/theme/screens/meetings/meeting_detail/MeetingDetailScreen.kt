@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -22,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockMapUrl
 import com.example.data.mockData.mockMeeting
@@ -35,13 +35,14 @@ import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
 import com.example.wbproject.ui.theme.molecules.TextForDescription
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 private const val TEXT_MAX_LINE = 8
 
 @Composable
-fun MeetingDetailScreen(modifier: Modifier = Modifier) {
-    val viewModel: MeetingDetailViewModel = koinViewModel()
-    val meetingDetailState by viewModel.getMeetingDetailFlow().collectAsState()
+fun MeetingDetailScreen(modifier: Modifier = Modifier, meetingId: Int) {
+    val viewModel: MeetingDetailViewModel = koinViewModel { parametersOf(meetingId) }
+    val meetingDetailState by viewModel.getMeetingDetailFlow().collectAsStateWithLifecycle()
     var fullText by rememberSaveable {
         mutableStateOf(false)
     }
@@ -51,6 +52,7 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
     when (val state = meetingDetailState) {
         is MeetingDetailState.Loading -> ProgressIndicator()
         is MeetingDetailState.MeetingDetail -> MeetingDetailContent(
+            modifier = modifier,
             meeting = state.meeting,
             mapUrl = state.mapUrl,
             fullMap = fullMap,
@@ -131,8 +133,7 @@ private fun MeetingDetailContent(
             item {
                 MyButton(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(MeetingTheme.dimensions.dimension52),
+                        .fillMaxWidth(),
                     text = stringResource(id = R.string.i_am_going_to_a_meeting),
                 )
             }

@@ -42,10 +42,12 @@ fun MeetingCard(
     modifier: Modifier = Modifier,
     meeting: Meeting,
     isEnded: Boolean = false,
-    onMeetingCardClickListener: () -> Unit = {}
+    onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
     Card(
-        modifier = modifier.clickable { onMeetingCardClickListener() },
+        modifier = modifier
+            .clickable { onMeetingCardClickListener(meeting.id) }
+            .padding(top = MeetingTheme.dimensions.dimension4),
         shape = RectangleShape, colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -57,7 +59,7 @@ fun MeetingCard(
         ) {
             AsyncImage(
                 modifier = Modifier
-                    .padding(end = MeetingTheme.dimensions.dimension8)
+                    .padding(end = MeetingTheme.dimensions.dimension12)
                     .size(MeetingTheme.dimensions.dimension50)
                     .clip(RoundedCornerShape(16.dp)),
                 contentScale = ContentScale.Crop,
@@ -66,14 +68,16 @@ fun MeetingCard(
             )
             Column(
                 modifier = Modifier
-                    .height(MeetingTheme.dimensions.dimension68)
+                    .padding(bottom = MeetingTheme.dimensions.dimension12)
                     .weight(1f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 TextBody1(
+                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension6),
                     text = meeting.name
                 )
                 TextMetadata1(
+                    modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension8),
                     text = stringResource(
                         id = R.string.date_city_template,
                         meeting.date,
@@ -101,7 +105,7 @@ fun MeetingCardColumn(
     modifier: Modifier = Modifier,
     meetingList: List<Meeting>,
     isEnded: Boolean = false,
-    onMeetingCardClickListener: () -> Unit = {}
+    onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier,
@@ -109,11 +113,10 @@ fun MeetingCardColumn(
     ) {
         items(meetingList) { meeting ->
             MeetingCard(
-                modifier = Modifier
-                    .height(MeetingTheme.dimensions.dimension88),
+                modifier = Modifier.height(MeetingTheme.dimensions.dimension88),
                 meeting = meeting,
                 isEnded = isEnded,
-                onMeetingCardClickListener
+                onMeetingCardClickListener = onMeetingCardClickListener
             )
         }
     }
