@@ -7,11 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.wbproject.navigation.Screen
-import com.example.wbproject.orZero
 
 fun NavGraphBuilder.communityScreenNavGraph(
     communityListScreenContent: @Composable () -> Unit,
-    communityDetailScreenContent: @Composable (Int) -> Unit,
+    communityDetailScreenContent: @Composable () -> Unit,
 ) {
     navigation(
         startDestination = Screen.CommunityList.route,
@@ -27,8 +26,7 @@ fun NavGraphBuilder.communityScreenNavGraph(
                 }
             )
         ) {
-            val communityId = it.arguments?.getInt(Screen.KEY_COMMUNITY_ID).orZero()
-            communityDetailScreenContent(communityId)
+            communityDetailScreenContent()
         }
     }
 }

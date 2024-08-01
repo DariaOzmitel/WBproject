@@ -65,18 +65,17 @@ fun InstallAppNavGraph() {
                 ProfileScreen()
             }
         },
-        communityDetailScreenContent = { communityId ->
+        communityDetailScreenContent = {
             MainScreen(navigationState = navigationState) {
                 CommunityDetailScreen(
-                    communityId = communityId,
                     onMeetingCardClickListener = {
                         navigationState.navigateToMeetingDetail(it)
                     })
             }
         },
-        meetingDetailScreenContent = { meetingId ->
+        meetingDetailScreenContent = {
             MainScreen(navigationState = navigationState) {
-                MeetingDetailScreen(meetingId = meetingId)
+                MeetingDetailScreen()
             }
         },
         enterPhoneScreenContent = {
@@ -101,7 +100,8 @@ fun InstallAppNavGraph() {
         },
         splashScreenContent = {
             SplashScreen(
-                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
+                animationEndListener = { navigationState.navigateTo(Screen.MeetingsList.route) }
+//                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
             )
         })
 }

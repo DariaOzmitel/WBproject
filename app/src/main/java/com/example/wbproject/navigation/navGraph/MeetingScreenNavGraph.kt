@@ -7,11 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.wbproject.navigation.Screen
-import com.example.wbproject.orZero
 
 fun NavGraphBuilder.meetingScreenNavGraph(
     meetingListScreenContent: @Composable () -> Unit,
-    meetingDetailScreenContent: @Composable (Int) -> Unit,
+    meetingDetailScreenContent: @Composable () -> Unit,
 ) {
     navigation(
         startDestination = Screen.MeetingsList.route,
@@ -27,8 +26,7 @@ fun NavGraphBuilder.meetingScreenNavGraph(
                 }
             )
         ) {
-            val meetingId = it.arguments?.getInt(Screen.KEY_MEETING_ID).orZero()
-            meetingDetailScreenContent(meetingId)
+            meetingDetailScreenContent()
         }
     }
 }

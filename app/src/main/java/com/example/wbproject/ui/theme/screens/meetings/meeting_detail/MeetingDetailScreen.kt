@@ -35,13 +35,12 @@ import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
 import com.example.wbproject.ui.theme.molecules.TextForDescription
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 private const val TEXT_MAX_LINE = 8
 
 @Composable
-fun MeetingDetailScreen(modifier: Modifier = Modifier, meetingId: Int) {
-    val viewModel: MeetingDetailViewModel = koinViewModel { parametersOf(meetingId) }
+fun MeetingDetailScreen(modifier: Modifier = Modifier) {
+    val viewModel: MeetingDetailViewModel = koinViewModel()
     val meetingDetailState by viewModel.getMeetingDetailFlow().collectAsStateWithLifecycle()
     var fullText by rememberSaveable {
         mutableStateOf(false)
