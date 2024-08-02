@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.login.enter_pin
+package com.example.wbproject.ui.theme.screens.authorization.enter_pin
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

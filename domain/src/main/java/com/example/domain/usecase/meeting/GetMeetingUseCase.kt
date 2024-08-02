@@ -1,7 +1,7 @@
-package com.example.domain.usecase
+package com.example.domain.usecase.meeting
 
-import com.example.domain.MeetingRepository
 import com.example.domain.model.Meeting
+import com.example.domain.repository.MeetingRepository
 import com.example.domain.usecase.interfaces.IGetMeetingUseCase
 import kotlinx.coroutines.flow.Flow
 

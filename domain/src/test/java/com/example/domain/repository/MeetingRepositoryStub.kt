@@ -1,6 +1,5 @@
 package com.example.domain.repository
 
-import com.example.domain.MeetingRepository
 import com.example.domain.mockData.mockCommunityList
 import com.example.domain.mockData.mockListMeetingAlreadyPassed
 import com.example.domain.mockData.mockListMeetings

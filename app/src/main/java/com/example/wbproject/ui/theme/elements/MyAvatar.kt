@@ -15,10 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.LightColors
 import com.example.wbproject.ui.theme.MeetingTheme
@@ -51,6 +53,20 @@ fun MyAvatar(
         painter = painter,
         contentDescription = contentDescription,
         modifier = modifier.clip(RoundedCornerShape(16.dp))
+    )
+}
+
+@Composable
+fun MyAsyncAvatar(
+    modifier: Modifier = Modifier,
+    model: String,
+    contentDescription: String = ""
+) {
+    AsyncImage(
+        model = model,
+        contentDescription = contentDescription,
+        modifier = modifier.clip(RoundedCornerShape(16.dp)),
+        contentScale = ContentScale.Crop
     )
 }
 

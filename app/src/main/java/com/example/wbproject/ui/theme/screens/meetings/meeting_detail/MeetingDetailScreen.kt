@@ -126,7 +126,7 @@ private fun MeetingDetailContent(
             item {
                 RowAvatars(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = meeting.usersList?.map { it.avatarUrl }
+                    avatars = meeting.usersList?.map { it.avatarUrl.orEmpty() }
                 )
             }
             item {

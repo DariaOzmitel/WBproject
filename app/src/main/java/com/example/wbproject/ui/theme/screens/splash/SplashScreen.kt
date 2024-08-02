@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens
+package com.example.wbproject.ui.theme.screens.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -7,18 +7,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieClipSpec
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.wbproject.R
+import org.koin.androidx.compose.koinViewModel
 
 private const val MAX_FRAME_NUM = 90
 private const val ANIMATION_SPEED = 2.0f
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: () -> Unit) {
+fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
+    val viewModel: SplashViewModel = koinViewModel()
+    val authorizationStatus by viewModel.getStatusFlow().collectAsStateWithLifecycle()
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -38,7 +42,11 @@ fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: () -> Unit
             progress = { logoAnimationState.progress }
         )
         if (logoAnimationState.isAtEnd && logoAnimationState.isPlaying) {
-            animationEndListener()
+            when (authorizationStatus) {
+                true -> animationEndListener(authorizationStatus)
+                false -> animationEndListener(authorizationStatus)
+            }
+
         }
     }
 }

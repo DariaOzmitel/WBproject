@@ -1,8 +1,13 @@
-package com.example.wbproject.ui.theme.screens.login.add_profile
+package com.example.wbproject.ui.theme.screens.authorization.add_profile
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -12,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.elements.MyAsyncAvatar
 import com.example.wbproject.ui.theme.elements.MyEditText
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.molecules.ProfileAvatar
@@ -21,6 +27,12 @@ import org.koin.androidx.compose.koinViewModel
 fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
     val viewModel: AddProfileViewModel = koinViewModel()
     val user by viewModel.getUserFlow().collectAsStateWithLifecycle()
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) {
+            it?.let {
+                viewModel.updateAvatar(it.toString())
+            }
+        }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -31,12 +43,29 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ProfileAvatar(
-            modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension32),
-            size = MeetingTheme.dimensions.dimension100, painter = painterResource(
-                id = R.drawable.user
-            )
-        )
+        Box(
+            modifier = Modifier
+                .padding(bottom = MeetingTheme.dimensions.dimension32)
+                .clickable {
+                    launcher.launch("image/*")
+                },
+        ) {
+            when (user.avatarUrl.isNullOrEmpty()) {
+                true -> ProfileAvatar(
+                    size = MeetingTheme.dimensions.dimension100, painter = painterResource(
+                        id = R.drawable.user
+                    )
+                )
+
+                false -> MyAsyncAvatar(
+                    model = user.avatarUrl.orEmpty(),
+                    modifier = Modifier
+                        .size(MeetingTheme.dimensions.dimension128),
+                )
+            }
+        }
+
+
         MyEditText(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
             hint = stringResource(
@@ -55,7 +84,10 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
             modifier = Modifier
                 .fillMaxWidth(),
             text = stringResource(id = R.string.save),
-            onClick = onButtonClickListener,
+            onClick = {
+                viewModel.addUser()
+                onButtonClickListener()
+            },
             enabled = user.name.isNotEmpty()
         )
     }

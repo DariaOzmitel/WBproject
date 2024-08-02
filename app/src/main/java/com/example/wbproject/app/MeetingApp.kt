@@ -12,11 +12,11 @@ import org.koin.core.logger.Level
 class MeetingApp : Application() {
     override fun onCreate() {
         super.onCreate()
-
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@MeetingApp)
             modules(listOf(appModule, dataModule, domainModule))
         }
     }
+
 }

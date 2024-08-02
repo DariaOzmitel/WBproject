@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.login.enter_phone
+package com.example.wbproject.ui.theme.screens.authorization.enter_phone
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

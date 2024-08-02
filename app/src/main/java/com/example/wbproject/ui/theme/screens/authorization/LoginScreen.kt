@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.screens.login
+package com.example.wbproject.ui.theme.screens.authorization
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold

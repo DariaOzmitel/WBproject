@@ -4,18 +4,18 @@ import androidx.compose.runtime.Composable
 import com.example.wbproject.navigation.Screen
 import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.theme.screens.MainScreen
-import com.example.wbproject.ui.theme.screens.SplashScreen
+import com.example.wbproject.ui.theme.screens.authorization.LoginScreen
+import com.example.wbproject.ui.theme.screens.authorization.add_profile.AddProfileScreen
+import com.example.wbproject.ui.theme.screens.authorization.enter_phone.EnterPhoneScreen
+import com.example.wbproject.ui.theme.screens.authorization.enter_pin.EnterPinScreen
 import com.example.wbproject.ui.theme.screens.community.CommunityListScreen
 import com.example.wbproject.ui.theme.screens.community.community_detail.CommunityDetailScreen
-import com.example.wbproject.ui.theme.screens.login.LoginScreen
-import com.example.wbproject.ui.theme.screens.login.add_profile.AddProfileScreen
-import com.example.wbproject.ui.theme.screens.login.enter_phone.EnterPhoneScreen
-import com.example.wbproject.ui.theme.screens.login.enter_pin.EnterPinScreen
 import com.example.wbproject.ui.theme.screens.meetings.MeetingListScreen
 import com.example.wbproject.ui.theme.screens.meetings.meeting_detail.MeetingDetailScreen
 import com.example.wbproject.ui.theme.screens.more.MoreScreen
 import com.example.wbproject.ui.theme.screens.more.my_meetings.MyMeetingScreen
 import com.example.wbproject.ui.theme.screens.more.profile.ProfileScreen
+import com.example.wbproject.ui.theme.screens.splash.SplashScreen
 
 @Composable
 fun InstallAppNavGraph() {
@@ -100,7 +100,13 @@ fun InstallAppNavGraph() {
         },
         splashScreenContent = {
             SplashScreen(
-                animationEndListener = { navigationState.navigateTo(Screen.MeetingsList.route) }
+                animationEndListener = { status ->
+                    when (status) {
+                        true -> navigationState.navigateTo(Screen.MeetingsList.route)
+                        false -> navigationState.navigateTo(Screen.EnterPhone.route)
+                    }
+
+                }
 //                animationEndListener = { navigationState.navigateTo(Screen.EnterPhone.route) }
             )
         })

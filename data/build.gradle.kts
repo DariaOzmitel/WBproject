@@ -34,6 +34,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("io.insert-koin:koin-core:3.5.6")
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
