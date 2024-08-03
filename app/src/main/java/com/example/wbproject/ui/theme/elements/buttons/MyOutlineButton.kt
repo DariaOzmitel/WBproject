@@ -25,7 +25,7 @@ import com.example.wbproject.ui.theme.elements.text.TextSubheading2
 fun MyOutlinedButton(
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier,
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = PaddingValues(vertical = MeetingTheme.dimensions.dimension12),
     primaryColor: Color = LightColors.brandColorDefault,
     pressedColor: Color = LightColors.brandColorDark,
     secondaryColor: Color = Color.White,

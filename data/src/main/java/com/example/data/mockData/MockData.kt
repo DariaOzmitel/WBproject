@@ -77,7 +77,7 @@ val mockMeeting = Meeting(
 val mockMapUrl =
     "https://s3-alpha-sig.figma.com/img/a7d0/b7a1/73dfa50190eed292a52792c6d52bb4be?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lbp~3M0cO0QqU4lp~FXgS4hYwsMVN97j2OZ3HVxb8dEnfLglnfSrPAkaAzJfYEpb69jK3ownyv8GlElutrbD8Ae3vdiQjXpFbOoK-3sgXTVMdTNHCDC7yyRnqwxiCN-9OLFYuwlzvRem139gTzBSrgQ4h0~2T1Gf-XE7I29MM6n3SpJ-xLwwpHaOnDMFG35KkPwHIMVl~RQOSb3CNPrf2CLrbrcuTeLGJdoItKkuEobXERZjHBVTh4PvhxdXMmHiRKykksWEEYGc1UmbH7x~oY1EVQx2UTob2aMF4ro~eu57F8-JthhN3Cd8t9o9Tyi92ZIayuZyICVx9Q7bMzgMoQ__"
 
-val mockListMeetings = listOf(
+val mockListMeetings = mutableListOf(
     mockMeeting,
     Meeting(
         id = 2,
@@ -87,7 +87,8 @@ val mockListMeetings = listOf(
         date = "11.09.24",
         city = "Penza",
         chipsList = mockListChips,
-        communityId = mockCommunity.id
+        communityId = mockCommunity.id,
+        usersList = mockUserList
     ),
     Meeting(
         id = 3,
@@ -107,7 +108,8 @@ val mockListMeetings = listOf(
         date = "25.08.24",
         city = "London",
         chipsList = mockListChips,
-        communityId = 3
+        communityId = 3,
+        usersList = mockUserList
     ),
     Meeting(
         id = 5,
@@ -117,7 +119,8 @@ val mockListMeetings = listOf(
         date = "30.08.24",
         city = "Moscow",
         chipsList = mockListChips,
-        communityId = 4
+        communityId = 4,
+        usersList = mockUserList
     ),
     Meeting(
         id = 6,

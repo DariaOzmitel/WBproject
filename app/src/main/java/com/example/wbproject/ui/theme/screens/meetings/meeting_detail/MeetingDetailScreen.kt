@@ -31,6 +31,7 @@ import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.MyChipRow
 import com.example.wbproject.ui.theme.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
+import com.example.wbproject.ui.theme.elements.buttons.MyOutlinedButton
 import com.example.wbproject.ui.theme.elements.text.TextBody1
 import com.example.wbproject.ui.theme.molecules.RowAvatars
 import com.example.wbproject.ui.theme.molecules.TextForDescription
@@ -56,7 +57,11 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
             mapUrl = state.mapUrl,
             fullMap = fullMap,
             fullText = fullText,
+            attendingStatus = state.attendingStatus,
             onDismissRequestClickListener = { fullMap = false },
+            onButtonClickListener = {
+                viewModel.updateAttendingStatus()
+            },
             onTextClickListener = { fullText = !fullText }) {
             fullMap = true
         }
@@ -70,8 +75,10 @@ private fun MeetingDetailContent(
     mapUrl: String,
     fullMap: Boolean,
     fullText: Boolean,
+    attendingStatus: Boolean,
     onDismissRequestClickListener: () -> Unit,
     onTextClickListener: () -> Unit,
+    onButtonClickListener: () -> Unit,
     onMapClickListener: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -126,14 +133,13 @@ private fun MeetingDetailContent(
             item {
                 RowAvatars(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = meeting.usersList?.map { it.avatarUrl.orEmpty() }
+                    avatars = meeting.usersList.map { it.avatarUrl.orEmpty() }
                 )
             }
             item {
-                MyButton(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    text = stringResource(id = R.string.i_am_going_to_a_meeting),
+                AttendingButton(
+                    attendingStatus = attendingStatus,
+                    onButtonClickListener = onButtonClickListener
                 )
             }
         }
@@ -142,6 +148,27 @@ private fun MeetingDetailContent(
                 onDismissRequestClickListener()
             }
         }
+    }
+}
+
+@Composable
+private fun AttendingButton(attendingStatus: Boolean, onButtonClickListener: () -> Unit) {
+    when (attendingStatus) {
+        true ->
+            MyOutlinedButton(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                onClick = onButtonClickListener,
+                text = stringResource(id = R.string.go_another_time),
+            )
+
+        false ->
+            MyButton(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                onClick = onButtonClickListener,
+                text = stringResource(id = R.string.i_am_going_to_a_meeting),
+            )
     }
 }
 
@@ -168,11 +195,13 @@ private fun IsFullMapContent(mapUrl: String, onDismissRequestClickListener: () -
 @Composable
 private fun MeetingDetailScreenPreview() {
     MeetingDetailContent(
-        meeting = mockMeeting,
+        meeting = mockMeeting.copy(description = ""),
         mapUrl = mockMapUrl,
         fullMap = false,
         fullText = false,
+        attendingStatus = true,
         onDismissRequestClickListener = {},
+        onButtonClickListener = {},
         onTextClickListener = {}) {
     }
 }

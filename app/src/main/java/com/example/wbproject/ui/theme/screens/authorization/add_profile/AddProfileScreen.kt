@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -22,6 +23,8 @@ import com.example.wbproject.ui.theme.elements.MyEditText
 import com.example.wbproject.ui.theme.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.molecules.ProfileAvatar
 import org.koin.androidx.compose.koinViewModel
+
+private const val LAUNCH_INPUT = "image/*"
 
 @Composable
 fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
@@ -46,9 +49,11 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
         Box(
             modifier = Modifier
                 .padding(bottom = MeetingTheme.dimensions.dimension32)
+                .height(MeetingTheme.dimensions.dimension136)
                 .clickable {
-                    launcher.launch("image/*")
+                    launcher.launch(LAUNCH_INPUT)
                 },
+            contentAlignment = Alignment.Center
         ) {
             when (user.avatarUrl.isNullOrEmpty()) {
                 true -> ProfileAvatar(

@@ -9,7 +9,7 @@ data class Meeting(
     val city: String,
     val communityId: Int,
     val chipsList: List<String>?,
-    val usersList: List<User>? = null
+    val usersList: MutableList<User> = mutableListOf()
 ) {
     companion object {
         const val UNDEFINED_ID = 0

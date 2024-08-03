@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.domain.model.User
@@ -17,7 +18,7 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
     override fun getUserFlow(): Flow<User> {
         return context.dataStore.data.map { preferences ->
             User(
-                id = TEST_USER_ID,
+                id = preferences[USER_ID_KEY] ?: TEST_USER_ID,
                 name = preferences[USER_NAME_KEY].orEmpty(),
                 lastName = preferences[USER_LASTNAME_KEY],
                 avatarUrl = preferences[USER_AVATAR_KEY].orEmpty(),
@@ -26,12 +27,14 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
         }
     }
 
-    override fun checkAuthorization() = flowOf(false)
+    override fun checkAuthorization() =
+        flowOf(false)
 //        context.dataStore.data.map { preferences ->
 //        preferences.contains(USER_NAME_KEY)}
 
     override suspend fun addUser(name: String, lastName: String?, avatar: String?) {
         context.dataStore.edit { preferences ->
+            preferences[USER_ID_KEY] = TEST_USER_ID
             preferences[USER_NAME_KEY] = name
             preferences[USER_LASTNAME_KEY] = lastName.orEmpty()
             preferences[USER_AVATAR_KEY] = avatar.orEmpty()
@@ -40,6 +43,7 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
 
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+        private val USER_ID_KEY = intPreferencesKey("user_id")
         private val USER_NAME_KEY = stringPreferencesKey("user_name")
         private val USER_LASTNAME_KEY = stringPreferencesKey("user_lastname")
         private val USER_AVATAR_KEY = stringPreferencesKey("user_avatar")

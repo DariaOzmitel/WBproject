@@ -64,7 +64,7 @@ fun RowAvatars(
                     modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension16),
                     overlappingPercentage = 0.20f
                 ) {
-                    avatars.take(displayedAvatarsNum).forEach {
+                    avatars.take(MAX_DISPLAYED_AVATARS).forEach {
                         AsyncImage(
                             model = it,
                             contentDescription = null,

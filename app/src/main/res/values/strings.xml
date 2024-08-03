@@ -39,4 +39,5 @@
     <string name="name_necessarily">Имя (обязательно)</string>
     <string name="last_name_optional">Фамилия (опционально)</string>
     <string name="save">Сохранить</string>
+    <string name="go_another_time">Схожу в другой раз</string>
 </resources>
