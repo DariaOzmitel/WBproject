@@ -43,71 +43,22 @@ private const val PHONE_LENGTH = 10
 @Composable
 fun CustomPhoneNumber(
     modifier: Modifier = Modifier,
+    expanded: Boolean,
+    selectedCountryCode: DropdownMenuItems,
+    onRowClickListener: () -> Unit,
+    onDismissRequestClickListener: () -> Unit,
+    onItemClickListener: (DropdownMenuItems) -> Unit,
     displayText: String,
     onValueChangeClickListener: (String) -> Unit
 ) {
-    var expanded by rememberSaveable {
-        mutableStateOf(false)
-    }
-    var selectedCountryCode by rememberSaveable { mutableStateOf(DropdownMenuItems.RUSSIA) }
-
     Row(modifier = modifier) {
-        Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
-            Row(
-                modifier = Modifier
-                    .clickable { expanded = true }
-                    .height(MeetingTheme.dimensions.dimension36)
-                    .width(MeetingTheme.dimensions.dimension58)
-                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
-                    .background(MeetingTheme.colors.neutralOffWhite)
-                    .padding(MeetingTheme.dimensions.dimension8),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    modifier = Modifier
-                        .size(MeetingTheme.dimensions.dimension16)
-                        .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
-                    painter = painterResource(id = selectedCountryCode.imageResId),
-                    contentDescription = null
-                )
-                TextBody1(
-                    text = selectedCountryCode.countryCode,
-                    color = MeetingTheme.colors.neutralDisabled
-                )
-            }
-            DropdownMenu(
-                modifier = Modifier
-                    .width(MeetingTheme.dimensions.dimension76)
-                    .background(MeetingTheme.colors.neutralOffWhite),
-                expanded = expanded,
-                onDismissRequest = { expanded = false }) {
-                DropdownMenuItems.entries.forEachIndexed { index, item ->
-                    DropdownMenuItem(text = {
-                        TextBody1(
-                            text = item.countryCode,
-                            color = MeetingTheme.colors.neutralDisabled
-                        )
-                    }, onClick = {
-                        selectedCountryCode = item
-                        expanded = false
-                    },
-                        leadingIcon = {
-                            Image(
-                                modifier = Modifier
-                                    .size(MeetingTheme.dimensions.dimension16)
-                                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
-                                painter = painterResource(id = item.imageResId),
-                                contentDescription = null
-                            )
-                        }
-                    )
-                    val isDividerVisible = index != DropdownMenuItems.entries.lastIndex
-                    if (isDividerVisible) {
-                        HorizontalDivider()
-                    }
-                }
-            }
+        CustomCountryCode(
+            expanded = expanded,
+            selectedCountryCode = selectedCountryCode,
+            onRowClickListener = onRowClickListener,
+            onDismissRequestClickListener = onDismissRequestClickListener
+        ) {
+            onItemClickListener(it)
         }
         Box(
             modifier = Modifier
@@ -136,6 +87,88 @@ fun CustomPhoneNumber(
                 textStyle = MeetingTheme.typography.bodyText1.copy(color = MeetingTheme.colors.neutralDisabled),
                 visualTransformation = PhoneNumberTransformation()
             )
+        }
+    }
+}
+
+@Composable
+private fun CustomCountryCode(
+    expanded: Boolean,
+    selectedCountryCode: DropdownMenuItems,
+    onRowClickListener: () -> Unit,
+    onDismissRequestClickListener: () -> Unit,
+    onItemClickListener: (DropdownMenuItems) -> Unit
+) {
+    Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
+        Row(
+            modifier = Modifier
+                .clickable { onRowClickListener() }
+                .height(MeetingTheme.dimensions.dimension36)
+                .width(MeetingTheme.dimensions.dimension58)
+                .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
+                .background(MeetingTheme.colors.neutralOffWhite)
+                .padding(MeetingTheme.dimensions.dimension8),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier
+                    .size(MeetingTheme.dimensions.dimension16)
+                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                painter = painterResource(id = selectedCountryCode.imageResId),
+                contentDescription = null
+            )
+            TextBody1(
+                text = selectedCountryCode.countryCode,
+                color = MeetingTheme.colors.neutralDisabled
+            )
+        }
+        DropDownMenuContent(
+            expanded = expanded,
+            onDismissRequestClickListener = onDismissRequestClickListener
+        ) {
+            onItemClickListener(it)
+        }
+
+    }
+}
+
+@Composable
+private fun DropDownMenuContent(
+    expanded: Boolean,
+    onDismissRequestClickListener: () -> Unit,
+    onItemClickListener: (DropdownMenuItems) -> Unit
+) {
+    DropdownMenu(
+        modifier = Modifier
+            .width(MeetingTheme.dimensions.dimension76)
+            .background(MeetingTheme.colors.neutralOffWhite),
+        expanded = expanded,
+        onDismissRequest = onDismissRequestClickListener
+    ) {
+        DropdownMenuItems.entries.forEachIndexed { index, item ->
+            DropdownMenuItem(text = {
+                TextBody1(
+                    text = item.countryCode,
+                    color = MeetingTheme.colors.neutralDisabled
+                )
+            }, onClick = {
+                onItemClickListener(item)
+            },
+                leadingIcon = {
+                    Image(
+                        modifier = Modifier
+                            .size(MeetingTheme.dimensions.dimension16)
+                            .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                        painter = painterResource(id = item.imageResId),
+                        contentDescription = null
+                    )
+                }
+            )
+            val isDividerVisible = index != DropdownMenuItems.entries.lastIndex
+            if (isDividerVisible) {
+                HorizontalDivider()
+            }
         }
     }
 }
@@ -191,5 +224,10 @@ fun CustomPhoneNumberPreview() {
     CustomPhoneNumber(
         modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
         displayText = phone,
+        expanded = false,
+        selectedCountryCode = DropdownMenuItems.RUSSIA,
+        onDismissRequestClickListener = {},
+        onItemClickListener = {},
+        onRowClickListener = {},
         onValueChangeClickListener = { phone = it })
 }

@@ -20,9 +20,13 @@ import org.koin.androidx.compose.koinViewModel
 const val TEST_RIGHT_PIN = "1234"
 
 @Composable
-fun EnterPinScreen(modifier: Modifier = Modifier, correctPinEnteredListener: () -> Unit = {}) {
+fun EnterPinScreen(
+    modifier: Modifier = Modifier,
+    correctPinEnteredListener: (String) -> Unit = {}
+) {
     val viewModel: EnterPinViewModel = koinViewModel()
     val pin by viewModel.getPinFlow().collectAsStateWithLifecycle()
+    val phone = viewModel.getPhone()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -45,16 +49,14 @@ fun EnterPinScreen(modifier: Modifier = Modifier, correctPinEnteredListener: () 
         )
         TextBody2(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension40),
-            text = stringResource(
-                id = R.string.test_profile_phone
-            ),
+            text = phone,
         )
         CustomPin(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
             correctPin = TEST_RIGHT_PIN,
             displayText = pin,
             onValueChangeListener = { viewModel.updatePin(it) },
-            correctPinEnteredListener = correctPinEnteredListener
+            correctPinEnteredListener = { correctPinEnteredListener(phone) }
         )
         MyTextButton(
             modifier = Modifier

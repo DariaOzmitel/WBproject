@@ -22,6 +22,14 @@ class NavigationState(
     fun navigateToMeetingDetail(meetingId: Int) {
         navHostController.navigate(route = Screen.MeetingDetail.getRouteWithArgs(meetingId))
     }
+
+    fun navigateToEnterPin(phone: String) {
+        navHostController.navigate(route = Screen.EnterPin.getRouteWithArgs(phone))
+    }
+
+    fun navigateToAddProfile(phone: String) {
+        navHostController.navigate(route = Screen.AddProfile.getRouteWithArgs(phone))
+    }
 }
 
 @Composable

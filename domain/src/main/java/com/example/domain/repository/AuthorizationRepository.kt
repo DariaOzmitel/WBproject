@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface AuthorizationRepository {
     fun getUserFlow(): Flow<User>
     fun checkAuthorization(): Flow<Boolean>
-    suspend fun addUser(name: String, lastName: String?, avatar: String?)
+    suspend fun addUser(name: String, lastName: String?, avatar: String?, phone: String)
 }

@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.example.wbproject.ui.theme.MeetingTheme
 import com.example.wbproject.ui.theme.elements.CustomPhoneNumber
 import com.example.wbproject.ui.theme.elements.CustomPin
+import com.example.wbproject.ui.theme.items.DropdownMenuItems
 
 const val TEST_RIGHT_PIN = "1234"
 
@@ -34,6 +35,11 @@ fun CustomViewScreen() {
             correctPinEnteredListener = {})
         CustomPhoneNumber(
             displayText = phone,
+            expanded = false,
+            selectedCountryCode = DropdownMenuItems.RUSSIA,
+            onDismissRequestClickListener = {},
+            onItemClickListener = {},
+            onRowClickListener = {},
             onValueChangeClickListener = { phone = it })
     }
 }

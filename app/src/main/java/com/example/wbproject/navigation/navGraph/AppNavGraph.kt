@@ -2,8 +2,10 @@ package com.example.wbproject.navigation.navGraph
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.wbproject.navigation.Screen
 
 @Composable
@@ -31,10 +33,22 @@ fun AppNavGraph(
         composable(Screen.EnterPhone.route) {
             enterPhoneScreenContent()
         }
-        composable(Screen.EnterPin.route) {
+        composable(route = Screen.EnterPin.route,
+            arguments = listOf(
+                navArgument(name = Screen.KEY_PHONE) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
             enterPinScreenContent()
         }
-        composable(Screen.AddProfile.route) {
+        composable(route = Screen.AddProfile.route,
+            arguments = listOf(
+                navArgument(name = Screen.KEY_PHONE) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
             addProfileScreenContent()
         }
         moreScreenNavGraph(

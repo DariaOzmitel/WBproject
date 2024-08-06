@@ -81,13 +81,13 @@ fun InstallAppNavGraph() {
         enterPhoneScreenContent = {
             LoginScreen(navigationState = navigationState) {
                 EnterPhoneScreen(onButtonClickListener = {
-                    navigationState.navigateTo(Screen.EnterPin.route)
+                    navigationState.navigateToEnterPin(it)
                 })
             }
         },
         enterPinScreenContent = {
             LoginScreen(navigationState = navigationState) {
-                EnterPinScreen(correctPinEnteredListener = { navigationState.navigateTo(Screen.AddProfile.route) })
+                EnterPinScreen(correctPinEnteredListener = { navigationState.navigateToAddProfile(it) })
             }
 
         },

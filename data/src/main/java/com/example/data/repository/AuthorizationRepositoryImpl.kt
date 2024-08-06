@@ -22,7 +22,7 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
                 name = preferences[USER_NAME_KEY].orEmpty(),
                 lastName = preferences[USER_LASTNAME_KEY],
                 avatarUrl = preferences[USER_AVATAR_KEY].orEmpty(),
-                phone = "+79276490989"
+                phone = preferences[USER_PHONE_KEY].orEmpty()
             )
         }
     }
@@ -32,12 +32,13 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
 //        context.dataStore.data.map { preferences ->
 //        preferences.contains(USER_NAME_KEY)}
 
-    override suspend fun addUser(name: String, lastName: String?, avatar: String?) {
+    override suspend fun addUser(name: String, lastName: String?, avatar: String?, phone: String) {
         context.dataStore.edit { preferences ->
             preferences[USER_ID_KEY] = TEST_USER_ID
             preferences[USER_NAME_KEY] = name
             preferences[USER_LASTNAME_KEY] = lastName.orEmpty()
             preferences[USER_AVATAR_KEY] = avatar.orEmpty()
+            preferences[USER_PHONE_KEY] = phone
         }
     }
 
@@ -47,6 +48,7 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
         private val USER_NAME_KEY = stringPreferencesKey("user_name")
         private val USER_LASTNAME_KEY = stringPreferencesKey("user_lastname")
         private val USER_AVATAR_KEY = stringPreferencesKey("user_avatar")
+        private val USER_PHONE_KEY = stringPreferencesKey("user_phone")
         private const val TEST_USER_ID = 15
     }
 
