@@ -26,7 +26,7 @@ import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.IconInCircle
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyOutlinedButton
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1Old
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
@@ -73,7 +73,7 @@ private fun ProfileContent(modifier: Modifier = Modifier, user: User) {
                 )
         }
 
-        TextHeading1(
+        TextHeading1Old(
             modifier = Modifier.padding(top = MeetingTheme.dimensions.dimension16),
             text = String.format(
                 stringResource(id = R.string.name_surname_template),

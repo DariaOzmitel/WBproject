@@ -13,7 +13,7 @@ import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPin
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyTextButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2Old
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -37,7 +37,7 @@ fun EnterPinScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextHeading2(
+        TextHeading2Old(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension6),
             text = stringResource(id = R.string.enter_code)
         )

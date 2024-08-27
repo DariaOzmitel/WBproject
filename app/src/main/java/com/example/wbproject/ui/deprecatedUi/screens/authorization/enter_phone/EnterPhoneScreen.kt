@@ -19,7 +19,7 @@ import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumber
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2Old
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -72,7 +72,7 @@ private fun EnterPhoneScreenContent(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextHeading2(
+        TextHeading2Old(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension6),
             text = stringResource(id = R.string.enter_phone_number),
             textAlign = TextAlign.Center,

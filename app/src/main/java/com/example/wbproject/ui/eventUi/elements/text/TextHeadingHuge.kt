@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.elements.text
+package com.example.wbproject.ui.eventUi.elements.text
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -7,10 +7,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
-import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
+import com.example.wbproject.ui.eventUi.theme.EventTheme
 
 @Composable
-fun TextHeading1(
+fun TextHeadingHuge(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = Color.Unspecified,
@@ -22,7 +22,7 @@ fun TextHeading1(
     Text(
         modifier = modifier,
         text = text,
-        style = MeetingTheme.typography.heading1,
+        style = EventTheme.typography.headingHuge,
         color = color,
         overflow = overflow,
         maxLines = maxLines,

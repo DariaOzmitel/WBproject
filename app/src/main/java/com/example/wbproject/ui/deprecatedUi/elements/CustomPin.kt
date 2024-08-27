@@ -18,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1Old
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 const val PIN_LENGTH = 4
 
@@ -73,7 +73,7 @@ fun PinString(inputText: String, correctPin: String, correctPinEnteredListener: 
                         )
                 )
                 if (index < inputTextLength) {
-                    TextHeading1(
+                    TextHeading1Old(
                         text = inputText[index].toString(),
                         color = MeetingTheme.colors.neutralActive
                     )

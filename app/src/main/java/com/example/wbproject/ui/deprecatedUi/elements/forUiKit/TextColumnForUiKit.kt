@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.dp
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1Old
+import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2Old
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextMetadata1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextMetadata2
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextMetadata3
@@ -23,8 +23,8 @@ import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 fun TextColumnForUiKit(modifier: Modifier = Modifier) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         val colorForUiKit = MeetingTheme.colors.neutralActive
-        TextHeading1(text = stringResource(id = R.string.test_text), color = colorForUiKit)
-        TextHeading2(text = stringResource(id = R.string.test_text), color = colorForUiKit)
+        TextHeading1Old(text = stringResource(id = R.string.test_text), color = colorForUiKit)
+        TextHeading2Old(text = stringResource(id = R.string.test_text), color = colorForUiKit)
         TextSubheading1(text = stringResource(id = R.string.test_text), color = colorForUiKit)
         TextSubheading2(text = stringResource(id = R.string.test_text), color = colorForUiKit)
         TextBody1(text = stringResource(id = R.string.test_text), color = colorForUiKit)
