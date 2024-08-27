@@ -12,6 +12,7 @@ data class EventColors(
     val fontColorWhite: Color,
     val fontColorRed: Color,
     val fontColorPink: Color,
+    val neutralOffWhite: Color,
 )
 
 val LightColors = EventColors(
@@ -21,5 +22,6 @@ val LightColors = EventColors(
     fontColorWhite = Color(0xFFFFFFFF),
     fontColorRed = Color(0xFFFF0000),
     fontColorPink = Color(0xFFFF5C93),
+    neutralOffWhite = Color(0xFFF6F6FA),
 )
 internal val LocalColors = staticCompositionLocalOf { LightColors }

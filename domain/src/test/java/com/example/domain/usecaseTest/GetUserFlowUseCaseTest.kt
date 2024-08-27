@@ -1,7 +1,7 @@
 package com.example.domain.usecaseTest
 
 import com.example.domain.mockData.mockUser
-import com.example.domain.repository.MeetingRepositoryStub
+import com.example.domain.repository.AuthorizationRepositoryStub
 import com.example.domain.usecase.GetUserFlowUseCaseStub
 import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
 import junit.framework.TestCase.assertEquals
@@ -15,7 +15,7 @@ internal class GetUserFlowUseCaseTest {
 
     @Before
     fun setUp() {
-        val stubRepository = MeetingRepositoryStub()
+        val stubRepository = AuthorizationRepositoryStub()
         useCase = GetUserFlowUseCaseStub(stubRepository)
     }
 

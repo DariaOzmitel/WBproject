@@ -1,6 +1,6 @@
 package com.example.domain.usecaseTest
 
-import com.example.domain.repository.MeetingRepositoryStub
+import com.example.domain.repository.CommunityRepositoryStub
 import com.example.domain.usecase.GetCommunityListUseCaseStub
 import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
 import junit.framework.TestCase.assertTrue
@@ -14,7 +14,7 @@ internal class GetCommunityListUseCaseTest {
 
     @Before
     fun setUp() {
-        val stubRepository = MeetingRepositoryStub()
+        val stubRepository = CommunityRepositoryStub()
         useCase = GetCommunityListUseCaseStub(stubRepository)
     }
 

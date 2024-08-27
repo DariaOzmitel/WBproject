@@ -12,7 +12,9 @@ import com.example.wbproject.R
 
 private val interFamily = FontFamily(
     Font(R.font.inter_regular, FontWeight.Normal),
-    Font(R.font.inter_bold, FontWeight.Bold)
+    Font(R.font.inter_medium, FontWeight.Medium),
+    Font(R.font.inter_semibold, FontWeight.SemiBold),
+    Font(R.font.inter_bold, FontWeight.Bold),
 )
 
 @Immutable
@@ -24,7 +26,9 @@ data class EventTypography(
     val headingHuge: TextStyle,
     val primary: TextStyle,
     val secondary: TextStyle,
+    val medium16: TextStyle,
     val regular20: TextStyle,
+    val medium22: TextStyle,
 )
 
 private val myScale = 1.25
@@ -62,13 +66,23 @@ val EventTypographyValue = EventTypography(
     ),
     secondary = TextStyle(
         fontFamily = interFamily,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = myScale * 14.sp
+    ),
+    medium16 = TextStyle(
+        fontFamily = interFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = myScale * 16.sp
     ),
     regular20 = TextStyle(
         fontFamily = interFamily,
         fontWeight = FontWeight.Normal,
         fontSize = myScale * 20.sp
+    ),
+    medium22 = TextStyle(
+        fontFamily = interFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = myScale * 22.sp
     ),
 )
 
