@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.items
+package com.example.wbproject.ui.deprecatedUi.items
 
 import androidx.annotation.DrawableRes
 import com.example.wbproject.R
