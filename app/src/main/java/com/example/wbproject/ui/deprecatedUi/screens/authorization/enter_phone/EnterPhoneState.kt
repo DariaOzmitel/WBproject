@@ -1,6 +1,6 @@
-package com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_phone
+package com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone
 
-import com.example.wbproject.ui.theme.deprecatedUi.items.DropdownMenuItems
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
 
 sealed class EnterPhoneState {
     data class EnterPhoneContent(

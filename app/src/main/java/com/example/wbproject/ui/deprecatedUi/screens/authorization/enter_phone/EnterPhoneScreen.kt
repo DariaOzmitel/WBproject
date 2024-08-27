@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_phone
+package com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockUser
 import com.example.wbproject.R
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
 import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumber
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2
-import com.example.wbproject.ui.theme.deprecatedUi.items.DropdownMenuItems
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
 

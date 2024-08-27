@@ -33,8 +33,8 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
-import com.example.wbproject.ui.theme.deprecatedUi.items.DropdownMenuItems
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 
 private const val BLANK_NUMBER = "000 000-00-00"

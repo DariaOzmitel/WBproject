@@ -1,7 +1,7 @@
-package com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_phone
+package com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone
 
 import androidx.lifecycle.ViewModel
-import com.example.wbproject.ui.theme.deprecatedUi.items.DropdownMenuItems
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

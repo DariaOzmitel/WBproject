@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.screens.meetings
+package com.example.wbproject.ui.deprecatedUi.screens.meetings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -22,11 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.wbproject.ui.deprecatedUi.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.deprecatedUi.elements.MySearchTextField
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
-import com.example.wbproject.ui.theme.deprecatedUi.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.MeetingCardColumn
+import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.MeetingListState
+import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.MeetingListViewModel
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel

@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.screens.more
+package com.example.wbproject.ui.deprecatedUi.screens.more
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -27,11 +27,13 @@ import coil.compose.AsyncImage
 import com.example.data.mockData.mockUser
 import com.example.domain.model.User
 import com.example.wbproject.R
+import com.example.wbproject.ui.deprecatedUi.items.MoreMenuItem
 import com.example.wbproject.ui.theme.deprecatedUi.elements.IconInCircle
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextMetadata1
-import com.example.wbproject.ui.theme.deprecatedUi.items.MoreMenuItem
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.MoreState
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.MoreViewModel
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
 
