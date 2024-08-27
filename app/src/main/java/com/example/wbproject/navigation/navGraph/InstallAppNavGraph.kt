@@ -3,19 +3,19 @@ package com.example.wbproject.navigation.navGraph
 import androidx.compose.runtime.Composable
 import com.example.wbproject.navigation.Screen
 import com.example.wbproject.navigation.rememberNavigationState
-import com.example.wbproject.ui.theme.screens.MainScreen
-import com.example.wbproject.ui.theme.screens.authorization.LoginScreen
-import com.example.wbproject.ui.theme.screens.authorization.add_profile.AddProfileScreen
-import com.example.wbproject.ui.theme.screens.authorization.enter_phone.EnterPhoneScreen
-import com.example.wbproject.ui.theme.screens.authorization.enter_pin.EnterPinScreen
-import com.example.wbproject.ui.theme.screens.community.CommunityListScreen
-import com.example.wbproject.ui.theme.screens.community.community_detail.CommunityDetailScreen
-import com.example.wbproject.ui.theme.screens.meetings.MeetingListScreen
-import com.example.wbproject.ui.theme.screens.meetings.meeting_detail.MeetingDetailScreen
-import com.example.wbproject.ui.theme.screens.more.MoreScreen
-import com.example.wbproject.ui.theme.screens.more.my_meetings.MyMeetingScreen
-import com.example.wbproject.ui.theme.screens.more.profile.ProfileScreen
-import com.example.wbproject.ui.theme.screens.splash.SplashScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.MainScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.LoginScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.add_profile.AddProfileScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_phone.EnterPhoneScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_pin.EnterPinScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.community.CommunityListScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.community.community_detail.CommunityDetailScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.MeetingListScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.meeting_detail.MeetingDetailScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.MoreScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.my_meetings.MyMeetingScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.profile.ProfileScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.splash.SplashScreen
 
 @Composable
 fun InstallAppNavGraph() {

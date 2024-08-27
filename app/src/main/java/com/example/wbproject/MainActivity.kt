@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.wbproject.navigation.navGraph.InstallAppNavGraph
-import com.example.wbproject.ui.theme.MeetingTheme
+import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
