@@ -6,7 +6,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 
-const val scale = 1.25
+const val scale = 1.2
 
 @Immutable
 data class EventDimensions(

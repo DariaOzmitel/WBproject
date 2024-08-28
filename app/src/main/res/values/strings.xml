@@ -43,4 +43,5 @@
     <string name="testing">Teстирование</string>
     <string name="design">Дизайн</string>
     <string name="pay">Оплатить</string>
+    <string name="name_and_surname">Имя и фамилия</string>
 </resources>

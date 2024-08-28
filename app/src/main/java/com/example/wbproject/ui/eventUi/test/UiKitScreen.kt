@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.R
+import com.example.wbproject.ui.eventUi.elements.EventEditText
 import com.example.wbproject.ui.eventUi.elements.buttons.EventButton
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip14
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip16
@@ -22,6 +23,9 @@ fun UiKitScreen() {
     var isPressed by rememberSaveable {
         mutableStateOf(false)
     }
+    var displayText by rememberSaveable {
+        mutableStateOf("")
+    }
     Column(
         modifier = Modifier
             .padding(
@@ -31,6 +35,19 @@ fun UiKitScreen() {
             ),
         verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)
     ) {
+        EventEditText(
+            hint = stringResource(id = R.string.name_and_surname),
+            displayText = displayText
+        ) {
+            displayText = it
+        }
+        EventEditText(
+            hint = stringResource(id = R.string.name_and_surname),
+            displayText = displayText,
+            isError = true
+        ) {
+            displayText = it
+        }
         EventChip14(text = stringResource(id = R.string.testing))
         EventChip16(text = stringResource(id = R.string.testing), isPressed = isPressed) {
             isPressed = !isPressed

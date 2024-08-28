@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.TextUnit
 import com.example.wbproject.ui.eventUi.theme.EventTheme
 
 @Composable
-fun TextHeadingPrimary(
+fun TextPrimary(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = Color.Unspecified,

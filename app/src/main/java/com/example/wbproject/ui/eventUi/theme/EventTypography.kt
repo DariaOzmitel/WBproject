@@ -31,7 +31,7 @@ data class EventTypography(
     val medium22: TextStyle,
 )
 
-private val myScale = 1.25
+private val myScale = 1.2
 
 val EventTypographyValue = EventTypography(
     heading1 = TextStyle(

@@ -15,6 +15,7 @@ data class EventColors(
     val fontColorPink: Color,
     val neutralOffWhite: Color,
     val neutralDisabled: Color,
+    val errorBackgroundColor: Color,
     val gradientPurple: Brush,
     val gradientWhite: Brush,
 )
@@ -28,6 +29,8 @@ val LightColors = EventColors(
     fontColorPink = Color(0xFFFF5C93),
     neutralOffWhite = Color(0xFFF6F6FA),
     neutralDisabled = Color(0xFFADB5BD),
+    errorBackgroundColor = Color(0xFFFFEEF4),
+
     gradientPurple = Brush.horizontalGradient(
         listOf(
             Color(0xFFED3CCA), Color(0xFFDF34D2), Color(0xFFD02BD9),
