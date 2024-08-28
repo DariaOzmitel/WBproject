@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.wbproject.R
 import com.example.wbproject.ui.eventUi.elements.EventEditText
 import com.example.wbproject.ui.eventUi.elements.buttons.EventButton
+import com.example.wbproject.ui.eventUi.elements.buttons.SubscribeButton
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip14
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip16
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip22
@@ -60,5 +61,8 @@ fun UiKitScreen() {
         }
         EventButton(text = stringResource(id = R.string.pay), enabled = false)
         EventButton(text = stringResource(id = R.string.pay), secondaryStatus = true)
+        SubscribeButton(subscribeStatus = isPressed) {
+            isPressed = !isPressed
+        }
     }
 }
