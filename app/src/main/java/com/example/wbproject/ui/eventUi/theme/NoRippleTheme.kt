@@ -1,4 +1,4 @@
-package com.example.wbproject.ui.theme.deprecatedUi.theme
+package com.example.wbproject.ui.eventUi.theme
 
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme

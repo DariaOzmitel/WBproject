@@ -19,9 +19,9 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import com.example.wbproject.R
 import com.example.wbproject.navigation.BottomNavigationItem
 import com.example.wbproject.navigation.NavigationState
+import com.example.wbproject.ui.eventUi.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
-import com.example.wbproject.ui.theme.deprecatedUi.theme.NoRippleTheme
 
 @Composable
 fun MyBottomAppBar(

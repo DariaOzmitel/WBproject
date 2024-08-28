@@ -8,7 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.wbproject.R
 import com.example.wbproject.ui.eventUi.elements.text.TextSecondary
 import com.example.wbproject.ui.eventUi.theme.EventTheme
 
@@ -37,5 +39,5 @@ fun EventChip14(
 @Preview
 @Composable
 private fun EventChip14Preview() {
-    EventChip14(text = "Тестирование")
+    EventChip14(text = stringResource(id = R.string.testing))
 }

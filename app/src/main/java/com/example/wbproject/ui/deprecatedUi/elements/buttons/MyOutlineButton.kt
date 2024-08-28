@@ -16,10 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import com.example.wbproject.ui.eventUi.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2
 import com.example.wbproject.ui.theme.deprecatedUi.theme.LightColors
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
-import com.example.wbproject.ui.theme.deprecatedUi.theme.NoRippleTheme
 
 @Composable
 fun MyOutlinedButton(

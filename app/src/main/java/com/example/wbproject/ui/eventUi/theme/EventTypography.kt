@@ -46,7 +46,7 @@ val EventTypographyValue = EventTypography(
     ),
     heading3 = TextStyle(
         fontFamily = interFamily,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = myScale * 18.sp
     ),
     heading4 = TextStyle(
