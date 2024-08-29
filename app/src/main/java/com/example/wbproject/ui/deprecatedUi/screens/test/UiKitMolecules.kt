@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockMeeting
 import com.example.wbproject.R
-import com.example.wbproject.ui.theme.deprecatedUi.molecules.CommunityCard
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.MeetingCard
+import com.example.wbproject.ui.theme.deprecatedUi.molecules.OldCommunityCard
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.ProfileAvatar
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.RowAvatarsPreview
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
@@ -40,7 +40,7 @@ fun UiKitMolecules() {
         ) {
             MeetingCard(meeting = mockMeeting)
             RowAvatarsPreview()
-            CommunityCard(community = mockCommunity)
+            OldCommunityCard(community = mockCommunity)
             ProfileAvatar(
                 isEditStatus = false,
                 painter = painterResource(id = R.drawable.user),

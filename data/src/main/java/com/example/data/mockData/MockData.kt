@@ -29,7 +29,7 @@ val mockListChips = listOf(
 
 val mockCommunity = Community(
     id = 1,
-    name = "Designa 1",
+    name = "Супер длинное название сообщества, чтобы посмотреть как обрежется",
     imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
     description = mockDescription,
     participantsNumber = 1000,

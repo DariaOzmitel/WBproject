@@ -32,7 +32,7 @@ import com.example.wbproject.ui.theme.deprecatedUi.theme.LightColors
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 
 @Composable
-fun CommunityCard(
+fun OldCommunityCard(
     modifier: Modifier = Modifier,
     community: Community,
     onCommunityCardClickListener: () -> Unit = {}
@@ -90,7 +90,7 @@ fun CommunityCardColumn(
         verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
         items(communityList) { community ->
-            CommunityCard(
+            OldCommunityCard(
                 modifier = Modifier
                     .height(MeetingTheme.dimensions.dimension68),
                 community = community,
@@ -103,7 +103,7 @@ fun CommunityCardColumn(
 @Preview
 @Composable
 private fun CommunityCardPreview() {
-    CommunityCard(
+    OldCommunityCard(
         Modifier
             .fillMaxWidth()
             .height(MeetingTheme.dimensions.dimension68),
