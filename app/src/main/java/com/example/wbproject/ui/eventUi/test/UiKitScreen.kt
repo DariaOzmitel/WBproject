@@ -1,17 +1,20 @@
 package com.example.wbproject.ui.eventUi.test
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.wbproject.R
 import com.example.wbproject.ui.eventUi.elements.EventEditText
+import com.example.wbproject.ui.eventUi.elements.EventSwitch
 import com.example.wbproject.ui.eventUi.elements.buttons.EventButton
 import com.example.wbproject.ui.eventUi.elements.buttons.SubscribeButton
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip14
@@ -27,8 +30,10 @@ fun UiKitScreen() {
     var displayText by rememberSaveable {
         mutableStateOf("")
     }
+    var isChecked by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
+            .background(EventTheme.colors.neutralDisabled)
             .padding(
                 top = EventTheme.dimensions.dimension128,
                 start = EventTheme.dimensions.dimension8,
@@ -64,5 +69,9 @@ fun UiKitScreen() {
         SubscribeButton(subscribeStatus = isPressed) {
             isPressed = !isPressed
         }
+        EventSwitch(
+            checked = isChecked,
+            onCheckedChange = { isChecked = it },
+        )
     }
 }
