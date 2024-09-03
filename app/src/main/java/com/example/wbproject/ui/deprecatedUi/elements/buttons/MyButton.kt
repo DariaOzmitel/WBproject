@@ -13,7 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.wbproject.ui.eventUi.theme.NoRippleTheme
+import com.example.ui.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2
 import com.example.wbproject.ui.theme.deprecatedUi.theme.LightColors
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme

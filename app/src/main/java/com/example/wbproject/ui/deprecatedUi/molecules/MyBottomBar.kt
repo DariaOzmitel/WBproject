@@ -16,10 +16,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.example.ui.theme.NoRippleTheme
 import com.example.wbproject.R
 import com.example.wbproject.navigation.BottomNavigationItem
 import com.example.wbproject.navigation.NavigationState
-import com.example.wbproject.ui.eventUi.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 

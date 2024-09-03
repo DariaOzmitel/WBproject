@@ -3,6 +3,7 @@ package com.example.wbproject.app
 import android.app.Application
 import com.example.data.di.dataModule
 import com.example.domain.di.domainModule
+import com.example.ui.di.uiModule
 import com.example.wbproject.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +16,7 @@ class MeetingApp : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@MeetingApp)
-            modules(listOf(appModule, dataModule, domainModule))
+            modules(listOf(appModule, dataModule, domainModule, uiModule))
         }
     }
 
