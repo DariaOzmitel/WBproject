@@ -15,7 +15,7 @@ import com.example.wbproject.ui.theme.deprecatedUi.screens.community.CommunityLi
 import com.example.wbproject.ui.theme.deprecatedUi.screens.community.community_detail.CommunityDetailScreen
 import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.meeting_detail.MeetingDetailScreen
 import com.example.wbproject.ui.theme.deprecatedUi.screens.more.profile.ProfileScreen
-import com.example.wbproject.ui.theme.deprecatedUi.screens.splash.SplashScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.splash.DeprecatedSplashScreen
 
 @Composable
 fun InstallAppNavGraph() {
@@ -99,7 +99,7 @@ fun InstallAppNavGraph() {
             }
         },
         splashScreenContent = {
-            SplashScreen(
+            DeprecatedSplashScreen(
                 animationEndListener = { status ->
                     when (status) {
                         true -> navigationState.navigateTo(Screen.MeetingsList.route)

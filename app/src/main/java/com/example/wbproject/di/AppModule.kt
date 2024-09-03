@@ -1,6 +1,7 @@
 package com.example.wbproject.di
 
 import com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone.EnterPhoneViewModel
+import com.example.wbproject.ui.eventUi.screen.splash.SplashScreenViewModel
 import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.add_profile.AddProfileViewModel
 import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_pin.EnterPinViewModel
 import com.example.wbproject.ui.theme.deprecatedUi.screens.community.CommunityListViewModel
@@ -27,4 +28,6 @@ val appModule = module {
     viewModelOf(::MoreViewModel)
     viewModelOf(::MyMeetingViewModel)
 
+
+    viewModelOf(::SplashScreenViewModel)
 }

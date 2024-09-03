@@ -20,7 +20,7 @@ private const val MAX_FRAME_NUM = 90
 private const val ANIMATION_SPEED = 2.0f
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
+fun DeprecatedSplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
     val viewModel: SplashViewModel = koinViewModel()
     val authorizationStatus by viewModel.getStatusFlow().collectAsStateWithLifecycle()
     Box(
@@ -46,7 +46,6 @@ fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) 
                 true -> animationEndListener(authorizationStatus)
                 false -> animationEndListener(authorizationStatus)
             }
-
         }
     }
 }
