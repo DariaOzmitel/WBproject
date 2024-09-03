@@ -1,6 +1,5 @@
 package com.example.wbproject.ui.eventUi.test
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -14,8 +13,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockCommunityList
+import com.example.data.mockData.mockListMeetings
 import com.example.wbproject.ui.eventUi.molecules.CommunityCard
 import com.example.wbproject.ui.eventUi.molecules.CommunityCardRow
+import com.example.wbproject.ui.eventUi.molecules.eventCard.EventCardRow
+import com.example.wbproject.ui.eventUi.molecules.eventCard.MainEventCardRow
 import com.example.wbproject.ui.eventUi.theme.EventTheme
 
 @Composable
@@ -27,8 +29,10 @@ fun UiMoleculesScreen() {
                 top = EventTheme.dimensions.dimension128,
                 start = EventTheme.dimensions.dimension8,
                 end = EventTheme.dimensions.dimension8,
+                bottom = EventTheme.dimensions.dimension32,
             )
-            .background(EventTheme.colors.neutralDisabled),
+//            .background(EventTheme.colors.neutralDisabled)
+        ,
         verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)
     ) {
         item {
@@ -40,6 +44,12 @@ fun UiMoleculesScreen() {
         item {
             CommunityCardRow(communities = mockCommunityList)
             Spacer(modifier = Modifier.height(EventTheme.dimensions.dimension8))
+        }
+        item {
+            MainEventCardRow(meeting = mockListMeetings)
+        }
+        item {
+            EventCardRow(meeting = mockListMeetings)
         }
     }
 }

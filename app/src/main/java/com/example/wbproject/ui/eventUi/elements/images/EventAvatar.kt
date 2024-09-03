@@ -1,6 +1,6 @@
 package com.example.wbproject.ui.eventUi.elements.images
 
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,24 +14,24 @@ import com.example.wbproject.R
 import com.example.wbproject.ui.eventUi.theme.EventTheme
 
 @Composable
-fun CommunityAvatar(
+fun EventAvatar(
     modifier: Modifier = Modifier,
     model: Any?,
-    size: Dp = EventTheme.dimensions.dimension104,
+    height: Dp = EventTheme.dimensions.dimension180,
     contentDescription: String = ""
 ) {
     AsyncImage(
         model = model,
         contentDescription = contentDescription,
         modifier = modifier
-            .clip(RoundedCornerShape(16.dp))
-            .size(size),
+            .height(height)
+            .clip(RoundedCornerShape(16.dp)),
         contentScale = ContentScale.Crop
     )
 }
 
 @Preview
 @Composable
-private fun CommunityAvatarPreview() {
-    CommunityAvatar(model = R.drawable.community_avatar_example)
+private fun EventAvatarPreview() {
+    EventAvatar(model = R.drawable.event_card_example)
 }

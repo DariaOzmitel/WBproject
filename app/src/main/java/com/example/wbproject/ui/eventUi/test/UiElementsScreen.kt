@@ -21,6 +21,7 @@ import com.example.wbproject.ui.eventUi.elements.chips.EventChip14
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip16
 import com.example.wbproject.ui.eventUi.elements.chips.EventChip22
 import com.example.wbproject.ui.eventUi.elements.images.CommunityAvatar
+import com.example.wbproject.ui.eventUi.elements.images.EventAvatar
 import com.example.wbproject.ui.eventUi.theme.EventTheme
 
 @Composable
@@ -96,6 +97,9 @@ fun UiElementsScreen() {
         }
         item {
             CommunityAvatar(model = R.drawable.community_avatar_example)
+        }
+        item {
+            EventAvatar(model = "https://thumb.tildacdn.com/tild6465-6132-4937-b964-336163313261/-/resize/560x/-/format/webp/mem-2-1024x683.jpg")
         }
     }
 }

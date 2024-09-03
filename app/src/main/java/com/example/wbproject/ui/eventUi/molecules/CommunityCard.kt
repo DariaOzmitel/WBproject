@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -37,7 +36,7 @@ fun CommunityCard(
             .clickable { onCommunityCardClickListener() },
         verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension4)
     ) {
-        CommunityAvatar(model = community.imageUrl, modifier = Modifier.size(width))
+        CommunityAvatar(model = community.imageUrl)
         TextHeading4(
             text = community.name,
             maxLines = TEXT_MAX_LINES,
@@ -52,8 +51,11 @@ fun CommunityCard(
 }
 
 @Composable
-fun CommunityCardRow(communities: List<Community>) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)) {
+fun CommunityCardRow(modifier: Modifier = Modifier, communities: List<Community>) {
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)
+    ) {
         items(communities) {
             CommunityCard(community = it)
         }

@@ -2,7 +2,11 @@ package com.example.wbproject.ui.eventUi.elements.chips
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -13,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.data.mockData.mockListChips
 import com.example.wbproject.R
 import com.example.wbproject.ui.eventUi.elements.text.TextMedium22
 import com.example.wbproject.ui.eventUi.theme.EventTheme
@@ -55,8 +60,32 @@ fun EventChip22(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun EventChipsRow22(modifier: Modifier = Modifier, chips: List<String>) {
+    FlowRow(
+        modifier
+            .fillMaxWidth(1f),
+        verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
+        horizontalArrangement = Arrangement.Start,
+    ) {
+        chips.forEach {
+            EventChip22(
+                text = it,
+                modifier = Modifier.padding(end = EventTheme.dimensions.dimension8)
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
 private fun EventChip22Preview() {
     EventChip22(text = stringResource(id = R.string.design))
+}
+
+@Preview
+@Composable
+private fun EventChipsRow22Preview() {
+    EventChipsRow22(chips = mockListChips)
 }
