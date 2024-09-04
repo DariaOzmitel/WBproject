@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.User
 import com.example.domain.usecase.interfaces.IAddUserUseCase
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -50,6 +50,6 @@ internal class AddProfileViewModel(
     }
 
     private fun getPhone(): String {
-        return savedStateHandle.get<String>(Screen.KEY_PHONE).orEmpty()
+        return savedStateHandle.get<String>(ScreenV1.KEY_PHONE).orEmpty()
     }
 }

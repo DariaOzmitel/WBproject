@@ -3,56 +3,56 @@ package com.example.wbproject.navigation
 import com.example.wbproject.R
 
 sealed class MainScreenTopBarItem(
-    val screen: Screen,
+    val screen: ScreenV1,
     val titleResId: Int,
     val rightIconResId: Int?,
     val addLeftArrow: Boolean
 ) {
 
     data object MeetingList : MainScreenTopBarItem(
-        screen = Screen.MeetingsList,
+        screen = ScreenV1.MeetingsList,
         titleResId = R.string.meetings,
         rightIconResId = null,
         addLeftArrow = false
     )
 
     data object MeetingDetail : MainScreenTopBarItem(
-        screen = Screen.MeetingDetail,
+        screen = ScreenV1.MeetingDetail,
         titleResId = R.string.developer_meeting,
         rightIconResId = null,
         addLeftArrow = true
     )
 
     data object CommunityList : MainScreenTopBarItem(
-        screen = Screen.CommunityList,
+        screen = ScreenV1.CommunityList,
         titleResId = R.string.communities,
         rightIconResId = null,
         addLeftArrow = false
     )
 
     data object CommunityDetail : MainScreenTopBarItem(
-        screen = Screen.CommunityDetail,
+        screen = ScreenV1.CommunityDetail,
         titleResId = R.string.designa,
         rightIconResId = null,
         addLeftArrow = true
     )
 
     data object MoreMenu : MainScreenTopBarItem(
-        screen = Screen.MoreMenu,
+        screen = ScreenV1.MoreMenu,
         titleResId = R.string.more,
         rightIconResId = null,
         addLeftArrow = false
     )
 
     data object MyMeetings : MainScreenTopBarItem(
-        screen = Screen.MyMeetings,
+        screen = ScreenV1.MyMeetings,
         titleResId = R.string.my_meetings,
         rightIconResId = null,
         addLeftArrow = true
     )
 
     data object Profile : MainScreenTopBarItem(
-        screen = Screen.Profile,
+        screen = ScreenV1.Profile,
         titleResId = R.string.profile,
         rightIconResId = R.drawable.edit,
         addLeftArrow = true

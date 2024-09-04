@@ -6,22 +6,23 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 
 fun NavGraphBuilder.communityScreenNavGraph(
     communityListScreenContent: @Composable () -> Unit,
     communityDetailScreenContent: @Composable () -> Unit,
 ) {
     navigation(
-        startDestination = Screen.CommunityList.route,
-        route = Screen.CommunityRoot.route
+        startDestination = ScreenV1.CommunityList.route,
+        route = ScreenV1.CommunityRoot.route
     ) {
-        composable(Screen.CommunityList.route) {
+        composable(ScreenV1.CommunityList.route) {
             communityListScreenContent()
         }
-        composable(route = Screen.CommunityDetail.route,
+        composable(
+            route = ScreenV1.CommunityDetail.route,
             arguments = listOf(
-                navArgument(name = Screen.KEY_COMMUNITY_ID) {
+                navArgument(name = ScreenV1.KEY_COMMUNITY_ID) {
                     type = NavType.IntType
                 }
             )

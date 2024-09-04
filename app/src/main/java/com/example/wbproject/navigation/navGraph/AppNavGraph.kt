@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 
 @Composable
 fun AppNavGraph(
@@ -25,26 +25,28 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.Splash.route
+        startDestination = ScreenV1.Splash.route
     ) {
-        composable(Screen.Splash.route) {
+        composable(ScreenV1.Splash.route) {
             splashScreenContent()
         }
-        composable(Screen.EnterPhone.route) {
+        composable(ScreenV1.EnterPhone.route) {
             enterPhoneScreenContent()
         }
-        composable(route = Screen.EnterPin.route,
+        composable(
+            route = ScreenV1.EnterPin.route,
             arguments = listOf(
-                navArgument(name = Screen.KEY_PHONE) {
+                navArgument(name = ScreenV1.KEY_PHONE) {
                     type = NavType.StringType
                 }
             )
         ) {
             enterPinScreenContent()
         }
-        composable(route = Screen.AddProfile.route,
+        composable(
+            route = ScreenV1.AddProfile.route,
             arguments = listOf(
-                navArgument(name = Screen.KEY_PHONE) {
+                navArgument(name = ScreenV1.KEY_PHONE) {
                     type = NavType.StringType
                 }
             )

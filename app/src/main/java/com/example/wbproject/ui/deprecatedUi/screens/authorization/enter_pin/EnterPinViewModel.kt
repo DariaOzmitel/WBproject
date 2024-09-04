@@ -2,7 +2,7 @@ package com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -14,7 +14,7 @@ internal class EnterPinViewModel(private val savedStateHandle: SavedStateHandle)
     fun getPinFlow(): StateFlow<String> = pin
 
     fun getPhone(): String {
-        return savedStateHandle.get<String>(Screen.KEY_PHONE).orEmpty()
+        return savedStateHandle.get<String>(ScreenV1.KEY_PHONE).orEmpty()
     }
 
     fun updatePin(newPin: String) {

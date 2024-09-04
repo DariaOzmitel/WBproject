@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -23,34 +24,37 @@ import org.koin.androidx.compose.koinViewModel
 fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
     val viewModel: SplashScreenViewModel = koinViewModel()
     val authorizationStatus by viewModel.getStatusFlow().collectAsStateWithLifecycle()
-    Box(modifier = modifier) {
-        Image(
-            modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.splash_screen),
-            contentDescription = ""
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    Scaffold { innerPadding ->
+        Box(modifier = modifier.padding(top = innerPadding.calculateTopPadding())) {
             Image(
-                modifier = Modifier
-                    .width(EventTheme.dimensions.dimension126)
-                    .padding(bottom = EventTheme.dimensions.dimension20),
-                painter = painterResource(id = R.drawable.wb),
-                contentDescription = "",
-                contentScale = ContentScale.FillWidth
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(id = R.drawable.splash_screen),
+                contentDescription = ""
             )
-            Image(
-                modifier = Modifier.width(EventTheme.dimensions.dimension320),
-                painter = painterResource(id = R.drawable.events),
-                contentDescription = "",
-                contentScale = ContentScale.FillWidth
-            )
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    modifier = Modifier
+                        .width(EventTheme.dimensions.dimension126)
+                        .padding(bottom = EventTheme.dimensions.dimension20),
+                    painter = painterResource(id = R.drawable.wb),
+                    contentDescription = "",
+                    contentScale = ContentScale.FillWidth
+                )
+                Image(
+                    modifier = Modifier.width(EventTheme.dimensions.dimension320),
+                    painter = painterResource(id = R.drawable.events),
+                    contentDescription = "",
+                    contentScale = ContentScale.FillWidth
+                )
+            }
+            animationEndListener(authorizationStatus)
         }
-        animationEndListener(authorizationStatus)
     }
+
 }
 
 @Preview

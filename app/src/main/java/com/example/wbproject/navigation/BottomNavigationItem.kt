@@ -3,24 +3,24 @@ package com.example.wbproject.navigation
 import com.example.wbproject.R
 
 sealed class BottomNavigationItem(
-    val screen: Screen,
+    val screen: ScreenV1,
     val iconResId: Int,
     val titleResId: Int,
 ) {
     data object Meetings : BottomNavigationItem(
-        screen = Screen.MeetingsRoot,
+        screen = ScreenV1.MeetingsRoot,
         iconResId = R.drawable.coffe_togo,
         titleResId = R.string.meetings,
     )
 
     data object Community : BottomNavigationItem(
-        screen = Screen.CommunityRoot,
+        screen = ScreenV1.CommunityRoot,
         iconResId = R.drawable.group_alt,
         titleResId = R.string.communities,
     )
 
     data object More : BottomNavigationItem(
-        screen = Screen.MoreRoot,
+        screen = ScreenV1.MoreRoot,
         iconResId = R.drawable.more_horizontal,
         titleResId = R.string.more,
     )

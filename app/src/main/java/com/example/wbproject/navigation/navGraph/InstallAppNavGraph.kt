@@ -1,7 +1,7 @@
 package com.example.wbproject.navigation.navGraph
 
 import androidx.compose.runtime.Composable
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 import com.example.wbproject.navigation.rememberNavigationState
 import com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone.EnterPhoneScreen
 import com.example.wbproject.ui.deprecatedUi.screens.meetings.MeetingListScreen
@@ -43,10 +43,10 @@ fun InstallAppNavGraph() {
             MainScreen(navigationState = navigationState) {
                 MoreScreen(
                     onProfileItemClickListener = {
-                        navigationState.navigateTo(Screen.Profile.route)
+                        navigationState.navigateTo(ScreenV1.Profile.route)
                     },
                     onMyMeetingsItemClickListener = {
-                        navigationState.navigateTo(Screen.MyMeetings.route)
+                        navigationState.navigateTo(ScreenV1.MyMeetings.route)
                     }
                 )
             }
@@ -94,7 +94,7 @@ fun InstallAppNavGraph() {
         addProfileScreenContent = {
             LoginScreen(navigationState = navigationState) {
                 AddProfileScreen(onButtonClickListener = {
-                    navigationState.navigateTo(Screen.MeetingsList.route)
+                    navigationState.navigateTo(ScreenV1.MeetingsList.route)
                 })
             }
         },
@@ -102,8 +102,8 @@ fun InstallAppNavGraph() {
             DeprecatedSplashScreen(
                 animationEndListener = { status ->
                     when (status) {
-                        true -> navigationState.navigateTo(Screen.MeetingsList.route)
-                        false -> navigationState.navigateTo(Screen.EnterPhone.route)
+                        true -> navigationState.navigateTo(ScreenV1.MeetingsList.route)
+                        false -> navigationState.navigateTo(ScreenV1.EnterPhone.route)
                     }
 
                 }

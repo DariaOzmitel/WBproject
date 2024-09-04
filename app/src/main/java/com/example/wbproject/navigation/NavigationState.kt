@@ -16,19 +16,19 @@ class NavigationState(
     }
 
     fun navigateToCommunityDetail(communityId: Int) {
-        navHostController.navigate(route = Screen.CommunityDetail.getRouteWithArgs(communityId))
+        navHostController.navigate(route = ScreenV1.CommunityDetail.getRouteWithArgs(communityId))
     }
 
     fun navigateToMeetingDetail(meetingId: Int) {
-        navHostController.navigate(route = Screen.MeetingDetail.getRouteWithArgs(meetingId))
+        navHostController.navigate(route = ScreenV1.MeetingDetail.getRouteWithArgs(meetingId))
     }
 
     fun navigateToEnterPin(phone: String) {
-        navHostController.navigate(route = Screen.EnterPin.getRouteWithArgs(phone))
+        navHostController.navigate(route = ScreenV1.EnterPin.getRouteWithArgs(phone))
     }
 
     fun navigateToAddProfile(phone: String) {
-        navHostController.navigate(route = Screen.AddProfile.getRouteWithArgs(phone))
+        navHostController.navigate(route = ScreenV1.AddProfile.getRouteWithArgs(phone))
     }
 }
 

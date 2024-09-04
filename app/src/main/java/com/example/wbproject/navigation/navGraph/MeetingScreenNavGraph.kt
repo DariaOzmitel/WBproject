@@ -6,22 +6,23 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 
 fun NavGraphBuilder.meetingScreenNavGraph(
     meetingListScreenContent: @Composable () -> Unit,
     meetingDetailScreenContent: @Composable () -> Unit,
 ) {
     navigation(
-        startDestination = Screen.MeetingsList.route,
-        route = Screen.MeetingsRoot.route
+        startDestination = ScreenV1.MeetingsList.route,
+        route = ScreenV1.MeetingsRoot.route
     ) {
-        composable(Screen.MeetingsList.route) {
+        composable(ScreenV1.MeetingsList.route) {
             meetingListScreenContent()
         }
-        composable(route = Screen.MeetingDetail.route,
+        composable(
+            route = ScreenV1.MeetingDetail.route,
             arguments = listOf(
-                navArgument(name = Screen.KEY_MEETING_ID) {
+                navArgument(name = ScreenV1.KEY_MEETING_ID) {
                     type = NavType.IntType
                 }
             )

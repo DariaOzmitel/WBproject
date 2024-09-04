@@ -7,7 +7,7 @@ import com.example.data.mockData.mockMapUrl
 import com.example.domain.usecase.interfaces.IChangeAttendingStatusUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingUseCase
 import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 import com.example.wbproject.orZero
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,7 +49,7 @@ internal class MeetingDetailViewModel(
     }
 
     private fun getMeetingId(): Int {
-        return savedStateHandle.get<Int>(Screen.KEY_MEETING_ID).orZero()
+        return savedStateHandle.get<Int>(ScreenV1.KEY_MEETING_ID).orZero()
     }
 
     private fun getMeeting() {

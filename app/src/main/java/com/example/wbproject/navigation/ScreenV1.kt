@@ -1,11 +1,11 @@
 package com.example.wbproject.navigation
 
-sealed class Screen(
+sealed class ScreenV1(
     val route: String
 ) {
-    object Splash : Screen(ROUTE_SPLASH)
-    object EnterPhone : Screen(ROUTE_ENTER_PHONE)
-    object EnterPin : Screen(ROUTE_ENTER_PIN) {
+    object Splash : ScreenV1(ROUTE_SPLASH)
+    object EnterPhone : ScreenV1(ROUTE_ENTER_PHONE)
+    object EnterPin : ScreenV1(ROUTE_ENTER_PIN) {
 
         private const val ROUTE_FOR_ARGS = "enter_pin"
 
@@ -14,7 +14,7 @@ sealed class Screen(
         }
     }
 
-    object AddProfile : Screen(ROUTE_ADD_PROFILE) {
+    object AddProfile : ScreenV1(ROUTE_ADD_PROFILE) {
 
         private const val ROUTE_FOR_ARGS = "add_profile"
 
@@ -22,9 +22,10 @@ sealed class Screen(
             return "$ROUTE_FOR_ARGS/$phone"
         }
     }
-    object MeetingsRoot : Screen(ROUTE_MEETINGS_ROOT)
-    object MeetingsList : Screen(ROUTE_MEETINGS_LIST)
-    object MeetingDetail : Screen(ROUTE_MEETING_DETAIL) {
+
+    object MeetingsRoot : ScreenV1(ROUTE_MEETINGS_ROOT)
+    object MeetingsList : ScreenV1(ROUTE_MEETINGS_LIST)
+    object MeetingDetail : ScreenV1(ROUTE_MEETING_DETAIL) {
 
         private const val ROUTE_FOR_ARGS = "meeting_detail"
 
@@ -33,9 +34,9 @@ sealed class Screen(
         }
     }
 
-    object CommunityList : Screen(ROUTE_COMMUNITY_LIST)
-    object CommunityRoot : Screen(ROUTE_COMMUNITY_ROOT)
-    object CommunityDetail : Screen(ROUTE_COMMUNITY_DETAIL) {
+    object CommunityList : ScreenV1(ROUTE_COMMUNITY_LIST)
+    object CommunityRoot : ScreenV1(ROUTE_COMMUNITY_ROOT)
+    object CommunityDetail : ScreenV1(ROUTE_COMMUNITY_DETAIL) {
 
         private const val ROUTE_FOR_ARGS = "community_detail"
 
@@ -44,10 +45,10 @@ sealed class Screen(
         }
     }
 
-    object MoreRoot : Screen(ROUTE_MORE_ROOT)
-    object MoreMenu : Screen(ROUTE_MORE_MENU)
-    object Profile : Screen(ROUTE_PROFILE)
-    object MyMeetings : Screen(ROUTE_MY_MEETINGS)
+    object MoreRoot : ScreenV1(ROUTE_MORE_ROOT)
+    object MoreMenu : ScreenV1(ROUTE_MORE_MENU)
+    object Profile : ScreenV1(ROUTE_PROFILE)
+    object MyMeetings : ScreenV1(ROUTE_MY_MEETINGS)
 
     companion object {
         const val KEY_COMMUNITY_ID = "community_id"

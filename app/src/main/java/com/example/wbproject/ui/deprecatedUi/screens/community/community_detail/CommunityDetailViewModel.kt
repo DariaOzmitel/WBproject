@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Community
 import com.example.domain.usecase.interfaces.IGetCommunityUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
-import com.example.wbproject.navigation.Screen
+import com.example.wbproject.navigation.ScreenV1
 import com.example.wbproject.orZero
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,7 +33,7 @@ internal class CommunityDetailViewModel(
     fun getCommunityDetailFlow(): StateFlow<CommunityDetailState> = communityDetailState
 
     private fun getCommunityId(): Int {
-        return savedStateHandle.get<Int>(Screen.KEY_COMMUNITY_ID).orZero()
+        return savedStateHandle.get<Int>(ScreenV1.KEY_COMMUNITY_ID).orZero()
     }
 
     private fun getCommunityById() {
