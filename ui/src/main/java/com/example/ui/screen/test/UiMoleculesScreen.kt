@@ -1,4 +1,4 @@
-package com.example.ui.test
+package com.example.ui.screen.test
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer

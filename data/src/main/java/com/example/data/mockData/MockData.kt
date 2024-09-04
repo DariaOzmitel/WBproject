@@ -1,6 +1,7 @@
 package com.example.data.mockData
 
 import com.example.domain.model.Community
+import com.example.domain.model.Interest
 import com.example.domain.model.Meeting
 import com.example.domain.model.User
 
@@ -13,12 +14,39 @@ const val mockDescription =
             "\n" +
             "Maecenas ante tortor, feugiat eu suscipit vitae, semper aliquet metus. Ut vestibulum tempus sem, at sodales lorem condimentum ac. Vestibulum varius ornare massa, ac maximus velit aliquet quis. Praesent pretium leo lectus, dictum blandit enim luctus at. Sed fermentum massa sem. Nunc volutpat lorem id posuere congue. Nulla facilisi. Nam ac mattis."
 
+val mockAllInterests = listOf(
+    Interest(0, "Дизайн"),
+    Interest(1, "Разработка"),
+    Interest(2, "Продакт менеджмент"),
+    Interest(3, "Проджект менеджмент"),
+    Interest(4, "Backend"),
+    Interest(5, "Frontend"),
+    Interest(6, "Mobile"),
+    Interest(7, "Тестирование"),
+    Interest(8, "Продажи"),
+    Interest(9, "Бизнес"),
+    Interest(10, "Безопасность"),
+    Interest(11, "Web"),
+    Interest(12, "Девопс"),
+    Interest(13, "Маркетинг"),
+    Interest(14, "Аналитика"),
+)
+
+val mockInterests = listOf(
+    Interest(0, "Дизайн"),
+    Interest(1, "Разработка"),
+    Interest(5, "Frontend"),
+    Interest(7, "Тестирование"),
+    Interest(12, "Девопс"),
+)
+
 val mockUser = User(
     id = 1,
     avatarUrl = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
     name = "Иван",
     lastName = "Иванов",
-    phone = "+7 999 999-99-99"
+    phone = "+7 999 999-99-99",
+    interests = mockInterests,
 )
 
 val mockListChips = listOf(

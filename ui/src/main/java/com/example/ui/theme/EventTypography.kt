@@ -27,6 +27,7 @@ data class EventTypography(
     val primary: TextStyle,
     val secondary: TextStyle,
     val medium16: TextStyle,
+    val regular19: TextStyle,
     val regular20: TextStyle,
     val medium22: TextStyle,
 )
@@ -41,7 +42,7 @@ val EventTypographyValue = EventTypography(
     ),
     heading2 = TextStyle(
         fontFamily = interFamily,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = myScale * 24.sp
     ),
     heading3 = TextStyle(
@@ -56,7 +57,7 @@ val EventTypographyValue = EventTypography(
     ),
     headingHuge = TextStyle(
         fontFamily = interFamily,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = myScale * 50.sp
     ),
     primary = TextStyle(
@@ -73,6 +74,11 @@ val EventTypographyValue = EventTypography(
         fontFamily = interFamily,
         fontWeight = FontWeight.Medium,
         fontSize = myScale * 16.sp
+    ),
+    regular19 = TextStyle(
+        fontFamily = interFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = myScale * 19.sp
     ),
     regular20 = TextStyle(
         fontFamily = interFamily,

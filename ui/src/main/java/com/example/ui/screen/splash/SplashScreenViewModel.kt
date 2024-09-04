@@ -1,4 +1,4 @@
-package com.example.ui.splash
+package com.example.ui.screen.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

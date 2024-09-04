@@ -1,4 +1,4 @@
-package com.example.ui.splash
+package com.example.ui.screen.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

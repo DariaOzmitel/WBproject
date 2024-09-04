@@ -5,5 +5,9 @@
     <string name="pay">Оплатить</string>
     <string name="development">Разработка</string>
     <string name="backend">Backend</string>
+    <string name="interests">Интересы</string>
+    <string name="save">Сохранить</string>
+    <string name="say_later">Расскажу позже</string>
+    <string name="interests_subheading">Выберите интересы, чтобы мы рекомендовали полезные встречи</string>
     <string name="name_and_surname">Имя и фамилия</string>
 </resources>

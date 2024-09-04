@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.ui.splash.SplashScreen
+import com.example.ui.screen.onboarding.select_interest.SelectInterestScreen
 import com.example.ui.theme.EventTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,9 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EventTheme {
-                SplashScreen {
-
-                }
+                SelectInterestScreen()
 //                UiMoleculesScreen()
 //                UiElementsScreen()
             }

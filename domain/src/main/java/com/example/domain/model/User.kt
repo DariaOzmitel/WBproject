@@ -5,7 +5,8 @@ data class User(
     val avatarUrl: String?,
     val name: String,
     val lastName: String? = "",
-    val phone: String
+    val phone: String,
+    val interests: List<Interest>? = null
 ) {
     companion object {
         const val UNDEFINED_ID = -1
