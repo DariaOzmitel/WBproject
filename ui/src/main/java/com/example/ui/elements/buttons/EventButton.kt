@@ -4,11 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,7 +17,6 @@ import com.example.ui.R
 import com.example.ui.elements.ButtonProgressIndicator
 import com.example.ui.elements.text.TextHeading3
 import com.example.ui.theme.EventTheme
-import com.example.ui.theme.NoRippleTheme
 
 @Composable
 fun EventButton(
@@ -30,7 +27,7 @@ fun EventButton(
     text: String,
     onClick: () -> Unit = {},
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
+//    CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
         Button(
             onClick = onClick, modifier = modifier
                 .fillMaxWidth()
@@ -60,7 +57,7 @@ fun EventButton(
             }
         }
     }
-}
+//}
 
 @Preview
 @Composable

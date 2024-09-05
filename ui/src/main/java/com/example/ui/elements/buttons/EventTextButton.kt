@@ -3,8 +3,9 @@ package com.example.ui.elements.buttons
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -16,8 +17,9 @@ import androidx.compose.ui.unit.dp
 import com.example.ui.R
 import com.example.ui.elements.text.TextPrimary
 import com.example.ui.theme.EventTheme
-import com.example.ui.theme.NoRippleTheme
+import com.example.ui.theme.NoRippleConfiguration
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventTextButton(
     modifier: Modifier = Modifier,
@@ -26,7 +28,7 @@ fun EventTextButton(
     color: Color = Color.Unspecified,
     onClick: () -> Unit = {},
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
+    CompositionLocalProvider(LocalRippleConfiguration provides NoRippleConfiguration) {
         TextButton(
             onClick = onClick, modifier = modifier
                 .fillMaxWidth(),

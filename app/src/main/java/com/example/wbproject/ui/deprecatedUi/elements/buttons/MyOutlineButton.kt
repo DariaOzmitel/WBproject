@@ -5,18 +5,15 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import com.example.ui.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2
 import com.example.wbproject.ui.theme.deprecatedUi.theme.LightColors
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
@@ -34,44 +31,42 @@ fun MyOutlinedButton(
     @DrawableRes iconResId: Int? = null,
     text: String? = null
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
-        val interactionSource: MutableInteractionSource =
-            remember { MutableInteractionSource() }
-        val isPressed by interactionSource.collectIsPressedAsState()
-        OutlinedButton(
-            onClick = onClick,
-            modifier = modifier,
-            enabled = enabled,
-            interactionSource = interactionSource,
-            border = BorderStroke(
-                width = MeetingTheme.dimensions.dimension2,
-                color = when {
-                    enabled && !isPressed -> primaryColor
-                    isPressed -> pressedColor
-                    else -> primaryColor.copy(alpha = 0.5F)
-                }
-            ),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = secondaryColor,
-                contentColor = when (isPressed) {
-                    true -> pressedColor
-                    false -> primaryColor
-                },
-                disabledContentColor = primaryColor.copy(alpha = 0.5F),
-                disabledContainerColor = secondaryColor
-            ),
-            contentPadding = contentPadding
-        ) {
-            text?.let {
-                TextSubheading2(modifier = contentModifier, text = it)
+    val interactionSource: MutableInteractionSource =
+        remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    OutlinedButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        border = BorderStroke(
+            width = MeetingTheme.dimensions.dimension2,
+            color = when {
+                enabled && !isPressed -> primaryColor
+                isPressed -> pressedColor
+                else -> primaryColor.copy(alpha = 0.5F)
             }
-            iconResId?.let {
-                Icon(
-                    painter = painterResource(id = it),
-                    contentDescription = null,
-                    modifier = contentModifier,
-                )
-            }
+        ),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = secondaryColor,
+            contentColor = when (isPressed) {
+                true -> pressedColor
+                false -> primaryColor
+            },
+            disabledContentColor = primaryColor.copy(alpha = 0.5F),
+            disabledContainerColor = secondaryColor
+        ),
+        contentPadding = contentPadding
+    ) {
+        text?.let {
+            TextSubheading2(modifier = contentModifier, text = it)
+        }
+        iconResId?.let {
+            Icon(
+                painter = painterResource(id = it),
+                contentDescription = null,
+                modifier = contentModifier,
+            )
         }
     }
 }

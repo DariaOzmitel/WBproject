@@ -17,6 +17,8 @@ import com.example.ui.R
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
 
+private const val COUNT_CHIP_IN_ROW = 2
+
 @Composable
 fun EventChip14(
     modifier: Modifier = Modifier,
@@ -45,7 +47,7 @@ fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<String>) {
         modifier
             .fillMaxWidth(),
     ) {
-        chips.forEach {
+        chips.take(COUNT_CHIP_IN_ROW).forEach {
             EventChip14(
                 text = it,
                 modifier = Modifier.padding(end = EventTheme.dimensions.dimension4)

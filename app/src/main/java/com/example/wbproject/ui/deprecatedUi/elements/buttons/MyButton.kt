@@ -4,16 +4,13 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.ui.theme.NoRippleTheme
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2
 import com.example.wbproject.ui.theme.deprecatedUi.theme.LightColors
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
@@ -29,7 +26,6 @@ fun MyButton(
     enabled: Boolean = true,
     text: String
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
         val interactionSource: MutableInteractionSource =
             remember { MutableInteractionSource() }
         val isPressed by interactionSource.collectIsPressedAsState()
@@ -51,4 +47,3 @@ fun MyButton(
             TextSubheading2(text = text)
         }
     }
-}
