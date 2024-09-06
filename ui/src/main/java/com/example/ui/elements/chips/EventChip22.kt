@@ -65,16 +65,16 @@ fun EventChip22(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsRow22(modifier: Modifier = Modifier, chips: List<Interest>) {
+fun EventChipsFlowRow22(modifier: Modifier = Modifier, chips: List<Interest>) {
     FlowRow(
         modifier
             .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
     ) {
         chips.forEach {
             EventChip22(
                 text = it.name,
-                modifier = Modifier.padding(end = EventTheme.dimensions.dimension8)
             )
         }
     }
@@ -89,5 +89,5 @@ private fun EventChip22Preview() {
 @Preview
 @Composable
 private fun EventChipsRow22Preview() {
-    EventChipsRow22(chips = mockAllInterests)
+    EventChipsFlowRow22(chips = mockAllInterests)
 }

@@ -95,5 +95,5 @@ fun RowAvatars(
 @Preview
 @Composable
 fun RowAvatarsPreview() {
-    RowAvatars(avatars = mockUserList.map { it.avatarUrl.orEmpty() })
+    RowAvatars(avatars = mockUserList.map { it.avatarModel.toString() })
 }

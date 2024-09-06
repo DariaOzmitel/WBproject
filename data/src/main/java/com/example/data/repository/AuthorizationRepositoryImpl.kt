@@ -21,7 +21,7 @@ internal class AuthorizationRepositoryImpl(private val context: Context) :
                 id = preferences[USER_ID_KEY] ?: TEST_USER_ID,
                 name = preferences[USER_NAME_KEY].orEmpty(),
                 lastName = preferences[USER_LASTNAME_KEY],
-                avatarUrl = preferences[USER_AVATAR_KEY].orEmpty(),
+                avatarModel = preferences[USER_AVATAR_KEY].orEmpty(),
                 phone = preferences[USER_PHONE_KEY].orEmpty()
             )
         }

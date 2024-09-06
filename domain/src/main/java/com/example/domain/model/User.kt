@@ -2,7 +2,7 @@ package com.example.domain.model
 
 data class User(
     val id: Int = UNDEFINED_ID,
-    val avatarUrl: String?,
+    val avatarModel: Any?,
     val name: String,
     val lastName: String? = "",
     val phone: String,

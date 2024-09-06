@@ -12,7 +12,7 @@ import com.example.data.mockData.mockAllInterests
 import com.example.ui.R
 import com.example.ui.elements.buttons.EventButton
 import com.example.ui.elements.buttons.EventTextButton
-import com.example.ui.elements.chips.EventChipsRow22
+import com.example.ui.elements.chips.EventChipsFlowRow22
 import com.example.ui.elements.text.TextHeading1
 import com.example.ui.elements.text.TextRegular19
 import com.example.ui.theme.EventTheme
@@ -40,9 +40,9 @@ fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> U
             )
             LazyColumn(modifier = Modifier.weight(1f)) {
                 item {
-                    EventChipsRow22(chips = mockAllInterests)
+                    EventChipsFlowRow22(chips = mockAllInterests)
                 }
-                item { EventChipsRow22(chips = mockAllInterests) }
+                item { EventChipsFlowRow22(chips = mockAllInterests) }
             }
             EventButton(text = stringResource(id = R.string.save), onClick = onClickListener)
             EventTextButton(text = stringResource(id = R.string.say_later))

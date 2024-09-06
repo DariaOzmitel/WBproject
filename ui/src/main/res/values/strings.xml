@@ -14,6 +14,7 @@
     <string name="say_later">Расскажу позже</string>
     <string name="other_meetings">Другие встречи</string>
     <string name="select_interests">Выбрать интересы</string>
+    <string name="people_screen_heading">Пойдут на встречу</string>
     <string name="select_interests_text">Расскажите о своих интересах, чтобы мы рекомендовали полезные встречи</string>
     <string name="interests_subheading">Выберите интересы, чтобы мы рекомендовали полезные встречи</string>
     <string name="name_and_surname">Имя и фамилия</string>

@@ -87,7 +87,7 @@ private fun UserContent(user: User, onProfileItemClickListener: () -> Unit) {
             .clickable { onProfileItemClickListener() },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        when (user.avatarUrl.isNullOrEmpty()) {
+        when (user.avatarModel == null) {
             true ->
                 IconInCircle(
                     size = MeetingTheme.dimensions.dimension50,
@@ -100,7 +100,7 @@ private fun UserContent(user: User, onProfileItemClickListener: () -> Unit) {
                         .size(MeetingTheme.dimensions.dimension50)
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop,
-                    model = user.avatarUrl,
+                    model = user.avatarModel,
                     contentDescription = null,
                 )
         }

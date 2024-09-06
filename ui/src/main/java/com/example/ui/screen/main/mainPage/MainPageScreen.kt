@@ -18,7 +18,7 @@ import com.example.data.mockData.mockListMeetings
 import com.example.data.mockData.mockMeeting
 import com.example.ui.R
 import com.example.ui.elements.SearchBar
-import com.example.ui.elements.chips.EventChipsRow16
+import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.molecules.CommunityCardRow
 import com.example.ui.molecules.SelectInterestsCard
@@ -86,7 +86,7 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 )
             }
             item {
-                EventChipsRow16(
+                EventChipsFlowRow16(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
                     chips = mockAllInterests
                 )

@@ -42,7 +42,7 @@ val mockInterests = listOf(
 
 val mockUser = User(
     id = 1,
-    avatarUrl = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
+    avatarModel = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
     name = "Иван",
     lastName = "Иванов",
     phone = "+7 999 999-99-99",
@@ -82,9 +82,10 @@ val mockUserList = mutableListOf<User>().apply {
         add(
             User(
                 id = index,
-                avatarUrl = "https://pchela.news/storage/app/uploads/public/884/938/9a3/thumb__770_490_0_0_crop.jpg",
+                avatarModel = "https://pchela.news/storage/app/uploads/public/884/938/9a3/thumb__770_490_0_0_crop.jpg",
                 name = "User $index",
-                phone = "+7 999 999-99-99"
+                phone = "+7 999 999-99-99",
+                interests = mockInterests
             )
         )
     }

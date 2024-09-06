@@ -12,6 +12,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.example.data.mockData.mockUser
+import com.example.data.mockData.mockUserList
 import com.example.ui.R
 import com.example.ui.elements.EventEditText
 import com.example.ui.elements.EventSwitch
@@ -22,6 +24,9 @@ import com.example.ui.elements.chips.EventChip16
 import com.example.ui.elements.chips.EventChip22
 import com.example.ui.elements.images.CommunityAvatar
 import com.example.ui.elements.images.EventAvatar
+import com.example.ui.elements.images.UserAvatar
+import com.example.ui.molecules.UserCard
+import com.example.ui.molecules.UserCardFlowRow
 import com.example.ui.theme.EventTheme
 
 @Composable
@@ -100,6 +105,15 @@ fun UiElementsScreen() {
         }
         item {
             EventAvatar(model = "https://thumb.tildacdn.com/tild6465-6132-4937-b964-336163313261/-/resize/560x/-/format/webp/mem-2-1024x683.jpg")
+        }
+        item {
+            UserAvatar(user = mockUser)
+        }
+        item {
+            UserCard(user = mockUser)
+        }
+        item {
+            UserCardFlowRow(userList = mockUserList)
         }
     }
 }

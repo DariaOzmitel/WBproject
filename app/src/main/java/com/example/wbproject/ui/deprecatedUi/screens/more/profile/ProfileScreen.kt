@@ -54,7 +54,7 @@ private fun ProfileContent(modifier: Modifier = Modifier, user: User) {
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        when (user.avatarUrl.isNullOrEmpty()) {
+        when (user.avatarModel == null) {
             true ->
                 IconInCircle(
                     size = MeetingTheme.dimensions.dimension200, painter = painterResource(
@@ -68,7 +68,7 @@ private fun ProfileContent(modifier: Modifier = Modifier, user: User) {
                         .size(MeetingTheme.dimensions.dimension200)
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop,
-                    model = user.avatarUrl,
+                    model = user.avatarModel,
                     contentDescription = null,
                 )
         }

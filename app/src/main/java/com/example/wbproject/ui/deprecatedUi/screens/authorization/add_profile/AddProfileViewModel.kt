@@ -15,7 +15,7 @@ internal class AddProfileViewModel(
     private val addUserUseCase: IAddUserUseCase,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val userMutable = MutableStateFlow(User(name = "", avatarUrl = "", phone = ""))
+    private val userMutable = MutableStateFlow(User(name = "", avatarModel = "", phone = ""))
     private val user: StateFlow<User> = userMutable
 
     fun getUserFlow(): StateFlow<User> = user
@@ -34,7 +34,7 @@ internal class AddProfileViewModel(
 
     fun updateAvatar(newAvatarUrl: String) {
         userMutable.update {
-            it.copy(avatarUrl = newAvatarUrl)
+            it.copy(avatarModel = newAvatarUrl)
         }
     }
 
@@ -43,7 +43,7 @@ internal class AddProfileViewModel(
             addUserUseCase.invoke(
                 name = user.value.name,
                 lastName = user.value.lastName,
-                avatar = user.value.avatarUrl,
+                avatar = user.value.avatarModel.toString(),
                 phone = getPhone()
             )
         }

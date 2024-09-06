@@ -1,6 +1,7 @@
 package com.example.ui.elements.chips
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -46,11 +47,11 @@ fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<String>) {
     Row(
         modifier
             .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension4)
     ) {
         chips.take(COUNT_CHIP_IN_ROW).forEach {
             EventChip14(
-                text = it,
-                modifier = Modifier.padding(end = EventTheme.dimensions.dimension4)
+                text = it
             )
         }
     }

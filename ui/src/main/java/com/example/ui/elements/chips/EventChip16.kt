@@ -61,16 +61,16 @@ fun EventChip16(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsRow16(modifier: Modifier = Modifier, chips: List<Interest>) {
+fun EventChipsFlowRow16(modifier: Modifier = Modifier, chips: List<Interest>) {
     FlowRow(
         modifier
             .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension10),
+        verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension10),
     ) {
         chips.forEach {
             EventChip16(
-                text = it.name,
-                modifier = Modifier.padding(end = EventTheme.dimensions.dimension10)
+                text = it.name
             )
         }
     }

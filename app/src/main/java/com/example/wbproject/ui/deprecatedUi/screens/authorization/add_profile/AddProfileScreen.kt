@@ -55,7 +55,7 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
                 },
             contentAlignment = Alignment.Center
         ) {
-            when (user.avatarUrl.isNullOrEmpty()) {
+            when (user.avatarModel == null) {
                 true -> ProfileAvatar(
                     size = MeetingTheme.dimensions.dimension100, painter = painterResource(
                         id = R.drawable.user
@@ -63,7 +63,7 @@ fun AddProfileScreen(modifier: Modifier = Modifier, onButtonClickListener: () ->
                 )
 
                 false -> MyAsyncAvatar(
-                    model = user.avatarUrl.orEmpty(),
+                    model = user.avatarModel.toString(),
                     modifier = Modifier
                         .size(MeetingTheme.dimensions.dimension128),
                 )
