@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.data.mockData.mockUserList
-import com.example.ui.screen.main.people.PeopleScreen
+import com.example.ui.navigation.InstallMainNavGraph
 import com.example.ui.theme.EventTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,13 +17,11 @@ class MainActivity : ComponentActivity() {
 //                SelectInterestScreen()
 //                SelectLocationScreen {
 //                }
-//                InstallMainNavGraph()
+                InstallMainNavGraph()
 //                UiMoleculesScreen()
 //                UiElementsScreen()
 //                MainPageScreen()
-                PeopleScreen(peopleList = mockUserList) {
-
-                }
+//                PeopleScreen(peopleList = mockUserList) {}
             }
         }
     }
