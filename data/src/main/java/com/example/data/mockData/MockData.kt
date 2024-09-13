@@ -69,6 +69,7 @@ val mockCommunity = Community(
     imageUrl = "https://infoglaz.ru/wp-content/uploads/1387527274_001.jpg",
     description = mockDescription,
     participantsNumber = 1000,
+    interests = mockInterests
 )
 
 val mockCommunityList = mutableListOf<Community>().apply {

@@ -70,7 +70,7 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
-                    meeting = mockListMeetingAlreadyPassed
+                    meetings = mockListMeetingAlreadyPassed
                 )
             }
             item {

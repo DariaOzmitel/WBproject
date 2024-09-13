@@ -51,13 +51,13 @@ fun EventCard(modifier: Modifier = Modifier, meeting: Meeting) {
 }
 
 @Composable
-fun EventCardRow(modifier: Modifier = Modifier, meeting: List<Meeting>) {
+fun EventCardRow(modifier: Modifier = Modifier, meetings: List<Meeting>) {
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
-        items(meeting) {
+        items(meetings) {
             EventCard(meeting = it)
         }
     }

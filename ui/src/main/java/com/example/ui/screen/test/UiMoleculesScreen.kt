@@ -51,7 +51,7 @@ fun UiMoleculesScreen() {
             MainEventCardRow(meeting = mockListMeetings)
         }
         item {
-            EventCardRow(meeting = mockListMeetings)
+            EventCardRow(meetings = mockListMeetings)
         }
         item {
             PresenterCard(presenter = mockPresenter)

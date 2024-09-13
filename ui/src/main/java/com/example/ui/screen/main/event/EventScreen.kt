@@ -153,7 +153,7 @@ fun EventScreen(modifier: Modifier = Modifier, meeting: Meeting) {
                         modifier = Modifier
                             .padding(bottom = EventTheme.dimensions.dimension40)
                             .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
-                        meeting = mockListMeetingAlreadyPassed
+                        meetings = mockListMeetingAlreadyPassed
                     )
                 }
             }

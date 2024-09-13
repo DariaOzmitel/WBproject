@@ -6,4 +6,5 @@ data class Community(
     val imageUrl: String?,
     val description: String?,
     val participantsNumber: Int,
+    val interests: List<Interest>? = null,
 )
