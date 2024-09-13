@@ -13,7 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockListChips
+import com.example.data.mockData.mockInterests
+import com.example.domain.model.Interest
 import com.example.ui.R
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
@@ -43,7 +44,7 @@ fun EventChip14(
 }
 
 @Composable
-fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<String>) {
+fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<Interest>) {
     Row(
         modifier
             .fillMaxWidth(),
@@ -51,7 +52,7 @@ fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<String>) {
     ) {
         chips.take(COUNT_CHIP_IN_ROW).forEach {
             EventChip14(
-                text = it
+                text = it.name
             )
         }
     }
@@ -66,5 +67,5 @@ private fun EventChip14Preview() {
 @Preview
 @Composable
 private fun EventChipsRow14Preview() {
-    EventChipsRow14(chips = mockListChips)
+    EventChipsRow14(chips = mockInterests)
 }

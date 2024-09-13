@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.domain.model.User
 import com.example.ui.R
-import com.example.ui.elements.CustomTopBar
+import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.UserCardFlowRow
 import com.example.ui.theme.EventTheme
 

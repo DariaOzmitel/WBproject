@@ -24,8 +24,7 @@ private const val MAX_TEXT_LINES = 2
 internal fun EventCardMaxWidth(modifier: Modifier = Modifier, meeting: Meeting) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(end = EventTheme.dimensions.dimension16),
+            .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )

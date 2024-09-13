@@ -2,6 +2,7 @@ package com.example.ui.molecules.eventCard
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
@@ -53,7 +54,8 @@ fun MainEventCard(modifier: Modifier = Modifier, meeting: Meeting) {
 fun MainEventCardRow(modifier: Modifier = Modifier, meeting: List<Meeting>) {
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
+        contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
         items(meeting) {
             MainEventCard(meeting = it)

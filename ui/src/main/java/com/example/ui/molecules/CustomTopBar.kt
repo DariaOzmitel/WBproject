@@ -1,4 +1,4 @@
-package com.example.ui.elements
+package com.example.ui.molecules
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

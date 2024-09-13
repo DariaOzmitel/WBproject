@@ -3,6 +3,7 @@ package com.example.data.mockData
 import com.example.domain.model.Community
 import com.example.domain.model.Interest
 import com.example.domain.model.Meeting
+import com.example.domain.model.Presenter
 import com.example.domain.model.User
 
 const val mockDescription =
@@ -38,6 +39,13 @@ val mockInterests = listOf(
     Interest(5, "Frontend"),
     Interest(7, "Тестирование"),
     Interest(12, "Девопс"),
+)
+
+val mockPresenter = Presenter(
+    id = 1,
+    avatarModel = "https://static.tildacdn.com/tild6434-6465-4334-a666-316238363037/beautiful-shot-of-tw.jpg",
+    name = "Павел Хориков",
+    description = "Ведущий специалист по подбору персонала в одной из крупнейших IT-компаний в ЕС."
 )
 
 val mockUser = User(
@@ -98,8 +106,10 @@ val mockMeeting = Meeting(
     imageUrl = "https://icdn.lenta.ru/images/2021/12/28/20/20211228202958360/square_1280_662749ae3f8f3d2f16c96ca21fbd3eba.jpg",
     date = "11.08.24",
     city = "Moscow",
+    address = "Севкабель Порт, Кожевенная линия, 40,",
+    presenter = mockPresenter,
     communityId = mockCommunity.id,
-    chipsList = mockListChips,
+    chipsList = mockInterests,
     usersList = mockUserList,
 )
 
@@ -115,7 +125,8 @@ val mockListMeetings = mutableListOf(
         imageUrl = "https://i.pinimg.com/236x/d0/30/74/d030747fc2368c46f4544a17aa3e4545.jpg",
         date = "11.09.24",
         city = "Penza",
-        chipsList = mockListChips,
+        presenter = mockPresenter,
+        chipsList = mockInterests,
         communityId = mockCommunity.id,
         usersList = mockUserList
     ),
@@ -126,7 +137,7 @@ val mockListMeetings = mutableListOf(
         imageUrl = "https://idel-tat.ru/images/uploads/ckeditor/png/616fef0835992_%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(2413).png",
         date = "11.10.24",
         city = "Penza",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 2
     ),
     Meeting(
@@ -136,7 +147,7 @@ val mockListMeetings = mutableListOf(
         imageUrl = "https://go.zvuk.com/thumb/1200x0/filters:quality(75):no_upscale()/imgs/2023/12/13/12/6270663/04ecc42b70ebd4d721214a9138c872e0513e990e.jpg",
         date = "25.08.24",
         city = "London",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 3,
         usersList = mockUserList
     ),
@@ -147,7 +158,7 @@ val mockListMeetings = mutableListOf(
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
         date = "30.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 4,
         usersList = mockUserList
     ),
@@ -158,7 +169,7 @@ val mockListMeetings = mutableListOf(
         imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
         date = "19.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = mockCommunity.id
     )
 )
@@ -171,7 +182,7 @@ val mockListMeetingAlreadyPassed = listOf(
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
         date = "30.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 4
     ),
     Meeting(
@@ -181,7 +192,7 @@ val mockListMeetingAlreadyPassed = listOf(
         imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
         date = "19.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = mockCommunity.id
     )
 )

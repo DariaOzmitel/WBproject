@@ -8,6 +8,13 @@
     <string name="interests">Интересы</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
+    <string name="presenter">Ведущий</string>
+    <string name="primorskaya">Приморская</string>
+    <string name="go_to_event">Пойдут на встречу</string>
+    <string name="organizer">Организатор</string>
+    <string name="register_event">Записаться на встречу</string>
+    <string name="reminder_number_places">Всего %s мест. Если передумаете - отпишитесь</string>
+    <string name="other_community_meetings">Другие встречи сообщества</string>
     <string name="upcomingMeetings">Ближайшие встречи</string>
     <string name="testerCommunities">Сообщества для тестировщиков</string>
     <string name="search_hint">Найти встречи и сообщества</string>

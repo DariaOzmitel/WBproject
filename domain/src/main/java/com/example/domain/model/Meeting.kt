@@ -7,8 +7,10 @@ data class Meeting(
     val imageUrl: String?,
     val date: String,
     val city: String,
+    val address: String = "",
+    val presenter: Presenter? = null,
     val communityId: Int,
-    val chipsList: List<String>?,
+    val chipsList: List<Interest>?,
     val usersList: MutableList<User> = mutableListOf()
 ) {
     companion object {

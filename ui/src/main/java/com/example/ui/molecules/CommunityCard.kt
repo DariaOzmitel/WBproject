@@ -3,6 +3,7 @@ package com.example.ui.molecules
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
@@ -54,7 +55,8 @@ fun CommunityCard(
 fun CommunityCardRow(modifier: Modifier = Modifier, communities: List<Community>) {
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8)
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
+        contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
         items(communities) {
             CommunityCard(community = it)

@@ -8,7 +8,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.ui.R
 import com.example.ui.theme.EventTheme
@@ -25,7 +24,7 @@ fun EventAvatar(
         contentDescription = contentDescription,
         modifier = modifier
             .height(height)
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(EventTheme.dimensions.dimension16)),
         contentScale = ContentScale.Crop
     )
 }

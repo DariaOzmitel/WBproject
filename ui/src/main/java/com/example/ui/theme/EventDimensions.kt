@@ -55,6 +55,7 @@ data class EventDimensions(
     val dimension180: Dp,
     val dimension200: Dp,
     val dimension212: Dp,
+    val dimension268: Dp,
     val dimension320: Dp,
 )
 
@@ -104,6 +105,7 @@ val EventDimensionsValue = EventDimensions(
     dimension180 = scale * 180.dp,
     dimension200 = scale * 200.dp,
     dimension212 = scale * 212.dp,
+    dimension268 = scale * 268.dp,
     dimension320 = scale * 320.dp,
 )
 
