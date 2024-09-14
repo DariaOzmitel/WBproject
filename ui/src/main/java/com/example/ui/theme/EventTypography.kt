@@ -58,7 +58,8 @@ val EventTypographyValue = EventTypography(
     headingHuge = TextStyle(
         fontFamily = interFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = myScale * 50.sp
+        fontSize = myScale * 50.sp,
+        lineHeight = myScale * 44.sp
     ),
     primary = TextStyle(
         fontFamily = interFamily,

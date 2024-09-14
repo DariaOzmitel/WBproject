@@ -24,7 +24,7 @@ import com.example.ui.theme.EventTheme
 @Composable
 fun EventEditText(
     modifier: Modifier = Modifier,
-    hint: String = "",
+    hint: String = stringResource(id = R.string.name_and_surname),
     displayText: String,
     isError: Boolean = false,
     onValueChange: (String) -> Unit
@@ -83,5 +83,5 @@ private fun Modifier.addBorder(isFocused: Boolean): Modifier {
 @Preview
 @Composable
 private fun EventEditTextPreview() {
-    EventEditText(hint = stringResource(id = R.string.name_and_surname), displayText = "") {}
+    EventEditText(displayText = "") {}
 }

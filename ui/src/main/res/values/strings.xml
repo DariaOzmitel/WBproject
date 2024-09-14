@@ -13,7 +13,9 @@
     <string name="subscribe">Подписаться</string>
     <string name="subscribed">Подписаны</string>
     <string name="events">Встречи</string>
+    <string name="resume">Продолжить</string>
     <string name="past_events">Прошлые встречи</string>
+    <string name="enter_name_heading">Вход\nи запись\nна встречу</string>
     <string name="invite_text">Будем приглашать на встречи сообщества и рекомендовать похожие</string>
     <string name="go_to_event">Пойдут на встречу</string>
     <string name="organizer">Организатор</string>

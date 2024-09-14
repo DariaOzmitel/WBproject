@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.ui.screen.main.community.CommunityScreen
+import com.example.ui.screen.appointment.EnterNameScreen
 import com.example.ui.theme.EventTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
 //                MainPageScreen()
 //                PeopleScreen(peopleList = mockUserList) {}
 //                EventScreen(meeting = mockMeeting)
-                CommunityScreen()
+//                CommunityScreen()
+                EnterNameScreen()
             }
         }
     }
