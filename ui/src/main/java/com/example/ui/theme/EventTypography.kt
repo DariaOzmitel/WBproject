@@ -64,7 +64,7 @@ val EventTypographyValue = EventTypography(
     ),
     primary = TextStyle(
         fontFamily = interFamily,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = myScale * 18.sp
     ),
     secondary = TextStyle(

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.ui.screen.appointment.EnterPhoneScreen
+import com.example.ui.screen.appointment.EnterPinScreen
 import com.example.ui.theme.EventTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
 //                EventScreen(meeting = mockMeeting)
 //                CommunityScreen()
 //                EnterNameScreen()
-                EnterPhoneScreen()
+//                EnterPhoneScreen()
+                EnterPinScreen()
             }
         }
     }
