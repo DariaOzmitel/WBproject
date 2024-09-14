@@ -24,6 +24,9 @@
     <string name="go_to_event">Пойдут на встречу</string>
     <string name="organizer">Организатор</string>
     <string name="register_event">Записаться на встречу</string>
+    <string name="my_event">Мои встречи</string>
+    <string name="find_event">Найти другие встречи</string>
+    <string name="you_registered_event">Вы записались на встречу</string>
     <string name="reminder_number_places">Всего %s мест. Если передумаете - отпишитесь</string>
     <string name="other_community_meetings">Другие встречи сообщества</string>
     <string name="upcomingMeetings">Ближайшие встречи</string>

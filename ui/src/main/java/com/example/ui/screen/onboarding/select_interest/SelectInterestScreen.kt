@@ -44,7 +44,11 @@ fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> U
                 }
                 item { EventChipsFlowRow22(chips = mockAllInterests) }
             }
-            EventButton(text = stringResource(id = R.string.save), onClick = onClickListener)
+            EventButton(
+                modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
+                text = stringResource(id = R.string.save),
+                onClick = onClickListener
+            )
             EventTextButton(text = stringResource(id = R.string.say_later))
         }
     }
