@@ -16,8 +16,13 @@
     <string name="resume">Продолжить</string>
     <string name="past_events">Прошлые встречи</string>
     <string name="get_code">Получить код</string>
+    <string name="confirm_delete">Точно\nудалить\nпрофиль?</string>
+    <string name="confirm_delete_text1">Не надо...... Мы крутые</string>
+    <string name="confirm_delete_text2">Мы удалим профиль, но не сразу. У вас будет 30 дней чтобы зайти и обратно всё вернуть</string>
+    <string name="delete">Удалить</string>
+    <string name="no_need">Не надо</string>
     <string name="send_code_button">Отправить и подтвердить запись</string>
-    <string name="send_code_text">Отправили код на +7 999 999-99-99</string>
+    <string name="send_code_text">Отправили код на +7 999 999–99-99</string>
     <string name="get_code_text">Получить новый код через 10</string>
     <string name="enter_name_heading">Вход\nи запись\nна встречу</string>
     <string name="invite_text">Будем приглашать на встречи сообщества и рекомендовать похожие</string>
