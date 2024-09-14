@@ -14,7 +14,7 @@ import com.example.wbproject.ui.theme.deprecatedUi.screens.authorization.enter_p
 import com.example.wbproject.ui.theme.deprecatedUi.screens.community.CommunityListScreen
 import com.example.wbproject.ui.theme.deprecatedUi.screens.community.community_detail.CommunityDetailScreen
 import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.meeting_detail.MeetingDetailScreen
-import com.example.wbproject.ui.theme.deprecatedUi.screens.more.profile.ProfileScreen
+import com.example.wbproject.ui.theme.deprecatedUi.screens.more.profile.ProfileScreenV1
 import com.example.wbproject.ui.theme.deprecatedUi.screens.splash.DeprecatedSplashScreen
 
 @Composable
@@ -62,7 +62,7 @@ fun InstallAppNavGraph() {
         },
         profileScreenContent = {
             MainScreen(navigationState = navigationState) {
-                ProfileScreen()
+                ProfileScreenV1()
             }
         },
         communityDetailScreenContent = {

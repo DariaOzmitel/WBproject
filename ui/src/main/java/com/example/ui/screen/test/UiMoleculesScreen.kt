@@ -15,9 +15,9 @@ import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockCommunityList
 import com.example.data.mockData.mockListMeetings
 import com.example.data.mockData.mockPresenter
-import com.example.ui.molecules.CommunityCard
-import com.example.ui.molecules.CommunityCardRow
 import com.example.ui.molecules.PresenterCard
+import com.example.ui.molecules.communityCard.CommunityCard
+import com.example.ui.molecules.communityCard.CommunityCardRow
 import com.example.ui.molecules.eventCard.EventCardRow
 import com.example.ui.molecules.eventCard.MainEventCardRow
 import com.example.ui.theme.EventTheme

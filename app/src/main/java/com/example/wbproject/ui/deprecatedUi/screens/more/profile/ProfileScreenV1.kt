@@ -32,7 +32,7 @@ import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProfileScreen(modifier: Modifier = Modifier) {
+fun ProfileScreenV1(modifier: Modifier = Modifier) {
     val viewModel: ProfileViewModel = koinViewModel()
     val profileState by viewModel.getProfileStateFlow().collectAsStateWithLifecycle()
 

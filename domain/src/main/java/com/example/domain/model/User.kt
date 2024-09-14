@@ -6,6 +6,7 @@ data class User(
     val name: String,
     val lastName: String? = "",
     val phone: String,
+    val city: String? = null,
     val interests: List<Interest>? = null
 ) {
     companion object {

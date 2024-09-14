@@ -152,7 +152,7 @@ fun EventScreen(modifier: Modifier = Modifier, meeting: Meeting) {
                     EventCardRow(
                         modifier = Modifier
                             .padding(bottom = EventTheme.dimensions.dimension40)
-                            .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
+                            .ignoreHorizontalParentPadding(),
                         meetings = mockListMeetingAlreadyPassed
                     )
                 }

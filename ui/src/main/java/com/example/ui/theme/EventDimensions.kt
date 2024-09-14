@@ -57,6 +57,7 @@ data class EventDimensions(
     val dimension212: Dp,
     val dimension268: Dp,
     val dimension320: Dp,
+    val dimension374: Dp,
 )
 
 val EventDimensionsValue = EventDimensions(
@@ -107,6 +108,7 @@ val EventDimensionsValue = EventDimensions(
     dimension212 = scale * 212.dp,
     dimension268 = scale * 268.dp,
     dimension320 = scale * 320.dp,
+    dimension374 = scale * 374.dp,
 )
 
 internal val LocalDimensions = staticCompositionLocalOf { EventDimensionsValue }

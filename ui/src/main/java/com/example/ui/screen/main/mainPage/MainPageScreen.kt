@@ -21,8 +21,8 @@ import com.example.ui.elements.SearchBar
 import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.ignoreHorizontalParentPadding
-import com.example.ui.molecules.CommunityCardRow
 import com.example.ui.molecules.SelectInterestsCard
+import com.example.ui.molecules.communityCard.CommunityCardRow
 import com.example.ui.molecules.eventCard.EventCardMaxWidth
 import com.example.ui.molecules.eventCard.EventCardRow
 import com.example.ui.molecules.eventCard.MainEventCardRow
@@ -55,7 +55,7 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 MainEventCardRow(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
-                        .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
+                        .ignoreHorizontalParentPadding(),
                     meeting = mockListMeetings
                 )
             }
@@ -69,7 +69,7 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 EventCardRow(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
-                        .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
+                        .ignoreHorizontalParentPadding(),
                     meetings = mockListMeetingAlreadyPassed
                 )
             }
@@ -83,7 +83,7 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 CommunityCardRow(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
-                        .ignoreHorizontalParentPadding(EventTheme.dimensions.dimension16),
+                        .ignoreHorizontalParentPadding(),
                     communities = mockCommunityList
                 )
             }

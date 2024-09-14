@@ -16,13 +16,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.data.mockData.mockMeeting
 import com.example.domain.model.Meeting
-import com.example.ui.elements.chips.EventChipsRow14
+import com.example.ui.elements.chips.EventChipsFlowRow14
 import com.example.ui.elements.images.EventAvatar
 import com.example.ui.elements.text.TextHeading3
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
 
 private const val MAX_TEXT_LINES = 2
+private const val MAX_CHIPS_LINES = 1
 
 @Composable
 fun EventCard(modifier: Modifier = Modifier, meeting: Meeting) {
@@ -44,7 +45,7 @@ fun EventCard(modifier: Modifier = Modifier, meeting: Meeting) {
                 text = meeting.date
             )
             meeting.chipsList?.let {
-                EventChipsRow14(chips = it)
+                EventChipsFlowRow14(chips = it, maxLines = MAX_CHIPS_LINES)
             }
         }
     }

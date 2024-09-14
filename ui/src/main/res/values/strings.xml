@@ -21,6 +21,7 @@
     <string name="confirm_delete_text2">Мы удалим профиль, но не сразу. У вас будет 30 дней чтобы зайти и обратно всё вернуть</string>
     <string name="delete">Удалить</string>
     <string name="no_need">Не надо</string>
+    <string name="exit">Выйти</string>
     <string name="send_code_button">Отправить и подтвердить запись</string>
     <string name="send_code_text">Отправили код на +7 999 999–99-99</string>
     <string name="get_code_text">Получить новый код через 10</string>
@@ -30,6 +31,7 @@
     <string name="organizer">Организатор</string>
     <string name="register_event">Записаться на встречу</string>
     <string name="my_event">Мои встречи</string>
+    <string name="my_communities">Мои сообщества</string>
     <string name="find_event">Найти другие встречи</string>
     <string name="you_registered_event">Вы записались на встречу</string>
     <string name="reminder_number_places">Всего %s мест. Если передумаете - отпишитесь</string>

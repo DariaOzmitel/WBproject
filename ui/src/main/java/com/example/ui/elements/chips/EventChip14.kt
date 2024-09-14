@@ -3,7 +3,8 @@ package com.example.ui.elements.chips
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,14 +44,21 @@ fun EventChip14(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsRow14(modifier: Modifier = Modifier, chips: List<Interest>) {
-    Row(
+fun EventChipsFlowRow14(
+    modifier: Modifier = Modifier,
+    chips: List<Interest>,
+    maxLines: Int = Int.MAX_VALUE
+) {
+    FlowRow(
         modifier
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension4)
+        horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension10),
+        verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension10),
+        maxLines = maxLines
     ) {
-        chips.take(COUNT_CHIP_IN_ROW).forEach {
+        chips.forEach {
             EventChip14(
                 text = it.name
             )
@@ -66,6 +74,6 @@ private fun EventChip14Preview() {
 
 @Preview
 @Composable
-private fun EventChipsRow14Preview() {
-    EventChipsRow14(chips = mockInterests)
+private fun EventChipsFlowRow14Preview() {
+    EventChipsFlowRow14(chips = mockInterests)
 }

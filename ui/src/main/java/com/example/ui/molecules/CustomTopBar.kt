@@ -2,14 +2,12 @@ package com.example.ui.molecules
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -31,7 +29,7 @@ private const val MAX_LINES_TOP_BAR = 1
 @Composable
 internal fun CustomTopBar(
     modifier: Modifier = Modifier,
-    heading: String,
+    heading: String? = null,
     onLeftIconClickListener: () -> Unit,
     rightIcon: Painter? = null,
     onRightIconClickListener: () -> Unit = {}
@@ -40,25 +38,27 @@ internal fun CustomTopBar(
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(vertical = EventTheme.dimensions.dimension8)
+                .padding(vertical = EventTheme.dimensions.dimension8),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+            Image(
+                painter = painterResource(id = R.drawable.back),
                 modifier = Modifier
                     .clickable { onLeftIconClickListener() }
                     .size(EventTheme.dimensions.dimension24),
                 contentDescription = stringResource(id = R.string.search_hint),
-                tint = EventTheme.colors.brandColorPurple
             )
-            TextPrimary(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = EventTheme.dimensions.dimension10),
-                text = heading,
-                maxLines = MAX_LINES_TOP_BAR,
-                overflow = TextOverflow.Ellipsis,
-                textAlign = TextAlign.Center
-            )
+            heading?.let {
+                TextPrimary(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = EventTheme.dimensions.dimension10),
+                    text = heading,
+                    maxLines = MAX_LINES_TOP_BAR,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center
+                )
+            }
             rightIcon?.let {
                 Image(
                     painter = rightIcon,
