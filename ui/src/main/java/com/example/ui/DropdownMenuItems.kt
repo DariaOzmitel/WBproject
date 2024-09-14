@@ -1,7 +1,6 @@
-package com.example.wbproject.ui.deprecatedUi.items
+package com.example.ui
 
 import androidx.annotation.DrawableRes
-import com.example.wbproject.R
 
 enum class DropdownMenuItems(
     @DrawableRes val imageResId: Int,

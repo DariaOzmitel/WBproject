@@ -10,8 +10,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
-import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumber
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItemsV1
+import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumberV1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPin
 import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
 
@@ -33,10 +33,10 @@ fun CustomViewScreen() {
             displayText = pin,
             onValueChangeListener = { pin = it },
             correctPinEnteredListener = {})
-        CustomPhoneNumber(
+        CustomPhoneNumberV1(
             displayText = phone,
             expanded = false,
-            selectedCountryCode = DropdownMenuItems.RUSSIA,
+            selectedCountryCode = DropdownMenuItemsV1.RUSSIA,
             onDismissRequestClickListener = {},
             onItemClickListener = {},
             onRowClickListener = {},

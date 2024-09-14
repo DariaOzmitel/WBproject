@@ -1,14 +1,12 @@
-package com.example.wbproject.ui.theme.deprecatedUi.elements
+package com.example.ui.elements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -33,9 +31,10 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
-import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
-import com.example.wbproject.ui.theme.deprecatedUi.theme.MeetingTheme
+import com.example.ui.DropdownMenuItems
+import com.example.ui.elements.text.TextMedium19
+import com.example.ui.elements.text.TextRegular19
+import com.example.ui.theme.EventTheme
 
 private const val BLANK_NUMBER = "000 000-00-00"
 private const val PHONE_LENGTH = 10
@@ -62,11 +61,13 @@ fun CustomPhoneNumber(
         }
         Box(
             modifier = Modifier
-                .height(MeetingTheme.dimensions.dimension36)
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
-                .background(MeetingTheme.colors.neutralOffWhite)
-                .padding(MeetingTheme.dimensions.dimension8),
+                .clip(RoundedCornerShape(EventTheme.dimensions.dimension16))
+                .background(EventTheme.colors.neutralOffWhite)
+                .padding(
+                    vertical = EventTheme.dimensions.dimension16,
+                    horizontal = EventTheme.dimensions.dimension12
+                ),
             contentAlignment = Alignment.CenterStart
         ) {
             BasicTextField(
@@ -77,14 +78,14 @@ fun CustomPhoneNumber(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 decorationBox = { decorationBox ->
                     if (displayText.isBlank()) {
-                        TextBody1(
+                        TextRegular19(
                             text = BLANK_NUMBER,
-                            color = MeetingTheme.colors.neutralDisabled,
+                            color = EventTheme.colors.neutralDisabled,
                         )
                     }
                     decorationBox()
                 },
-                textStyle = MeetingTheme.typography.bodyText1.copy(color = MeetingTheme.colors.neutralDisabled),
+                textStyle = EventTheme.typography.regular19.copy(color = EventTheme.colors.neutralDisabled),
                 visualTransformation = PhoneNumberTransformation()
             )
         }
@@ -93,34 +94,36 @@ fun CustomPhoneNumber(
 
 @Composable
 private fun CustomCountryCode(
+    modifier: Modifier = Modifier,
     expanded: Boolean,
     selectedCountryCode: DropdownMenuItems,
     onRowClickListener: () -> Unit,
     onDismissRequestClickListener: () -> Unit,
     onItemClickListener: (DropdownMenuItems) -> Unit
 ) {
-    Column(modifier = Modifier.padding(end = MeetingTheme.dimensions.dimension6)) {
+    Column(modifier = modifier) {
         Row(
             modifier = Modifier
+                .padding(end = EventTheme.dimensions.dimension8)
                 .clickable { onRowClickListener() }
-                .height(MeetingTheme.dimensions.dimension36)
-                .width(MeetingTheme.dimensions.dimension58)
-                .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4))
-                .background(MeetingTheme.colors.neutralOffWhite)
-                .padding(MeetingTheme.dimensions.dimension8),
-            horizontalArrangement = Arrangement.SpaceBetween,
+                .clip(RoundedCornerShape(EventTheme.dimensions.dimension16))
+                .background(EventTheme.colors.neutralOffWhite)
+                .padding(
+                    vertical = EventTheme.dimensions.dimension16,
+                    horizontal = EventTheme.dimensions.dimension20
+                ),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 modifier = Modifier
-                    .size(MeetingTheme.dimensions.dimension16)
-                    .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                    .padding(end = EventTheme.dimensions.dimension8)
+                    .size(EventTheme.dimensions.dimension16)
+                    .clip(RoundedCornerShape(EventTheme.dimensions.dimension4)),
                 painter = painterResource(id = selectedCountryCode.imageResId),
                 contentDescription = null
             )
-            TextBody1(
+            TextMedium19(
                 text = selectedCountryCode.countryCode,
-                color = MeetingTheme.colors.neutralDisabled
             )
         }
         DropDownMenuContent(
@@ -141,16 +144,16 @@ private fun DropDownMenuContent(
 ) {
     DropdownMenu(
         modifier = Modifier
-            .width(MeetingTheme.dimensions.dimension76)
-            .background(MeetingTheme.colors.neutralOffWhite),
+            .width(EventTheme.dimensions.dimension76)
+            .background(EventTheme.colors.neutralOffWhite),
         expanded = expanded,
         onDismissRequest = onDismissRequestClickListener
     ) {
         DropdownMenuItems.entries.forEachIndexed { index, item ->
             DropdownMenuItem(text = {
-                TextBody1(
+                TextMedium19(
                     text = item.countryCode,
-                    color = MeetingTheme.colors.neutralDisabled
+                    color = EventTheme.colors.neutralDisabled
                 )
             }, onClick = {
                 onItemClickListener(item)
@@ -158,8 +161,8 @@ private fun DropDownMenuContent(
                 leadingIcon = {
                     Image(
                         modifier = Modifier
-                            .size(MeetingTheme.dimensions.dimension16)
-                            .clip(RoundedCornerShape(MeetingTheme.dimensions.dimension4)),
+                            .size(EventTheme.dimensions.dimension16)
+                            .clip(RoundedCornerShape(EventTheme.dimensions.dimension4)),
                         painter = painterResource(id = item.imageResId),
                         contentDescription = null
                     )
@@ -217,12 +220,12 @@ class PhoneNumberTransformation : VisualTransformation {
 
 @Preview
 @Composable
-fun CustomPhoneNumberPreview() {
+private fun CustomPhoneNumberPreview() {
     var phone: String by rememberSaveable {
         mutableStateOf("")
     }
     CustomPhoneNumber(
-        modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
+        modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension68),
         displayText = phone,
         expanded = false,
         selectedCountryCode = DropdownMenuItems.RUSSIA,

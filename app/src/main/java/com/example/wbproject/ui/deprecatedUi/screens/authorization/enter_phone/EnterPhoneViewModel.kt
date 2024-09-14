@@ -1,7 +1,7 @@
 package com.example.wbproject.ui.deprecatedUi.screens.authorization.enter_phone
 
 import androidx.lifecycle.ViewModel
-import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItemsV1
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 internal class EnterPhoneViewModel : ViewModel() {
 
     private val enterPhoneStateMutable: MutableStateFlow<EnterPhoneState> =
-        MutableStateFlow(EnterPhoneState.EnterPhoneContent(countryCode = DropdownMenuItems.RUSSIA))
+        MutableStateFlow(EnterPhoneState.EnterPhoneContent(countryCode = DropdownMenuItemsV1.RUSSIA))
     private val enterPhoneState: StateFlow<EnterPhoneState> = enterPhoneStateMutable
 
 
@@ -27,7 +27,7 @@ internal class EnterPhoneViewModel : ViewModel() {
         }
     }
 
-    fun updateCountryCode(newCountryCode: DropdownMenuItems) {
+    fun updateCountryCode(newCountryCode: DropdownMenuItemsV1) {
         enterPhoneStateMutable.update {
             when (it) {
                 is EnterPhoneState.EnterPhoneContent ->

@@ -8,20 +8,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.data.mockData.mockMeeting
+import com.example.ui.DropdownMenuItems
 import com.example.ui.R
-import com.example.ui.elements.EventEditText
+import com.example.ui.elements.CustomPhoneNumber
 import com.example.ui.elements.buttons.EventButton
 import com.example.ui.elements.text.TextHeadingHuge
 import com.example.ui.elements.text.TextRegular19
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun EnterNameScreen(modifier: Modifier = Modifier) {
+fun EnterPhoneScreen(modifier: Modifier = Modifier) {
     val meeting = mockMeeting
     Scaffold { innerPadding ->
         Column(
@@ -50,10 +55,21 @@ fun EnterNameScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension24),
                 text = "${meeting.name} · ${meeting.date} · ${meeting.address}"
             )
-            EventEditText(displayText = "") {
+            var phone: String by rememberSaveable {
+                mutableStateOf("")
             }
+            CustomPhoneNumber(
+                modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension68),
+                displayText = phone,
+                expanded = false,
+                selectedCountryCode = DropdownMenuItems.RUSSIA,
+                onDismissRequestClickListener = {},
+                onItemClickListener = {},
+                onRowClickListener = {},
+                onValueChangeClickListener = { phone = it }
+            )
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Bottom) {
-                EventButton(text = stringResource(id = R.string.resume))
+                EventButton(text = stringResource(id = R.string.get_code))
             }
 
         }
@@ -62,6 +78,6 @@ fun EnterNameScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun EnterNameScreenPreview() {
-    EnterNameScreen()
+private fun EnterPhoneScreenPreview() {
+    EnterPhoneScreen()
 }

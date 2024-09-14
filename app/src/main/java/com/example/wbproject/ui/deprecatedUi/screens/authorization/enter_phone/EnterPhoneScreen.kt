@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockUser
 import com.example.wbproject.R
-import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItems
-import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumber
+import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItemsV1
+import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumberV1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
@@ -55,10 +55,10 @@ private fun EnterPhoneScreenContent(
     modifier: Modifier = Modifier,
     phone: String,
     expanded: Boolean,
-    selectedCountryCode: DropdownMenuItems,
+    selectedCountryCode: DropdownMenuItemsV1,
     onRowClickListener: () -> Unit,
     onDismissRequestClickListener: () -> Unit,
-    onItemClickListener: (DropdownMenuItems) -> Unit,
+    onItemClickListener: (DropdownMenuItemsV1) -> Unit,
     onPhoneValueChangeClickListener: (String) -> Unit,
     onButtonClickListener: () -> Unit
 ) {
@@ -85,7 +85,7 @@ private fun EnterPhoneScreenContent(
             textAlign = TextAlign.Center,
             lineHeight = 20.sp
         )
-        CustomPhoneNumber(
+        CustomPhoneNumberV1(
             modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension68),
             displayText = phone,
             expanded = expanded,
@@ -111,7 +111,7 @@ private fun EnterPhoneScreenContentPreview() {
     EnterPhoneScreenContent(
         phone = mockUser.phone,
         expanded = false,
-        selectedCountryCode = DropdownMenuItems.RUSSIA,
+        selectedCountryCode = DropdownMenuItemsV1.RUSSIA,
         onDismissRequestClickListener = {},
         onItemClickListener = {},
         onRowClickListener = {},
