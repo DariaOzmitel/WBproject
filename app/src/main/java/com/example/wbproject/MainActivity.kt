@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.ui.screen.profile.ProfileScreen
+import com.example.ui.screen.profile.editProfile.EditProfileScreen
 import com.example.ui.theme.EventTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +29,8 @@ class MainActivity : ComponentActivity() {
 //                EnterPinScreen()
 //                ConfirmedEventScreen()
 //                DeleteProfileScreen()
-                ProfileScreen()
+//                ProfileScreen()
+                EditProfileScreen()
             }
         }
     }

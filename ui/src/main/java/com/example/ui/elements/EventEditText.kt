@@ -75,7 +75,6 @@ private fun Modifier.addBorder(isFocused: Boolean): Modifier {
                 ), shape = RoundedCornerShape(EventTheme.dimensions.dimension16)
             )
         }
-
         false -> this
     }
 }

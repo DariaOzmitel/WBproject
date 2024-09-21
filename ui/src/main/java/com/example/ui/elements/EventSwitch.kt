@@ -20,7 +20,7 @@ import com.example.ui.theme.EventTheme
 @Composable
 fun EventSwitch(
     modifier: Modifier = Modifier,
-    checked: Boolean = false,
+    checked: Boolean = true,
     onCheckedChange: (Boolean) -> Unit,
 ) {
     Box(
