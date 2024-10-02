@@ -18,10 +18,14 @@ import com.example.ui.theme.EventTheme
 @Composable
 fun PeopleScreen(
     modifier: Modifier = Modifier,
+    onUserCardClickListener: (Int) -> Unit,
     onLeftIconClickListener: () -> Unit
 ) {
     val peopleList = mockUserList
-    PeopleScreenContent(modifier = modifier, peopleList = peopleList) {
+    PeopleScreenContent(
+        modifier = modifier,
+        peopleList = peopleList,
+        onUserCardClickListener = { onUserCardClickListener(it) }) {
         onLeftIconClickListener()
     }
 }
@@ -30,6 +34,7 @@ fun PeopleScreen(
 private fun PeopleScreenContent(
     modifier: Modifier = Modifier,
     peopleList: List<User>,
+    onUserCardClickListener: (Int) -> Unit,
     onLeftIconClickListener: () -> Unit
 ) {
     Scaffold { innerPadding ->
@@ -48,7 +53,9 @@ private fun PeopleScreenContent(
             )
             LazyColumn {
                 item {
-                    UserCardFlowRow(userList = peopleList)
+                    UserCardFlowRow(userList = peopleList) {
+                        onUserCardClickListener(it)
+                    }
                 }
             }
         }
@@ -58,6 +65,6 @@ private fun PeopleScreenContent(
 @Preview
 @Composable
 private fun PeopleScreenContentPreview() {
-    PeopleScreenContent(peopleList = mockUserList) {
+    PeopleScreenContent(peopleList = mockUserList, onUserCardClickListener = {}) {
     }
 }

@@ -69,8 +69,9 @@ fun InstallMainNavGraph() {
                 onAvatarsRowClickListener = { navigationState.navigateTo(Screen.People.route) })
         },
         peopleScreenContent = {
-            PeopleScreen {
-            }
+            PeopleScreen(
+                onUserCardClickListener = { navigationState.navigateTo(Screen.Profile.route) },
+                onLeftIconClickListener = { navigationState.navHostController.navigateUp() })
         },
         communityScreenContent = {
             CommunityScreen(

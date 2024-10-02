@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,6 +19,7 @@ import coil.compose.AsyncImage
 import com.example.data.mockData.mockUserList
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
+import com.example.ui.theme.NoRippleConfiguration
 
 private const val MAX_DISPLAYED_AVATARS = 5
 
@@ -48,6 +52,7 @@ private fun PeopleRow(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun PeopleAvatarsRow(
     modifier: Modifier = Modifier,
@@ -55,35 +60,36 @@ internal fun PeopleAvatarsRow(
     displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS,
     onAvatarsRowClickListener: () -> Unit,
 ) {
-
-    LazyRow(
-        modifier = modifier.clickable { onAvatarsRowClickListener() },
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        if (!avatars.isNullOrEmpty()) {
-            item {
-                PeopleRow(
-                    modifier = Modifier.padding(end = EventTheme.dimensions.dimension16),
-                    overlappingPercentage = 0.20f
-                ) {
-                    avatars.take(MAX_DISPLAYED_AVATARS).forEach {
-                        AsyncImage(
-                            model = it,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(EventTheme.dimensions.dimension48)
-                                .clip(CircleShape)
-                        )
+    CompositionLocalProvider(LocalRippleConfiguration provides NoRippleConfiguration) {
+        LazyRow(
+            modifier = modifier.clickable { onAvatarsRowClickListener() },
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (!avatars.isNullOrEmpty()) {
+                item {
+                    PeopleRow(
+                        modifier = Modifier.padding(end = EventTheme.dimensions.dimension16),
+                        overlappingPercentage = 0.20f
+                    ) {
+                        avatars.take(MAX_DISPLAYED_AVATARS).forEach {
+                            AsyncImage(
+                                model = it,
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(EventTheme.dimensions.dimension48)
+                                    .clip(CircleShape)
+                            )
+                        }
                     }
                 }
-            }
-            if (avatars.size > displayedAvatarsNum) {
-                item {
-                    TextSecondary(
-                        text = "+${avatars.size - displayedAvatarsNum}",
-                        color = EventTheme.colors.brandColorPurple,
-                    )
+                if (avatars.size > displayedAvatarsNum) {
+                    item {
+                        TextSecondary(
+                            text = "+${avatars.size - displayedAvatarsNum}",
+                            color = EventTheme.colors.brandColorPurple,
+                        )
+                    }
                 }
             }
         }

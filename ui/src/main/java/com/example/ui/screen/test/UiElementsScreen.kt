@@ -110,10 +110,10 @@ fun UiElementsScreen() {
             UserAvatar(user = mockUser)
         }
         item {
-            UserCard(user = mockUser)
+            UserCard(user = mockUser) {}
         }
         item {
-            UserCardFlowRow(userList = mockUserList)
+            UserCardFlowRow(userList = mockUserList) {}
         }
     }
 }
