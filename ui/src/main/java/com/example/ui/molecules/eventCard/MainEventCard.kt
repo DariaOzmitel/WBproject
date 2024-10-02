@@ -1,5 +1,6 @@
 package com.example.ui.molecules.eventCard
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,9 +27,17 @@ private const val MAX_TEXT_LINES = 2
 private const val MAX_CHIPS_LINES = 1
 
 @Composable
-fun MainEventCard(modifier: Modifier = Modifier, meeting: Meeting) {
+fun MainEventCard(
+    modifier: Modifier = Modifier,
+    meeting: Meeting,
+    onMainEventCardClickListener: (Int) -> Unit
+) {
     Card(
-        modifier = modifier.width(EventTheme.dimensions.dimension320),
+        modifier = modifier
+            .width(EventTheme.dimensions.dimension320)
+            .clickable {
+                onMainEventCardClickListener(meeting.id)
+            },
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -52,14 +61,20 @@ fun MainEventCard(modifier: Modifier = Modifier, meeting: Meeting) {
 }
 
 @Composable
-fun MainEventCardRow(modifier: Modifier = Modifier, meeting: List<Meeting>) {
+fun MainEventCardRow(
+    modifier: Modifier = Modifier,
+    meetingList: List<Meeting>,
+    onMainEventCardClickListener: (Int) -> Unit
+) {
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
-        items(meeting) {
-            MainEventCard(meeting = it)
+        items(meetingList) { meeting ->
+            MainEventCard(meeting = meeting) {
+                onMainEventCardClickListener(meeting.id)
+            }
         }
     }
 }
@@ -67,5 +82,5 @@ fun MainEventCardRow(modifier: Modifier = Modifier, meeting: List<Meeting>) {
 @Preview
 @Composable
 private fun MainEventCardPreview() {
-    MainEventCard(meeting = mockMeeting)
+    MainEventCard(meeting = mockMeeting) {}
 }

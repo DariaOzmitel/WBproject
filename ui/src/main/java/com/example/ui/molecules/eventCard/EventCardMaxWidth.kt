@@ -1,5 +1,6 @@
 package com.example.ui.molecules.eventCard
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,10 +23,17 @@ private const val MAX_TEXT_LINES = 2
 private const val MAX_CHIPS_LINES = 1
 
 @Composable
-internal fun EventCardMaxWidth(modifier: Modifier = Modifier, meeting: Meeting) {
+internal fun EventCardMaxWidth(
+    modifier: Modifier = Modifier,
+    meeting: Meeting,
+    onEventCardClickListener: (Int) -> Unit
+) {
     Card(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                onEventCardClickListener(meeting.id)
+            },
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
@@ -51,5 +59,5 @@ internal fun EventCardMaxWidth(modifier: Modifier = Modifier, meeting: Meeting) 
 @Preview
 @Composable
 private fun EventCardMaxWidthPreview() {
-    EventCardMaxWidth(meeting = mockMeeting)
+    EventCardMaxWidth(meeting = mockMeeting) {}
 }

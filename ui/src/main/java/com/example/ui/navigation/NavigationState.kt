@@ -14,6 +14,19 @@ class NavigationState(
             restoreState = true
         }
     }
+    fun navigateToEvent(eventId: Int) {
+        navHostController.navigate(route = Screen.Event.getRouteWithArgs(eventId)) {
+//            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    fun navigateToCommunity(communityId: Int) {
+        navHostController.navigate(route = Screen.Community.getRouteWithArgs(communityId)) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 }
 
 @Composable

@@ -28,13 +28,13 @@ fun CommunityCard(
     community: Community,
     width: Dp = EventTheme.dimensions.dimension104,
     subscribeStatus: Boolean = false,
-    onCommunityCardClickListener: () -> Unit = {},
-    onButtonClickListener: () -> Unit = {}
+    onButtonClickListener: () -> Unit = {},
+    onCommunityCardClickListener: (Int) -> Unit,
 ) {
     Column(
         modifier = modifier
             .width(width)
-            .clickable { onCommunityCardClickListener() },
+            .clickable { onCommunityCardClickListener(community.id) },
         verticalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension4)
     ) {
         CommunityAvatar(model = community.imageUrl)
@@ -52,14 +52,20 @@ fun CommunityCard(
 }
 
 @Composable
-fun CommunityCardRow(modifier: Modifier = Modifier, communities: List<Community>) {
+fun CommunityCardRow(
+    modifier: Modifier = Modifier,
+    communities: List<Community>,
+    onCommunityCardClickListener: (Int) -> Unit = {},
+) {
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
-        items(communities) {
-            CommunityCard(community = it)
+        items(communities) { community ->
+            CommunityCard(community = community, onCommunityCardClickListener = {
+                onCommunityCardClickListener(community.id)
+            })
         }
     }
 }
@@ -67,5 +73,5 @@ fun CommunityCardRow(modifier: Modifier = Modifier, communities: List<Community>
 @Preview
 @Composable
 private fun CommunityCardPreview() {
-    CommunityCard(community = mockCommunity)
+    CommunityCard(community = mockCommunity, onCommunityCardClickListener = {})
 }

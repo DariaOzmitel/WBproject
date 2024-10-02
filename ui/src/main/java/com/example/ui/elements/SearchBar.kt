@@ -14,8 +14,11 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,9 +35,11 @@ import com.example.ui.R
 import com.example.ui.elements.text.TextHeading4
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
+import com.example.ui.theme.NoRippleConfiguration
 
 private const val MAX_LINES_VALUE = 1
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SearchBar(
     modifier: Modifier = Modifier,
@@ -46,34 +51,36 @@ internal fun SearchBar(
     var isFocused by remember {
         mutableStateOf(false)
     }
-    Row(
-        modifier = modifier, verticalAlignment = Alignment.CenterVertically
-    ) {
-        SearchTextField(
-            modifier = Modifier.weight(1f),
-            searchText = searchText,
-            onValueChange = onValueChange,
-            focusManager = focusManager,
-            isFocused = isFocused,
-            onFocusChange = { isFocused = it })
-        when {
-            isFocused -> {
-                TextHeading4(
-                    modifier = Modifier
-                        .clickable {
-                            onValueChange("")
-                            isFocused = false
-                            focusManager.clearFocus()
-                        }, text = stringResource(id = R.string.cancel)
-                )
-            }
+    CompositionLocalProvider(LocalRippleConfiguration provides NoRippleConfiguration) {
+        Row(
+            modifier = modifier, verticalAlignment = Alignment.CenterVertically
+        ) {
+            SearchTextField(
+                modifier = Modifier.weight(1f),
+                searchText = searchText,
+                onValueChange = onValueChange,
+                focusManager = focusManager,
+                isFocused = isFocused,
+                onFocusChange = { isFocused = it })
+            when {
+                isFocused -> {
+                    TextHeading4(
+                        modifier = Modifier
+                            .clickable {
+                                onValueChange("")
+                                isFocused = false
+                                focusManager.clearFocus()
+                            }, text = stringResource(id = R.string.cancel)
+                    )
+                }
 
-            else -> {
-                Image(
-                    modifier = Modifier.clickable { onProfileClickListener() },
-                    painter = painterResource(id = R.drawable.profile),
-                    contentDescription = stringResource(id = R.string.search_hint),
-                )
+                else -> {
+                    Image(
+                        modifier = Modifier.clickable { onProfileClickListener() },
+                        painter = painterResource(id = R.drawable.profile),
+                        contentDescription = stringResource(id = R.string.search_hint),
+                    )
+                }
             }
         }
     }

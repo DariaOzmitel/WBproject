@@ -41,17 +41,17 @@ fun UiMoleculesScreen() {
             CommunityCard(
                 community = mockCommunity,
                 subscribeStatus = booleanState,
-                onButtonClickListener = { booleanState = !booleanState })
+                onButtonClickListener = { booleanState = !booleanState }) {}
         }
         item {
             CommunityCardRow(communities = mockCommunityList)
             Spacer(modifier = Modifier.height(EventTheme.dimensions.dimension8))
         }
         item {
-            MainEventCardRow(meeting = mockListMeetings)
+            MainEventCardRow(meetingList = mockListMeetings, onMainEventCardClickListener = {})
         }
         item {
-            EventCardRow(meetings = mockListMeetings)
+            EventCardRow(meetings = mockListMeetings) {}
         }
         item {
             PresenterCard(presenter = mockPresenter)

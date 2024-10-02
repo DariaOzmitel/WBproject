@@ -7,6 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.data.mockData.mockUserList
 import com.example.domain.model.User
 import com.example.ui.R
 import com.example.ui.molecules.CustomTopBar
@@ -15,6 +17,17 @@ import com.example.ui.theme.EventTheme
 
 @Composable
 fun PeopleScreen(
+    modifier: Modifier = Modifier,
+    onLeftIconClickListener: () -> Unit
+) {
+    val peopleList = mockUserList
+    PeopleScreenContent(modifier = modifier, peopleList = peopleList) {
+        onLeftIconClickListener()
+    }
+}
+
+@Composable
+private fun PeopleScreenContent(
     modifier: Modifier = Modifier,
     peopleList: List<User>,
     onLeftIconClickListener: () -> Unit
@@ -39,5 +52,12 @@ fun PeopleScreen(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun PeopleScreenContentPreview() {
+    PeopleScreenContent(peopleList = mockUserList) {
     }
 }

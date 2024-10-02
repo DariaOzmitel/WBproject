@@ -19,5 +19,4 @@ class MeetingApp : Application() {
             modules(listOf(appModule, dataModule, domainModule, uiModule))
         }
     }
-
 }

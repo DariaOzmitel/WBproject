@@ -22,7 +22,11 @@ import com.example.ui.elements.text.TextRegular20
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun ConfirmedEventScreen(modifier: Modifier = Modifier) {
+fun ConfirmedEventScreen(
+    modifier: Modifier = Modifier,
+    onMyEventsButtonClickListener: () -> Unit,
+    onOtherEventsButtonClickListener: () -> Unit,
+) {
     val meeting = mockMeeting
     Scaffold { innerPadding ->
         Box(
@@ -62,8 +66,12 @@ fun ConfirmedEventScreen(modifier: Modifier = Modifier) {
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension20),
                         text = stringResource(id = R.string.my_event),
                         color = EventTheme.colors.brandColorPurple
-                    )
-                    EventButton(text = stringResource(id = R.string.find_event))
+                    ) {
+                        onMyEventsButtonClickListener()
+                    }
+                    EventButton(text = stringResource(id = R.string.find_event)) {
+                        onOtherEventsButtonClickListener()
+                    }
                 }
             }
         }
@@ -73,5 +81,5 @@ fun ConfirmedEventScreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun ConfirmedEventScreenPreview() {
-    ConfirmedEventScreen()
+    ConfirmedEventScreen(onMyEventsButtonClickListener = {}) {}
 }

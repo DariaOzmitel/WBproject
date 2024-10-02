@@ -1,5 +1,6 @@
 package com.example.ui.molecules
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -51,10 +52,14 @@ private fun PeopleRow(
 internal fun PeopleAvatarsRow(
     modifier: Modifier = Modifier,
     avatars: List<String>?,
-    displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS
+    displayedAvatarsNum: Int = MAX_DISPLAYED_AVATARS,
+    onAvatarsRowClickListener: () -> Unit,
 ) {
 
-    LazyRow(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+    LazyRow(
+        modifier = modifier.clickable { onAvatarsRowClickListener() },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         if (!avatars.isNullOrEmpty()) {
             item {
                 PeopleRow(
@@ -88,5 +93,5 @@ internal fun PeopleAvatarsRow(
 @Preview
 @Composable
 fun PeopleAvatarsRowPreview() {
-    PeopleAvatarsRow(avatars = mockUserList.map { it.avatarModel.toString() })
+    PeopleAvatarsRow(avatars = mockUserList.map { it.avatarModel.toString() }) {}
 }

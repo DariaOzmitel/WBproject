@@ -1,5 +1,6 @@
 package com.example.ui.molecules
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,9 +22,13 @@ private const val ORGANIZER_DESCRIPTION_MAX_LINES = 5
 @Composable
 internal fun OrganizerCard(
     modifier: Modifier = Modifier,
-    organizer: Community
+    organizer: Community,
+    onOrganizerCardClickListener: (Int) -> Unit,
 ) {
-    Row(modifier = modifier.fillMaxWidth()) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable { onOrganizerCardClickListener(organizer.id) }) {
         Column(
             modifier = Modifier
                 .weight(1f)
@@ -51,5 +56,5 @@ internal fun OrganizerCard(
 @Preview
 @Composable
 private fun OrganizerCardPreview() {
-    OrganizerCard(organizer = mockCommunity)
+    OrganizerCard(organizer = mockCommunity) {}
 }

@@ -12,9 +12,13 @@ import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
 
 @Composable
-internal fun EventBottomBar(modifier: Modifier = Modifier, placesCount: Int) {
+internal fun EventBottomBar(
+    modifier: Modifier = Modifier,
+    placesCount: Int,
+    onButtonClickListener: () -> Unit
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .padding(
                 start = EventTheme.dimensions.dimension16,
                 end = EventTheme.dimensions.dimension16,
@@ -30,7 +34,7 @@ internal fun EventBottomBar(modifier: Modifier = Modifier, placesCount: Int) {
             ),
             color = EventTheme.colors.brandColorPurple
         )
-        EventButton(text = stringResource(id = R.string.register_event))
+        EventButton(text = stringResource(id = R.string.register_event)) { onButtonClickListener() }
     }
 }
 
@@ -38,5 +42,5 @@ internal fun EventBottomBar(modifier: Modifier = Modifier, placesCount: Int) {
 @Preview
 @Composable
 private fun EventBottomBarPreview() {
-    EventBottomBar(placesCount = 30)
+    EventBottomBar(placesCount = 30) {}
 }

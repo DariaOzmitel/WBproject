@@ -29,7 +29,14 @@ import com.example.ui.molecules.eventCard.MainEventCardRow
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun MainPageScreen(modifier: Modifier = Modifier) {
+fun MainPageScreen(
+    modifier: Modifier = Modifier,
+    onMainEventCardClickListener: (Int) -> Unit,
+    onEventCardClickListener: (Int) -> Unit,
+    onEventCardMaxWidthClickListener: (Int) -> Unit,
+    onProfileClickListener: () -> Unit,
+    onCommunityCardClickListener: (Int) -> Unit,
+) {
     var searchText by remember {
         mutableStateOf("")
     }
@@ -47,7 +54,8 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 SearchBar(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension20),
                     searchText = searchText,
-                    onProfileClickListener = {}) {
+                    onProfileClickListener = onProfileClickListener
+                ) {
                     searchText = it
                 }
             }
@@ -56,8 +64,10 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
-                    meeting = mockListMeetings
-                )
+                    meetingList = mockListMeetings
+                ) {
+                    onMainEventCardClickListener(it)
+                }
             }
             item {
                 TextHeading2(
@@ -70,7 +80,8 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
-                    meetings = mockListMeetingAlreadyPassed
+                    meetings = mockListMeetingAlreadyPassed,
+                    onEventCardClickListener = { onEventCardClickListener(it) }
                 )
             }
             item {
@@ -85,7 +96,9 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
                     communities = mockCommunityList
-                )
+                ) {
+                    onCommunityCardClickListener(it)
+                }
             }
             item {
                 TextHeading2(
@@ -103,19 +116,25 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
                     meeting = mockMeeting
-                )
+                ) {
+                    onEventCardMaxWidthClickListener(it)
+                }
             }
             item {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
                     meeting = mockMeeting
-                )
+                ) {
+                    onEventCardMaxWidthClickListener(it)
+                }
             }
             item {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
                     meeting = mockMeeting
-                )
+                ) {
+                    onEventCardMaxWidthClickListener(it)
+                }
             }
             item {
                 SelectInterestsCard(
@@ -132,5 +151,10 @@ fun MainPageScreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun MainPageScreenPreview() {
-    MainPageScreen()
+    MainPageScreen(
+        onMainEventCardClickListener = {},
+        onEventCardClickListener = {},
+        onProfileClickListener = {},
+        onEventCardMaxWidthClickListener = {},
+        onCommunityCardClickListener = {})
 }
