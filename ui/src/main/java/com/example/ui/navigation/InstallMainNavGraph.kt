@@ -54,7 +54,8 @@ fun InstallMainNavGraph() {
                 },
                 onCommunityCardClickListener = { communityId ->
                     navigationState.navigateToCommunity(communityId)
-                })
+                },
+                onSelectInterestButtonClickListener = { navigationState.navigateTo(Screen.SelectInterest.route) })
         },
         eventScreenContent = {
             EventScreen(onEventCardClickListener = { eventId ->

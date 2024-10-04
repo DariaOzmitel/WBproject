@@ -35,6 +35,7 @@ fun MainPageScreen(
     onEventCardClickListener: (Int) -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
     onProfileClickListener: () -> Unit,
+    onSelectInterestButtonClickListener: () -> Unit,
     onCommunityCardClickListener: (Int) -> Unit,
 ) {
     var searchText by remember {
@@ -142,6 +143,7 @@ fun MainPageScreen(
                         bottom = EventTheme.dimensions.dimension40
                     )
                 ) {
+                    onSelectInterestButtonClickListener()
                 }
             }
         }
@@ -156,5 +158,6 @@ private fun MainPageScreenPreview() {
         onEventCardClickListener = {},
         onProfileClickListener = {},
         onEventCardMaxWidthClickListener = {},
+        onSelectInterestButtonClickListener = {},
         onCommunityCardClickListener = {})
 }

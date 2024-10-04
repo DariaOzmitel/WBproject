@@ -26,7 +26,10 @@ import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
 
 @Composable
-internal fun SelectInterestsCard(modifier: Modifier = Modifier, onClickListener: () -> Unit) {
+internal fun SelectInterestsCard(
+    modifier: Modifier = Modifier,
+    onSelectInterestButtonClickListener: () -> Unit
+) {
     Box(modifier = modifier) {
         Image(
             modifier = Modifier
@@ -55,7 +58,7 @@ internal fun SelectInterestsCard(modifier: Modifier = Modifier, onClickListener:
                         .padding()
                         .clip(RoundedCornerShape(EventTheme.dimensions.dimension8))
                         .background(EventTheme.colors.gradientWhite),
-                    onClick = onClickListener,
+                    onClick = onSelectInterestButtonClickListener,
                     colors = ButtonDefaults.textButtonColors(
                         containerColor = Color.Transparent,
                         contentColor = EventTheme.colors.brandColorPurple
