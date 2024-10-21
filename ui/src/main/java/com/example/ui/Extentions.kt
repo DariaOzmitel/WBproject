@@ -14,3 +14,7 @@ fun Modifier.ignoreHorizontalParentPadding(horizontal: Dp = EventDimensionsValue
         }
     }
 }
+
+fun Int?.orZero(): Int {
+    return this ?: 0
+}

@@ -13,15 +13,12 @@ internal class SplashScreenViewModel(private val checkAuthorizationUseCase: IChe
     private val isUserAuthorizedMutable = MutableStateFlow(false)
     private val isUserAuthorized: StateFlow<Boolean> = isUserAuthorizedMutable
 
-    init {
-        checkAuthorization()
-    }
-
     fun getStatusFlow(): StateFlow<Boolean> = isUserAuthorized
 
-    private fun checkAuthorization() {
+    fun checkAuthorization(animationEndListener: (Boolean) -> Unit) {
         viewModelScope.launch {
             delay(SPLASH_SCREEN_DURATION)
+            animationEndListener(getStatusFlow().value)
 //            checkAuthorizationUseCase().collect { authorizationStatus ->
 //                isUserAuthorizedMutable.update {
 //                    authorizationStatus

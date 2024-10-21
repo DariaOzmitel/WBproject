@@ -5,17 +5,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockListMeetings
 import com.example.data.mockData.mockMeeting
 import com.example.data.mockData.mockUserList
 import com.example.domain.model.Community
+import com.example.domain.model.Meeting
 import com.example.ui.R
+import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.buttons.EventButton
 import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.images.CommunityAvatar
@@ -28,6 +32,7 @@ import com.example.ui.molecules.PeopleAvatarsRow
 import com.example.ui.molecules.eventCard.EventCardMaxWidth
 import com.example.ui.molecules.eventCard.EventCardRow
 import com.example.ui.theme.EventTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CommunityScreen(
@@ -36,17 +41,24 @@ fun CommunityScreen(
     onEventCardMaxWidthClickListener: (Int) -> Unit,
     onAvatarsRowClickListener: () -> Unit, onEventCardClickListener: (Int) -> Unit
 ) {
-    val community = mockCommunity
-    Scaffold { innerPadding ->
-        CommunityScreenContent(
-            modifier = modifier,
-            innerPadding = innerPadding,
-            community = community,
-            onLeftIconClickListener = onLeftIconClickListener,
-            onAvatarsRowClickListener = onAvatarsRowClickListener,
-            onEventCardMaxWidthClickListener = { onEventCardMaxWidthClickListener(it) },
-            onEventCardClickListener = { onEventCardClickListener(it) }
-        )
+    val viewModel: CommunityViewModel = koinViewModel()
+    val communityState by viewModel.getCommunityFlow().collectAsStateWithLifecycle()
+    when (val state = communityState) {
+        is CommunityState.Loading -> ProgressIndicator()
+        is CommunityState.CommunityDetail -> {
+            Scaffold { innerPadding ->
+                CommunityScreenContent(
+                    modifier = modifier,
+                    innerPadding = innerPadding,
+                    community = state.community,
+                    meetingList = state.meetingList,
+                    onLeftIconClickListener = onLeftIconClickListener,
+                    onAvatarsRowClickListener = onAvatarsRowClickListener,
+                    onEventCardMaxWidthClickListener = { onEventCardMaxWidthClickListener(it) },
+                    onEventCardClickListener = { onEventCardClickListener(it) }
+                )
+            }
+        }
     }
 }
 
@@ -55,6 +67,7 @@ private fun CommunityScreenContent(
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues,
     community: Community,
+    meetingList: List<Meeting>,
     onLeftIconClickListener: () -> Unit,
     onAvatarsRowClickListener: () -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
@@ -172,7 +185,7 @@ private fun CommunityScreenContent(
         item {
             EventCardRow(
                 modifier = Modifier.ignoreHorizontalParentPadding(),
-                meetings = mockListMeetings,
+                meetings = meetingList,
             ) {
                 onEventCardClickListener(it)
             }
@@ -186,6 +199,7 @@ private fun CommunityScreenContentPreview() {
     CommunityScreenContent(
         innerPadding = PaddingValues(0.dp),
         community = mockCommunity,
+        meetingList = mockListMeetings,
         onLeftIconClickListener = {},
         onEventCardMaxWidthClickListener = {},
         onAvatarsRowClickListener = {}) {

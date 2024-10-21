@@ -13,11 +13,15 @@ import com.example.domain.usecase.interfaces.IGetCommunityUseCase
 import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingUseCase
+import com.example.domain.usecase.interfaces.IGetPeopleListUseCase
+import com.example.domain.usecase.interfaces.IGetPersonFlowUseCase
 import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
 import com.example.domain.usecase.meeting.ChangeAttendingStatusUseCase
 import com.example.domain.usecase.meeting.GetFinishedMeetingListUseCase
 import com.example.domain.usecase.meeting.GetMeetingListUseCase
 import com.example.domain.usecase.meeting.GetMeetingUseCase
+import com.example.domain.usecase.people.GetPeopleListUseCase
+import com.example.domain.usecase.people.GetPersonFlowUseCase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -32,5 +36,6 @@ val domainModule = module {
     factoryOf(::AddUserUseCase) bind IAddUserUseCase::class
     factoryOf(::CheckAuthorizationUseCase) bind ICheckAuthorizationUseCase::class
     factoryOf(::ChangeAttendingStatusUseCase) bind IChangeAttendingStatusUseCase::class
-
+    factoryOf(::GetPeopleListUseCase) bind IGetPeopleListUseCase::class
+    factoryOf(::GetPersonFlowUseCase) bind IGetPersonFlowUseCase::class
 }

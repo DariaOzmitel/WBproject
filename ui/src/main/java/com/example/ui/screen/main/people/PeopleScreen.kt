@@ -33,7 +33,7 @@ fun PeopleScreen(
 @Composable
 private fun PeopleScreenContent(
     modifier: Modifier = Modifier,
-    peopleList: List<User>,
+    peopleList: List<User>?,
     onUserCardClickListener: (Int) -> Unit,
     onLeftIconClickListener: () -> Unit
 ) {
@@ -53,8 +53,10 @@ private fun PeopleScreenContent(
             )
             LazyColumn {
                 item {
-                    UserCardFlowRow(userList = peopleList) {
-                        onUserCardClickListener(it)
+                    peopleList?.let { peopleList ->
+                        UserCardFlowRow(userList = peopleList) {
+                            onUserCardClickListener(it)
+                        }
                     }
                 }
             }

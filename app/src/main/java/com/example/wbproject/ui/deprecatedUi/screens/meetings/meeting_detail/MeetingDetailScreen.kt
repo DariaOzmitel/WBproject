@@ -26,9 +26,9 @@ import coil.compose.AsyncImage
 import com.example.data.mockData.mockMapUrl
 import com.example.data.mockData.mockMeeting
 import com.example.domain.model.Meeting
+import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.MyChipRow
-import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyOutlinedButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1

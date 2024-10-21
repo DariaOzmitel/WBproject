@@ -51,10 +51,9 @@ fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) 
                     contentScale = ContentScale.FillWidth
                 )
             }
-            animationEndListener(authorizationStatus)
+            viewModel.checkAuthorization { animationEndListener(it) }
         }
     }
-
 }
 
 @Preview

@@ -22,9 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.ui.deprecatedUi.items.TabsForMeetingList
 import com.example.wbproject.ui.theme.deprecatedUi.elements.MySearchTextField
-import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.MeetingCardColumn
 import com.example.wbproject.ui.theme.deprecatedUi.screens.meetings.MeetingListState

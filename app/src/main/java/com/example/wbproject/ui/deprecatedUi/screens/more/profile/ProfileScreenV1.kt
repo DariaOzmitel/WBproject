@@ -22,9 +22,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.data.mockData.mockUser
 import com.example.domain.model.User
+import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.IconInCircle
-import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyOutlinedButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading1Old
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextSubheading2

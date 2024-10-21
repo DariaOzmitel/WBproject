@@ -13,10 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockUser
+import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
 import com.example.wbproject.ui.deprecatedUi.items.DropdownMenuItemsV1
 import com.example.wbproject.ui.theme.deprecatedUi.elements.CustomPhoneNumberV1
-import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.buttons.MyButton
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody2
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextHeading2Old

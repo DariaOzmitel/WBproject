@@ -6,20 +6,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockListMeetingAlreadyPassed
 import com.example.data.mockData.mockMeeting
-import com.example.data.mockData.mockPresenter
 import com.example.data.mockData.mockUserList
 import com.example.domain.model.Meeting
 import com.example.ui.MetroStation
 import com.example.ui.R
 import com.example.ui.elements.MetroStationRow
+import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.images.EventAvatar
 import com.example.ui.elements.images.MapImage
@@ -34,6 +36,7 @@ import com.example.ui.molecules.PeopleAvatarsRow
 import com.example.ui.molecules.PresenterCard
 import com.example.ui.molecules.eventCard.EventCardRow
 import com.example.ui.theme.EventTheme
+import org.koin.androidx.compose.koinViewModel
 
 private const val MOCK_PLACE_COUNT = 30
 
@@ -46,18 +49,24 @@ fun EventScreen(
     onButtonClickListener: () -> Unit,
     onEventCardClickListener: (Int) -> Unit
 ) {
-    val meeting = mockMeeting
-    Scaffold { innerPadding ->
-        EventScreenContent(
-            modifier = modifier,
-            innerPadding = innerPadding,
-            meeting = meeting,
-            onLeftIconClickListener = onLeftIconClickListener,
-            onAvatarsRowClickListener = onAvatarsRowClickListener,
-            onOrganizerCardClickListener = { onOrganizerCardClickListener(it) },
-            onButtonClickListener = onButtonClickListener,
-            onEventCardClickListener = { onEventCardClickListener(it) }
-        )
+    val viewModel: MeetingViewModel = koinViewModel()
+    val meetingState by viewModel.getMeetingFlow().collectAsStateWithLifecycle()
+    when (val state = meetingState) {
+        is MeetingState.Loading -> ProgressIndicator()
+        is MeetingState.MeetingDetail -> {
+            Scaffold { innerPadding ->
+                EventScreenContent(
+                    modifier = modifier,
+                    innerPadding = innerPadding,
+                    meeting = state.meeting,
+                    onLeftIconClickListener = onLeftIconClickListener,
+                    onAvatarsRowClickListener = onAvatarsRowClickListener,
+                    onOrganizerCardClickListener = { onOrganizerCardClickListener(it) },
+                    onButtonClickListener = onButtonClickListener,
+                    onEventCardClickListener = { onEventCardClickListener(it) }
+                )
+            }
+        }
     }
 }
 
@@ -128,16 +137,16 @@ fun EventScreenContent(
                 }
             }
             item {
-                TextHeading2(
-                    modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
-                    text = stringResource(id = R.string.presenter)
-                )
-            }
-            item {
-                PresenterCard(
-                    modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
-                    presenter = mockPresenter
-                )
+                meeting.presenter?.let {
+                    TextHeading2(
+                        modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
+                        text = stringResource(id = R.string.presenter)
+                    )
+                    PresenterCard(
+                        modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
+                        presenter = it
+                    )
+                }
             }
             item {
                 TextHeading2(

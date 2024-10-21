@@ -18,8 +18,8 @@ import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockListMeetings
 import com.example.domain.model.Community
 import com.example.domain.model.Meeting
+import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
-import com.example.wbproject.ui.theme.deprecatedUi.elements.ProgressIndicator
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.MeetingCard
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.TextForDescription
