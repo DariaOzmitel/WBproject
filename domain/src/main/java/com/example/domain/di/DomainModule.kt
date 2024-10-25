@@ -5,12 +5,14 @@ import com.example.domain.usecase.authorization.CheckAuthorizationUseCase
 import com.example.domain.usecase.authorization.GetUserFlowUseCase
 import com.example.domain.usecase.community.GetCommunityListUseCase
 import com.example.domain.usecase.community.GetCommunityUseCase
+import com.example.domain.usecase.interests.GetInterestsListUseCase
 import com.example.domain.usecase.interfaces.IAddUserUseCase
 import com.example.domain.usecase.interfaces.IChangeAttendingStatusUseCase
 import com.example.domain.usecase.interfaces.ICheckAuthorizationUseCase
 import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
 import com.example.domain.usecase.interfaces.IGetCommunityUseCase
 import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetInterestsListUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingListUseCase
 import com.example.domain.usecase.interfaces.IGetMeetingUseCase
 import com.example.domain.usecase.interfaces.IGetPeopleListUseCase
@@ -38,4 +40,5 @@ val domainModule = module {
     factoryOf(::ChangeAttendingStatusUseCase) bind IChangeAttendingStatusUseCase::class
     factoryOf(::GetPeopleListUseCase) bind IGetPeopleListUseCase::class
     factoryOf(::GetPersonFlowUseCase) bind IGetPersonFlowUseCase::class
+    factoryOf(::GetInterestsListUseCase) bind IGetInterestsListUseCase::class
 }

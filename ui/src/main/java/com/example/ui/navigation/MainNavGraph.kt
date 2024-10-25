@@ -50,7 +50,16 @@ fun MainNavGraph(
         ) {
             eventScreenContent()
         }
-        composable(Screen.People.route) {
+        composable(route = Screen.People.route,
+            arguments = listOf(
+                navArgument(name = Screen.KEY_COMMUNITY_OR_EVENT_ID) {
+                    type = NavType.IntType
+                },
+                navArgument(name = Screen.KEY_TYPE_ID) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
             peopleScreenContent()
         }
         composable(route = Screen.Community.route,

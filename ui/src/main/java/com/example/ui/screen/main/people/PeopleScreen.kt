@@ -5,15 +5,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockUserList
 import com.example.domain.model.User
 import com.example.ui.R
+import com.example.ui.elements.ProgressIndicator
 import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.UserCardFlowRow
 import com.example.ui.theme.EventTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun PeopleScreen(
@@ -21,12 +25,18 @@ fun PeopleScreen(
     onUserCardClickListener: (Int) -> Unit,
     onLeftIconClickListener: () -> Unit
 ) {
-    val peopleList = mockUserList
-    PeopleScreenContent(
-        modifier = modifier,
-        peopleList = peopleList,
-        onUserCardClickListener = { onUserCardClickListener(it) }) {
-        onLeftIconClickListener()
+    val viewModel: PeopleViewModel = koinViewModel()
+    val peopleState by viewModel.getPeopleFlow().collectAsStateWithLifecycle()
+    when (val state = peopleState) {
+        is PeopleState.Loading -> ProgressIndicator()
+        is PeopleState.PeopleContent -> {
+            PeopleScreenContent(
+                modifier = modifier,
+                peopleList = state.peopleList,
+                onUserCardClickListener = { onUserCardClickListener(it) }) {
+                onLeftIconClickListener()
+            }
+        }
     }
 }
 

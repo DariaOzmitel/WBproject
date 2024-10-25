@@ -7,25 +7,42 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.ui.R
 import com.example.ui.elements.EventEditText
+import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.buttons.EventTextButton
 import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.ignoreHorizontalParentPadding
+import com.example.ui.model.UserUi
 import com.example.ui.model.UserUi.Companion.mockUserUi
 import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.TextSwitchRow
 import com.example.ui.theme.EventTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun EditProfileScreen(modifier: Modifier = Modifier) {
-    val user = mockUserUi
+    val viewModel: EditProfileViewModel = koinViewModel()
+    val editProfileState by viewModel.getEditProfileStateFlow().collectAsStateWithLifecycle()
+    when (val state = editProfileState) {
+        is EditProfileState.Loading -> ProgressIndicator()
+        is EditProfileState.EditProfileContent -> {
+            EditProfileScreenContent(modifier = modifier, user = state.user)
+        }
+    }
+}
+
+@Composable
+private fun EditProfileScreenContent(modifier: Modifier = Modifier, user: UserUi) {
     Scaffold { innerPadding ->
         LazyColumn(
             modifier = modifier
@@ -146,4 +163,10 @@ fun EditProfileScreen(modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun EditProfileScreenPreview() {
+    EditProfileScreenContent(user = mockUserUi)
 }

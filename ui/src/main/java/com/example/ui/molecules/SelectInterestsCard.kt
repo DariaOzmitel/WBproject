@@ -45,7 +45,7 @@ internal fun SelectInterestsCard(
                 modifier = Modifier.padding(
                     top = EventTheme.dimensions.dimension10,
                     end = EventTheme.dimensions.dimension80,
-                    bottom = EventTheme.dimensions.dimension14
+                    bottom = EventTheme.dimensions.dimension10
                 ),
                 text = stringResource(id = R.string.select_interests_text),
                 color = EventTheme.colors.fontColorWhite
@@ -55,7 +55,6 @@ internal fun SelectInterestsCard(
             ) {
                 Button(
                     modifier = Modifier
-                        .padding()
                         .clip(RoundedCornerShape(EventTheme.dimensions.dimension8))
                         .background(EventTheme.colors.gradientWhite),
                     onClick = onSelectInterestButtonClickListener,
@@ -63,7 +62,7 @@ internal fun SelectInterestsCard(
                         containerColor = Color.Transparent,
                         contentColor = EventTheme.colors.brandColorPurple
                     ),
-                    contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension12)
+                    contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension8)
                 ) {
                     TextMedium16(text = stringResource(id = R.string.select_interests))
                 }

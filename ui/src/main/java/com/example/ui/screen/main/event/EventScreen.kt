@@ -44,16 +44,16 @@ private const val MOCK_PLACE_COUNT = 30
 fun EventScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
-    onAvatarsRowClickListener: () -> Unit,
+    onAvatarsRowClickListener: (Int) -> Unit,
     onOrganizerCardClickListener: (Int) -> Unit,
     onButtonClickListener: () -> Unit,
     onEventCardClickListener: (Int) -> Unit
 ) {
-    val viewModel: MeetingViewModel = koinViewModel()
+    val viewModel: EventViewModel = koinViewModel()
     val meetingState by viewModel.getMeetingFlow().collectAsStateWithLifecycle()
     when (val state = meetingState) {
-        is MeetingState.Loading -> ProgressIndicator()
-        is MeetingState.MeetingDetail -> {
+        is EventState.Loading -> ProgressIndicator()
+        is EventState.EventDetail -> {
             Scaffold { innerPadding ->
                 EventScreenContent(
                     modifier = modifier,
@@ -76,7 +76,7 @@ fun EventScreenContent(
     innerPadding: PaddingValues,
     meeting: Meeting,
     onLeftIconClickListener: () -> Unit,
-    onAvatarsRowClickListener: () -> Unit,
+    onAvatarsRowClickListener: (Int) -> Unit,
     onOrganizerCardClickListener: (Int) -> Unit,
     onButtonClickListener: () -> Unit,
     onEventCardClickListener: (Int) -> Unit
@@ -176,7 +176,7 @@ fun EventScreenContent(
                 PeopleAvatarsRow(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
                     avatars = mockUserList.map { it.avatarModel.toString() }) {
-                    onAvatarsRowClickListener()
+                    onAvatarsRowClickListener(meeting.id)
                 }
             }
             item {

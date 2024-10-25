@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockMeeting
 import com.example.ui.R
 import com.example.ui.elements.buttons.EventButton
 import com.example.ui.elements.text.TextHeadingHuge
@@ -21,7 +20,6 @@ import com.example.ui.theme.EventTheme
 
 @Composable
 fun DeleteProfileScreen(modifier: Modifier = Modifier) {
-    val meeting = mockMeeting
     Scaffold { innerPadding ->
         Column(
             modifier = modifier

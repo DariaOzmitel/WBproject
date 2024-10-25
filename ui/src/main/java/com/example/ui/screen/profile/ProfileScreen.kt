@@ -12,14 +12,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.ui.R
+import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.buttons.EventTextButton
 import com.example.ui.elements.chips.EventChipsFlowRow14
 import com.example.ui.elements.text.TextHeading2
@@ -33,26 +36,36 @@ import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.communityCard.MyCommunityCardRow
 import com.example.ui.molecules.eventCard.EventCardRow
 import com.example.ui.theme.EventTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
     onCommunityCardClickListener: (Int) -> Unit,
+    onExitButtonClickListener: () -> Unit,
     onEventCardClickListener: (Int) -> Unit
 ) {
-    val user = mockUserUi
-    Scaffold { innerPadding ->
-        ProfileScreenContent(
-            modifier = modifier,
-            innerPadding = innerPadding,
-            user = user,
-            onLeftIconClickListener = onLeftIconClickListener,
-            onCommunityCardClickListener = onCommunityCardClickListener
-        ) {
-            onEventCardClickListener(it)
+    val viewModel: ProfileViewModel = koinViewModel()
+    val profileState by viewModel.getProfileStateFlow().collectAsStateWithLifecycle()
+    when (val state = profileState) {
+        is ProfileState.Loading -> ProgressIndicator()
+        is ProfileState.ProfileContent -> {
+            Scaffold { innerPadding ->
+                ProfileScreenContent(
+                    modifier = modifier,
+                    innerPadding = innerPadding,
+                    user = state.user,
+                    onLeftIconClickListener = onLeftIconClickListener,
+                    onCommunityCardClickListener = onCommunityCardClickListener,
+                    onExitButtonClickListener = onExitButtonClickListener
+                ) {
+                    onEventCardClickListener(it)
+                }
+            }
         }
     }
+
 }
 
 @Composable
@@ -62,6 +75,7 @@ private fun ProfileScreenContent(
     user: UserUi,
     onLeftIconClickListener: () -> Unit,
     onCommunityCardClickListener: (Int) -> Unit,
+    onExitButtonClickListener: () -> Unit,
     onEventCardClickListener: (Int) -> Unit
 ) {
     LazyColumn(
@@ -172,7 +186,8 @@ private fun ProfileScreenContent(
         item {
             EventTextButton(
                 text = stringResource(id = R.string.exit),
-                color = EventTheme.colors.fontColorGrey
+                color = EventTheme.colors.fontColorGrey,
+                onClick = onExitButtonClickListener
             )
         }
     }
@@ -184,6 +199,8 @@ private fun ProfileScreenContentPreview() {
     ProfileScreenContent(
         innerPadding = PaddingValues(0.dp),
         user = mockUserUi,
-        onLeftIconClickListener = {}, onCommunityCardClickListener = {}) {
+        onLeftIconClickListener = {},
+        onExitButtonClickListener = {},
+        onCommunityCardClickListener = {}) {
     }
 }

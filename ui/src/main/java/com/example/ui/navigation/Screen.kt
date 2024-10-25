@@ -16,7 +16,14 @@ sealed class Screen(
         }
     }
 
-    object People : Screen(ROUTE_PEOPLE)
+    object People : Screen(ROUTE_PEOPLE) {
+
+        private const val ROUTE_FOR_ARGS = "people"
+
+        fun getRouteWithArgs(communityOrEventId: Int, typeId: Int): String {
+            return "$ROUTE_FOR_ARGS/$communityOrEventId/$typeId"
+        }
+    }
     object Community : Screen(ROUTE_COMMUNITY) {
 
         private const val ROUTE_FOR_ARGS = "community"
@@ -37,13 +44,15 @@ sealed class Screen(
     companion object {
         const val KEY_EVENT_ID = "event_id"
         const val KEY_COMMUNITY_ID = "community_id"
+        const val KEY_COMMUNITY_OR_EVENT_ID = "community_or_event_id"
+        const val KEY_TYPE_ID = "type_id"
 
         private const val ROUTE_SPLASH = "splash"
         private const val ROUTE_SELECT_INTEREST = "selectInterest"
         private const val ROUTE_SELECT_LOCATION = "selectLocation"
         private const val ROUTE_MAIN = "main"
         private const val ROUTE_EVENT = "event/{$KEY_EVENT_ID}"
-        private const val ROUTE_PEOPLE = "people"
+        private const val ROUTE_PEOPLE = "people/{$KEY_COMMUNITY_OR_EVENT_ID}/{$KEY_TYPE_ID}"
         private const val ROUTE_COMMUNITY = "community/{$KEY_COMMUNITY_ID}"
         private const val ROUTE_ENTER_NAME = "enterName"
         private const val ROUTE_ENTER_PHONE = "enterPhone"

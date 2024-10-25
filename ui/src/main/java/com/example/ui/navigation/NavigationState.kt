@@ -30,6 +30,18 @@ class NavigationState(
             restoreState = true
         }
     }
+
+    fun navigateToPeople(communityOrEventId: Int, typeId: Int) {
+        navHostController.navigate(
+            route = Screen.People.getRouteWithArgs(
+                communityOrEventId,
+                typeId
+            )
+        ) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 }
 
 @Composable

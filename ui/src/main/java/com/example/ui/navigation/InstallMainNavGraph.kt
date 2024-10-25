@@ -16,6 +16,9 @@ import com.example.ui.screen.profile.deleteProfile.DeleteProfileScreen
 import com.example.ui.screen.profile.editProfile.EditProfileScreen
 import com.example.ui.screen.splash.SplashScreen
 
+private const val EVENT_TYPE = 0
+private const val COMMUNITY_TYPE = 1
+
 @Composable
 fun InstallMainNavGraph() {
     val navigationState = rememberNavigationState()
@@ -29,7 +32,8 @@ fun InstallMainNavGraph() {
         selectInterestScreenContent = {
             SelectInterestScreen(onClickListener = {
                 navigationState.navigateTo(
-                    Screen.SelectLocation.route
+                    Screen.Main.route
+//                    Screen.SelectLocation.route
                 )
             })
         },
@@ -67,7 +71,12 @@ fun InstallMainNavGraph() {
                     )
                 },
                 onButtonClickListener = { navigationState.navigateTo(Screen.EnterName.route) },
-                onAvatarsRowClickListener = { navigationState.navigateTo(Screen.People.route) })
+                onAvatarsRowClickListener = { eventId ->
+                    navigationState.navigateToPeople(
+                        eventId,
+                        EVENT_TYPE
+                    )
+                })
         },
         peopleScreenContent = {
             PeopleScreen(
@@ -85,7 +94,12 @@ fun InstallMainNavGraph() {
                         eventId
                     )
                 },
-                onAvatarsRowClickListener = { navigationState.navigateTo(Screen.People.route) })
+                onAvatarsRowClickListener = { communityId ->
+                    navigationState.navigateToPeople(
+                        communityId,
+                        COMMUNITY_TYPE
+                    )
+                })
         },
         enterNameScreenContent = {
             EnterNameScreen {
@@ -114,6 +128,9 @@ fun InstallMainNavGraph() {
                 onLeftIconClickListener = { navigationState.navHostController.navigateUp() },
                 onCommunityCardClickListener = { communityId ->
                     navigationState.navigateToCommunity(communityId)
+                },
+                onExitButtonClickListener = {
+                    navigationState.navigateTo(Screen.Main.route)
                 },
                 onEventCardClickListener = { eventId ->
                     navigationState.navigateToEvent(eventId)

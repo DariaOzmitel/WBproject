@@ -52,7 +52,6 @@ internal class CommunityViewModel(
                         community = community,
                         meetingList = meetingList.filter { meeting -> meeting.communityId == community.id })
                 }
-
             }
         }
     }

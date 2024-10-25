@@ -2,12 +2,12 @@ package com.example.ui.screen.main.event
 
 import com.example.domain.model.Meeting
 
-sealed class MeetingState {
-    data class MeetingDetail(
+sealed class EventState {
+    data class EventDetail(
         val meeting: Meeting,
         val mapUrl: String,
         val attendingStatus: Boolean
-    ) : MeetingState()
+    ) : EventState()
 
-    object Loading : MeetingState()
+    object Loading : EventState()
 }

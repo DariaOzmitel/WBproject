@@ -39,7 +39,7 @@ fun CommunityScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
-    onAvatarsRowClickListener: () -> Unit, onEventCardClickListener: (Int) -> Unit
+    onAvatarsRowClickListener: (Int) -> Unit, onEventCardClickListener: (Int) -> Unit
 ) {
     val viewModel: CommunityViewModel = koinViewModel()
     val communityState by viewModel.getCommunityFlow().collectAsStateWithLifecycle()
@@ -69,7 +69,7 @@ private fun CommunityScreenContent(
     community: Community,
     meetingList: List<Meeting>,
     onLeftIconClickListener: () -> Unit,
-    onAvatarsRowClickListener: () -> Unit,
+    onAvatarsRowClickListener: (Int) -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
     onEventCardClickListener: (Int) -> Unit
 ) {
@@ -143,7 +143,7 @@ private fun CommunityScreenContent(
             PeopleAvatarsRow(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
                 avatars = mockUserList.map { it.avatarModel.toString() }) {
-                onAvatarsRowClickListener()
+                onAvatarsRowClickListener(community.id)
             }
         }
         item {
