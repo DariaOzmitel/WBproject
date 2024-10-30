@@ -15,9 +15,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockCommunity
-import com.example.data.mockData.mockListMeetings
+import com.example.data.mockData.mockListEvents
 import com.example.domain.model.Community
-import com.example.domain.model.Meeting
+import com.example.domain.model.Event
 import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
@@ -45,7 +45,7 @@ fun CommunityDetailScreen(
                 modifier = modifier,
                 fullText = fullText,
                 community = state.community,
-                meetingList = state.meetingList,
+                eventList = state.eventList,
                 onTextClickListener = { fullText = !fullText },
                 onMeetingCardClickListener = onMeetingCardClickListener
             )
@@ -57,7 +57,7 @@ private fun CommunityDetailContent(
     modifier: Modifier = Modifier,
     fullText: Boolean,
     community: Community,
-    meetingList: List<Meeting>,
+    eventList: List<Event>,
     onTextClickListener: () -> Unit,
     onMeetingCardClickListener: (Int) -> Unit
 ) {
@@ -89,12 +89,12 @@ private fun CommunityDetailContent(
                 color = MeetingTheme.colors.neutralWeak,
             )
         }
-        items(meetingList) { meeting ->
+        items(eventList) { meeting ->
             MeetingCard(
                 modifier = Modifier
                     .padding(bottom = MeetingTheme.dimensions.dimension16)
                     .height(MeetingTheme.dimensions.dimension88),
-                meeting = meeting,
+                event = meeting,
                 onMeetingCardClickListener = onMeetingCardClickListener
             )
         }
@@ -107,7 +107,7 @@ fun CommunityDetailScreenPreview() {
     CommunityDetailContent(
         fullText = false,
         community = mockCommunity,
-        meetingList = mockListMeetings,
+        eventList = mockListEvents,
         onTextClickListener = { }) {
     }
 }

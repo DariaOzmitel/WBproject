@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.mockData.mockMapUrl
 import com.example.domain.usecase.interfaces.IChangeAttendingStatusUseCase
-import com.example.domain.usecase.interfaces.IGetMeetingUseCase
+import com.example.domain.usecase.interfaces.IGetEventByIdUseCase
 import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
 import com.example.ui.navigation.Screen
 import com.example.ui.orZero
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class EventViewModel(
-    private val getMeetingUseCase: IGetMeetingUseCase,
+    private val getMeetingUseCase: IGetEventByIdUseCase,
     private val savedStateHandle: SavedStateHandle,
     private val changeAttendingStatusUseCase: IChangeAttendingStatusUseCase,
     private val getUserFlowUseCase: IGetUserFlowUseCase
@@ -61,7 +61,7 @@ internal class EventViewModel(
                             it.id == getUserFlowUseCase.invoke().first().id
                         } != null
                     EventState.EventDetail(
-                        meeting = meeting,
+                        event = meeting,
                         attendingStatus = attendingStatus,
                         mapUrl = mockMapUrl
                     )

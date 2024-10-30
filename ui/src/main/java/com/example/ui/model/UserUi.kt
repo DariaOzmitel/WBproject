@@ -2,10 +2,10 @@ package com.example.ui.model
 
 import com.example.data.mockData.mockCommunityList
 import com.example.data.mockData.mockInterests
-import com.example.data.mockData.mockListMeetings
+import com.example.data.mockData.mockListEvents
 import com.example.domain.model.Community
+import com.example.domain.model.Event
 import com.example.domain.model.Interest
-import com.example.domain.model.Meeting
 
 data class UserUi(
     val avatarModel: Any?,
@@ -14,7 +14,7 @@ data class UserUi(
     val city: String? = null,
     val description: String? = null,
     val interests: List<Interest>? = null,
-    val events: List<Meeting>? = null,
+    val events: List<Event>? = null,
     val communities: List<Community>? = null,
 ) {
     companion object {
@@ -25,7 +25,7 @@ data class UserUi(
             city = "Москва",
             description = "Занимаюсь разрабокой интерфейсов в eCom. Учу HTML, CSS и JavaScript",
             interests = mockInterests,
-            events = mockListMeetings,
+            events = mockListEvents,
             communities = mockCommunityList
         )
     }

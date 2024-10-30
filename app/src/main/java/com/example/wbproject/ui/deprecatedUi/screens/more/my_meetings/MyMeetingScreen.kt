@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.data.mockData.mockListMeetingAlreadyPassed
-import com.example.data.mockData.mockListMeetings
-import com.example.domain.model.Meeting
+import com.example.data.mockData.mockListEventAlreadyPasseds
+import com.example.data.mockData.mockListEvents
+import com.example.domain.model.Event
 import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.ui.deprecatedUi.items.TabsForMyMeetingList
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
@@ -95,8 +95,8 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
                 is MyMeetingState.MyMeetingLists ->
                     HorizontalPagerContent(
                         page = TabsForMyMeetingList.entries[page],
-                        meetingList = state.meetingList,
-                        meetingListAlreadyPassed = state.meetingListAlreadyPassed,
+                        eventList = state.eventList,
+                        eventListAlreadyPassed = state.eventListAlreadyPassed,
                         onMeetingCardClickListener = onMeetingCardClickListener
                     )
             }
@@ -107,23 +107,23 @@ fun MyMeetingScreen(modifier: Modifier = Modifier, onMeetingCardClickListener: (
 @Composable
 private fun HorizontalPagerContent(
     page: TabsForMyMeetingList,
-    meetingList: List<Meeting>?,
-    meetingListAlreadyPassed: List<Meeting>?,
+    eventList: List<Event>?,
+    eventListAlreadyPassed: List<Event>?,
     onMeetingCardClickListener: (Int) -> Unit
 ) {
     when (page) {
         TabsForMyMeetingList.PLANNED ->
-            meetingList?.let {
+            eventList?.let {
                 MeetingCardColumn(
-                    meetingList = it,
+                    eventList = it,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
             }
 
         TabsForMyMeetingList.ALREADY_PASSED ->
-            meetingListAlreadyPassed?.let {
+            eventListAlreadyPassed?.let {
                 MeetingCardColumn(
-                    meetingList = it,
+                    eventList = it,
                     isEnded = true,
                     onMeetingCardClickListener = onMeetingCardClickListener
                 )
@@ -136,8 +136,8 @@ private fun HorizontalPagerContent(
 fun MyMeetingScreenPreview() {
     HorizontalPagerContent(
         page = TabsForMyMeetingList.ALREADY_PASSED,
-        meetingList = mockListMeetings,
-        meetingListAlreadyPassed = mockListMeetingAlreadyPassed
+        eventList = mockListEvents,
+        eventListAlreadyPassed = mockListEventAlreadyPasseds
     ) {
     }
 }

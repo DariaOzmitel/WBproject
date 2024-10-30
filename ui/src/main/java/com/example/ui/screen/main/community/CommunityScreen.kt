@@ -13,11 +13,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockCommunity
-import com.example.data.mockData.mockListMeetings
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
+import com.example.data.mockData.mockListEvents
 import com.example.data.mockData.mockUserList
 import com.example.domain.model.Community
-import com.example.domain.model.Meeting
+import com.example.domain.model.Event
 import com.example.ui.R
 import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.buttons.EventButton
@@ -51,7 +51,7 @@ fun CommunityScreen(
                     modifier = modifier,
                     innerPadding = innerPadding,
                     community = state.community,
-                    meetingList = state.meetingList,
+                    eventList = state.eventList,
                     onLeftIconClickListener = onLeftIconClickListener,
                     onAvatarsRowClickListener = onAvatarsRowClickListener,
                     onEventCardMaxWidthClickListener = { onEventCardMaxWidthClickListener(it) },
@@ -67,7 +67,7 @@ private fun CommunityScreenContent(
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues,
     community: Community,
-    meetingList: List<Meeting>,
+    eventList: List<Event>,
     onLeftIconClickListener: () -> Unit,
     onAvatarsRowClickListener: (Int) -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
@@ -155,7 +155,7 @@ private fun CommunityScreenContent(
         item {
             EventCardMaxWidth(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
-                meeting = mockMeeting
+                event = mockEvent
             ) {
                 onEventCardMaxWidthClickListener(it)
             }
@@ -163,7 +163,7 @@ private fun CommunityScreenContent(
         item {
             EventCardMaxWidth(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
-                meeting = mockMeeting
+                event = mockEvent
             ) {
                 onEventCardMaxWidthClickListener(it)
             }
@@ -171,7 +171,7 @@ private fun CommunityScreenContent(
         item {
             EventCardMaxWidth(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
-                meeting = mockMeeting
+                event = mockEvent
             ) {
                 onEventCardMaxWidthClickListener(it)
             }
@@ -185,7 +185,7 @@ private fun CommunityScreenContent(
         item {
             EventCardRow(
                 modifier = Modifier.ignoreHorizontalParentPadding(),
-                meetings = meetingList,
+                events = eventList,
             ) {
                 onEventCardClickListener(it)
             }
@@ -199,7 +199,7 @@ private fun CommunityScreenContentPreview() {
     CommunityScreenContent(
         innerPadding = PaddingValues(0.dp),
         community = mockCommunity,
-        meetingList = mockListMeetings,
+        eventList = mockListEvents,
         onLeftIconClickListener = {},
         onEventCardMaxWidthClickListener = {},
         onAvatarsRowClickListener = {}) {

@@ -2,13 +2,13 @@ package com.example.domain.usecase
 
 import com.example.domain.model.Event
 import com.example.domain.repository.EventsRepository
-import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
+import com.example.domain.usecase.interfaces.IInteractorGetMeetingList
 import kotlinx.coroutines.flow.Flow
 
-internal class GetFinishedMeetingListUseCaseStub(
+internal class InteractorGetMeetingListStub(
     private val repository: EventsRepository
-) : IGetFinishedMeetingListUseCase {
+) : IInteractorGetMeetingList {
     override operator fun invoke(): Flow<List<Event>> {
-        return repository.getFinishedEventsListFlow()
+        return repository.getEventsListFlow()
     }
 }

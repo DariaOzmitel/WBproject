@@ -1,7 +1,8 @@
 package com.example.domain.mockData
 
 import com.example.domain.model.Community
-import com.example.domain.model.Meeting
+import com.example.domain.model.Event
+import com.example.domain.model.Interest
 import com.example.domain.model.User
 
 const val mockDescription =
@@ -21,10 +22,12 @@ val mockUser = User(
     phone = "+7 999 999-99-99"
 )
 
-val mockListChips = listOf(
-    "Python",
-    "Junior",
-    "Moscow"
+val mockInterests = listOf(
+    Interest(0, "Дизайн"),
+    Interest(1, "Разработка"),
+    Interest(5, "Frontend"),
+    Interest(7, "Тестирование"),
+    Interest(12, "Девопс"),
 )
 
 val mockCommunity = Community(
@@ -62,7 +65,7 @@ val mockUserList = mutableListOf<User>().apply {
     }
 }
 
-val mockMeeting = Meeting(
+val mockEvent = Event(
     id = 1,
     name = "Developer Meeting 1",
     description = mockDescription,
@@ -70,86 +73,86 @@ val mockMeeting = Meeting(
     date = "11.08.24",
     city = "Moscow",
     communityId = mockCommunity.id,
-    chipsList = mockListChips,
+    chipsList = mockInterests,
     usersList = mockUserList,
 )
 
 val mockMapUrl =
     "https://s3-alpha-sig.figma.com/img/a7d0/b7a1/73dfa50190eed292a52792c6d52bb4be?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lbp~3M0cO0QqU4lp~FXgS4hYwsMVN97j2OZ3HVxb8dEnfLglnfSrPAkaAzJfYEpb69jK3ownyv8GlElutrbD8Ae3vdiQjXpFbOoK-3sgXTVMdTNHCDC7yyRnqwxiCN-9OLFYuwlzvRem139gTzBSrgQ4h0~2T1Gf-XE7I29MM6n3SpJ-xLwwpHaOnDMFG35KkPwHIMVl~RQOSb3CNPrf2CLrbrcuTeLGJdoItKkuEobXERZjHBVTh4PvhxdXMmHiRKykksWEEYGc1UmbH7x~oY1EVQx2UTob2aMF4ro~eu57F8-JthhN3Cd8t9o9Tyi92ZIayuZyICVx9Q7bMzgMoQ__"
 
-val mockListMeetings = listOf(
-    mockMeeting,
-    Meeting(
+val mockListEvents = listOf(
+    mockEvent,
+    Event(
         id = 2,
         name = "Developer Meeting 2",
         description = mockDescription,
         imageUrl = "https://i.pinimg.com/236x/d0/30/74/d030747fc2368c46f4544a17aa3e4545.jpg",
         date = "11.09.24",
         city = "Penza",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = mockCommunity.id
     ),
-    Meeting(
+    Event(
         id = 3,
         name = "Developer Meeting 3",
         description = mockDescription,
         imageUrl = "https://idel-tat.ru/images/uploads/ckeditor/png/616fef0835992_%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(2413).png",
         date = "11.10.24",
         city = "Penza",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 2
     ),
-    Meeting(
+    Event(
         id = 4,
         name = "Developer Meeting 4",
         description = mockDescription,
         imageUrl = "https://go.zvuk.com/thumb/1200x0/filters:quality(75):no_upscale()/imgs/2023/12/13/12/6270663/04ecc42b70ebd4d721214a9138c872e0513e990e.jpg",
         date = "25.08.24",
         city = "London",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 3
     ),
-    Meeting(
+    Event(
         id = 5,
         name = "Developer Meeting 5",
         description = mockDescription,
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
         date = "30.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 4
     ),
-    Meeting(
+    Event(
         id = 6,
         name = "Developer Meeting 6",
         description = mockDescription,
         imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
         date = "19.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = mockCommunity.id
     )
 )
 
-val mockListMeetingAlreadyPassed = listOf(
-    Meeting(
+val mockListEventAlreadyPasseds = listOf(
+    Event(
         id = 5,
         name = "Developer Meeting 5",
         description = mockDescription,
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjJZbftGj17szrlBHTmq9VvDfwouZWOcEGg&s",
         date = "30.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = 4
     ),
-    Meeting(
+    Event(
         id = 6,
         name = "Developer Meeting 6",
         description = mockDescription,
         imageUrl = "https://englishtochka.ru/wp-content/uploads/blog/m/m1.jpg",
         date = "19.08.24",
         city = "Moscow",
-        chipsList = mockListChips,
+        chipsList = mockInterests,
         communityId = mockCommunity.id
     )
 )

@@ -106,12 +106,12 @@ fun MeetingListScreen(
                 is MeetingListState.MeetingList ->
                     when (page) {
                         TabsForMeetingList.ALL_MEETINGS.ordinal -> MeetingCardColumn(
-                            meetingList = state.list,
+                            eventList = state.list,
                             onMeetingCardClickListener = onMeetingCardClickListener
                         )
 
                         TabsForMeetingList.ACTIVE.ordinal -> MeetingCardColumn(
-                            meetingList = state.list,
+                            eventList = state.list,
                             onMeetingCardClickListener = onMeetingCardClickListener
                         )
                     }

@@ -13,9 +13,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.data.mockData.mockAllInterests
 import com.example.data.mockData.mockCommunityList
-import com.example.data.mockData.mockListMeetingAlreadyPassed
-import com.example.data.mockData.mockListMeetings
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
+import com.example.data.mockData.mockListEventAlreadyPasseds
+import com.example.data.mockData.mockListEvents
 import com.example.ui.R
 import com.example.ui.elements.SearchBar
 import com.example.ui.elements.chips.EventChipsFlowRow16
@@ -65,7 +65,7 @@ fun MainPageScreen(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
-                    meetingList = mockListMeetings
+                    eventList = mockListEvents
                 ) {
                     onMainEventCardClickListener(it)
                 }
@@ -81,7 +81,7 @@ fun MainPageScreen(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
-                    meetings = mockListMeetingAlreadyPassed,
+                    events = mockListEventAlreadyPasseds,
                     onEventCardClickListener = { onEventCardClickListener(it) }
                 )
             }
@@ -116,7 +116,7 @@ fun MainPageScreen(
             item {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
-                    meeting = mockMeeting
+                    event = mockEvent
                 ) {
                     onEventCardMaxWidthClickListener(it)
                 }
@@ -124,7 +124,7 @@ fun MainPageScreen(
             item {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
-                    meeting = mockMeeting
+                    event = mockEvent
                 ) {
                     onEventCardMaxWidthClickListener(it)
                 }
@@ -132,7 +132,7 @@ fun MainPageScreen(
             item {
                 EventCardMaxWidth(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
-                    meeting = mockMeeting
+                    event = mockEvent
                 ) {
                     onEventCardMaxWidthClickListener(it)
                 }

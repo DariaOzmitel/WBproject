@@ -1,6 +1,6 @@
 package com.example.domain.model
 
-data class Meeting(
+data class Event(
     val id: Int = UNDEFINED_ID,
     val name: String,
     val description: String? = "",

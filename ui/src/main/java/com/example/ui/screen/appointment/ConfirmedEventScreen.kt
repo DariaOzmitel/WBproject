@@ -13,7 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
 import com.example.ui.R
 import com.example.ui.elements.buttons.EventButton
 import com.example.ui.elements.buttons.EventTextButton
@@ -27,7 +27,7 @@ fun ConfirmedEventScreen(
     onMyEventsButtonClickListener: () -> Unit,
     onOtherEventsButtonClickListener: () -> Unit,
 ) {
-    val meeting = mockMeeting
+    val meeting = mockEvent
     Scaffold { innerPadding ->
         Box(
             modifier = Modifier

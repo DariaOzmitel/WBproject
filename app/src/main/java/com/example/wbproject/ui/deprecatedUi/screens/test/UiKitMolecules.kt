@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.data.mockData.mockCommunity
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.MeetingCard
 import com.example.wbproject.ui.theme.deprecatedUi.molecules.OldCommunityCard
@@ -38,7 +38,7 @@ fun UiKitMolecules() {
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16)
         ) {
-            MeetingCard(meeting = mockMeeting)
+            MeetingCard(event = mockEvent)
             RowAvatarsPreview()
             OldCommunityCard(community = mockCommunity)
             ProfileAvatar(

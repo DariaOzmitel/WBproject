@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockMeeting
-import com.example.domain.model.Meeting
+import com.example.data.mockData.mockEvent
+import com.example.domain.model.Event
 import com.example.ui.elements.chips.EventChipsFlowRow14
 import com.example.ui.elements.images.EventAvatar
 import com.example.ui.elements.text.TextHeading2
@@ -25,31 +25,31 @@ private const val MAX_CHIPS_LINES = 1
 @Composable
 internal fun EventCardMaxWidth(
     modifier: Modifier = Modifier,
-    meeting: Meeting,
+    event: Event,
     onEventCardClickListener: (Int) -> Unit
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-                onEventCardClickListener(meeting.id)
+                onEventCardClickListener(event.id)
             },
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
     ) {
         Column {
-            EventAvatar(model = meeting.imageUrl, height = EventTheme.dimensions.dimension180)
+            EventAvatar(model = event.imageUrl, height = EventTheme.dimensions.dimension180)
             TextHeading2(
-                text = meeting.name,
+                text = event.name,
                 maxLines = MAX_TEXT_LINES,
                 overflow = TextOverflow.Ellipsis
             )
             TextSecondary(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension6),
-                text = meeting.date
+                text = event.date
             )
-            meeting.chipsList?.let {
+            event.chipsList?.let {
                 EventChipsFlowRow14(chips = it, maxLines = MAX_CHIPS_LINES)
             }
         }
@@ -59,5 +59,5 @@ internal fun EventCardMaxWidth(
 @Preview
 @Composable
 private fun EventCardMaxWidthPreview() {
-    EventCardMaxWidth(meeting = mockMeeting) {}
+    EventCardMaxWidth(event = mockEvent) {}
 }

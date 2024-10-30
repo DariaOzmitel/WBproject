@@ -13,7 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.data.mockData.mockCommunity
 import com.example.data.mockData.mockCommunityList
-import com.example.data.mockData.mockListMeetings
+import com.example.data.mockData.mockListEvents
 import com.example.data.mockData.mockPresenter
 import com.example.ui.molecules.PresenterCard
 import com.example.ui.molecules.communityCard.CommunityCard
@@ -48,10 +48,10 @@ fun UiMoleculesScreen() {
             Spacer(modifier = Modifier.height(EventTheme.dimensions.dimension8))
         }
         item {
-            MainEventCardRow(meetingList = mockListMeetings, onMainEventCardClickListener = {})
+            MainEventCardRow(eventList = mockListEvents, onMainEventCardClickListener = {})
         }
         item {
-            EventCardRow(meetings = mockListMeetings) {}
+            EventCardRow(events = mockListEvents) {}
         }
         item {
             PresenterCard(presenter = mockPresenter)

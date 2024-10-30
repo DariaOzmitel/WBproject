@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockMeeting
-import com.example.domain.model.Meeting
+import com.example.data.mockData.mockEvent
+import com.example.domain.model.Event
 import com.example.ui.elements.chips.EventChipsFlowRow14
 import com.example.ui.elements.images.EventAvatar
 import com.example.ui.elements.text.TextHeading1
@@ -29,31 +29,31 @@ private const val MAX_CHIPS_LINES = 1
 @Composable
 fun MainEventCard(
     modifier: Modifier = Modifier,
-    meeting: Meeting,
+    event: Event,
     onMainEventCardClickListener: (Int) -> Unit
 ) {
     Card(
         modifier = modifier
             .width(EventTheme.dimensions.dimension320)
             .clickable {
-                onMainEventCardClickListener(meeting.id)
+                onMainEventCardClickListener(event.id)
             },
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
     ) {
         Column {
-            EventAvatar(model = meeting.imageUrl)
+            EventAvatar(model = event.imageUrl)
             TextHeading1(
-                text = meeting.name,
+                text = event.name,
                 maxLines = MAX_TEXT_LINES,
                 overflow = TextOverflow.Ellipsis
             )
             TextSecondary(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension4),
-                text = meeting.date
+                text = event.date
             )
-            meeting.chipsList?.let {
+            event.chipsList?.let {
                 EventChipsFlowRow14(chips = it, maxLines = MAX_CHIPS_LINES)
             }
         }
@@ -63,7 +63,7 @@ fun MainEventCard(
 @Composable
 fun MainEventCardRow(
     modifier: Modifier = Modifier,
-    meetingList: List<Meeting>,
+    eventList: List<Event>,
     onMainEventCardClickListener: (Int) -> Unit
 ) {
     LazyRow(
@@ -71,8 +71,8 @@ fun MainEventCardRow(
         horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
-        items(meetingList) { meeting ->
-            MainEventCard(meeting = meeting) {
+        items(eventList) { meeting ->
+            MainEventCard(event = meeting) {
                 onMainEventCardClickListener(meeting.id)
             }
         }
@@ -82,5 +82,5 @@ fun MainEventCardRow(
 @Preview
 @Composable
 private fun MainEventCardPreview() {
-    MainEventCard(meeting = mockMeeting) {}
+    MainEventCard(event = mockEvent) {}
 }

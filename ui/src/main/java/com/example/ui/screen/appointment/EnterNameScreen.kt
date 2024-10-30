@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
 import com.example.ui.R
 import com.example.ui.elements.EventEditText
 import com.example.ui.elements.buttons.EventButton
@@ -22,7 +22,7 @@ import com.example.ui.theme.EventTheme
 
 @Composable
 fun EnterNameScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
-    val meeting = mockMeeting
+    val meeting = mockEvent
     Scaffold { innerPadding ->
         Column(
             modifier = modifier

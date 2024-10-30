@@ -159,7 +159,7 @@ private fun ProfileScreenContent(
                     modifier = Modifier
                         .ignoreHorizontalParentPadding()
                         .padding(bottom = EventTheme.dimensions.dimension40),
-                    meetings = events
+                    events = events
                 ) {
                     onEventCardClickListener(it)
                 }

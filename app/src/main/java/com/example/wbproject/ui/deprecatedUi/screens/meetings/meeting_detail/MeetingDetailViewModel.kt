@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.mockData.mockMapUrl
 import com.example.domain.usecase.interfaces.IChangeAttendingStatusUseCase
-import com.example.domain.usecase.interfaces.IGetMeetingUseCase
+import com.example.domain.usecase.interfaces.IGetEventByIdUseCase
 import com.example.domain.usecase.interfaces.IGetUserFlowUseCase
 import com.example.wbproject.navigation.ScreenV1
 import com.example.wbproject.orZero
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class MeetingDetailViewModel(
-    private val getMeetingUseCase: IGetMeetingUseCase,
+    private val getEventByIdUseCase: IGetEventByIdUseCase,
     private val savedStateHandle: SavedStateHandle,
     private val changeAttendingStatusUseCase: IChangeAttendingStatusUseCase,
     private val getUserFlowUseCase: IGetUserFlowUseCase
@@ -54,14 +54,14 @@ internal class MeetingDetailViewModel(
 
     private fun getMeeting() {
         viewModelScope.launch {
-            getMeetingUseCase(getMeetingId()).collect { meeting ->
-                meetingDetailStateMutable.update { state ->
+            getEventByIdUseCase(getMeetingId()).collect { event ->
+                meetingDetailStateMutable.update {
                     val attendingStatus =
-                        meeting.usersList.find {
+                        event.usersList.find {
                             it.id == getUserFlowUseCase.invoke().first().id
                         } != null
                     MeetingDetailState.MeetingDetail(
-                        meeting = meeting,
+                        event = event,
                         attendingStatus = attendingStatus,
                         mapUrl = mockMapUrl
                     )

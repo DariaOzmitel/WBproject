@@ -23,9 +23,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import com.example.data.mockData.mockEvent
 import com.example.data.mockData.mockMapUrl
-import com.example.data.mockData.mockMeeting
-import com.example.domain.model.Meeting
+import com.example.domain.model.Event
 import com.example.ui.elements.ProgressIndicator
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.MyChipRow
@@ -53,7 +53,7 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
         is MeetingDetailState.Loading -> ProgressIndicator()
         is MeetingDetailState.MeetingDetail -> MeetingDetailContent(
             modifier = modifier,
-            meeting = state.meeting,
+            event = state.event,
             mapUrl = state.mapUrl,
             fullMap = fullMap,
             fullText = fullText,
@@ -71,7 +71,7 @@ fun MeetingDetailScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun MeetingDetailContent(
     modifier: Modifier = Modifier,
-    meeting: Meeting,
+    event: Event,
     mapUrl: String,
     fullMap: Boolean,
     fullText: Boolean,
@@ -97,14 +97,14 @@ private fun MeetingDetailContent(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension12),
                     text = String.format(
                         stringResource(id = R.string.date_city_template),
-                        meeting.date,
-                        meeting.city
+                        event.date,
+                        event.city
                     ),
                     color = MeetingTheme.colors.neutralWeak,
                 )
             }
             item {
-                meeting.chipsList?.let {
+                event.chipsList?.let {
                     MyChipRow(modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension16))
                 }
             }
@@ -124,7 +124,7 @@ private fun MeetingDetailContent(
             item {
                 TextForDescription(
                     fullText = fullText,
-                    description = meeting.description,
+                    description = event.description,
                     textMaxLine = TEXT_MAX_LINE
                 ) {
                     onTextClickListener()
@@ -133,7 +133,7 @@ private fun MeetingDetailContent(
             item {
                 RowAvatars(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension20),
-                    avatars = meeting.usersList.map { it.avatarModel.toString() }
+                    avatars = event.usersList.map { it.avatarModel.toString() }
                 )
             }
             item {
@@ -195,7 +195,7 @@ private fun IsFullMapContent(mapUrl: String, onDismissRequestClickListener: () -
 @Composable
 private fun MeetingDetailScreenPreview() {
     MeetingDetailContent(
-        meeting = mockMeeting.copy(description = ""),
+        event = mockEvent.copy(description = ""),
         mapUrl = mockMapUrl,
         fullMap = false,
         fullText = false,

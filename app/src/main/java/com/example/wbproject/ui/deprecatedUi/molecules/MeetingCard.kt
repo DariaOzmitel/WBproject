@@ -24,8 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.data.mockData.mockListMeetings
-import com.example.domain.model.Meeting
+import com.example.data.mockData.mockListEvents
+import com.example.domain.model.Event
 import com.example.wbproject.R
 import com.example.wbproject.ui.theme.deprecatedUi.elements.MyChipRow
 import com.example.wbproject.ui.theme.deprecatedUi.elements.text.TextBody1
@@ -40,13 +40,13 @@ const val DEFAULT_IMAGE_URL =
 @Composable
 fun MeetingCard(
     modifier: Modifier = Modifier,
-    meeting: Meeting,
+    event: Event,
     isEnded: Boolean = false,
     onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
     Card(
         modifier = modifier
-            .clickable { onMeetingCardClickListener(meeting.id) }
+            .clickable { onMeetingCardClickListener(event.id) }
             .padding(top = MeetingTheme.dimensions.dimension4),
         shape = RectangleShape, colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
@@ -63,7 +63,7 @@ fun MeetingCard(
                     .size(MeetingTheme.dimensions.dimension50)
                     .clip(RoundedCornerShape(16.dp)),
                 contentScale = ContentScale.Crop,
-                model = meeting.imageUrl ?: DEFAULT_IMAGE_URL,
+                model = event.imageUrl ?: DEFAULT_IMAGE_URL,
                 contentDescription = null,
             )
             Column(
@@ -74,14 +74,14 @@ fun MeetingCard(
             ) {
                 TextBody1(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension6),
-                    text = meeting.name
+                    text = event.name
                 )
                 TextMetadata1(
                     modifier = Modifier.padding(bottom = MeetingTheme.dimensions.dimension8),
                     text = stringResource(
                         id = R.string.date_city_template,
-                        meeting.date,
-                        meeting.city
+                        event.date,
+                        event.city
                     ),
                     color = LightColors.neutralWeak,
                 )
@@ -103,7 +103,7 @@ fun MeetingCard(
 @Composable
 fun MeetingCardColumn(
     modifier: Modifier = Modifier,
-    meetingList: List<Meeting>,
+    eventList: List<Event>,
     isEnded: Boolean = false,
     onMeetingCardClickListener: (Int) -> Unit = {}
 ) {
@@ -111,10 +111,10 @@ fun MeetingCardColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(MeetingTheme.dimensions.dimension16),
     ) {
-        items(meetingList) { meeting ->
+        items(eventList) { meeting ->
             MeetingCard(
                 modifier = Modifier.height(MeetingTheme.dimensions.dimension88),
-                meeting = meeting,
+                event = meeting,
                 isEnded = isEnded,
                 onMeetingCardClickListener = onMeetingCardClickListener
             )
@@ -129,6 +129,6 @@ private fun MeetingCardPreview() {
         modifier = Modifier
             .height(MeetingTheme.dimensions.dimension88)
             .fillMaxWidth(),
-        meeting = mockListMeetings[0]
+        event = mockListEvents[0]
     )
 }

@@ -14,10 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.mockData.mockCommunity
-import com.example.data.mockData.mockListMeetingAlreadyPassed
-import com.example.data.mockData.mockMeeting
+import com.example.data.mockData.mockEvent
+import com.example.data.mockData.mockListEventAlreadyPasseds
 import com.example.data.mockData.mockUserList
-import com.example.domain.model.Meeting
+import com.example.domain.model.Event
 import com.example.ui.MetroStation
 import com.example.ui.R
 import com.example.ui.elements.MetroStationRow
@@ -58,7 +58,7 @@ fun EventScreen(
                 EventScreenContent(
                     modifier = modifier,
                     innerPadding = innerPadding,
-                    meeting = state.meeting,
+                    event = state.event,
                     onLeftIconClickListener = onLeftIconClickListener,
                     onAvatarsRowClickListener = onAvatarsRowClickListener,
                     onOrganizerCardClickListener = { onOrganizerCardClickListener(it) },
@@ -74,7 +74,7 @@ fun EventScreen(
 fun EventScreenContent(
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues,
-    meeting: Meeting,
+    event: Event,
     onLeftIconClickListener: () -> Unit,
     onAvatarsRowClickListener: (Int) -> Unit,
     onOrganizerCardClickListener: (Int) -> Unit,
@@ -97,7 +97,7 @@ fun EventScreenContent(
         ) {
             item {
                 CustomTopBar(modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension8),
-                    heading = meeting.name,
+                    heading = event.name,
                     onLeftIconClickListener = onLeftIconClickListener,
                     rightIcon = painterResource(
                         id = R.drawable.share,
@@ -107,21 +107,21 @@ fun EventScreenContent(
             item {
                 EventAvatar(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension8),
-                    model = meeting.imageUrl,
+                    model = event.imageUrl,
                     height = EventTheme.dimensions.dimension268
                 )
             }
             item {
-                TextHeading1(text = meeting.name)
+                TextHeading1(text = event.name)
             }
             item {
                 TextSecondary(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension8),
-                    text = meeting.date
+                    text = event.date
                 )
             }
             item {
-                meeting.chipsList?.let {
+                event.chipsList?.let {
                     EventChipsFlowRow16(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
                         chips = it
@@ -129,7 +129,7 @@ fun EventScreenContent(
                 }
             }
             item {
-                meeting.description?.let {
+                event.description?.let {
                     TextSecondary(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
                         text = it
@@ -137,7 +137,7 @@ fun EventScreenContent(
                 }
             }
             item {
-                meeting.presenter?.let {
+                event.presenter?.let {
                     TextHeading2(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension16),
                         text = stringResource(id = R.string.presenter)
@@ -151,7 +151,7 @@ fun EventScreenContent(
             item {
                 TextHeading2(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension2),
-                    text = meeting.address
+                    text = event.address
                 )
             }
             item {
@@ -176,7 +176,7 @@ fun EventScreenContent(
                 PeopleAvatarsRow(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
                     avatars = mockUserList.map { it.avatarModel.toString() }) {
-                    onAvatarsRowClickListener(meeting.id)
+                    onAvatarsRowClickListener(event.id)
                 }
             }
             item {
@@ -204,7 +204,7 @@ fun EventScreenContent(
                     modifier = Modifier
                         .padding(bottom = EventTheme.dimensions.dimension40)
                         .ignoreHorizontalParentPadding(),
-                    meetings = mockListMeetingAlreadyPassed
+                    events = mockListEventAlreadyPasseds
                 ) {
                     onEventCardClickListener(it)
                 }
@@ -219,7 +219,7 @@ fun EventScreenContent(
 private fun EventScreenContentPreview() {
     EventScreenContent(
         innerPadding = PaddingValues(0.dp),
-        meeting = mockMeeting,
+        event = mockEvent,
         onLeftIconClickListener = {},
         onOrganizerCardClickListener = {},
         onButtonClickListener = {},
