@@ -1,8 +1,8 @@
 package com.example.ui.screen.onboarding.select_interest
 
-import com.example.domain.model.Interest
+import com.example.ui.model.InterestUi
 
 sealed class SelectInterestsState {
-    data class InterestsList(val list: List<Interest>) : SelectInterestsState()
+    data class InterestsList(val list: List<InterestUi>) : SelectInterestsState()
     object Loading : SelectInterestsState()
 }

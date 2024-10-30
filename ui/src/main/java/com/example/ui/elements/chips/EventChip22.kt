@@ -18,10 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.data.mockData.mockAllInterests
-import com.example.domain.model.Interest
 import com.example.ui.R
 import com.example.ui.elements.text.TextMedium22
+import com.example.ui.mockAllInterests
+import com.example.ui.model.InterestUi
 import com.example.ui.theme.EventTheme
 import com.example.ui.theme.NoRippleConfiguration
 
@@ -65,7 +65,11 @@ fun EventChip22(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsFlowRow22(modifier: Modifier = Modifier, chips: List<Interest>) {
+fun EventChipsFlowRow22(
+    modifier: Modifier = Modifier,
+    chips: List<InterestUi>,
+    onChipClickListener: (Int) -> Unit
+) {
     FlowRow(
         modifier
             .fillMaxWidth(),
@@ -75,7 +79,10 @@ fun EventChipsFlowRow22(modifier: Modifier = Modifier, chips: List<Interest>) {
         chips.forEach {
             EventChip22(
                 text = it.name,
-            )
+                isPressed = it.isSelected
+            ) {
+                onChipClickListener(it.id)
+            }
         }
     }
 }
@@ -89,5 +96,5 @@ private fun EventChip22Preview() {
 @Preview
 @Composable
 private fun EventChipsRow22Preview() {
-    EventChipsFlowRow22(chips = mockAllInterests)
+    EventChipsFlowRow22(chips = mockAllInterests) {}
 }

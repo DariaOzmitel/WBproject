@@ -11,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.domain.model.Interest
 import com.example.ui.R
 import com.example.ui.elements.ProgressIndicator
 import com.example.ui.elements.buttons.EventButton
@@ -19,6 +18,7 @@ import com.example.ui.elements.buttons.EventTextButton
 import com.example.ui.elements.chips.EventChipsFlowRow22
 import com.example.ui.elements.text.TextHeading1
 import com.example.ui.elements.text.TextRegular19
+import com.example.ui.model.InterestUi
 import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -33,7 +33,8 @@ fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> U
                 SelectInterestScreenContent(
                     modifier = modifier,
                     interestsList = state.list,
-                    innerPadding = innerPadding
+                    innerPadding = innerPadding,
+                    onChipClickListener = { viewModel.changeUsersInterest(it) }
                 ) {
                     onClickListener()
                 }
@@ -45,8 +46,9 @@ fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> U
 @Composable
 private fun SelectInterestScreenContent(
     modifier: Modifier = Modifier,
-    interestsList: List<Interest>,
+    interestsList: List<InterestUi>,
     innerPadding: PaddingValues,
+    onChipClickListener: (Int) -> Unit,
     onClickListener: () -> Unit
 ) {
     Column(
@@ -69,7 +71,9 @@ private fun SelectInterestScreenContent(
         )
         LazyColumn(modifier = Modifier.weight(1f)) {
             item {
-                EventChipsFlowRow22(chips = interestsList)
+                EventChipsFlowRow22(chips = interestsList) {
+                    onChipClickListener(it)
+                }
             }
         }
         EventButton(
