@@ -19,7 +19,7 @@ import com.example.ui.elements.text.TextRegular19
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun DeleteProfileScreen(modifier: Modifier = Modifier) {
+internal fun DeleteProfileScreen(modifier: Modifier = Modifier) {
     Scaffold { innerPadding ->
         Column(
             modifier = modifier

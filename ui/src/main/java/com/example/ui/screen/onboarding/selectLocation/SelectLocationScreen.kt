@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.ui.R
 
 @Composable
-fun SelectLocationScreen(modifier: Modifier = Modifier, clickListener: () -> Unit) {
+internal fun SelectLocationScreen(modifier: Modifier = Modifier, clickListener: () -> Unit) {
     Scaffold { innerPadding ->
         Box(modifier = modifier.padding(top = innerPadding.calculateTopPadding())) {
             Image(

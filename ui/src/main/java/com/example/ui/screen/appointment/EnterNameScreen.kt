@@ -21,8 +21,8 @@ import com.example.ui.elements.text.TextRegular19
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun EnterNameScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
-    val meeting = mockEvent
+internal fun EnterNameScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
+    val event = mockEvent
     Scaffold { innerPadding ->
         Column(
             modifier = modifier
@@ -48,7 +48,7 @@ fun EnterNameScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> 
             }
             TextRegular19(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension24),
-                text = "${meeting.name} · ${meeting.date} · ${meeting.address}"
+                text = "${event.name} · ${event.date} · ${event.address}"
             )
             EventEditText(displayText = "") {
             }

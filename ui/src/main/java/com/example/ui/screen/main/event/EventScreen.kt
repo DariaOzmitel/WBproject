@@ -29,7 +29,7 @@ import com.example.ui.elements.text.TextHeading1
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.ignoreHorizontalParentPadding
-import com.example.ui.mockAllInterests
+import com.example.ui.mockInterestsUi
 import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.EventBottomBar
 import com.example.ui.molecules.OrganizerCard
@@ -42,7 +42,7 @@ import org.koin.androidx.compose.koinViewModel
 private const val MOCK_PLACE_COUNT = 30
 
 @Composable
-fun EventScreen(
+internal fun EventScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
     onAvatarsRowClickListener: (Int) -> Unit,
@@ -72,7 +72,7 @@ fun EventScreen(
 }
 
 @Composable
-fun EventScreenContent(
+private fun EventScreenContent(
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues,
     event: Event,
@@ -126,7 +126,7 @@ fun EventScreenContent(
                     EventChipsFlowRow16(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
 //                        chips = it
-                        chips = mockAllInterests
+                        chips = mockInterestsUi
                     ) {}
                 }
             }

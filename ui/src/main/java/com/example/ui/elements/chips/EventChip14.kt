@@ -20,10 +20,8 @@ import com.example.ui.R
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.theme.EventTheme
 
-private const val COUNT_CHIP_IN_ROW = 2
-
 @Composable
-fun EventChip14(
+internal fun EventChip14(
     modifier: Modifier = Modifier,
     text: String,
 ) {
@@ -46,7 +44,7 @@ fun EventChip14(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsFlowRow14(
+internal fun EventChipsFlowRow14(
     modifier: Modifier = Modifier,
     chips: List<Interest>,
     maxLines: Int = Int.MAX_VALUE

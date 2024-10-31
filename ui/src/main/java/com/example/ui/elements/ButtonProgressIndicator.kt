@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun ButtonProgressIndicator(
+internal fun ButtonProgressIndicator(
     modifier: Modifier = Modifier,
 ) {
     Box(

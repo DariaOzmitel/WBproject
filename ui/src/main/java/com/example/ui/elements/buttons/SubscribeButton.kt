@@ -23,7 +23,7 @@ import com.example.ui.theme.NoRippleConfiguration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SubscribeButton(
+internal fun SubscribeButton(
     modifier: Modifier = Modifier,
     subscribeStatus: Boolean = false,
     onClick: () -> Unit = {},

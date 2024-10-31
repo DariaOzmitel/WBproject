@@ -54,14 +54,14 @@ internal class EventViewModel(
 
     private fun getMeeting() {
         viewModelScope.launch {
-            getMeetingUseCase(getMeetingId()).collect { meeting ->
+            getMeetingUseCase(getMeetingId()).collect { event ->
                 eventStateMutable.update {
                     val attendingStatus =
-                        meeting.usersList.find {
+                        event.usersList.find {
                             it.id == getUserFlowUseCase.invoke().first().id
                         } != null
                     EventState.EventDetail(
-                        event = meeting,
+                        event = event,
                         attendingStatus = attendingStatus,
                         mapUrl = mockMapUrl
                     )

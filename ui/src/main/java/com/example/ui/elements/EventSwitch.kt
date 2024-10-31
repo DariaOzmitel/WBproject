@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun EventSwitch(
+internal fun EventSwitch(
     modifier: Modifier = Modifier,
     checked: Boolean = true,
     onCheckedChange: (Boolean) -> Unit,

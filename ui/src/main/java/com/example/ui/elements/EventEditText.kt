@@ -22,7 +22,7 @@ import com.example.ui.R
 import com.example.ui.elements.text.TextPrimary
 import com.example.ui.theme.EventTheme
 @Composable
-fun EventEditText(
+internal fun EventEditText(
     modifier: Modifier = Modifier,
     hint: String = stringResource(id = R.string.name_and_surname),
     displayText: String,

@@ -71,9 +71,9 @@ fun MainEventCardRow(
         horizontalArrangement = Arrangement.spacedBy(EventTheme.dimensions.dimension8),
         contentPadding = PaddingValues(horizontal = EventTheme.dimensions.dimension16)
     ) {
-        items(eventList) { meeting ->
-            MainEventCard(event = meeting) {
-                onMainEventCardClickListener(meeting.id)
+        items(eventList) { event ->
+            MainEventCard(event = event) {
+                onMainEventCardClickListener(event.id)
             }
         }
     }

@@ -22,12 +22,12 @@ import com.example.ui.elements.text.TextRegular20
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun ConfirmedEventScreen(
+internal fun ConfirmedEventScreen(
     modifier: Modifier = Modifier,
     onMyEventsButtonClickListener: () -> Unit,
     onOtherEventsButtonClickListener: () -> Unit,
 ) {
-    val meeting = mockEvent
+    val event = mockEvent
     Scaffold { innerPadding ->
         Box(
             modifier = Modifier
@@ -58,7 +58,7 @@ fun ConfirmedEventScreen(
                         bottom = EventTheme.dimensions.dimension24,
                         end = EventTheme.dimensions.dimension40
                     ),
-                    text = "${meeting.name} · ${meeting.date} · ${meeting.address}",
+                    text = "${event.name} · ${event.date} · ${event.address}",
                     color = EventTheme.colors.fontColorWhite
                 )
                 Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Bottom) {

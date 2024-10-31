@@ -36,7 +36,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun CommunityScreen(
+internal fun CommunityScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,

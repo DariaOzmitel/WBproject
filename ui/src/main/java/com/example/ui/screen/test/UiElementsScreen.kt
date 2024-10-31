@@ -30,7 +30,7 @@ import com.example.ui.molecules.UserCardFlowRow
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun UiElementsScreen() {
+internal fun UiElementsScreen() {
     var isPressed by rememberSaveable {
         mutableStateOf(false)
     }

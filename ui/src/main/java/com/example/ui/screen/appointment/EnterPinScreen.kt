@@ -25,8 +25,8 @@ import com.example.ui.theme.EventTheme
 private const val EDIT_TEXT_HINT = "0000"
 
 @Composable
-fun EnterPinScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
-    val meeting = mockEvent
+internal fun EnterPinScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> Unit) {
+    val event = mockEvent
     Scaffold { innerPadding ->
         Column(
             modifier = modifier
@@ -52,7 +52,7 @@ fun EnterPinScreen(modifier: Modifier = Modifier, onButtonClickListener: () -> U
             }
             TextRegular19(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension24),
-                text = "${meeting.name} · ${meeting.date} · ${meeting.address}"
+                text = "${event.name} · ${event.date} · ${event.address}"
             )
             EventEditText(
                 modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension8),

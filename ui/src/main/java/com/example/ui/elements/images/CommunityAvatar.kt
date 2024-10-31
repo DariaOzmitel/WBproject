@@ -13,7 +13,7 @@ import com.example.ui.R
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun CommunityAvatar(
+internal fun CommunityAvatar(
     modifier: Modifier = Modifier,
     model: Any?,
     size: Dp = EventTheme.dimensions.dimension104,

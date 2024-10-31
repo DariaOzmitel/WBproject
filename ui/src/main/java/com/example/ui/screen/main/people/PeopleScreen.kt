@@ -20,7 +20,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun PeopleScreen(
+internal fun PeopleScreen(
     modifier: Modifier = Modifier,
     onUserCardClickListener: (Int) -> Unit,
     onLeftIconClickListener: () -> Unit

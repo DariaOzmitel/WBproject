@@ -98,6 +98,6 @@ internal fun PeopleAvatarsRow(
 
 @Preview
 @Composable
-fun PeopleAvatarsRowPreview() {
+private fun PeopleAvatarsRowPreview() {
     PeopleAvatarsRow(avatars = mockUserList.map { it.avatarModel.toString() }) {}
 }

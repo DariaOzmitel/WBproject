@@ -23,7 +23,7 @@ import com.example.ui.molecules.eventCard.MainEventCardRow
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun UiMoleculesScreen() {
+internal fun UiMoleculesScreen() {
     var booleanState by remember { mutableStateOf(false) }
     LazyColumn(
         modifier = Modifier

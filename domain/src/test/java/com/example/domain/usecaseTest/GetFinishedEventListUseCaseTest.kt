@@ -1,8 +1,8 @@
 package com.example.domain.usecaseTest
 
 import com.example.domain.repository.EventsRepositoryStub
-import com.example.domain.usecase.GetFinishedMeetingListUseCaseStub
-import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
+import com.example.domain.usecase.GetFinishedEventsListUseCaseStub
+import com.example.domain.usecase.interfaces.IGetFinishedEventsListUseCase
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -10,12 +10,12 @@ import org.junit.Before
 import org.junit.Test
 
 internal class GetFinishedEventListUseCaseTest {
-    private lateinit var useCase: IGetFinishedMeetingListUseCase
+    private lateinit var useCase: IGetFinishedEventsListUseCase
 
     @Before
     fun setUp() {
         val stubRepository = EventsRepositoryStub()
-        useCase = GetFinishedMeetingListUseCaseStub(stubRepository)
+        useCase = GetFinishedEventsListUseCaseStub(stubRepository)
     }
 
     @Test

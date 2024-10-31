@@ -39,7 +39,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProfileScreen(
+internal fun ProfileScreen(
     modifier: Modifier = Modifier,
     onLeftIconClickListener: () -> Unit,
     onCommunityCardClickListener: (Int) -> Unit,

@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
 @Composable
-fun MainNavGraph(
+internal fun MainNavGraph(
     navHostController: NavHostController,
     splashScreenContent: @Composable () -> Unit,
     selectInterestScreenContent: @Composable () -> Unit,

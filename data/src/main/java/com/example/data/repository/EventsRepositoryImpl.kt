@@ -23,12 +23,12 @@ internal class EventsRepositoryImpl : EventsRepository {
     }
 
     override fun changeAttendingStatus(eventId: Int, user: User) {
-        val meeting = mockListEvents.find { it.id == eventId }
-        val userInMeeting = meeting?.usersList?.find { it.id == user.id }
-        val status = userInMeeting != null
-        meeting?.let {
+        val event = mockListEvents.find { it.id == eventId }
+        val userInEvent = event?.usersList?.find { it.id == user.id }
+        val status = userInEvent != null
+        event?.let {
             when (status) {
-                true -> it.usersList.remove(userInMeeting)
+                true -> it.usersList.remove(userInEvent)
                 false -> it.usersList.add(user)
             }
         }

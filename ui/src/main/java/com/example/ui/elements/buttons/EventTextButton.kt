@@ -19,7 +19,7 @@ import com.example.ui.theme.NoRippleConfiguration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventTextButton(
+internal fun EventTextButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     text: String,

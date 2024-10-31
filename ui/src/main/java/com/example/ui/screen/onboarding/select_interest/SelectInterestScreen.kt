@@ -23,7 +23,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> Unit) {
+internal fun SelectInterestScreen(modifier: Modifier = Modifier, onClickListener: () -> Unit) {
     val viewModel: SelectInterestsViewModel = koinViewModel()
     val selectInterestsState by viewModel.getInterestsFlow().collectAsStateWithLifecycle()
     when (val state = selectInterestsState) {

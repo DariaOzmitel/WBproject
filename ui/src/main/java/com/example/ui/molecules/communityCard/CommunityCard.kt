@@ -23,7 +23,7 @@ import com.example.ui.theme.EventTheme
 private const val TEXT_MAX_LINES = 1
 
 @Composable
-fun CommunityCard(
+internal fun CommunityCard(
     modifier: Modifier = Modifier,
     community: Community,
     width: Dp = EventTheme.dimensions.dimension104,
@@ -52,7 +52,7 @@ fun CommunityCard(
 }
 
 @Composable
-fun CommunityCardRow(
+internal fun CommunityCardRow(
     modifier: Modifier = Modifier,
     communities: List<Community>,
     onCommunityCardClickListener: (Int) -> Unit = {},

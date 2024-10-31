@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun ProgressIndicator(
+internal fun ProgressIndicator(
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier.size(EventTheme.dimensions.dimension106),
     color: Color = EventTheme.colors.brandColorPurple

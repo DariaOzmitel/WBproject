@@ -40,7 +40,7 @@ private const val BLANK_NUMBER = "000 000-00-00"
 private const val PHONE_LENGTH = 10
 
 @Composable
-fun CustomPhoneNumber(
+internal fun CustomPhoneNumber(
     modifier: Modifier = Modifier,
     expanded: Boolean,
     selectedCountryCode: DropdownMenuItems,

@@ -13,7 +13,7 @@ import com.example.ui.R
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun EventAvatar(
+internal fun EventAvatar(
     modifier: Modifier = Modifier,
     model: Any?,
     height: Dp = EventTheme.dimensions.dimension180,

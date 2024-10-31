@@ -31,7 +31,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun EditProfileScreen(modifier: Modifier = Modifier) {
+internal fun EditProfileScreen(modifier: Modifier = Modifier) {
     val viewModel: EditProfileViewModel = koinViewModel()
     val editProfileState by viewModel.getEditProfileStateFlow().collectAsStateWithLifecycle()
     when (val state = editProfileState) {

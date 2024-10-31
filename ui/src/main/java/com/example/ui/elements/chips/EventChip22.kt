@@ -27,7 +27,7 @@ import com.example.ui.theme.NoRippleConfiguration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventChip22(
+internal fun EventChip22(
     modifier: Modifier = Modifier,
     text: String,
     isPressed: Boolean = false,
@@ -65,7 +65,7 @@ fun EventChip22(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsFlowRow22(
+internal fun EventChipsFlowRow22(
     modifier: Modifier = Modifier,
     chips: List<InterestUi>,
     onChipClickListener: (Int) -> Unit

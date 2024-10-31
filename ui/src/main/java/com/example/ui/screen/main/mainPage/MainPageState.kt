@@ -4,7 +4,7 @@ import com.example.domain.model.Community
 import com.example.domain.model.Event
 import com.example.ui.model.InterestUi
 
-sealed class MainPageState {
+internal sealed class MainPageState {
     data class MainPageDetail(
         val eventList: List<Event>,
         val communityList: List<Community>,

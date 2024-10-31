@@ -46,11 +46,11 @@ internal class CommunityViewModel(
 
     private fun getMeetingListByCommunity(community: Community) {
         viewModelScope.launch {
-            getMeetingListUseCase().collect { meetingList ->
+            getMeetingListUseCase().collect { eventList ->
                 communityStateMutable.update {
                     CommunityState.CommunityDetail(
                         community = community,
-                        eventList = meetingList.filter { meeting -> meeting.communityId == community.id })
+                        eventList = eventList.filter { event -> event.communityId == community.id })
                 }
             }
         }

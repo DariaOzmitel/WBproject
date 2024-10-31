@@ -19,7 +19,7 @@ import com.example.ui.elements.text.TextHeading3
 import com.example.ui.theme.EventTheme
 
 @Composable
-fun EventButton(
+internal fun EventButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     secondaryStatus: Boolean = false,

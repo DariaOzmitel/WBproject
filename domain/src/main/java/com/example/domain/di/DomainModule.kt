@@ -9,7 +9,7 @@ import com.example.domain.usecase.community.GetCommunityUseCase
 import com.example.domain.usecase.event.ChangeAttendingStatusUseCase
 import com.example.domain.usecase.event.GetEventByIdUseCase
 import com.example.domain.usecase.event.GetEventsListUseCase
-import com.example.domain.usecase.event.GetFinishedMeetingListUseCase
+import com.example.domain.usecase.event.GetFinishedEventsListUseCase
 import com.example.domain.usecase.interests.ChangeUsersInterestUseCase
 import com.example.domain.usecase.interests.GetInterestsListUseCase
 import com.example.domain.usecase.interests.GetUsersInterestsListUseCase
@@ -21,7 +21,7 @@ import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
 import com.example.domain.usecase.interfaces.IGetCommunityUseCase
 import com.example.domain.usecase.interfaces.IGetEventByIdUseCase
 import com.example.domain.usecase.interfaces.IGetEventListUseCase
-import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
+import com.example.domain.usecase.interfaces.IGetFinishedEventsListUseCase
 import com.example.domain.usecase.interfaces.IGetInterestsListUseCase
 import com.example.domain.usecase.interfaces.IGetPeopleListUseCase
 import com.example.domain.usecase.interfaces.IGetPersonFlowUseCase
@@ -36,7 +36,7 @@ import org.koin.dsl.module
 
 val domainModule = module {
     factoryOf(::GetEventsListUseCase) bind IGetEventListUseCase::class
-    factoryOf(::GetFinishedMeetingListUseCase) bind IGetFinishedMeetingListUseCase::class
+    factoryOf(::GetFinishedEventsListUseCase) bind IGetFinishedEventsListUseCase::class
     factoryOf(::GetCommunityListUseCase) bind IGetCommunityListUseCase::class
     factoryOf(::GetCommunityUseCase) bind IGetCommunityUseCase::class
     factoryOf(::GetEventByIdUseCase) bind IGetEventByIdUseCase::class

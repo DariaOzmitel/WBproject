@@ -36,7 +36,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MainPageScreen(
+internal fun MainPageScreen(
     modifier: Modifier = Modifier,
     onMainEventCardClickListener: (Int) -> Unit,
     onEventCardClickListener: (Int) -> Unit,
@@ -70,7 +70,7 @@ fun MainPageScreen(
 }
 
 @Composable
-fun MainPageScreenContent(
+private fun MainPageScreenContent(
     modifier: Modifier = Modifier,
     innerPadding: PaddingValues,
     eventList: List<Event>,

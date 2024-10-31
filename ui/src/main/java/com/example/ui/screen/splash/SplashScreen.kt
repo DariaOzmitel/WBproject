@@ -21,7 +21,7 @@ import com.example.ui.theme.EventTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
+internal fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
     val viewModel: SplashScreenViewModel = koinViewModel()
     val authorizationStatus by viewModel.getStatusFlow().collectAsStateWithLifecycle()
     Scaffold { innerPadding ->

@@ -2,7 +2,7 @@ package com.example.ui
 
 import androidx.annotation.DrawableRes
 
-enum class DropdownMenuItems(
+internal enum class DropdownMenuItems(
     @DrawableRes val imageResId: Int,
     val countryCode: String
 ) {
