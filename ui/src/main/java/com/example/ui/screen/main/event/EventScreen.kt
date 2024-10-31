@@ -29,6 +29,7 @@ import com.example.ui.elements.text.TextHeading1
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.ignoreHorizontalParentPadding
+import com.example.ui.mockAllInterests
 import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.EventBottomBar
 import com.example.ui.molecules.OrganizerCard
@@ -124,8 +125,9 @@ fun EventScreenContent(
                 event.chipsList?.let {
                     EventChipsFlowRow16(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
-                        chips = it
-                    )
+//                        chips = it
+                        chips = mockAllInterests
+                    ) {}
                 }
             }
             item {

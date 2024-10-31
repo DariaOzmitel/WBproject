@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Community
 import com.example.domain.usecase.interfaces.IGetCommunityUseCase
-import com.example.domain.usecase.interfaces.IInteractorGetMeetingList
+import com.example.domain.usecase.interfaces.IGetEventListUseCase
 import com.example.ui.navigation.Screen
 import com.example.ui.orZero
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 internal class CommunityViewModel(
     private val savedStateHandle: SavedStateHandle,
     private val getCommunityUseCase: IGetCommunityUseCase,
-    private val getMeetingListUseCase: IInteractorGetMeetingList
+    private val getMeetingListUseCase: IGetEventListUseCase
 ) : ViewModel() {
     private val communityStateMutable: MutableStateFlow<CommunityState> =
         MutableStateFlow(

@@ -22,6 +22,7 @@ import com.example.ui.elements.buttons.EventTextButton
 import com.example.ui.elements.chips.EventChipsFlowRow16
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.ignoreHorizontalParentPadding
+import com.example.ui.mockInterestsUi
 import com.example.ui.model.UserUi
 import com.example.ui.model.UserUi.Companion.mockUserUi
 import com.example.ui.molecules.CustomTopBar
@@ -111,8 +112,9 @@ private fun EditProfileScreenContent(modifier: Modifier = Modifier, user: UserUi
                 user.interests?.let {
                     EventChipsFlowRow16(
                         modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension40),
-                        chips = it
-                    )
+//                        chips = it
+                        chips = mockInterestsUi
+                    ) {}
                 }
             }
             item {

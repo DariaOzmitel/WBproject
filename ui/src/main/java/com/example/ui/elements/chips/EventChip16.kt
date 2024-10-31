@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.domain.model.Interest
 import com.example.ui.R
 import com.example.ui.elements.text.TextMedium16
+import com.example.ui.model.InterestUi
 import com.example.ui.theme.EventTheme
 import com.example.ui.theme.NoRippleConfiguration
 
@@ -61,7 +61,10 @@ fun EventChip16(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventChipsFlowRow16(modifier: Modifier = Modifier, chips: List<Interest>) {
+fun EventChipsFlowRow16(
+    modifier: Modifier = Modifier, chips: List<InterestUi>,
+    onChipClickListener: (Int) -> Unit
+) {
     FlowRow(
         modifier
             .fillMaxWidth(),
@@ -70,8 +73,11 @@ fun EventChipsFlowRow16(modifier: Modifier = Modifier, chips: List<Interest>) {
     ) {
         chips.forEach {
             EventChip16(
-                text = it.name
-            )
+                text = it.name,
+                isPressed = it.isSelected
+            ) {
+                onChipClickListener(it.id)
+            }
         }
     }
 }

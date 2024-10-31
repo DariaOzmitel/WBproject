@@ -2,15 +2,15 @@ package com.example.wbproject.ui.theme.deprecatedUi.screens.more.my_meetings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.usecase.interfaces.IGetEventListUseCase
 import com.example.domain.usecase.interfaces.IGetFinishedMeetingListUseCase
-import com.example.domain.usecase.interfaces.IInteractorGetMeetingList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class MyMeetingViewModel(
-    private val getMeetingListUseCase: IInteractorGetMeetingList,
+    private val getMeetingListUseCase: IGetEventListUseCase,
     private val getFinishedMeetingListUseCase: IGetFinishedMeetingListUseCase
 ) :
     ViewModel() {

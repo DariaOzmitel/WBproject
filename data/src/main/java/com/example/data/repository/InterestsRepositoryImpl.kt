@@ -20,19 +20,19 @@ internal class InterestsRepositoryImpl(
         return interestsDao.getUsersInterests().map { mapper.interestsDbToDomain(it) }
     }
 
-    override suspend fun addUsersInterest(interestId: Int) {
-        interestsDao.addUsersInterest(mapper.usersInterestToDb(interestId))
-    }
-
-    override suspend fun deleteUsersInterest(interestId: Int) {
-        interestsDao.deleteUsersInterest(interestId)
-    }
-
     override suspend fun changeUsersInterest(interestId: Int) {
         val isSelected = interestsDao.isInterestSelected(interestId)
         when (isSelected) {
             true -> deleteUsersInterest(interestId)
             false -> addUsersInterest(interestId)
         }
+    }
+
+    private suspend fun addUsersInterest(interestId: Int) {
+        interestsDao.addUsersInterest(mapper.usersInterestToDb(interestId))
+    }
+
+    private suspend fun deleteUsersInterest(interestId: Int) {
+        interestsDao.deleteUsersInterest(interestId)
     }
 }

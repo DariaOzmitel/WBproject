@@ -34,6 +34,14 @@ val mockAllInterests = listOf(
     InterestUi(14, "Аналитика", false),
 )
 
+val mockInterestsUi = listOf(
+    InterestUi(0, "Дизайн", false),
+    InterestUi(1, "Разработка", false),
+    InterestUi(5, "Frontend", false),
+    InterestUi(7, "Тестирование", false),
+    InterestUi(12, "Девопс", false),
+)
+
 val mockInterests = listOf(
     Interest(0, "Дизайн"),
     Interest(1, "Разработка"),

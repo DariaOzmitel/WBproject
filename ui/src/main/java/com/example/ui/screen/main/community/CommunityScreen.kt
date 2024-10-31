@@ -27,6 +27,7 @@ import com.example.ui.elements.text.TextHeading1
 import com.example.ui.elements.text.TextHeading2
 import com.example.ui.elements.text.TextSecondary
 import com.example.ui.ignoreHorizontalParentPadding
+import com.example.ui.mockInterestsUi
 import com.example.ui.molecules.CustomTopBar
 import com.example.ui.molecules.PeopleAvatarsRow
 import com.example.ui.molecules.eventCard.EventCardMaxWidth
@@ -108,8 +109,9 @@ private fun CommunityScreenContent(
             community.interests?.let {
                 EventChipsFlowRow16(
                     modifier = Modifier.padding(bottom = EventTheme.dimensions.dimension32),
-                    chips = it
-                )
+//                    chips = it
+                    chips = mockInterestsUi
+                ) {}
             }
         }
         item {
