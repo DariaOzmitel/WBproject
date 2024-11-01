@@ -3,31 +3,30 @@ package com.example.ui.screen.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.interfaces.ICheckAuthorizationUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class SplashScreenViewModel(private val checkAuthorizationUseCase: ICheckAuthorizationUseCase) :
     ViewModel() {
-    private val isUserAuthorizedMutable = MutableStateFlow(false)
-    private val isUserAuthorized: StateFlow<Boolean> = isUserAuthorizedMutable
+    private val splashStateMutable: MutableStateFlow<SplashState> =
+        MutableStateFlow(SplashState.Loading)
+    private val splashState: StateFlow<SplashState> = splashStateMutable
 
-    fun getStatusFlow(): StateFlow<Boolean> = isUserAuthorized
-
-    fun checkAuthorization(animationEndListener: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            delay(SPLASH_SCREEN_DURATION)
-            animationEndListener(getStatusFlow().value)
-//            checkAuthorizationUseCase().collect { authorizationStatus ->
-//                isUserAuthorizedMutable.update {
-//                    authorizationStatus
-//                }
-//            }
-        }
+    init {
+        checkAuthorization()
     }
 
-    companion object {
-        private const val SPLASH_SCREEN_DURATION = 1000L
+    fun getSplashStateFlow(): StateFlow<SplashState> = splashState
+
+    private fun checkAuthorization() {
+        viewModelScope.launch {
+            checkAuthorizationUseCase().collect { authorizationStatus ->
+                splashStateMutable.update {
+                    SplashState.AuthorizationStatus(authorizationStatus)
+                }
+            }
+        }
     }
 }

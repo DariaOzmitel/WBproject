@@ -7,10 +7,12 @@ import androidx.room.RoomDatabase
 import com.example.data.database.interests.InterestDbModel
 import com.example.data.database.interests.InterestsDao
 import com.example.data.database.interests.UsersInterestsDbModel
+import com.example.data.database.user.UserDao
+import com.example.data.database.user.UserDbModel
 
 @Database(
-    entities = [InterestDbModel::class, UsersInterestsDbModel::class],
-    version = 3,
+    entities = [InterestDbModel::class, UsersInterestsDbModel::class, UserDbModel::class],
+    version = 4,
     exportSchema = false
 )
 internal abstract class AppDatabase : RoomDatabase() {
@@ -39,4 +41,5 @@ internal abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun interestsDao(): InterestsDao
+    abstract fun userDao(): UserDao
 }

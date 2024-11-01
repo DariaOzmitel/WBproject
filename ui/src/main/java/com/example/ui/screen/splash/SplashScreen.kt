@@ -23,7 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 internal fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (Boolean) -> Unit) {
     val viewModel: SplashScreenViewModel = koinViewModel()
-    val authorizationStatus by viewModel.getStatusFlow().collectAsStateWithLifecycle()
+    val splashState by viewModel.getSplashStateFlow().collectAsStateWithLifecycle()
     Scaffold { innerPadding ->
         Box(modifier = modifier.padding(top = innerPadding.calculateTopPadding())) {
             Image(
@@ -51,7 +51,14 @@ internal fun SplashScreen(modifier: Modifier = Modifier, animationEndListener: (
                     contentScale = ContentScale.FillWidth
                 )
             }
-            viewModel.checkAuthorization { animationEndListener(it) }
+        }
+    }
+    when (val state = splashState) {
+        is SplashState.Loading -> {
+        }
+
+        is SplashState.AuthorizationStatus -> {
+            animationEndListener(state.authorizationStatus)
         }
     }
 }

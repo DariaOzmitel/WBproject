@@ -3,6 +3,7 @@ package com.example.ui.screen.main.mainPage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.interfaces.IChangeUsersInterestUseCase
+import com.example.domain.usecase.interfaces.ICheckAuthorizationUseCase
 import com.example.domain.usecase.interfaces.IGetCommunityListUseCase
 import com.example.domain.usecase.interfaces.IGetEventListUseCase
 import com.example.domain.usecase.interfaces.IGetInterestsListUseCase
@@ -20,6 +21,7 @@ internal class MainPageViewModel(
     private val getInterestsListUseCase: IGetInterestsListUseCase,
     private val getUsersInterestsListUseCase: IGetUsersInterestsListUseCase,
     private val changeUsersInterestUseCase: IChangeUsersInterestUseCase,
+    private val checkAuthorizationUseCase: ICheckAuthorizationUseCase,
     private val mapper: DomainToUiMapper
 ) : ViewModel() {
     private val mainPageStateMutable: MutableStateFlow<MainPageState> =
@@ -46,15 +48,17 @@ internal class MainPageViewModel(
                 getEventListUseCase.invoke(),
                 getCommunityListUseCase.invoke(),
                 getInterestsListUseCase.invoke(),
-                getUsersInterestsListUseCase.invoke()
-            ) { eventList, communityList, allInterestsList, selectedInterests ->
+                getUsersInterestsListUseCase.invoke(),
+                checkAuthorizationUseCase.invoke()
+            ) { eventList, communityList, allInterestsList, selectedInterests, authorizationStatus ->
                 MainPageState.MainPageDetail(
                     eventList = eventList,
                     communityList = communityList,
                     interestsList = mapper.interestsListToUi(
                         interestsList = allInterestsList,
                         selectedInterestsList = selectedInterests
-                    )
+                    ),
+                    authorizationStatus = authorizationStatus
                 )
             }.collect { mainPageDetail ->
                 mainPageStateMutable.update { mainPageDetail }

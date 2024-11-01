@@ -1,5 +1,7 @@
 package com.example.domain.usecase.interfaces
 
+import com.example.domain.model.User
+
 interface IAddUserUseCase {
-    suspend operator fun invoke(name: String, lastName: String?, avatar: String?, phone: String)
+    suspend operator fun invoke(user: User)
 }

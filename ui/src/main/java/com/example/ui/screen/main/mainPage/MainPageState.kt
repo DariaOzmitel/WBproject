@@ -8,7 +8,8 @@ internal sealed class MainPageState {
     data class MainPageDetail(
         val eventList: List<Event>,
         val communityList: List<Community>,
-        val interestsList: List<InterestUi>
+        val interestsList: List<InterestUi>,
+        val authorizationStatus: Boolean
     ) : MainPageState()
 
     object Loading : MainPageState()

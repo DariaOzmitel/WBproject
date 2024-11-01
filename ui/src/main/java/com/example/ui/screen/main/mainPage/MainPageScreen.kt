@@ -41,7 +41,7 @@ internal fun MainPageScreen(
     onMainEventCardClickListener: (Int) -> Unit,
     onEventCardClickListener: (Int) -> Unit,
     onEventCardMaxWidthClickListener: (Int) -> Unit,
-    onProfileClickListener: () -> Unit,
+    onProfileClickListener: (Boolean) -> Unit,
     onSelectInterestButtonClickListener: () -> Unit,
     onCommunityCardClickListener: (Int) -> Unit,
 ) {
@@ -60,7 +60,7 @@ internal fun MainPageScreen(
                     onMainEventCardClickListener = onMainEventCardClickListener,
                     onEventCardClickListener = onEventCardClickListener,
                     onEventCardMaxWidthClickListener = onEventCardMaxWidthClickListener,
-                    onProfileClickListener = onProfileClickListener,
+                    onProfileClickListener = { onProfileClickListener(state.authorizationStatus) },
                     onSelectInterestButtonClickListener = onSelectInterestButtonClickListener,
                     onChipClickListener = { viewModel.changeUsersInterest(it) },
                     onCommunityCardClickListener = { onCommunityCardClickListener(it) })

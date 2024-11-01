@@ -3,6 +3,7 @@ package com.example.data.di
 import android.app.Application
 import com.example.data.database.AppDatabase
 import com.example.data.database.interests.InterestsDao
+import com.example.data.database.user.UserDao
 import com.example.data.mapper.DbToDomainMapper
 import com.example.data.repository.AuthorizationRepositoryImpl
 import com.example.data.repository.CommunityRepositoryImpl
@@ -25,9 +26,14 @@ val dataModule = module {
     singleOf(::PeopleRepositoryImpl) bind PeopleRepository::class
     singleOf(::InterestsRepositoryImpl) bind InterestsRepository::class
     singleOf(::provideInterestsDao)
+    singleOf(::provideUserDao)
     singleOf(::DbToDomainMapper)
 }
 
 private fun provideInterestsDao(application: Application): InterestsDao {
     return AppDatabase.getInstance(application).interestsDao()
+}
+
+private fun provideUserDao(application: Application): UserDao {
+    return AppDatabase.getInstance(application).userDao()
 }

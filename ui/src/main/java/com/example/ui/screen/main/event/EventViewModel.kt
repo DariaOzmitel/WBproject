@@ -11,7 +11,6 @@ import com.example.ui.navigation.Screen
 import com.example.ui.orZero
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -33,20 +32,20 @@ internal class EventViewModel(
 
     fun getMeetingFlow(): StateFlow<EventState> = eventState
 
-    fun updateAttendingStatus() {
-        viewModelScope.launch {
-            val user = getUserFlowUseCase.invoke().first()
-            changeAttendingStatusUseCase.invoke(meetingId = getMeetingId(), user = user)
-            eventStateMutable.update { state ->
-                when (state) {
-                    is EventState.EventDetail ->
-                        state.copy(attendingStatus = !state.attendingStatus)
-
-                    else -> state
-                }
-            }
-        }
-    }
+//    fun updateAttendingStatus() {
+//        viewModelScope.launch {
+//            val user = getUserFlowUseCase.invoke().first()
+//            changeAttendingStatusUseCase.invoke(meetingId = getMeetingId(), user = user)
+//            eventStateMutable.update { state ->
+//                when (state) {
+//                    is EventState.EventDetail ->
+//                        state.copy(attendingStatus = !state.attendingStatus)
+//
+//                    else -> state
+//                }
+//            }
+//        }
+//    }
 
     private fun getMeetingId(): Int {
         return savedStateHandle.get<Int>(Screen.KEY_EVENT_ID).orZero()
@@ -56,13 +55,13 @@ internal class EventViewModel(
         viewModelScope.launch {
             getMeetingUseCase(getMeetingId()).collect { event ->
                 eventStateMutable.update {
-                    val attendingStatus =
-                        event.usersList.find {
-                            it.id == getUserFlowUseCase.invoke().first().id
-                        } != null
+//                    val attendingStatus =
+//                        event.usersList.find {
+//                            it.id == getUserFlowUseCase.invoke().first().id
+//                        } != null
                     EventState.EventDetail(
                         event = event,
-                        attendingStatus = attendingStatus,
+                        attendingStatus = false,
                         mapUrl = mockMapUrl
                     )
                 }

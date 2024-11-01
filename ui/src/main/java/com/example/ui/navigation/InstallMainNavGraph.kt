@@ -25,8 +25,11 @@ fun InstallMainNavGraph() {
     MainNavGraph(
         navHostController = navigationState.navHostController,
         splashScreenContent = {
-            SplashScreen {
-                navigationState.navigateTo(Screen.SelectInterest.route)
+            SplashScreen { authorizationStatus ->
+                when (authorizationStatus) {
+                    true -> navigationState.navigateTo(Screen.Main.route)
+                    false -> navigationState.navigateTo(Screen.SelectInterest.route)
+                }
             }
         },
         selectInterestScreenContent = {
@@ -50,7 +53,12 @@ fun InstallMainNavGraph() {
                 onEventCardClickListener = { eventId ->
                     navigationState.navigateToEvent(eventId)
                 },
-                onProfileClickListener = { navigationState.navigateTo(Screen.Profile.route) },
+                onProfileClickListener = { authorizationStatus ->
+                    when (authorizationStatus) {
+                        true -> navigationState.navigateTo(Screen.Profile.route)
+                        false -> navigationState.navigateTo(Screen.EnterName.route)
+                    }
+                },
                 onEventCardMaxWidthClickListener = { eventId ->
                     navigationState.navigateToEvent(
                         eventId
